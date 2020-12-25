@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="使用browser-sync 来用作服务器，实现实时刷新 package.json 1234567891011121314151617181920212223&amp;#123;% highlight bash %&amp;#125;&amp;#123;  &quot;name&quot;: &quot;test&quot;,  &quot;version&quot;: &quot;1.0.0&quot;,  &amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="browser-sync配合gulp使用">
+<meta property="og:url" content="http://example.com/2016/11/23/2015-06-17-gulp2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用browser-sync 来用作服务器，实现实时刷新 package.json 1234567891011121314151617181920212223&amp;#123;% highlight bash %&amp;#125;&amp;#123;  &quot;name&quot;: &quot;test&quot;,  &quot;version&quot;: &quot;1.0.0&quot;,  &amp;quot">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-11-22T17:08:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.235Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2016/11/23/2015-06-17-gulp2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>browser-sync配合gulp使用 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gulpfile-js"><span class="nav-number">1.</span> <span class="nav-text">gulpfile.js</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/11/23/2015-06-17-gulp2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          browser-sync配合gulp使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-11-23 01:08:00" itemprop="dateCreated datePublished" datetime="2016-11-23T01:08:00+08:00">2016-11-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>使用browser-sync 来用作服务器，实现实时刷新</p>
+<p>package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;% highlight bash %&#125;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;weibin&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;gulp&quot;: &quot;^3.9.1&quot;,</span><br><span class="line">    &quot;browser-sync&quot;: &quot;^2.17.3&quot;,</span><br><span class="line">    &quot;gulp-connect&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">    &quot;gulp-file-include&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;gulp-imagemin&quot;: &quot;^3.0.3&quot;,</span><br><span class="line">    &quot;gulp-less&quot;: &quot;^3.1.0&quot;,</span><br><span class="line">    &quot;gulp-notify&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;gulp-plumber&quot;: &quot;^1.1.0&quot;,</span><br><span class="line">    &quot;gulp-watch&quot;: &quot;^4.3.10&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;); &#x2F;&#x2F;本地安装gulp所用到的地方</span><br><span class="line">var fileinclude  &#x3D; require(&#39;gulp-file-include&#39;);  &#x2F;&#x2F;包含HTML</span><br><span class="line">var connect &#x3D; require(&#39;gulp-connect&#39;); &#x2F;&#x2F;本地服务</span><br><span class="line">var imagemin &#x3D; require(&#39;gulp-imagemin&#39;); &#x2F;&#x2F;图片压缩</span><br><span class="line">var watch &#x3D; require(&#39;gulp-watch&#39;); &#x2F;&#x2F;监听</span><br><span class="line">var less &#x3D; require(&#39;gulp-less&#39;);</span><br><span class="line">var notify &#x3D; require(&#39;gulp-notify&#39;);  &#x2F;&#x2F;处理LESS错误</span><br><span class="line">var plumber &#x3D; require(&#39;gulp-plumber&#39;); &#x2F;&#x2F;处理LESS错误</span><br><span class="line">var browserSync &#x3D; require(&#39;browser-sync&#39;);</span><br><span class="line">var reload &#x3D; browserSync.reload;</span><br><span class="line"></span><br><span class="line">&#x2F;*&#x2F;&#x2F;本地服务</span><br><span class="line"> gulp.task(&#39;webserver&#39;, function() &#123;</span><br><span class="line"> connect.server(&#123;</span><br><span class="line"> port: 8080,      &#x2F;&#x2F;修改端口</span><br><span class="line"> livereload: true   &#x2F;&#x2F;添加实时刷新，需要watch相应的css.js,html文件</span><br><span class="line"> &#125;);</span><br><span class="line"> &#125;);*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;include html并刷新服务器</span><br><span class="line">gulp.task(&#39;fileinclude&#39;, function(done) &#123;</span><br><span class="line">    gulp.src([&#39;src&#x2F;html&#x2F;*.html&#39;])</span><br><span class="line">        .pipe(fileinclude(&#123;</span><br><span class="line">            prefix: &#39;@@&#39;,</span><br><span class="line">            basepath: &#39;@file&#39;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;html&#39;))</span><br><span class="line"></span><br><span class="line">        .on(&#39;end&#39;, done)</span><br><span class="line">        .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;压缩图片</span><br><span class="line">gulp.task(&#39;imagemin&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;images&#x2F;*&#39;)</span><br><span class="line">        .pipe(imagemin())</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;images&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打包CSS进入到dist目录</span><br><span class="line">gulp.task(&#39;csstodist&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;css&#x2F;*.css&#39;)</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;css&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打包JS到dist目录</span><br><span class="line">gulp.task(&#39;jstodist&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;js&#x2F;*&#39;)</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;js&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&#39;testLess&#39;, function () &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;css&#x2F;*.less&#39;)</span><br><span class="line">        .pipe(plumber(&#123;errorHandler: notify.onError(&#39;Error: &lt;%&#x3D; error.message %&gt;&#39;)&#125;))</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;css&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 监视文件改动并重新载入</span><br><span class="line">gulp.task(&#39;serve&#39;, function() &#123;</span><br><span class="line">    browserSync(&#123;</span><br><span class="line">        port: 8080,</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: &#39;dist&#x2F;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;监听所有HTML JS CSS改动</span><br><span class="line">gulp.task(&#39;watch&#39;, function () &#123;</span><br><span class="line">   &#x2F;&#x2F; gulp.watch([&#39;src&#x2F;css&#x2F;*&#39;,&#39;src&#x2F;css&#x2F;*.less&#39;,&#39;src&#x2F;html&#x2F;*.html&#39;,&#39;src&#x2F;js&#x2F;*&#39;,&#39;src&#x2F;images&#x2F;*&#39;], [&#39;testLess&#39;,&#39;jstodist&#39;,&#39;csstodist&#39;,&#39;fileinclude&#39;,&#39;imagemin&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;**&#x2F;*.css&#39;], [&#39;csstodist&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;css&#x2F;*.less&#39;], [&#39;testLess&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;html&#x2F;**&#x2F;*.html&#39;], [&#39;fileinclude&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;js&#x2F;*&#39;], [&#39;jstodist&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;images&#x2F;*&#39;], [&#39;imagemin&#39;]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(&#39;default&#39;,[&#39;testLess&#39;,&#39;fileinclude&#39;,&#39;serve&#39;,&#39;imagemin&#39;,&#39;csstodist&#39;,&#39;jstodist&#39;,&#39;watch&#39;]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行gulp完毕后 打开 localhost:8080/html</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/11/15/2016-11-15-vue-cli/" rel="prev" title="vue cli安装">
+                  <i class="fa fa-chevron-left"></i> vue cli安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/12/01/2016-12-1-vue-star/" rel="next" title="star星级评价组件">
+                  star星级评价组件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

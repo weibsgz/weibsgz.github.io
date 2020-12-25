@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="模拟假数据 data.js 1234567891011121314151617181920var data &#x3D; [    &amp;#123;        name:&#39;ipone6&#39;,        price:5499,        id:1,        count:1    &amp;#125;,    &amp;#123;        name:&#39;ipad&#39;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuejs简易购物车">
+<meta property="og:url" content="http://example.com/2016/09/28/2016-7-17-vuejs-cart/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="模拟假数据 data.js 1234567891011121314151617181920var data &#x3D; [    &amp;#123;        name:&#39;ipone6&#39;,        price:5499,        id:1,        count:1    &amp;#125;,    &amp;#123;        name:&#39;ipad&#39;,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-09-27T17:08:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.240Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2016/09/28/2016-7-17-vuejs-cart/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>vuejs简易购物车 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/09/28/2016-7-17-vuejs-cart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vuejs简易购物车
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-09-28 01:08:00" itemprop="dateCreated datePublished" datetime="2016-09-28T01:08:00+08:00">2016-09-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>模拟假数据 data.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var data &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">        name:&#39;ipone6&#39;,</span><br><span class="line">        price:5499,</span><br><span class="line">        id:1,</span><br><span class="line">        count:1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name:&#39;ipad&#39;,</span><br><span class="line">        price:3299,</span><br><span class="line">        id:2,</span><br><span class="line">        count:1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name:&#39;iMac&#39;,</span><br><span class="line">        price:15999,</span><br><span class="line">        id:3,</span><br><span class="line">        count:1</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot; xmlns:v-on&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;margin: 0; padding:0;-moz-user-select: none; &#x2F;*火狐*&#x2F;</span><br><span class="line">            -webkit-user-select: none; &#x2F;*webkit浏览器*&#x2F;-ms-user-select: none; &#x2F;*IE10*&#x2F;-khtml-user-select: none; &#x2F;*早期浏览器*&#x2F;</span><br><span class="line">            user-select: none;&#125;</span><br><span class="line">        .products .item span&#123;border: 1px solid #ccc; width: 100px; display: inline-block; text-align: center; height:40px; line-height:40px;&#125;</span><br><span class="line">        .products .item span em&#123;width: 20px;height: 20px; text-align: center; border: 1px solid #ccc;</span><br><span class="line">            background-color:orangered; color: #fff; display: inline-block;line-height: 20px; cursor: pointer;&#125;</span><br><span class="line">        .products .item span i&#123;width: 50px; line-height: 30px; text-align: center; background: orangered; color: #fff;</span><br><span class="line">            height:30px; font-size: 14px; font-style: normal; display: inline-block&#125;</span><br><span class="line">        .info&#123;margin-top: 50px&#125;</span><br><span class="line">        .products .item span em.off&#123;background-color: #ccc;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;vue.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;data.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">       &lt;!--用template 判断购物车是不是为空 做不同的显示--&gt;</span><br><span class="line">        &lt;template v-if&#x3D;&quot;data.length&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;products&quot;&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;item&quot;&gt;</span><br><span class="line">                    &lt;span&gt;商品名称&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;购买单价&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;商品数量&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;操作&lt;&#x2F;span&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;item&quot; v-for&#x3D;&quot;item in data&quot;&gt;</span><br><span class="line">                    &lt;span&gt;&#123;&#123;item.name&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;&#123;&#123;item.price | currency &#39;￥&#39; 0&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;</span><br><span class="line">                    &lt;em :class&#x3D;&quot;&#123;off:item.count &#x3D;&#x3D; 1&#125;&quot; @click&#x3D;&quot;reduce($index)&quot;&gt;-&lt;&#x2F;em&gt;</span><br><span class="line">                    &#123;&#123;item.count&#125;&#125;</span><br><span class="line">                    &lt;em @click&#x3D;&quot;add($index)&quot;&gt;+&lt;&#x2F;em&gt;</span><br><span class="line">                &lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;</span><br><span class="line">                    &lt;i v-on:click&#x3D;&quot;remove($index)&quot;&gt;移除&lt;&#x2F;i&gt;</span><br><span class="line">                &lt;&#x2F;span&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;info&quot;&gt;</span><br><span class="line">                &lt;label for&#x3D;&quot;&quot;&gt;收件人:&lt;&#x2F;label&gt;</span><br><span class="line">                &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;name&quot;&gt;</span><br><span class="line">                &lt;label for&#x3D;&quot;&quot;&gt;收货地址:&lt;&#x2F;label&gt;</span><br><span class="line">                &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;address&quot;&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;result&quot;&gt;</span><br><span class="line">                &lt;h3&gt;清单&lt;&#x2F;h3&gt;</span><br><span class="line">                &lt;!--内置过滤器， 第三个参数代表保留几位--&gt;</span><br><span class="line">                商品总价：&#123;&#123; price | currency &#39;￥&#39; 0&#125;&#125;&lt;br&gt;</span><br><span class="line">                收件人：&#123;&#123;name&#125;&#125;&lt;br&gt;</span><br><span class="line">                收货地址：&#123;&#123;address&#125;&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line">        &lt;template v-else&gt;</span><br><span class="line">            购物车为空</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var vm &#x3D; new Vue(&#123;</span><br><span class="line">        el:&quot;#app&quot;,</span><br><span class="line">        data:&#123;</span><br><span class="line">            data:data,</span><br><span class="line">            name:&quot;&quot;,</span><br><span class="line">            address:&quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed:&#123;</span><br><span class="line">            &#x2F;&#x2F;自动计算所有单价*数量</span><br><span class="line">          price:function()&#123;</span><br><span class="line">              var price &#x3D; 0;</span><br><span class="line">              for(var i&#x3D;0; i&lt;this.data.length; i++)</span><br><span class="line">              &#123;</span><br><span class="line">                  price +&#x3D; this.data[i].price* this.data[i].count</span><br><span class="line">              &#125;</span><br><span class="line">              return price</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            reduce:function(index)&#123;</span><br><span class="line">                if(this.data[index].count &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    return false</span><br><span class="line">                &#125;</span><br><span class="line">                this.data[index].count--</span><br><span class="line">            &#125;,</span><br><span class="line">            add:function(index)&#123;</span><br><span class="line">                this.data[index].count++</span><br><span class="line">            &#125;,</span><br><span class="line">            remove:function(index)</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F;spilce 方法 第一个参数是要删除的起始位置，第二个参数是要删除的个数</span><br><span class="line">                this.data.splice(index,1)</span><br><span class="line"></span><br><span class="line">              &#x2F;&#x2F;  this.data.$remove(item) &#x2F;&#x2F;如果上边传进来这个item 可以用这种VUE自带的方法直接删除这个ITEM；</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/09/27/2016-09-17-apicloud/" rel="prev" title="API CLOUD 九次方微信分享">
+                  <i class="fa fa-chevron-left"></i> API CLOUD 九次方微信分享
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/11/15/2016-11-15-vue-cli/" rel="next" title="vue cli安装">
+                  vue cli安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

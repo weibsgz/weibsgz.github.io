@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="封装echarts组件在父组件 data里 必须定义好图形初始的必须值，否则报错 123456789101112131415lineChartsData:&amp;#123;               id:&#39;lineChart&#39;,               height : 500,               option:&amp;#123;                   &amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJS 开发常见问题集锦">
+<meta property="og:url" content="http://example.com/2017/07/28/vue-tips/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="封装echarts组件在父组件 data里 必须定义好图形初始的必须值，否则报错 123456789101112131415lineChartsData:&amp;#123;               id:&#39;lineChart&#39;,               height : 500,               option:&amp;#123;                   &amp;quo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/uploads/vue2.jpg">
+<meta property="og:image" content="http://example.com/uploads/vue3.jpg">
+<meta property="og:image" content="http://example.com/uploads/vue1.png">
+<meta property="article:published_time" content="2017-07-28T06:13:23.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.262Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/uploads/vue2.jpg">
+
+
+<link rel="canonical" href="http://example.com/2017/07/28/vue-tips/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>VueJS 开发常见问题集锦 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85echarts%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">封装echarts组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-ui-%E7%9A%84%E6%A0%B7%E5%BC%8F%E9%9C%80%E8%A6%81%E5%86%99%E5%9C%A8public-css%E9%87%8C-%E5%9B%A0%E4%B8%BA%E5%A6%82%E6%9E%9C%E5%86%99%E5%9C%A8%E5%B0%81%E8%A3%85%E7%9A%84-elementui%E7%BB%84%E4%BB%B6%E9%87%8C-%E5%8D%B3%E4%BD%BF%E5%8E%BB%E6%8E%89scoped-%E6%89%93%E5%8C%85build%E5%90%8E%E8%BF%98%E6%98%AF%E4%B8%8D%E8%83%BD%E8%A6%86%E7%9B%96%E5%8E%9F%E6%9C%89%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%99%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E5%BD%93%E5%89%8D%E9%A1%B5page-%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E8%A6%81%E9%80%9A%E8%BF%87watch-%E6%8A%8Apage%E5%8F%98%E6%88%90currentPage-%E5%90%A6%E5%88%99%E4%BC%9A%E6%9C%89%E8%AD%A6%E5%91%8A-%E5%A4%A7%E4%B9%89%E6%98%AF%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E8%BF%87%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%96%B9%E6%B3%95%E6%9B%B4%E6%94%B9%E4%BA%86%E7%88%B6%E7%BB%84%E4%BB%B6%E7%9A%84%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue%E5%BC%80%E5%8F%91%E4%B8%AD%EF%BC%8C%E7%88%B6%E7%BB%84%E4%BB%B6%E6%B7%BB%E5%8A%A0scoped%E4%B9%8B%E5%90%8E%E3%80%82%E8%A7%A3%E5%86%B3%E5%9C%A8%E7%88%B6%E7%BB%84%E4%BB%B6%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BF%AE%E6%94%B9%E5%AD%90%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%97%AE%E9%A2%98%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#polyfill-%E4%B8%8E-transform-runtime"><span class="nav-number">5.</span> <span class="nav-text">polyfill 与 transform-runtime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moment-JS-%E4%B8%8E-Webpack"><span class="nav-number">6.</span> <span class="nav-text">Moment.JS 与 Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E5%BE%84%E5%88%AB%E5%90%8D"><span class="nav-number">7.</span> <span class="nav-text">自定义路径别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E5%80%BC"><span class="nav-number">8.</span> <span class="nav-text">获取表单控件值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE"><span class="nav-number">9.</span> <span class="nav-text">项目路径配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%90%8E%E8%83%8C%E6%99%AF%E5%9B%BE%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%87%BA%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">打包后背景图显示不出来的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8vue-cli%E5%BC%80%E5%8F%91%E6%97%B6%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">11.</span> <span class="nav-text">使用vue-cli开发时跨域问题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/28/vue-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VueJS 开发常见问题集锦
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-07-28 14:13:23" itemprop="dateCreated datePublished" datetime="2017-07-28T14:13:23+08:00">2017-07-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="封装echarts组件"><a href="#封装echarts组件" class="headerlink" title="封装echarts组件"></a><strong>封装echarts组件</strong></h3><p>在父组件 data里 必须定义好图形初始的必须值，否则报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">lineChartsData:&#123;</span><br><span class="line">               id:&#39;lineChart&#39;,</span><br><span class="line">               height : 500,</span><br><span class="line">               option:&#123;</span><br><span class="line">                   &quot;xAxis&quot;:&#123;</span><br><span class="line">                       &quot;name&quot;:&quot;&quot;,</span><br><span class="line">                       &quot;data&quot;:[]</span><br><span class="line">                   &#125;,</span><br><span class="line">                   &quot;series&quot;:&#123;</span><br><span class="line">                       &quot;name&quot;:&quot;&quot;,</span><br><span class="line">                       &quot;data&quot;:[]</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>传递数据只改变option的值 需要在封装的echarts组件里 watch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">        lineChartsData: &#123;</span><br><span class="line">          handler: function (val, oldVal) &#123; </span><br><span class="line">            console.log(&quot;watch&quot;)</span><br><span class="line">            this.initLineChart()</span><br><span class="line">          &#125;,</span><br><span class="line">          deep: true  &#x2F;&#x2F;增加deep 观察对象的子对象变化</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="element-ui-的样式需要写在public-css里-因为如果写在封装的-elementui组件里-即使去掉scoped-打包build后还是不能覆盖原有样式"><a href="#element-ui-的样式需要写在public-css里-因为如果写在封装的-elementui组件里-即使去掉scoped-打包build后还是不能覆盖原有样式" class="headerlink" title="element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式"></a><strong>element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式</strong></h3><h3 id="给分页组件传递当前页page-分页组件内部要通过watch-把page变成currentPage-否则会有警告-大义是子组件通过不正确的方法更改了父组件的值"><a href="#给分页组件传递当前页page-分页组件内部要通过watch-把page变成currentPage-否则会有警告-大义是子组件通过不正确的方法更改了父组件的值" class="headerlink" title="给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值"></a><strong>给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值</strong></h3><p>父组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;pagination</span><br><span class="line">        :pageSize &#x3D; &quot;pageSize&quot;</span><br><span class="line">        :total&#x3D;&quot;total&quot;</span><br><span class="line">        :layout &#x3D; &quot;layout&quot;</span><br><span class="line">        :page&#x3D;&quot;page&quot;</span><br><span class="line">        @pageChange&#x3D;&quot;pageChange&quot;</span><br><span class="line">        &gt;</span><br><span class="line">&lt;&#x2F;pagination&gt;</span><br></pre></td></tr></table></figure>
+<p>分页组件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-pagination</span><br><span class="line">    :page-size&#x3D;&quot;pageSize&quot;</span><br><span class="line">    :total&#x3D;&quot;total&quot;</span><br><span class="line">    :layout &#x3D; &quot;layout&quot;</span><br><span class="line">    :current-page.sync &#x3D; &quot;currentPage&quot;</span><br><span class="line">    @current-change&#x3D;&quot;handleCurrentChange&quot;</span><br><span class="line">    @size-change&#x3D;&quot;handleSizeChange&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-pagination&gt;</span><br><span class="line"></span><br><span class="line">  watch: &#123;</span><br><span class="line">    page: function (val, oldVal) &#123;</span><br><span class="line">          this.currentPage &#x3D; val</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。"><a href="#vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。" class="headerlink" title="vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。"></a><strong>vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。</strong></h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29266022">https://zhuanlan.zhihu.com/p/29266022</a><br>父组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;gHeader&gt;&lt;&#x2F;gHeader&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">两种写法</span><br><span class="line">.g-header &#x2F;deep&#x2F; span.name&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.g-header &gt;&gt;&gt; span.time&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>子组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;g-header&quot;&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;name&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;time&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="polyfill-与-transform-runtime"><a href="#polyfill-与-transform-runtime" class="headerlink" title="polyfill 与 transform-runtime"></a><strong>polyfill 与 transform-runtime</strong></h3><p>首先，vue-cli 为我们自动添加了 babel-plugin-transform-runtime 这个插件，该插件多数情况下都运作正常，可以转换大部分 ES6 语法。<br>但是，存在如下两个问题：</p>
+<p>异步加载组件时，会产生 polyfill 代码冗余<br>不支持对全局函数与实例方法的 polyfill</p>
+<p>两个问题的原因均归因于 babel-plugin-transform-runtime 采用了沙箱机制来编译我们的代码（即：不修改宿主环境的内置对象）。</p>
+<p>由于异步组件最终会被编译为一个单独的文件，所以即使多个组件中使用了同一个新特性（例如：Object.keys()），那么在每个编译后的文件中都会有一份该新特性的 polyfill 拷贝。如果项目较小可以考虑不使用异步加载，但是首屏的压力会比较大。</p>
+<p>不支持全局函数（如：Promise、Set、Map），Set 跟 Map 这两种数据结构应该大家用的也不多，影响较小。但是 Promise 影响可能就比较大了。</p>
+<p>不支持实例方法（如：’abc’.include(‘b’)、[‘1’, ‘2’, ‘3’].find((n) =&gt; n 等等），这个限制几乎废掉了大部分字符串和一半左右数组的新特性。</p>
+<p>一般情况下 babel-plugin-transform-runtime 能满足大部分的需求，当不满足需求时，推荐使用完整的 babel-polyfill。</p>
+<p>首先，从项目中移除 babel-plugin-transform-runtime<br>卸载该依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un babel-plugin-transform-runtime -D</span><br></pre></td></tr></table></figure>
+<p>修改 babel 配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .babelrc</span><br><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;...</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    &#x2F;&#x2F; - &quot;transform-runtime&quot;</span><br><span class="line">  ]</span><br><span class="line">  &#x2F;&#x2F;...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，安装 babel-polyfill 依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-polyfill -D</span><br></pre></td></tr></table></figure>
+<p>最后，在入口文件中导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;main.js</span><br><span class="line">import &#39;babel-polyfill&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="Moment-JS-与-Webpack"><a href="#Moment-JS-与-Webpack" class="headerlink" title="Moment.JS 与 Webpack"></a><strong>Moment.JS 与 Webpack</strong></h3><p>在使用 Moment.js 遇到一些问题，发现最终打包的文件中将 Moment.js 的全部语言包都打包了，导致最终文件徒然增加 100+kB。查了一下，发现可能是 webpack 打包或是 Moment.js 资源引用问题（?），目前该问题还未被妥善处理，需要通过一些 trick 来解决这个问题。</p>
+<p>在 webpack 的生产配置文件中的 plugins 字段中添加一个插件，使用内置的方法类 ContextReplacementPlugin 过滤掉 Moment.js 中那些用不到的语言包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; build&#x2F;webpack.prod.conf.js</span><br><span class="line">new webpack.ContextReplacementPlugin(&#x2F;moment[\\&#x2F;]locale$&#x2F;, &#x2F;^\.\&#x2F;(zh-cn)$&#x2F;)</span><br></pre></td></tr></table></figure>
+<p>解决方案采自 oleg-nogin@webpack/webpack#3128。<br>问题讨论详见 GitHub Issue: moment/moment#2373、webpack/webpack#3128。</p>
+<h3 id="自定义路径别名"><a href="#自定义路径别名" class="headerlink" title="自定义路径别名"></a><strong>自定义路径别名</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; build&#x2F;webpack.base.js</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [&#39;.js&#39;, &#39;.vue&#39;, &#39;.json&#39;],</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;vue$&#39;: &#39;vue&#x2F;dist&#x2F;vue.esm.js&#39;,</span><br><span class="line">      &#39;@&#39;: resolve(&#39;src&#39;),</span><br><span class="line">      &#39;common&#39;:resolve(&#39;src&#x2F;common&#39;),</span><br><span class="line">      &#39;components&#39;:resolve(&#39;src&#x2F;components&#39;),</span><br><span class="line">      &#39;api&#39;: resolve(&#39;src&#x2F;api&#39;),</span><br><span class="line">      &#39;base&#39;:resolve(&#39;src&#x2F;base&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取表单控件值"><a href="#获取表单控件值" class="headerlink" title="获取表单控件值"></a><strong>获取表单控件值</strong></h3><p>通常我们可以直接使用 v-model 将表单控件与数据进行绑定，但是有时候我们也会需要在用户输入的时候获取当前值（比如：实时验证当前输入控件内容的有效性）。</p>
+<p>这时我们可以使用@input或 @change事件绑定我们自己的处理函数，并传入 $event象以获取当前控件的输入值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;text&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">change (e) &#123;</span><br><span class="line">  let curVal &#x3D; e.target.value</span><br><span class="line">  if (&#x2F;^\d+$&#x2F;.test(curVal)) &#123;</span><br><span class="line">    this.num &#x3D; +curVal</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.error(&#39;%s is not a number!&#39;, curVal)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目路径配置"><a href="#项目路径配置" class="headerlink" title="项目路径配置"></a><strong>项目路径配置</strong></h3><p>由于 vue-cli 配置的项目提供了一个内置的静态服务器，在开发阶段基本不会有什么问题。但是，当我们把代码放到服务器上时，经常会遇到静态资源引用错误，导致界面一片空白的问题。</p>
+<p>这是由于 vue-cli 默认配置的 webpack 是以站点根目录引用的文件，然而有时候我们可能需要把项目部署到子目录中。</p>
+<p>我们可以通过 config/index.js 来修改文件引用的相对路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">build.assetsSubDirectory: &#39;static&#39;</span><br><span class="line">  build.assetsPublicPath: &#39;&#x2F;&#39;</span><br><span class="line"> </span><br><span class="line">  dev.assetsSubDirectory: &#39;static&#39;</span><br><span class="line">  dev.assetsPublicPath: &#39;&#x2F;&#39;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到导出对象中 build 与 dev 均有 assetsSubDirectory、assetsPublicPath 这两个属性。</p>
+<p>其中 assetsSubDirectory 指静态资源文件夹，也就是打包后的　js、css、图片等文件所放置的文件夹，这个默认一般不会有问题。</p>
+<p>assetsPublicPath 指静态资源的引用路径，默认配置为 /，即网站根目录，与 assetsSubDirectory 组合起来就是完整的静态资源引用路径 /static。</p>
+<p>写到这里解决方法已经很明显了，只要把根目录改为相对目录就好了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">build.assetsSubDirectory: &#39;static&#39;</span><br><span class="line"> build.assetsPublicPath: &#39;.&#x2F;&#39;</span><br></pre></td></tr></table></figure>
+<p>没错！就是一个 . 的问题。ㄟ( ▔, ▔ )ㄏ</p>
+<h3 id="打包后背景图显示不出来的问题"><a href="#打包后背景图显示不出来的问题" class="headerlink" title="打包后背景图显示不出来的问题"></a><strong>打包后背景图显示不出来的问题</strong></h3><p><img src="/uploads/vue2.jpg" alt="百度"></p>
+<p><img src="/uploads/vue3.jpg" alt="百度"></p>
+<h3 id="使用vue-cli开发时跨域问题"><a href="#使用vue-cli开发时跨域问题" class="headerlink" title="使用vue-cli开发时跨域问题"></a><strong>使用vue-cli开发时跨域问题</strong></h3><p>打开config文件夹下的index.js,配置proxyTable：</p>
+<p><img src="/uploads/vue1.png" alt="百度"></p>
+<p>其中，taget是要访问的api的域名，配置完proxyTable后，若要访问’<a target="_blank" rel="noopener" href="http://apis.haoservice.com/lifeservice/chicken/duck&#39;%EF%BC%8Cajax%E9%87%8C%E7%9A%84url%E5%8F%AA%E9%9C%80%E8%AE%BE%E4%B8%BA&#39;/lifeservice/chicken/duck&#39;(%E5%8D%B3%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)%E5%8D%B3%E5%8F%AF%EF%BC%8Cwebpack%E4%BC%9A%E5%B8%AE%E4%BD%A0%E6%8A%8A%E2%80%98/lifeservice%E2%80%99%E4%B8%8B%E7%9A%84%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E8%87%B3&#39;http://apis.haoservice.com/lifeservice/chicken/duck&#39;%EF%BC%81">http://apis.haoservice.com/lifeservice/chicken/duck&#39;，ajax里的url只需设为&#39;/lifeservice/chicken/duck&#39;(即绝对路径)即可，webpack会帮你把‘/lifeservice’下的请求转发至&#39;http://apis.haoservice.com/lifeservice/chicken/duck&#39;！</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/07/20/2017-06-07-vuex/" rel="prev" title="vuex配置心得">
+                  <i class="fa fa-chevron-left"></i> vuex配置心得
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/08/18/scss-study/" rel="next" title="sass在项目中使用说明">
+                  sass在项目中使用说明 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

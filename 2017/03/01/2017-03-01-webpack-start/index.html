@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="安装步骤123451.npm init2.进入目录  npm install webpack --save-devnpm install webpack -g   注意事项1.读取css需要loadernpm install css-loader style-loader –save-dev 在入口的JS文件引入require(‘style-loader!css-loader!.&#x2F;style.cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack-start">
+<meta property="og:url" content="http://example.com/2017/03/01/2017-03-01-webpack-start/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装步骤123451.npm init2.进入目录  npm install webpack --save-devnpm install webpack -g   注意事项1.读取css需要loadernpm install css-loader style-loader –save-dev 在入口的JS文件引入require(‘style-loader!css-loader!.&#x2F;style.cs">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-02-28T17:08:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.243Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2017/03/01/2017-03-01-webpack-start/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>webpack-start | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8webpack-config-js%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">使用webpack.config.js配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#html-webpack-plugin"><span class="nav-number">4.</span> <span class="nav-text">html-webpack-plugin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#loader"><span class="nav-number">5.</span> <span class="nav-text">loader</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/03/01/2017-03-01-webpack-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          webpack-start
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-01 01:08:00" itemprop="dateCreated datePublished" datetime="2017-03-01T01:08:00+08:00">2017-03-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.npm init</span><br><span class="line"></span><br><span class="line">2.进入目录  npm install webpack --save-dev</span><br><span class="line"></span><br><span class="line">npm install webpack -g</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>1.读取css需要loader<br>npm install css-loader style-loader –save-dev</p>
+<p>在入口的JS文件引入<br>require(‘style-loader!css-loader!./style.css’)</p>
+<p>2.一些参数</p>
+<p>webpack hello.js hello.bundle.js –watch –progress –display-modules –display-reasons</p>
+<h1 id="使用webpack-config-js配置"><a href="#使用webpack-config-js配置" class="headerlink" title="使用webpack.config.js配置"></a>使用webpack.config.js配置</h1><p>改写package.json   –config webpack.config.js webpack.config.js改名了也用这个 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">    &quot;webpack&quot;:&quot;webpack --config webpack.config.js --watch --progress --display-modules --display-reason --colors&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>npm run webpack 运行</p>
+<h1 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin --save-dev</span><br><span class="line">var htmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">module.exports&#x3D;&#123;</span><br><span class="line">   &#x2F;&#x2F;单入口</span><br><span class="line">   &#x2F;&#x2F; entry:&#39;.&#x2F;src&#x2F;script&#x2F;main.js&#39;,</span><br><span class="line">   &#x2F;&#x2F;多入口</span><br><span class="line">    &#x2F;&#x2F;entry:[&#39;.&#x2F;src&#x2F;script&#x2F;main.js&#39;,&#39;.&#x2F;src&#x2F;script&#x2F;a.js&#39;],</span><br><span class="line">    &#x2F;&#x2F;穿一个对象，假设有3个页面a,b,c 每个页面都引入main.js 每个页面都有单独的JS a,b,c</span><br><span class="line">    entry:&#123;</span><br><span class="line">        main:&#39;.&#x2F;src&#x2F;script&#x2F;main.js&#39;,</span><br><span class="line">        a:&#39;.&#x2F;src&#x2F;script&#x2F;a.js&#39;,</span><br><span class="line">        b:&#39;.&#x2F;src&#x2F;script&#x2F;b.js&#39;,</span><br><span class="line">        c:&#39;.&#x2F;src&#x2F;script&#x2F;c.js&#39;,</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        &#x2F;&#x2F;注意路径 这里只配到dist根目录下  在filename中才指定js&#x2F;</span><br><span class="line">        path:&#39;.&#x2F;dist&#39;,</span><br><span class="line">        &#x2F;&#x2F;如果entry 是一个对象，有多个键值对(chunk), filename就不能写死一个名字</span><br><span class="line">        &#x2F;&#x2F;其中hash是每次打包的哈希值，chunkhash 是每次打包都不同的哈希值 相当于md5</span><br><span class="line">        filename:&#39;js&#x2F;[name]-[chunkhash].js&#39;,</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;打包上线后，替换路径为以下路径开头</span><br><span class="line">       &#x2F;&#x2F; publicPath:&#39;http:&#x2F;&#x2F;cdn.com&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        &#x2F;&#x2F;html-webpack-plugin 这个插件可以把打包生成js自动引入到页面中，因为打包生成的名字带有</span><br><span class="line">        &#x2F;&#x2F;哈希值，每次都不同</span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            &#x2F;&#x2F;模板参照根目录下的index.html,这样根目录的index.</span><br><span class="line">            &#x2F;&#x2F;html里的内容也会被搬进这个插件生成的index.html</span><br><span class="line">             template: &#39;index.html&#39;,</span><br><span class="line">             &#x2F;&#x2F;指定带有hash值的名称 index-[hash].html,每次都生成不同的INDEX.HTML</span><br><span class="line">             filename:&#39;a.html&#39;,</span><br><span class="line">             &#x2F;&#x2F;可将JS直接插入到头部，不写就是尾部</span><br><span class="line">            &#x2F;&#x2F; inject:&#39;head&#39;,</span><br><span class="line">            &#x2F;&#x2F;设置false 手动在 头尾自定义script引入位置</span><br><span class="line">             inject:&#39;body&#39;,</span><br><span class="line">             &#x2F;&#x2F;可在index.html中通过&lt;%&#x3D; htmlWebpackPlugin.options.title %&gt;</span><br><span class="line">             title:&#39;this is a&#39;,</span><br><span class="line">             &#x2F;&#x2F;任何属性都可以被通过ejs模板方式引入到页面           </span><br><span class="line">             &#x2F;&#x2F;date:new Date(),</span><br><span class="line">             &#x2F;&#x2F;仅引入和自己页面相关的chunks</span><br><span class="line">             chunks:[&#39;main&#39;,&#39;a&#39;]</span><br><span class="line"></span><br><span class="line">             &#x2F;&#x2F;压缩output</span><br><span class="line">            &#x2F;* minify:&#123;</span><br><span class="line">                &#x2F;&#x2F;删除注释，空格</span><br><span class="line">                removeComments:true,</span><br><span class="line">                collapseWhitespace:true</span><br><span class="line"></span><br><span class="line">             &#125;*&#x2F;</span><br><span class="line"></span><br><span class="line">        &#125;) ,</span><br><span class="line"></span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            template: &#39;index.html&#39;,             </span><br><span class="line">            filename:&#39;b.html&#39;,</span><br><span class="line">            inject:&#39;body&#39;,</span><br><span class="line">            title:&#39;this is b&#39;,</span><br><span class="line">            &#x2F;&#x2F;date:new Date(),</span><br><span class="line">            chunks:[&#39;main&#39;,&#39;b&#39;]</span><br><span class="line">        &#125;) ,</span><br><span class="line"></span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            template: &#39;index.html&#39;,             </span><br><span class="line">            filename:&#39;c.html&#39;,</span><br><span class="line">            inject:&#39;body&#39;,</span><br><span class="line">            title:&#39;this is c&#39;,</span><br><span class="line">            &#x2F;&#x2F;date:new Date(),</span><br><span class="line">            chunks:[&#39;c&#39;]</span><br><span class="line">        &#125;)              </span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h1><p>1.安装babel loader(es6 转 es5)<br> npm install –save-dev babel-loader babel-core</p>
+<p>2,安装preset latest</p>
+<p>npm install –save-dev babel-preset-latest</p>
+<p>建立.babelrc  内容<br>{<br>    “presets”:[“latest”]<br>}</p>
+<p>3.安装css-loaer postcss<br> npm install css-loader style-loader –save-dev<br> npm install postcss-loader –save-dev<br> npm install autoprefixer –save-dev</p>
+<p> 可以查看npm官网  postcss用法<br>webpack.config.js<br>{<br>     test: /.css$/,<br>     loader:’style-loader!css-loader!postcss-loader’<br> }</p>
+<p> 根目录下建立postcss.config.js</p>
+<p> module.exports = {<br>  plugins: [<br>   require(‘autoprefixer’)({<br>            browsers:[‘last 5 versions’]<br>        })<br>  ]<br>}</p>
+<p>4，安装less-loader<br>$ npm install -g less<br>npm install less-loader –save-dev</p>
+<p>5.安装html-loader</p>
+<p>npm install html-loader –save-dev</p>
+<p>6,处理图片  </p>
+<p>npm install file-loader –save-dev</p>
+<p>npm install url-loader –save-dev<br>//处理图片可以用file-loader ,也可以用url-loader<br> //limit 限制图片大小 200000代表200K 我插入的图片是109K<br> //如果小于这个200K ，则插入BASE64编码，大于还是插入图片</p>
+<p> 压缩图片</p>
+<p> npm install image-webpack-loader –save-dev</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/02/13/2017-02-13-es6-start/" rel="prev" title="es6-gulp环境配置">
+                  <i class="fa fa-chevron-left"></i> es6-gulp环境配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/03/03/interview/" rel="next" title="前端一些安全类，渲染机制，运行机制，性能的面试问题">
+                  前端一些安全类，渲染机制，运行机制，性能的面试问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

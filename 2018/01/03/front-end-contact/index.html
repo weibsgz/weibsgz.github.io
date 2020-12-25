@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="同源策略协议，域名 和 端口  http:&#x2F;&#x2F;www.baidu.com:80,三者必须都一样，否则跨域，非同源操作不了 cookie,ajax,dom HTTP&#x2F;HTTPS协议HTTP 是基于 TCP&#x2F;IP 协议的应用层协议。默认使用80端口。HTTPS协议：简单来说，可以理解为安全版的HTTP协议，基于TCP&#x2F;IP协议和SSL&#x2F;TLS协议之上的应用层协议。默认端口443。 HTTP协议以明文方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前后端通信类问题汇总">
+<meta property="og:url" content="http://example.com/2018/01/03/front-end-contact/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="同源策略协议，域名 和 端口  http:&#x2F;&#x2F;www.baidu.com:80,三者必须都一样，否则跨域，非同源操作不了 cookie,ajax,dom HTTP&#x2F;HTTPS协议HTTP 是基于 TCP&#x2F;IP 协议的应用层协议。默认使用80端口。HTTPS协议：简单来说，可以理解为安全版的HTTP协议，基于TCP&#x2F;IP协议和SSL&#x2F;TLS协议之上的应用层协议。默认端口443。 HTTP协议以明文方">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-01-03T06:13:23.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.251Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2018/01/03/front-end-contact/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>前后端通信类问题汇总 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-HTTPS%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.</span> <span class="nav-text">HTTP&#x2F;HTTPS协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">HTTP协议工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OPTIONS%E8%AF%B7%E6%B1%82%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">4.</span> <span class="nav-text">OPTIONS请求是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#301-302%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">301 302区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSP-%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="nav-number">6.</span> <span class="nav-text">CSP 安全策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%90%8E%E7%AB%AF%E5%A6%82%E4%BD%95%E8%B7%A8%E5%9F%9F%E9%80%9A%E4%BF%A1"><span class="nav-number">7.</span> <span class="nav-text">前端后端如何跨域通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAAJAX"><span class="nav-number">8.</span> <span class="nav-text">如何创建AJAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET-POST%E5%8C%BA%E5%88%AB"><span class="nav-number">9.</span> <span class="nav-text">GET,POST区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonp"><span class="nav-number">10.</span> <span class="nav-text">jsonp</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/front-end-contact/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前后端通信类问题汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-01-03 14:13:23" itemprop="dateCreated datePublished" datetime="2018-01-03T14:13:23+08:00">2018-01-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a><strong>同源策略</strong></h3><p>协议，域名 和 端口  <a href="http://www.baidu.com:80,三者必须都一样，否则跨域，">http://www.baidu.com:80,三者必须都一样，否则跨域，</a><br>非同源操作不了 cookie,ajax,dom</p>
+<h3 id="HTTP-HTTPS协议"><a href="#HTTP-HTTPS协议" class="headerlink" title="HTTP/HTTPS协议"></a><strong>HTTP/HTTPS协议</strong></h3><p>HTTP 是基于 TCP/IP 协议的应用层协议。默认使用80端口。<br>HTTPS协议：简单来说，可以理解为安全版的HTTP协议，基于TCP/IP协议和SSL/TLS协议之上的应用层协议。默认端口443。</p>
+<p>HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此HTTP协议不适合传输一些敏感信息，比如密码等。</p>
+<p>为了解决HTTP协议的这一缺陷，需要使用另一种协议：安全套接字层超文本传输协议HTTPS。为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。缺点：1，申请证书需要钱，2，耗费性能，3.也不是绝对安全</p>
+<p>http协议特点：<br>1.无状态：http协议没法保存客户机信息，也就没法区分每次请求的不同之处。关于http无状态阻碍了交互式应用程序的实现。比如记录用户浏览哪些网页、判断用户是否拥有权限访问等。于是，两种用于保持HTTP状态的技术就应运而生了，一个是Cookie，而另一个则是Session。<br>2，无连接：是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
+<h3 id="HTTP协议工作流程"><a href="#HTTP协议工作流程" class="headerlink" title="HTTP协议工作流程"></a><strong>HTTP协议工作流程</strong></h3><p>3次握手<br>客户端和服务器之间建立一条连接<br>连接建立后，客户端向服务器发起一个请求（request）<br>服务器收到一个请求后，给客户端一个响应（应答，response）<br>客户端收到响应后做进一步处理</p>
+<h3 id="OPTIONS请求是什么"><a href="#OPTIONS请求是什么" class="headerlink" title="OPTIONS请求是什么"></a>OPTIONS请求是什么</h3><p>OPTIONS是一个预请求，跨域的情况下，如果有以下情况发生，则会先发送OPTIONS，服务端允许才会<br>发送真正的请求，否则不会发送<br>1、请求方法不是GET/HEAD/POST<br>2、POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain<br>3、请求设置了自定义的header字段</p>
+<h3 id="301-302区别"><a href="#301-302区别" class="headerlink" title="301 302区别"></a>301 302区别</h3><p>301和302都在response头里设置，301是永久重定向，302是临时重定向<br>301表示这个请求第一次请求服务器后，以后再发送就不询问服务器了，客户端直接跳转到新地址<br>302每次还是要访问服务器看有没有新的地址跳转</p>
+<h3 id="CSP-安全策略"><a href="#CSP-安全策略" class="headerlink" title="CSP 安全策略"></a>CSP 安全策略</h3><p>缓解某些类型的攻击，包括跨站脚本 (XSS) 和数据注入等攻击。<br>后端response头设置X-Content-Security-Policy<br>也可在META标签内设置 <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#39;self&#39;; img-src https://*; child-src &#39;none&#39;;script-src userscripts.example.com&quot;&gt;</code><br>一个网站管理者想要所有内容均来自站点的同一个源 (不包括其子域名)所有脚本必须从特定主机服务器获取可信的代码.</p>
+<h3 id="前端后端如何跨域通信"><a href="#前端后端如何跨域通信" class="headerlink" title="前端后端如何跨域通信"></a><strong>前端后端如何跨域通信</strong></h3><p>1.JSONP<br>2.websocket （不限制同源策略）<br>3.cros   （支持同源，非同源通信）<br>4.postMessage (h5)</p>
+<h3 id="如何创建AJAX"><a href="#如何创建AJAX" class="headerlink" title="如何创建AJAX"></a><strong>如何创建AJAX</strong></h3><p>ajax请求过程：创建XMLHttpRequest（兼容性）、连接服务器、发送请求、服务器做出响应、接收响应数据 </p>
+<h3 id="GET-POST区别"><a href="#GET-POST区别" class="headerlink" title="GET,POST区别"></a><strong>GET,POST区别</strong></h3><p>1.GET后退按钮/刷新无害，POST数据会被重新提交（浏览器应该告知用户数据会被重新提交）<br>2.GET能被缓存，POST不能缓存 。<br>3.GET历史参数保留在浏览器历史中。POST参数不会保存在浏览器历史中<br>4.GET对数据长度有限制，当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。POST无限制。<br>5.GET的数据在 URL 中对所有人都是可见的。POST的数据不会显示在 URL 中</p>
+<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a><strong>jsonp</strong></h3><p>1.html标签的src属性没有同源限制（支持跨域）,创建script标签，src属性指向外部链接，并有一个和后端约定好的函数执行代码，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域</p>
+<p>缺点：没有关于 JSONP 调用的错误处理。如果动态脚本插入有效，就执行调用；如果无效，就静默失败。失败是没有任何提示的</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/12/05/mongoDB/" rel="prev" title="mongoDB安装">
+                  <i class="fa fa-chevron-left"></i> mongoDB安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/01/03/cssStyle/" rel="next" title="边角梯形，内部斜线">
+                  边角梯形，内部斜线 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

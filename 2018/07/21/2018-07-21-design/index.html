@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="单列模式单列模式 适合登录框这种场景或者需要全局通信的场景，不同页面调用其实都的是一个对象这样不会生成多个实例造成混乱 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几种设计模式">
+<meta property="og:url" content="http://example.com/2018/07/21/2018-07-21-design/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="单列模式单列模式 适合登录框这种场景或者需要全局通信的场景，不同页面调用其实都的是一个对象这样不会生成多个实例造成混乱 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&amp;#1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-07-20T17:08:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.248Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2018/07/21/2018-07-21-design/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>几种设计模式 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%88%97%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">单列模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">发布订阅者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">状态模式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/21/2018-07-21-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几种设计模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-07-21 01:08:00" itemprop="dateCreated datePublished" datetime="2018-07-21T01:08:00+08:00">2018-07-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="单列模式"><a href="#单列模式" class="headerlink" title="单列模式"></a><strong>单列模式</strong></h3><p>单列模式 适合登录框这种场景或者需要全局通信的场景，不同页面调用其实都的是一个对象<br>这样不会生成多个实例造成混乱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;es6 单列模式</span><br><span class="line">    class Login&#123;</span><br><span class="line">        constructor(state) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        login() &#123;</span><br><span class="line">            console.log(&#39;....login&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     &#x2F;&#x2F;定义一个静态方法，这个方法是唯一的</span><br><span class="line">    Login.getInstance &#x3D; (function()&#123;</span><br><span class="line">        let instance;</span><br><span class="line">         return function() &#123;</span><br><span class="line">             if(!instance) &#123;</span><br><span class="line">                instance &#x3D; new Login()</span><br><span class="line">             &#125;</span><br><span class="line">             return instance</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;测试</span><br><span class="line">    let obj1 &#x3D; new Login.getInstance();</span><br><span class="line">    obj1.login();</span><br><span class="line"></span><br><span class="line">    let obj2 &#x3D; new Login.getInstance();</span><br><span class="line">    obj2.login();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    console.log(obj1 &#x3D;&#x3D;&#x3D; obj2)  &#x2F;&#x2F; ...login  ...login   true</span><br><span class="line"></span><br><span class="line">    let obj3 &#x3D; new Login()</span><br><span class="line">    console.log(obj1 &#x3D;&#x3D;&#x3D; obj3)  &#x2F;&#x2F;false 没有走静态方法，不可控</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">   &#x2F;&#x2F;ES5 单列</span><br><span class="line">   &#x2F;&#x2F;对象字面量</span><br><span class="line">   var Login &#x3D; &#123;</span><br><span class="line">       status : false,</span><br><span class="line">       login:function() &#123;</span><br><span class="line">          if(this.status &#x3D;&#x3D; true) &#123;</span><br><span class="line">            console.log(&#39;已经登陆了&#39;)</span><br><span class="line">            return</span><br><span class="line">          &#125;</span><br><span class="line">          this.status &#x3D; true;</span><br><span class="line">          console.log(&#39;....login&#39;)</span><br><span class="line">       &#125;,</span><br><span class="line">       logout:function() &#123;</span><br><span class="line">          if(this.status &#x3D;&#x3D; false) &#123;</span><br><span class="line">            console.log(&#39;已经登出了&#39;)</span><br><span class="line">            return</span><br><span class="line">          &#125;</span><br><span class="line">          this.status &#x3D; false;</span><br><span class="line">          console.log(&#39;....logout&#39;)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   var o1 &#x3D; Login;</span><br><span class="line">       o1.login();  &#x2F;&#x2F;login....</span><br><span class="line"></span><br><span class="line">   var o2 &#x3D; Login</span><br><span class="line">       o2.login()  &#x2F;&#x2F;已经登录了</span><br><span class="line">   console.log(o1 &#x3D;&#x3D;&#x3D; o2)  &#x2F;&#x2F;true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a><strong>工厂模式</strong></h3><p>下面这个模拟 JQUERY 的其实就是个工厂模式 ,JQuery 这个大类提供 API<br>我们用的时候直接使用 window 上挂载的 $ 这个就相当于 JQuery 的工厂<br>不必关心工厂是怎么实现的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class jQuery &#123;</span><br><span class="line">    constructor(selector) &#123;</span><br><span class="line">        let slice &#x3D; Array.prototype.slice</span><br><span class="line">        let dom &#x3D; slice.call(document.querySelectorAll(selector))</span><br><span class="line">        let len &#x3D; dom ? dom.length : 0</span><br><span class="line">        for (let i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">            this[i] &#x3D; dom[i]</span><br><span class="line">        &#125;</span><br><span class="line">        this.length &#x3D; len</span><br><span class="line">        this.selector &#x3D; selector || &#39;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    append(node) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    addClass(name) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    html(data) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 此处省略若干 API</span><br><span class="line">&#125;</span><br><span class="line">window.$ &#x3D; function (selector) &#123;</span><br><span class="line">    return new jQuery(selector)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    var carShop &#x3D; function() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    carShop.prototype &#x3D; &#123;</span><br><span class="line">        sell: function(model) &#123;</span><br><span class="line">            var car;</span><br><span class="line">            switch (model) &#123;</span><br><span class="line">                case &quot;1&quot;:</span><br><span class="line">                    car &#x3D; new Audi();</span><br><span class="line">                    break;</span><br><span class="line"></span><br><span class="line">                case &quot;2&quot;:</span><br><span class="line">                    car &#x3D; new Lowrider();</span><br><span class="line">                    break;</span><br><span class="line"></span><br><span class="line">                case &quot;3&quot;:</span><br><span class="line">                    car &#x3D; new Cruiser();</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return car;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    var ABC &#x3D; new carShop();</span><br><span class="line">    var myCar &#x3D; ABC.sell(&quot;1&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="发布订阅者模式"><a href="#发布订阅者模式" class="headerlink" title="发布订阅者模式"></a><strong>发布订阅者模式</strong></h3><p>观察者模式特点：<br>1，发布订阅<br>2，1 对多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">   &#x2F;&#x2F;es6</span><br><span class="line">   &#x2F;&#x2F;主题，保存状态，状态发生变化触发所有观察者对象</span><br><span class="line">   class Subject &#123;</span><br><span class="line">       constructor() &#123;</span><br><span class="line">           &#x2F;&#x2F;要变化的状态</span><br><span class="line">           this.state &#x3D; 0;</span><br><span class="line">           &#x2F;&#x2F;观察者列表</span><br><span class="line">           this.observers &#x3D; []</span><br><span class="line">       &#125;</span><br><span class="line">       getState () &#123;</span><br><span class="line">           return this.state</span><br><span class="line">       &#125;</span><br><span class="line">       setState(state) &#123;</span><br><span class="line">           this.state &#x3D; state;</span><br><span class="line">           &#x2F;&#x2F;状态变化通知所有观察者</span><br><span class="line">           this.notifyAllObservers()</span><br><span class="line">       &#125;</span><br><span class="line">       notifyAllObservers() &#123;</span><br><span class="line">           this.observers.forEach(observer &#x3D;&gt; &#123;</span><br><span class="line">               observer.update()</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;</span><br><span class="line">       add(observer) &#123;</span><br><span class="line">           &#x2F;&#x2F;添加新的观察者</span><br><span class="line">           this.observers.push(observer)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;观察者</span><br><span class="line">   class Observer &#123;</span><br><span class="line">       constructor(name,subject) &#123;</span><br><span class="line">           this.name &#x3D; name;</span><br><span class="line">           this.subject &#x3D; subject;</span><br><span class="line">           &#x2F;&#x2F;初始化观察者的时候把自身加入subject的观察者列表</span><br><span class="line">           this.subject.add(this)</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       update() &#123;</span><br><span class="line">           console.log(&#96;$&#123;this.name&#125; update! state : $&#123;this.subject.getState()&#125;&#96;)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;测试</span><br><span class="line">   let subject &#x3D; new Subject() &#x2F;&#x2F;生成一个新主题</span><br><span class="line">   let o1 &#x3D; new Observer(&#39;weibin&#39;, subject)</span><br><span class="line">   let o2 &#x3D; new Observer(&#39;xiaoming&#39;, subject)</span><br><span class="line"></span><br><span class="line">   subject.setState(0) &#x2F;&#x2F;修改了主题 触发所有观察者</span><br><span class="line">   subject.setState(1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;卖房的列子</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      let houseObj &#x3D; &#123;&#125;; &#x2F;&#x2F;房产中介 （发布者）</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F;房产中介的花名册登记谁要买房 （缓存列表）</span><br><span class="line">      &#x2F;&#x2F;定义成数组 最后形式是[key1:fn,ke2:fn,ke3:fn]</span><br><span class="line">      &#x2F;&#x2F;如果定义成对象，取得时候会有深拷贝的问题。</span><br><span class="line">      houseObj.list &#x3D; [];</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F;增加订阅消息的顾客</span><br><span class="line">      houseObj.listen &#x3D; function(key, fn) &#123;</span><br><span class="line">        &#x2F;&#x2F;如果没有key  一旦发布者发布一个消息，所有的订阅者都会收到消息，不论他们是否订阅了该消息</span><br><span class="line">        &#x2F;&#x2F;如果标识在缓存列表里没有 则创建一个空数组占位</span><br><span class="line">        &#x2F;&#x2F;[key1:fn,key2:fn,fn...]</span><br><span class="line">        &#x2F;&#x2F;key1:fn 代表有标识  如果只有一个FN 无标识就return</span><br><span class="line">        if (!this.list[key]) &#123;</span><br><span class="line">          this.list[key] &#x3D; [];</span><br><span class="line">        &#125;</span><br><span class="line">        this.list[key].push(fn);</span><br><span class="line">        console.log(this.list);</span><br><span class="line">        &#x2F;&#x2F;简写</span><br><span class="line">        &#x2F;&#x2F; (this.list[key] || (this.list[key] &#x3D; [])).push(fn);</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F;发布消息</span><br><span class="line">      houseObj.trigger &#x3D; function() &#123;</span><br><span class="line">        &#x2F;&#x2F;取出消息名称key</span><br><span class="line">        let key &#x3D; Array.prototype.shift.call(arguments);</span><br><span class="line">        &#x2F;&#x2F;取出的FNS是一个数组</span><br><span class="line">        let fns &#x3D; this.list[key];</span><br><span class="line"></span><br><span class="line">        if (!fns || fns.length &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">          return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fns.forEach(v &#x3D;&gt; &#123;</span><br><span class="line">          v.apply(this, arguments);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      houseObj.remove &#x3D; function(key, fn) &#123;</span><br><span class="line">        var fns &#x3D; this.list[key];</span><br><span class="line">        if (!fns) &#123;</span><br><span class="line">          return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!fn) &#123;</span><br><span class="line">          fns &amp;&amp; (fns.length &#x3D; 0);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          for (var i &#x3D; fns.length - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">            var _fn &#x3D; fns[i];</span><br><span class="line">            if (_fn &#x3D;&#x3D;&#x3D; fn) &#123;</span><br><span class="line">              fns.splice(i, 1);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F;订阅</span><br><span class="line">      houseObj.listen(</span><br><span class="line">        &quot;a&quot;,</span><br><span class="line">        (fn1 &#x3D; function(size) &#123;</span><br><span class="line">          console.log(&#96;小红要买$&#123;size&#125;平米&#96;);</span><br><span class="line">        &#125;)</span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      houseObj.listen(</span><br><span class="line">        &quot;b&quot;,</span><br><span class="line">        (fn3 &#x3D; function(size) &#123;</span><br><span class="line">          console.log(&#96;小明要买$&#123;size&#125;平米&#96;);</span><br><span class="line">        &#125;)</span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      houseObj.trigger(&quot;a&quot;, 100); &#x2F;&#x2F;小红要买100平米</span><br><span class="line">      houseObj.trigger(&quot;b&quot;, 150); &#x2F;&#x2F;小明要买150平米</span><br><span class="line"></span><br><span class="line">      houseObj.remove(&quot;a&quot;, fn1);</span><br><span class="line">      houseObj.trigger(&quot;a&quot;, 100); &#x2F;&#x2F; 无打印输出</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">   &#x2F;&#x2F;jquery</span><br><span class="line"></span><br><span class="line">   var callbacks &#x3D; $.Callbacks();</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;添加观察者</span><br><span class="line">   callbacks.add(function(info) &#123;</span><br><span class="line">       console.log(&#39;观察者1&#39;,info)</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   callbacks.add(function(info) &#123;</span><br><span class="line">       console.log(&#39;观察者2&#39;,info)</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   callbacks.fire(&#39;gogogo&#39;) &#x2F;&#x2F;观察者1 gogogo  观察者2 gogogo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">   &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">   &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">   &lt;style&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &lt;div id&#x3D;&quot;test&quot;&gt;</span><br><span class="line">      &lt;div style&#x3D;&quot;width: 500px; height: 300px;&quot;&gt;</span><br><span class="line">          &lt;button id&#x3D;&quot;btn1&quot;&gt;改变城市1&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div style&#x3D;&quot;width: 500px; height: 300px;&quot;&gt;</span><br><span class="line">           &lt;button id&#x3D;&quot;btn2&quot;&gt;改变城市2&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">         &#x2F;&#x2F; 功能：两个模块分别有两个城市切换按钮，切换其中一个，另一个模块得到通知跟着改变</span><br><span class="line">       ;(function(win,doc)&#123;</span><br><span class="line">           function Subject() &#123;</span><br><span class="line">                this.state &#x3D; 0;</span><br><span class="line">                   &#x2F;&#x2F;观察者列表</span><br><span class="line">                this.observers &#x3D; []</span><br><span class="line">           &#125;</span><br><span class="line">           Subject.prototype &#x3D; &#123;</span><br><span class="line">               getState: function() &#123;</span><br><span class="line">                   return this.state</span><br><span class="line">               &#125;,</span><br><span class="line">               setState: function(state) &#123;</span><br><span class="line">                   this.state &#x3D; state;</span><br><span class="line">                   &#x2F;&#x2F;状态变化通知所有观察者</span><br><span class="line">                   this.notifyAllObservers()</span><br><span class="line">               &#125;,</span><br><span class="line">               notifyAllObservers:function() &#123;</span><br><span class="line">                   this.observers.forEach(observer &#x3D;&gt; &#123;</span><br><span class="line">                       observer.update()</span><br><span class="line">                   &#125;)</span><br><span class="line">               &#125;,</span><br><span class="line">               add:function(observer) &#123;</span><br><span class="line">                   &#x2F;&#x2F;添加新的观察者</span><br><span class="line">                   this.observers.push(observer)</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           function Observer(subject,fn,name) &#123;</span><br><span class="line">               this.subject &#x3D; subject;</span><br><span class="line">               this.fn &#x3D; fn;</span><br><span class="line">               this.name &#x3D; name;</span><br><span class="line">               this.subject.add(this)</span><br><span class="line">           &#125;</span><br><span class="line">           Observer.prototype.update &#x3D; function() &#123;</span><br><span class="line">               this.fn[this.name](this.subject.getState())</span><br><span class="line">           &#125;</span><br><span class="line">           var subject &#x3D; new Subject()</span><br><span class="line"></span><br><span class="line">           window.subject &#x3D; subject;</span><br><span class="line">           window.Observer &#x3D; Observer;</span><br><span class="line">       &#125;)(window,document)</span><br><span class="line"></span><br><span class="line">       ;(function(win,doc)&#123;</span><br><span class="line">           function A() &#123;</span><br><span class="line">             this.btn &#x3D; document.getElementById(&quot;btn1&quot;);</span><br><span class="line">             &#x2F;&#x2F;默认城市ID是1</span><br><span class="line">             this.render(1);</span><br><span class="line">             this.click();</span><br><span class="line">             &#x2F;&#x2F;注册自己为观察者，</span><br><span class="line">             &#x2F;&#x2F;传入参数1：主题（写死subject就可以，已经挂在全局）</span><br><span class="line">             &#x2F;&#x2F;传入参数2：自己</span><br><span class="line">             &#x2F;&#x2F;传入参数3：自己的渲染方法名</span><br><span class="line">             new Observer(subject,this,&#39;render&#39;)</span><br><span class="line">           &#125;</span><br><span class="line">           A.prototype &#x3D; &#123;</span><br><span class="line">               click:function() &#123;</span><br><span class="line">                   var _this &#x3D; this;</span><br><span class="line">                   this.btn.addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">                       &#x2F;&#x2F;模拟接口</span><br><span class="line">                       setTimeout(function()&#123;</span><br><span class="line">                           &#x2F;&#x2F;主题变化，通知所有观察者重新渲染</span><br><span class="line">                           subject.setState(2)</span><br><span class="line">                       &#125;,500)</span><br><span class="line">                   &#125;,false);</span><br><span class="line">               &#125;,</span><br><span class="line">               render:function(id) &#123;</span><br><span class="line">                   setTimeout(function()&#123;</span><br><span class="line">                       &#x2F;&#x2F;渲染数据</span><br><span class="line">                       console.log(&quot;A模块的ID是&quot; +　id)</span><br><span class="line">                   &#125;,500)</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           new A()</span><br><span class="line"></span><br><span class="line">       &#125;)(window,document)</span><br><span class="line"></span><br><span class="line">       ;(function(win,doc)&#123;</span><br><span class="line">           function B() &#123;</span><br><span class="line">             this.btn &#x3D; document.getElementById(&quot;btn2&quot;);</span><br><span class="line">             &#x2F;&#x2F;默认城市ID是1</span><br><span class="line">             this.render(1);</span><br><span class="line">             this.click();</span><br><span class="line">             new Observer(subject,this,&#39;render&#39;)</span><br><span class="line">           &#125;</span><br><span class="line">           B.prototype &#x3D; &#123;</span><br><span class="line">               click:function() &#123;</span><br><span class="line">                   var _this &#x3D; this;</span><br><span class="line">                   this.btn.addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">                       &#x2F;&#x2F;模拟接口</span><br><span class="line">                       setTimeout(function()&#123;</span><br><span class="line">                           subject.setState(3)</span><br><span class="line">                       &#125;,500)</span><br><span class="line">                   &#125;,false);</span><br><span class="line">               &#125;,</span><br><span class="line">               render:function(id) &#123;</span><br><span class="line">                   setTimeout(function()&#123;</span><br><span class="line">                       &#x2F;&#x2F;渲染数据</span><br><span class="line">                       console.log(&quot;B模块的ID是&quot; +　id)</span><br><span class="line">                   &#125;,500)</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           new B()</span><br><span class="line"></span><br><span class="line">       &#125;)(window,document)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a><strong>代理模式</strong></h3><p>代理模式 可以改变数据 –购物车<a target="_blank" rel="noopener" href="https://github.com/weibsgz/design-cart/blob/master/src/demo/List/CreateItem.js">https://github.com/weibsgz/design-cart/blob/master/src/demo/List/CreateItem.js</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 明星</span><br><span class="line">let star &#x3D; &#123;</span><br><span class="line">   name : &#39;魏彬&#39;,</span><br><span class="line">   age:25,</span><br><span class="line">   phone:&#39;13401095555&#39;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;代理</span><br><span class="line">let agent &#x3D; new Proxy(star,&#123;</span><br><span class="line">   get : function(target,key) &#123;</span><br><span class="line">       if(key &#x3D;&#x3D;&#x3D; &#39;phone&#39;) &#123;</span><br><span class="line">           &#x2F;&#x2F;返回经纪人自己的手机号</span><br><span class="line">           return &#39;13521497119&#39;</span><br><span class="line">       &#125;</span><br><span class="line">       if(key &#x3D;&#x3D;&#x3D; &#39;price&#39;) &#123;</span><br><span class="line">           &#x2F;&#x2F;明星不报价</span><br><span class="line">           return 1000000</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       return target[key]  &#x2F;&#x2F;其余姓名，年龄可以返回明星的</span><br><span class="line">   &#125;,</span><br><span class="line"></span><br><span class="line">   set: function(target,key,val) &#123;</span><br><span class="line">       if(key &#x3D;&#x3D; &#39;customPrice&#39;) &#123;</span><br><span class="line">           if (val &lt; 1000000) &#123;</span><br><span class="line">               throw new Error(&#39;价格太低了&#39;)</span><br><span class="line">           &#125;</span><br><span class="line">           else &#123;</span><br><span class="line">               target[key] &#x3D; val;</span><br><span class="line">               return true;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(agent.name, agent.age, agent.price, agent.phone) &#x2F;&#x2F;魏彬 25 1000000 13521497119</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">agent.customPrice &#x3D; 90;</span><br><span class="line"></span><br><span class="line">console.log(agent.customPrice )  &#x2F;&#x2F;价格太低了</span><br></pre></td></tr></table></figure>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>策略模式的优点：</p>
+<ol>
+<li>策略模式可以有效避免很多 if 条件语句</li>
+<li>策略模式符合开放-封闭原则，使代码更容易理解和扩展</li>
+<li>策略模式中的代码可以复用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var sObj &#x3D; &#123;</span><br><span class="line">    &quot;A&quot;:function(salary) &#123;</span><br><span class="line">        return salary * 4;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;B&quot;:function(salary) &#123;</span><br><span class="line">        return salary * 2</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;C&quot;:function(salary) &#123;</span><br><span class="line">        return salary</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var cal &#x3D; function(level,salary) &#123;</span><br><span class="line">return sObj[level] &amp;&amp; sObj[level](salary)</span><br><span class="line">&#125;</span><br><span class="line">console.log(cal(&#39;A&#39;,4000))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;状态模式，避免大量IF-ELSE</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line"></span><br><span class="line">function SuperMary() &#123;</span><br><span class="line">  this.state &#x3D; [];</span><br><span class="line">  this.fn &#x3D; &#123;</span><br><span class="line">    jump: function() &#123;</span><br><span class="line">      console.log(&quot;jump&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    move: function() &#123;</span><br><span class="line">      console.log(&quot;move&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    shoot: function() &#123;</span><br><span class="line">      console.log(&quot;shoot&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperMary.prototype.changeState &#x3D; function(action) &#123;</span><br><span class="line">  &#x2F;&#x2F;每次调用change 可以先清下数组,确保每次chageState都是新的状态</span><br><span class="line">  this.state &#x3D; [];</span><br><span class="line">  if (typeof action &#x3D;&#x3D;&#x3D; &quot;string&quot;) &#123;</span><br><span class="line">    this.state.push(action);</span><br><span class="line">  &#125; else if (action instanceof Array) &#123;</span><br><span class="line">    this.state &#x3D; this.state.concat(action);</span><br><span class="line">  &#125;</span><br><span class="line">  return this;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SuperMary.prototype.run &#x3D; function() &#123;</span><br><span class="line">  this.state.forEach(state &#x3D;&gt; &#123;</span><br><span class="line">    this.fn &amp;&amp; this.fn[state]();</span><br><span class="line">  &#125;);</span><br><span class="line">  return this;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">new SuperMary()</span><br><span class="line">  .changeState([&quot;jump&quot;, &quot;move&quot;]) &#x2F;&#x2F;jump move</span><br><span class="line">  .run()</span><br><span class="line">  .changeState(&quot;shoot&quot;) &#x2F;&#x2F;shoot</span><br><span class="line">  .run();</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/07/11/2018-07-11-class/" rel="prev" title="动态向es6的class类中追加方法">
+                  <i class="fa fa-chevron-left"></i> 动态向es6的class类中追加方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/08/24/reg/" rel="next" title="正则学习">
+                  正则学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="js 深拷貝123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475export const $ &#x3D; function() &amp;#123;  var copyIsAr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一些JS考点">
+<meta property="og:url" content="http://example.com/2015/08/27/2015-04-17-js/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="js 深拷貝123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475export const $ &#x3D; function() &amp;#123;  var copyIsAr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2015-08-26T17:08:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.235Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2015/08/27/2015-04-17-js/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>记录一些JS考点 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js-%E6%B7%B1%E6%8B%B7%E8%B2%9D"><span class="nav-number">1.</span> <span class="nav-text">js 深拷貝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E4%B8%A4%E4%B8%AA%E5%85%83%E7%B4%A0%EF%BC%88%E5%8F%AF%E4%BB%A5%E6%98%AF%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%AF%B9%E8%B1%A1%EF%BC%89%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89"><span class="nav-number">2.</span> <span class="nav-text">比较两个元素（可以是数组，字符串，对象）是否相等</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%96%E6%9C%80%E5%A4%A7%E5%80%BC%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E9%97%B4%E9%9A%8F%E6%9C%BA%E7%9A%84%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">取最大值最小值之间随机的一个数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8apply%E5%8F%96%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E5%A4%A7%E6%88%96%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">利用apply取数组中最大或最小值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%EF%BC%8C%E6%9C%89%E4%B8%89%E7%A7%8D%E7%8A%B6%E6%80%81-%E4%B8%80%E7%9B%B4%E8%BE%93%E5%87%BA1-2-3%E2%80%A61-2-3%E2%80%A61-2-3"><span class="nav-number">5.</span> <span class="nav-text">点击按钮，有三种状态 一直输出1,2,3…1,2,3…1,2,3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AD%97%E7%AC%A6"><span class="nav-number">6.</span> <span class="nav-text">统计出现次数最多的字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D"><span class="nav-number">7.</span> <span class="nav-text">数组去重</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E9%80%89%E5%85%A8%E4%B8%8D%E9%80%89%E5%8F%8D%E9%80%89"><span class="nav-number">8.</span> <span class="nav-text">全选全不选反选</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2015/08/27/2015-04-17-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记录一些JS考点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-08-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-08-27T01:08:00+08:00">2015-08-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="js-深拷貝"><a href="#js-深拷貝" class="headerlink" title="js 深拷貝"></a>js 深拷貝</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">export const $ &#x3D; function() &#123;</span><br><span class="line">  var copyIsArray,</span><br><span class="line">    toString &#x3D; Object.prototype.toString,</span><br><span class="line">    hasOwn &#x3D; Object.prototype.hasOwnProperty,</span><br><span class="line"></span><br><span class="line">    class2type &#x3D; &#123;</span><br><span class="line">      &#39;[object Boolean]&#39;: &#39;boolean&#39;,</span><br><span class="line">      &#39;[object Number]&#39;: &#39;number&#39;,</span><br><span class="line">      &#39;[object String]&#39;: &#39;string&#39;,</span><br><span class="line">      &#39;[object Function]&#39;: &#39;function&#39;,</span><br><span class="line">      &#39;[object Array]&#39;: &#39;array&#39;,</span><br><span class="line">      &#39;[object Date]&#39;: &#39;date&#39;,</span><br><span class="line">      &#39;[object RegExp]&#39;: &#39;regExp&#39;,</span><br><span class="line">      &#39;[object Object]&#39;: &#39;object&#39;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    type &#x3D; function(obj) &#123;</span><br><span class="line">      return obj &#x3D;&#x3D; null ? String(obj) : class2type[toString.call(obj)] || &quot;object&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    isWindow &#x3D; function(obj) &#123;</span><br><span class="line">      return obj &amp;&amp; typeof obj &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; &quot;setInterval&quot; in obj;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    isArray &#x3D; Array.isArray || function(obj) &#123;</span><br><span class="line">      return type(obj) &#x3D;&#x3D;&#x3D; &quot;array&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    isPlainObject &#x3D; function(obj) &#123;</span><br><span class="line">      if (!obj || type(obj) !&#x3D;&#x3D; &quot;object&quot; || obj.nodeType || isWindow(obj)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (obj.constructor &amp;&amp; !hasOwn.call(obj, &quot;constructor&quot;) &amp;&amp;</span><br><span class="line">        !hasOwn.call(obj.constructor.prototype, &quot;isPrototypeOf&quot;)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      var key;</span><br><span class="line">      for (key in obj) &#123;&#125;</span><br><span class="line"></span><br><span class="line">      return key &#x3D;&#x3D;&#x3D; undefined || hasOwn.call(obj, key);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    extend &#x3D; function(deep, target, options) &#123;</span><br><span class="line">      for (var name in options) &#123;</span><br><span class="line">        var src &#x3D; target[name];</span><br><span class="line">        var copy &#x3D; options[name];</span><br><span class="line"></span><br><span class="line">        if (target &#x3D;&#x3D;&#x3D; copy) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (deep &amp;&amp; copy &amp;&amp;</span><br><span class="line">          (isPlainObject(copy) || (copyIsArray &#x3D; isArray(copy)))) &#123;</span><br><span class="line">          if (copyIsArray) &#123;</span><br><span class="line">            copyIsArray &#x3D; false;</span><br><span class="line">            var clone &#x3D; src &amp;&amp; isArray(src) ? src : [];</span><br><span class="line"></span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            var clone &#x3D; src &amp;&amp; isPlainObject(src) ? src : &#123;&#125;;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          target[name] &#x3D; extend(deep, clone, copy);</span><br><span class="line">        &#125; else if (copy !&#x3D;&#x3D; undefined) &#123;</span><br><span class="line">          target[name] &#x3D; copy;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return target;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  return &#123; extend: extend &#125;;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="比较两个元素（可以是数组，字符串，对象）是否相等"><a href="#比较两个元素（可以是数组，字符串，对象）是否相等" class="headerlink" title="比较两个元素（可以是数组，字符串，对象）是否相等"></a>比较两个元素（可以是数组，字符串，对象）是否相等</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;</span><br><span class="line">        name : &quot;1&quot;,</span><br><span class="line">        other:&#123;</span><br><span class="line">            name:&#39;imooc&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      const obj1 &#x3D; &#123;</span><br><span class="line">        name : &quot;1&quot;,</span><br><span class="line">        other:&#123;</span><br><span class="line">            name:&#39;imooc&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      function compare(obj1,obj2)&#123;</span><br><span class="line">         &#x2F;&#x2F;如果只比较数组，字符串，数字 直接返回真</span><br><span class="line">         if(obj1 &#x3D;&#x3D; obj2)&#123;  </span><br><span class="line">            return true</span><br><span class="line">         &#125;</span><br><span class="line">         &#x2F;&#x2F;对象的key的数量不一样返回假</span><br><span class="line">         if(Object.keys(obj1).length!&#x3D;&#x3D; Object.keys(obj2).length)&#123;</span><br><span class="line">            return false</span><br><span class="line">         &#125;</span><br><span class="line">         &#x2F;&#x2F;循环 对象 如果key的值还是一个对象递归判断</span><br><span class="line">         for(let k in obj1)&#123;</span><br><span class="line">            if(Object.prototype.toString.call(obj1[k]) &#x3D;&#x3D; &quot;[object Object]&quot;)&#123;</span><br><span class="line">                return compare(obj1[k],obj2[k])</span><br><span class="line">            &#125;</span><br><span class="line">            else if(obj1[k]!&#x3D;&#x3D;obj2[k])&#123;</span><br><span class="line">                return false</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         return true</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      console.log(compare(obj,obj1))</span><br><span class="line">      </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="取最大值最小值之间随机的一个数"><a href="#取最大值最小值之间随机的一个数" class="headerlink" title="取最大值最小值之间随机的一个数"></a>取最大值最小值之间随机的一个数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Random(min,max)</span><br><span class="line">  &#123;</span><br><span class="line">    var num &#x3D; max - min + 1; &#x2F;&#x2F;最大值 - 最小值 +1 取得最小和最大之间可能有几个值</span><br><span class="line">    return Math.floor(Math.random() * num + min)  &#x2F;&#x2F;高级程序设计中提到的公式，P136</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(Random(0,5))</span><br><span class="line">  &#123;% endhighlight %&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="利用apply取数组中最大或最小值"><a href="#利用apply取数组中最大或最小值" class="headerlink" title="利用apply取数组中最大或最小值"></a>利用apply取数组中最大或最小值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;因为不支持Math.max([1,2,3])这种写法，就是不能直接传入一个数组,</span><br><span class="line">&#x2F;&#x2F;但是它支持Math.max(param1,param2...)</span><br><span class="line">&#x2F;&#x2F;所以可以变相通过 apply（apply和call的区别就是传入参数不同）</span><br><span class="line">&#x2F;&#x2F;调用的时候第一个参数给了null，这是因为没有对象去调用这个方法，我只需要用这个方法帮我运算，得到返回的结果就行，所以直接传递了一个null过去。</span><br><span class="line">var arr &#x3D; [1,2,3,5,6];</span><br><span class="line">function getMax(arr)&#123;</span><br><span class="line">    return Math.max.apply(null,arr)</span><br><span class="line">&#125;</span><br><span class="line">function getMin(arr)&#123;</span><br><span class="line">    return Math.min.apply(null,arr)</span><br><span class="line">&#125;</span><br><span class="line">alert(getMax(arr));</span><br><span class="line">alert(getMin(arr));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;ES6 写法</span><br><span class="line">Math.max(...[1,2,3])  &#x2F;&#x2F;3</span><br></pre></td></tr></table></figure>
+<h1 id="点击按钮，有三种状态-一直输出1-2-3…1-2-3…1-2-3"><a href="#点击按钮，有三种状态-一直输出1-2-3…1-2-3…1-2-3" class="headerlink" title="点击按钮，有三种状态 一直输出1,2,3…1,2,3…1,2,3"></a>点击按钮，有三种状态 一直输出1,2,3…1,2,3…1,2,3</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;button onclick&#x3D;&quot;fn1()&quot;&gt;click&lt;&#x2F;button&gt;</span><br><span class="line">   &lt;div id&#x3D;&quot;txt&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">   &lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">      var a &#x3D; 0;    </span><br><span class="line">    </span><br><span class="line">      var txt &#x3D; document.getElementById(&#39;txt&#39;)</span><br><span class="line">      function fn1()&#123;</span><br><span class="line">        a &#x3D; a + 1;</span><br><span class="line">        console.log(a%3)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">   &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="统计出现次数最多的字符"><a href="#统计出现次数最多的字符" class="headerlink" title="统计出现次数最多的字符"></a>统计出现次数最多的字符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.max_num &#x3D; function()&#123;</span><br><span class="line">    var obj &#x3D; &#123;&#125;</span><br><span class="line">    var res;</span><br><span class="line">    var max_num &#x3D; 0;</span><br><span class="line">    var max_key;</span><br><span class="line">    for(var i&#x3D;0; i&lt;this.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res &#x3D; this[i];</span><br><span class="line">       if(!obj[res])</span><br><span class="line">       &#123;</span><br><span class="line">            obj[res] &#x3D; 1</span><br><span class="line">       &#125;</span><br><span class="line">       else</span><br><span class="line">       &#123;</span><br><span class="line">            obj[res]++;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(var key in obj)</span><br><span class="line">    &#123;</span><br><span class="line">        if(max_num &lt; obj[key])</span><br><span class="line">        &#123;</span><br><span class="line">            max_num &#x3D; obj[key];</span><br><span class="line">            max_key &#x3D; key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return max_key</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(str.max_num())</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.unique1 &#x3D; function()</span><br><span class="line">	&#123;</span><br><span class="line">		var n &#x3D; [];</span><br><span class="line">		for(var i&#x3D;0; i&lt; this.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(n.indexOf(this[i]) &#x3D;&#x3D; -1)</span><br><span class="line">			&#123;</span><br><span class="line">				n.push(this[i])</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return n;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	var array1 &#x3D; [1,2,2,4,4,1,5,6]</span><br><span class="line">	var s &#x3D; array1.unique1();</span><br><span class="line">	console.info(s)</span><br></pre></td></tr></table></figure>
+<h1 id="全选全不选反选"><a href="#全选全不选反选" class="headerlink" title="全选全不选反选"></a>全选全不选反选</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;全选&#x2F;全不选&quot; id&#x3D;&quot;button1&quot; &#x2F;&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;反选&quot; id&#x3D;&quot;button2&quot; &#x2F;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;</span><br><span class="line">	&lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">window.onload &#x3D; function()</span><br><span class="line">	&#123;</span><br><span class="line">			var flag &#x3D; true;   &#x2F;&#x2F;全选，全不选的按钮的标志</span><br><span class="line">			var btn1 &#x3D; document.getElementById(&quot;button1&quot;);</span><br><span class="line">			var btn2 &#x3D; document.getElementById(&quot;button2&quot;);</span><br><span class="line">			var oDiv &#x3D; document.getElementById(&quot;div1&quot;);</span><br><span class="line">			var aInput &#x3D; oDiv.getElementsByTagName(&quot;input&quot;);</span><br><span class="line">			&#x2F;&#x2F;初始让所有复选框都不选中，为了兼容IE FF</span><br><span class="line">			for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				aInput[i].checked &#x3D; false;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			btn1.onclick &#x3D; function()</span><br><span class="line">			&#123;</span><br><span class="line">				if(flag)</span><br><span class="line">				&#123;</span><br><span class="line">					for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">					&#123;</span><br><span class="line">						aInput[i].checked &#x3D; true;</span><br><span class="line">					&#125;</span><br><span class="line">					flag &#x3D; false;</span><br><span class="line">				&#125;</span><br><span class="line">				else</span><br><span class="line">				&#123;</span><br><span class="line">					for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">					&#123;</span><br><span class="line">						aInput[i].checked &#x3D; false;</span><br><span class="line">					&#125;</span><br><span class="line">					flag &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			btn2.onclick &#x3D; function()</span><br><span class="line">			&#123;</span><br><span class="line">				for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					if(aInput[i].checked &#x3D;&#x3D; true)</span><br><span class="line">					&#123;</span><br><span class="line">						aInput[i].checked &#x3D; false</span><br><span class="line">					&#125;</span><br><span class="line">					else</span><br><span class="line">						aInput[i].checked &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/06/27/2015-06-17-less/" rel="prev" title="less简易使用">
+                  <i class="fa fa-chevron-left"></i> less简易使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/09/27/2016-03-17-keybord/" rel="next" title="解决移动端输入时候键盘遮挡问题">
+                  解决移动端输入时候键盘遮挡问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

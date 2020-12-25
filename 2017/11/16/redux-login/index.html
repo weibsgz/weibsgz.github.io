@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="1.基础原理详见上一篇 react-redux 理解2.分为两个页面 auth.js是登录页 Dashbord是主页 ，默认不输入登录页地址的话直接到dashbord.js做验证，没有登录的话去auth.js index.js入口页面 引用12345678910import &amp;#123;createStore,applyMiddleware&amp;#125; from &#39;redux&#39;;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-redux开发登录校验">
+<meta property="og:url" content="http://example.com/2017/11/16/redux-login/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.基础原理详见上一篇 react-redux 理解2.分为两个页面 auth.js是登录页 Dashbord是主页 ，默认不输入登录页地址的话直接到dashbord.js做验证，没有登录的话去auth.js index.js入口页面 引用12345678910import &amp;#123;createStore,applyMiddleware&amp;#125; from &#39;redux&#39;;&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-16T06:13:23.000Z">
+<meta property="article:modified_time" content="2020-12-25T09:09:50.259Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2017/11/16/redux-login/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>react-redux开发登录校验 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-js%E5%85%A5%E5%8F%A3%E9%A1%B5%E9%9D%A2-%E5%BC%95%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">index.js入口页面 引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#index-js-%E9%A1%B5%E9%9D%A2%E9%80%BB%E8%BE%91-%E9%BB%98%E8%AE%A4%E5%8E%BBdashbord%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">index.js 页面逻辑 默认去dashbord页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auth-redux-js"><span class="nav-number">3.</span> <span class="nav-text">Auth.redux.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dashbord-js-%E8%BF%9B%E5%85%A5%E8%BF%99%E4%B8%AA%E9%A1%B5%E9%9D%A2-%E8%A6%81%E5%81%9A%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E7%99%BB%E5%BD%95%E7%9A%84%E5%88%A4%E6%96%AD%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%B2%A1%E7%99%BB%E5%BD%95%E8%B7%B3%E8%BD%AC%E5%88%B0auth-js%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.</span> <span class="nav-text">Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auth-js"><span class="nav-number">5.</span> <span class="nav-text">Auth.js</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/16/redux-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          react-redux开发登录校验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-11-16 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-16T14:13:23+08:00">2017-11-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>1.基础原理详见上一篇 react-redux 理解<br>2.分为两个页面 auth.js是登录页 Dashbord是主页 ，默认不输入登录页地址的话直接到dashbord.js做验证，没有登录的话去auth.js</p>
+<h3 id="index-js入口页面-引用"><a href="#index-js入口页面-引用" class="headerlink" title="index.js入口页面 引用"></a>index.js入口页面 引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">&#x2F;&#x2F;npm install redux-thunk -save  </span><br><span class="line">import thunk from &#39;redux-thunk&#39; &#x2F;&#x2F;applyMiddleware中间件，redux-thunk处理异步获取</span><br><span class="line">import combineReducers from &#39;.&#x2F;reducer&#39;  &#x2F;&#x2F;涉及到合并reducer 不合并的话可以不用</span><br><span class="line">import &#123;Provider&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F;路由</span><br><span class="line">import &#123;BrowserRouter,Route,Redirect,Switch&#125; from &#39;react-router-dom&#39;</span><br><span class="line">&#x2F;&#x2F;分为登录页和主页  做权限校验</span><br><span class="line">import Auth from &#39;.&#x2F;Auth.js&#39;</span><br><span class="line">import Dashbord from &#39;.&#x2F;Dashbord&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="index-js-页面逻辑-默认去dashbord页面"><a href="#index-js-页面逻辑-默认去dashbord页面" class="headerlink" title="index.js 页面逻辑 默认去dashbord页面"></a>index.js 页面逻辑 默认去dashbord页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果不处理异步 直接const store &#x3D; createStore(counter)就可以了</span><br><span class="line">&#x2F;&#x2F;这里用了combineReducer  合并了auth.redux.js index.redux.js里两个reducer</span><br><span class="line">const store &#x3D; createStore(combineReducers,applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用react-redux 方便了很多 Provider只在入口页面写一次 负责传入store 也不需要subscribe订阅了</span><br><span class="line"></span><br><span class="line">        (&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                  &lt;Switch&gt;</span><br><span class="line">                      &#123;&#x2F;*只命中匹配上的第一个route*&#x2F;&#125;</span><br><span class="line">                      &lt;Route exact path&#x3D;&#39;&#x2F;Auth&#39; component&#x3D;&#123;Auth&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                      &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#39; component&#x3D;&#123;Dashbord&#125;&gt;&lt;&#x2F;Route&gt;                   </span><br><span class="line">                      &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">                  &lt;&#x2F;Switch&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;BrowserRouter&gt;</span><br><span class="line">         &lt;&#x2F;Provider&gt;),        </span><br><span class="line">        document.getElementById(&#39;root&#39;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="Auth-redux-js"><a href="#Auth-redux-js" class="headerlink" title="Auth.redux.js"></a>Auth.redux.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">const LOGIN &#x3D; &#39;LOGIN&#39;</span><br><span class="line">const LOGOUT &#x3D; &#39;LOGOUT&#39;</span><br><span class="line">const USERDATA &#x3D; &#39;USERDATA&#39;</span><br><span class="line">const init &#x3D; &#123;</span><br><span class="line">   &#x2F;&#x2F; isAuth:false,</span><br><span class="line">    user:&#39;李云龙&#39;,</span><br><span class="line">    age:20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 这是一个 reducer，形式为 (state, action) &#x3D;&gt; state 的纯函数。</span><br><span class="line"> * 描述了 action 如何把 state 转变成下一个 state。**&#x2F;</span><br><span class="line">export function auth(state &#x3D; init ,action)&#123; </span><br><span class="line">    console.log(&#39;auth.redux.js里的 state ： &#39; + JSON.stringify(state))</span><br><span class="line">    console.log(&#39;auth.redux.js里的 action ： &#39; + JSON.stringify(action))</span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case LOGIN:</span><br><span class="line">            return &#123;...state,isAuth:true&#125;</span><br><span class="line">        case LOGOUT:</span><br><span class="line">            return &#123;...state,isAuth:false&#125;</span><br><span class="line">        case USERDATA:</span><br><span class="line">           return &#123;...state,user:action.payload.user,age:action.payload.age&#125;</span><br><span class="line">        default :</span><br><span class="line">            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象</span><br><span class="line">&#x2F;&#x2F;&#x2F;&#x2F; 改变内部 state 惟一方法是 dispatch 一个 action。</span><br><span class="line">&#x2F;&#x2F;action</span><br><span class="line">export function login()&#123;</span><br><span class="line">    return &#123;type:LOGIN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function logout()&#123;</span><br><span class="line">    return &#123;type:LOGOUT&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;可传入一个载荷 将在reducer的action中体现</span><br><span class="line">export function userData(data)</span><br><span class="line">&#123;</span><br><span class="line">    return &#123;type:USERDATA,payload:data&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;建立一个异步的action 因为数据传输是异步的 需要手动dispatch</span><br><span class="line">export function getUserData()&#123;</span><br><span class="line">    return dispatch&#x3D;&gt;&#123;</span><br><span class="line">        axios.get(&#39;&#x2F;data&#39;).then(res&#x3D;&gt;&#123;</span><br><span class="line">            if(res.status &#x3D;&#x3D;&#x3D; 200)&#123;</span><br><span class="line">                dispatch(userData(res.data))</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Dashbord-js-进入这个页面-要做用户是否登录的判断，如果没登录跳转到auth-js页面"><a href="#Dashbord-js-进入这个页面-要做用户是否登录的判断，如果没登录跳转到auth-js页面" class="headerlink" title="Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面"></a>Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面</h3><p>1.通过connect state.auth和 logout方法挂载到当前组件的this.props下了<br>2.默认this.props.isAuth肯定是没有定义的 this.props.isAuth ? app : redirectToLogin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">&#x2F;&#x2F;路由</span><br><span class="line">import &#123;Route,Link,Switch,Redirect&#125; from &#39;react-router-dom&#39;</span><br><span class="line">import App from &#39;.&#x2F;App&#39;;</span><br><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">import &#123;logout&#125; from &#39;.&#x2F;Auth.redux&#39;</span><br><span class="line"></span><br><span class="line">@connect(</span><br><span class="line">     state&#x3D;&gt;state.auth,</span><br><span class="line">    &#123;logout&#125; </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class Dashbord extends Component&#123;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(this.props)</span><br><span class="line"></span><br><span class="line">        const redirectToLogin &#x3D; &lt;Redirect to&#x3D;&#39;&#x2F;Auth&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">        const match &#x3D; this.props.match;</span><br><span class="line">        const app &#x3D; (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">          &#123;this.props.isAuth?&lt;button onClick&#x3D;&#123;this.props.logout&#125;&gt;注销&lt;&#x2F;button&gt; : null&#125;</span><br><span class="line">              &lt;ul&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;&#96;&#125;&gt;一营&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;erying&#96;&#125;&gt;二营&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;qibinglian&#96;&#125;&gt;骑兵连&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">              &lt;&#x2F;ul&gt;  </span><br><span class="line">              &lt;Switch&gt;</span><br><span class="line">                  &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;&#39; exact component&#x3D;&#123;App&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                  &#123;&#x2F;*&lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;erying&#39; component&#x3D;&#123;Erying&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                  &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;qibinglian&#39; component&#x3D;&#123;Qibinglian&#125;&gt;&lt;&#x2F;Route&gt;*&#x2F;&#125;</span><br><span class="line">              &lt;&#x2F;Switch&gt;</span><br><span class="line">          &lt;&#x2F;div&gt;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return this.props.isAuth ? app : redirectToLogin</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Dashbord</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Auth-js"><a href="#Auth-js" class="headerlink" title="Auth.js"></a>Auth.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F; import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F; import &#123;addGun,addGunAnsyc,removeGun&#125; from &#39;.&#x2F;index.redux&#39;</span><br><span class="line">import &#123;login,getUserData&#125; from &#39;.&#x2F;Auth.redux.js&#39;</span><br><span class="line">import &#123;Redirect&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;通过connect state属性 和 方法 都挂载到props</span><br><span class="line">&#x2F;&#x2F;这里挂了state.auth  所以下面可以通过this.props.isAuth 取得用户是否登录</span><br><span class="line">@connect(</span><br><span class="line">    state &#x3D;&gt; state.auth,</span><br><span class="line">    &#123;login,getUserData&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class Auth extends Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            data:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    componentWillMount()&#123;</span><br><span class="line">        </span><br><span class="line">        this.props.getUserData()</span><br><span class="line">        console.log(this.props)</span><br><span class="line">        &#x2F;&#x2F; axios.get(&#39;&#x2F;data&#39;).then(res&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F;         if(res.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">        &#x2F;&#x2F;             this.setState(&#123;</span><br><span class="line">        &#x2F;&#x2F;                 data:res.data</span><br><span class="line">        &#x2F;&#x2F;             &#125;)</span><br><span class="line">        &#x2F;&#x2F;         &#125;   </span><br><span class="line">                </span><br><span class="line">        &#x2F;&#x2F;         console.log(&#39;state.data &#39;,JSON.stringify(this.state.data.user,null,2))  </span><br><span class="line">        &#x2F;&#x2F; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(&#39;auth页面的props&#39; + JSON.stringify(this.props))</span><br><span class="line"></span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &#123;&#x2F;*&lt;h2&gt;我的名字是&#123;this.state.data.user&#125;&lt;&#x2F;h2&gt;*&#x2F;&#125;</span><br><span class="line">                &lt;h2&gt;用户名：&#123;this.props.user&#125;,年龄:&#123;this.props.age&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">                </span><br><span class="line">                &#123;this.props.isAuth ? &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39; &#x2F;&gt; : &lt;h2&gt;你没有权限，需要登录才能看&lt;&#x2F;h2&gt;&#125;</span><br><span class="line"></span><br><span class="line">                &lt;button onClick&#x3D;&#123;this.props.login&#125;&gt;登录&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Auth</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/11/14/jq-check/" rel="prev" title="jquery 全选/反选/选中所有全选/取消一个取消全选">
+                  <i class="fa fa-chevron-left"></i> jquery 全选/反选/选中所有全选/取消一个取消全选
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/12/05/mongoDB/" rel="next" title="mongoDB安装">
+                  mongoDB安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
