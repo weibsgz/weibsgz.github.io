@@ -159,18 +159,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -199,6 +199,189 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
+<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
+<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-layout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/02/css-layout/" class="post-title-link" itemprop="url">css经典三栏布局解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="每个解决方案的优缺点"><a href="#每个解决方案的优缺点" class="headerlink" title="每个解决方案的优缺点"></a><strong>每个解决方案的优缺点</strong></h3><h2>
+      <p>1.float布局 兼容性好 但是需要清除浮动</p>
+      <p>2.绝对定位 布局快捷，但是子元素也要脱离文档流</p>
+      <p>3.flex 布局比较好 优先选择 如果不固定高度也可以用</p>
+      <p>4.table 布局 兼容性好 如果不固定高度也可以用</p>
+      <p>5.grid布局 新技术 兼容性不太好</p>
+</h2>
+
+
+
+<h3 id="5种CSS"><a href="#5种CSS" class="headerlink" title="5种CSS"></a><strong>5种CSS</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">      *&#123;padding: 0; margin: 0&#125;</span><br><span class="line">      .box&#123;height: 300px; margin-top: 50px;&#125;</span><br><span class="line">      .left,.right&#123;width: 300px; height: 100%;&#125;</span><br><span class="line">      .left&#123;background-color: red&#125;</span><br><span class="line">      .right&#123;background-color: blue&#125;</span><br><span class="line">      .center&#123;background-color: yellow; height: 100%;&#125;</span><br><span class="line">      &#x2F;*第一种 float 布局 *&#x2F;    </span><br><span class="line">      .box1 .left&#123;float: left;&#125;</span><br><span class="line">      .box1 .right&#123; float: right; &#125;</span><br><span class="line">      .box1 .center&#123;background-color: yellow; height: 100%;&#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;*第二种  绝对定位布局*&#x2F;</span><br><span class="line">      .box2&#123;position: relative;width: 100%;&#125;</span><br><span class="line">      .box2 .left&#123;position: absolute; left: 0; top: 0; &#125;</span><br><span class="line">      .box2 .right&#123;position: absolute; right: 0; top: 0; &#125;</span><br><span class="line">      .box2 .center&#123;position: absolute; left: 300px; right: 300px; top: 0&#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;*第三种  flex*&#x2F;</span><br><span class="line">      .box3&#123;display: flex;&#125;</span><br><span class="line">      .box3 .left &#123;flex:0 0 300px;&#125;</span><br><span class="line">      .box3 .right &#123;flex: 0 0 300px;&#125;</span><br><span class="line">      .box3 .center &#123;flex: 1&#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;*第四种 表格布局*&#x2F;</span><br><span class="line">      .box4 &#123;display: table; width: 100%;&#125;</span><br><span class="line">      .box4 .left &#123;display: table-cell;&#125;</span><br><span class="line">      .box4 .right &#123;display: table-cell;&#125;</span><br><span class="line">      .box4 .center &#123;display: table-cell;&#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;*第5种 grid 分为3列*&#x2F;</span><br><span class="line">      .box5 &#123; </span><br><span class="line">          display: grid; </span><br><span class="line">          width: 100%;</span><br><span class="line">          grid-template-columns: 300px auto 300px;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a><strong>HTML</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;section&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;box1 box&quot;&gt;</span><br><span class="line">         &lt;div class&#x3D;&quot;left&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">         &lt;div class&#x3D;&quot;right&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">         &lt;div class&#x3D;&quot;center&quot;&gt;</span><br><span class="line">           &lt;p&gt;注意要先写left,right的div ,center布局在最后&lt;&#x2F;p&gt;</span><br><span class="line">         &lt;&#x2F;div&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;box2 box&quot;&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;left&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;center&quot;&gt;绝对定位写法&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;right&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;box3 box&quot;&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;left&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;center&quot;&gt;flex写法&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;right&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;box4 box&quot;&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;left&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;center&quot;&gt;table&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;right&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;box5 box&quot;&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;left&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;center&quot;&gt;grid布局 &lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div class&#x3D;&quot;right&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;section&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -917,200 +1100,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/14/redux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/14/redux/" class="post-title-link" itemprop="url">react-redux理解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-11-14 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-14T14:13:23+08:00">2017-11-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用react-redux的好处 想必较 直接使用redux<br>他不用处理dispatch  通过connect挂载到所需组件的props上 方法直接有了dispatch<br>通过provider给所有组件传入store 不用store.subscribe(render) 去做订阅了</p>
-<h3 id="总体说明"><a href="#总体说明" class="headerlink" title="总体说明"></a>总体说明</h3><p>1.应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。</p>
-<p>2.惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象<br>改变内部 state 惟一方法是 dispatch 一个 action。</p>
-<p>3.为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
-<p>4.reducer，形式为 (state, action) =&gt; state 的纯函数。描述了 action 如何把 state 转变成下一个 state。</p>
-<p>5.Action 本质上是 JavaScript 普通对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。</p>
-<p>6.同步不用手动dispatch react-redux帮我们做了，<br>  我目前认为的是在组件内部挂载到connect下。同步方法就给你加了dispatch了见下边的this.props.addGun</p>
-<p>  异步需要手动的dispatch  不管同步异步 都要通过dispatch修改action 只有action能告诉reducer 如何改变state</p>
-<p>  applyMiddleware(thunk) 这个中间件的作用就是为了处理异步的action(比如需要向后台发送数据)</p>
-<p>7。withRouter可以包装任何自定义组件，将react-router 的 history,location,match 三个对象传入 因为 只有Router 的component组件能够自动带有三个属性</p>
-<h3 id="index-js入口页面"><a href="#index-js入口页面" class="headerlink" title="index.js入口页面"></a>index.js入口页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">&#x2F;&#x2F;npm install redux-thunk -save  </span><br><span class="line">import thunk from &#39;redux-thunk&#39; &#x2F;&#x2F;applyMiddleware中间件，redux-thunk处理异步获取</span><br><span class="line">import combineReducers from &#39;.&#x2F;reducer&#39; &#x2F;&#x2F;负责合并reducer</span><br><span class="line">import &#123;Provider&#125; from &#39;react-redux&#39; &#x2F;&#x2F;provider 负责把STORE传入到组件中</span><br></pre></td></tr></table></figure>
-<p>applyMiddleware，redux-thunk都是处理异步的</p>
-<p>#combineReducers   reducer.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;合并所有reducer 并返回</span><br><span class="line"></span><br><span class="line">import &#123;combineReducers&#125; from &#39;redux&#39;</span><br><span class="line">import &#123;counter&#125; from &#39;.&#x2F;index.redux&#39;</span><br><span class="line">import &#123;auth&#125; from &#39;.&#x2F;Auth.redux&#39;</span><br><span class="line"></span><br><span class="line">export default combineReducers(&#123;counter,auth&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>#两个reducer index.redux.js<br>1.加减机关枪</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const ADD_GUN &#x3D; &#39;加机关枪&#39;</span><br><span class="line">const REMOVE_GUN &#x3D; &#39;减机关枪&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 这个东西就是reducer</span><br><span class="line">export function counter(state &#x3D; 0 , action)&#123;</span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case ADD_GUN:</span><br><span class="line">            return state + 1</span><br><span class="line">        case REMOVE_GUN:</span><br><span class="line">            return state - 1</span><br><span class="line">        default:</span><br><span class="line">            return 10</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;action 同步的action 这里不用dispatch了 页面调用的时候</span><br><span class="line"></span><br><span class="line">export function addGun()&#123;</span><br><span class="line">    return &#123;type:ADD_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function removeGun()&#123;</span><br><span class="line">    return &#123;type:REMOVE_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;这就是异步了  需要手动触发dispatch</span><br><span class="line">export function addGunAnsyc()&#123;</span><br><span class="line">    return dispatch&#x3D;&gt;&#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            dispatch(addGun())</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>2.Auth.redux.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const LOGIN &#x3D; &#39;LOGIN&#39;</span><br><span class="line">const LOGOUT &#x3D; &#39;LOGOUT&#39;</span><br><span class="line"></span><br><span class="line">export function auth(state &#x3D; &#123;isAuth:false,user:&#39;李云龙&#39;&#125;,action)&#123; </span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case LOGIN:</span><br><span class="line">            return &#123;...state,isAuth:true&#125;</span><br><span class="line">        case LOGOUT:</span><br><span class="line">            return &#123;...state,isAuth:false&#125;</span><br><span class="line">        default :</span><br><span class="line">            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;action</span><br><span class="line">export function login()&#123;</span><br><span class="line">    return &#123;type:LOGIN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function logout()&#123;</span><br><span class="line">    return &#123;type:LOGOUT&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="index-js-页面创建-store"><a href="#index-js-页面创建-store" class="headerlink" title="index.js 页面创建 store"></a>index.js 页面创建 store</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果不处理异步 直接const store &#x3D; createStore(counter)就可以了</span><br><span class="line">&#x2F;&#x2F;这里用了combineReducer  合并了auth.redux.js index.redux.js里两个reducer</span><br><span class="line">const store &#x3D; createStore(combineReducers,applyMiddleware(thunk))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>#通过provider将STORE传入根组件  下面所有的组件就都有了store</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用react-redux 方便了很多 Provider只在入口页面写一次 负责传入store 也不需要subscribe订阅了</span><br><span class="line"></span><br><span class="line">        (&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                  &lt;Switch&gt;</span><br><span class="line">                      &#123;&#x2F;*只命中匹配上的第一个route*&#x2F;&#125;</span><br><span class="line">                      &lt;Route exact path&#x3D;&#39;&#x2F;Auth&#39; component&#x3D;&#123;Auth&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                      &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#39; component&#x3D;&#123;Dashbord&#125;&gt;&lt;&#x2F;Route&gt;                   </span><br><span class="line">                      &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">                  &lt;&#x2F;Switch&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;BrowserRouter&gt;</span><br><span class="line">         &lt;&#x2F;Provider&gt;),        </span><br><span class="line">        document.getElementById(&#39;root&#39;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-
-<p>#组件调取store   通过connect 将本组件使用到的store里的属性 和 方法挂载到本组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">@connect(</span><br><span class="line">    state &#x3D;&gt;(&#123;num:state.counter&#125;),</span><br><span class="line">    &#123;addGun,removeGun,addGunAnsyc&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">   </span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.addGun&#125;&gt;申请武器&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.removeGun&#125;&gt;上交武器&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.addGunAnsyc&#125;&gt;拖两天再给&lt;&#x2F;Button&gt;</span><br><span class="line"></span><br><span class="line">            &lt;h1&gt;现在有机枪&#123;this.props.num&#125;把&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>this.props.num 因为通过connect 把state.counter放到this.props.num上了</p>
-<p>同理其他方法 也挂载到props里了</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/09/box-shadow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/09/box-shadow/" class="post-title-link" itemprop="url">用box-shadow做背景部分透明效果</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-11-09 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-09T14:13:23+08:00">2017-11-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot;</span><br><span class="line">          content&#x3D;&quot;width&#x3D;device-width, user-scalable&#x3D;no, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body&#123;</span><br><span class="line">            background:#6EC3FF;</span><br><span class="line">        &#125;</span><br><span class="line">        .hl-box&#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            top: 400px;</span><br><span class="line">            left: 300px;</span><br><span class="line">            width: 300px;</span><br><span class="line">            box-shadow: 0 0 1px 2000px rgba(0,0,0,.5), 0 2px 15px rgba(0,0,0,.4);</span><br><span class="line">            height: 200px;</span><br><span class="line">            border-radius: 4px;</span><br><span class="line">            transition: all 1s;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;hl-box&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开就卡萨爱上大还是打开就卡萨爱上大还是打开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开就卡萨爱上大还是打开就卡萨爱上大还是打开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开爱上大还是打开就卡萨爱上大还是打开就卡萨就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开爱上大还是打开就卡萨爱上大还是打开就卡萨就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    &#x2F;&#x2F; window.onload&#x3D;function()&#123;</span><br><span class="line">    &#x2F;&#x2F;     setTimeout(function()&#123;</span><br><span class="line">    &#x2F;&#x2F;        document.getElementsByClassName(&#39;hl-box&#39;)[0].style.left&#x3D;&#39;500px&#39;;</span><br><span class="line">    &#x2F;&#x2F;     &#125;,1000)</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/uploads/box-shadow.png" alt="显示效果"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1144,7 +1135,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
