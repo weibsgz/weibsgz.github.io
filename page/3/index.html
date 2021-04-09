@@ -659,6 +659,88 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/cssStyle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/01/03/cssStyle/" class="post-title-link" itemprop="url">边角梯形，内部斜线</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-01-03 14:13:23" itemprop="dateCreated datePublished" datetime="2018-01-03T14:13:23+08:00">2018-01-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/uploads/c1.png" alt="显示效果"></p>
+<h3 id="css"><a href="#css" class="headerlink" title="css"></a><strong>css</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">body&#123;background-color: blue&#125;</span><br><span class="line">    .box&#123;</span><br><span class="line">        width: 500px;</span><br><span class="line">        height: 500px;</span><br><span class="line">        position: relative;</span><br><span class="line">        border:1px solid #ccc;</span><br><span class="line">         background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.02) 75%, transparent 75%, transparent);</span><br><span class="line">        background-size: 20px 20px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box::before &#123;</span><br><span class="line">      content: &#39;&#39;;</span><br><span class="line">      display: block;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: 0;</span><br><span class="line">      top: 0;</span><br><span class="line">      z-index: -1;</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: #05305C;</span><br><span class="line">      background: linear-gradient(135deg, transparent 15px, #173B6B 0, #173B6B 16px, transparent 15px, #05305C 0) top left, linear-gradient(-135deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) top right, linear-gradient(-45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom right, linear-gradient(45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom left;</span><br><span class="line">      background-size: 51% 51%;</span><br><span class="line">      background-repeat: no-repeat;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/front-end-contact/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -726,88 +808,6 @@
 <h3 id="GET-POST区别"><a href="#GET-POST区别" class="headerlink" title="GET,POST区别"></a><strong>GET,POST区别</strong></h3><p>1.GET后退按钮/刷新无害，POST数据会被重新提交（浏览器应该告知用户数据会被重新提交）<br>2.GET能被缓存，POST不能缓存 。<br>3.GET历史参数保留在浏览器历史中。POST参数不会保存在浏览器历史中<br>4.GET对数据长度有限制，当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。POST无限制。<br>5.GET的数据在 URL 中对所有人都是可见的。POST的数据不会显示在 URL 中</p>
 <h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a><strong>jsonp</strong></h3><p>1.html标签的src属性没有同源限制（支持跨域）,创建script标签，src属性指向外部链接，并有一个和后端约定好的函数执行代码，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域</p>
 <p>缺点：没有关于 JSONP 调用的错误处理。如果动态脚本插入有效，就执行调用；如果无效，就静默失败。失败是没有任何提示的</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/cssStyle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/03/cssStyle/" class="post-title-link" itemprop="url">边角梯形，内部斜线</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-01-03 14:13:23" itemprop="dateCreated datePublished" datetime="2018-01-03T14:13:23+08:00">2018-01-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="/uploads/c1.png" alt="显示效果"></p>
-<h3 id="css"><a href="#css" class="headerlink" title="css"></a><strong>css</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">body&#123;background-color: blue&#125;</span><br><span class="line">    .box&#123;</span><br><span class="line">        width: 500px;</span><br><span class="line">        height: 500px;</span><br><span class="line">        position: relative;</span><br><span class="line">        border:1px solid #ccc;</span><br><span class="line">         background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.02) 75%, transparent 75%, transparent);</span><br><span class="line">        background-size: 20px 20px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box::before &#123;</span><br><span class="line">      content: &#39;&#39;;</span><br><span class="line">      display: block;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: 0;</span><br><span class="line">      top: 0;</span><br><span class="line">      z-index: -1;</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: #05305C;</span><br><span class="line">      background: linear-gradient(135deg, transparent 15px, #173B6B 0, #173B6B 16px, transparent 15px, #05305C 0) top left, linear-gradient(-135deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) top right, linear-gradient(-45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom right, linear-gradient(45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom left;</span><br><span class="line">      background-size: 51% 51%;</span><br><span class="line">      background-repeat: no-repeat;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
