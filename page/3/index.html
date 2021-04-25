@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -294,6 +294,90 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
+<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
+<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-layout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,90 +451,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
-<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
-
-<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
-<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
 
       
     </div>
@@ -745,6 +745,171 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/23/express-multer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/02/23/express-multer/" class="post-title-link" itemprop="url">使用express 结合multer中间件上传文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-23 14:13:23" itemprop="dateCreated datePublished" datetime="2018-02-23T14:13:23+08:00">2018-02-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-25 17:50:30" itemprop="dateModified" datetime="2021-04-25T17:50:30+08:00">2021-04-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>server.js</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">var multer &#x3D; require(&#39;multer&#39;)</span><br><span class="line">&#x2F;&#x2F;Multer 是一个 node.js 中间件，用于处理 multipart&#x2F;form-data 类型的表单数据</span><br><span class="line">&#x2F;&#x2F;指定上传文件的目录，再当前文件夹下的uploads  但是存储的是一段哈希值的文件，所以用下面的storage方法</span><br><span class="line">&#x2F;&#x2F; var upload &#x3D; multer(&#123; dest: &#39;uploads&#x2F;&#39; &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断目录不存在就创建目录</span><br><span class="line">var createFolder &#x3D; (folder) &#x3D;&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    fs.accessSync(folder)</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    fs.mkdirSync(folder)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var uploadFolder &#x3D; &#39;.&#x2F;upload&#x2F;&#39;</span><br><span class="line">createFolder(uploadFolder)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;控制存储 将上传的文件存在指定文件夹下</span><br><span class="line">var storage &#x3D; multer.diskStorage(&#123;</span><br><span class="line">  &#x2F;&#x2F;放置目标位置</span><br><span class="line">  destination: function (req, file, cb) &#123;</span><br><span class="line">    cb(null, uploadFolder)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;上传文件的名称和扩展名一起originalname</span><br><span class="line">  filename: function (req, file, cb) &#123;</span><br><span class="line">    cb(null, file.originalname)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var upload &#x3D; multer(&#123; storage: storage &#125;)</span><br><span class="line"></span><br><span class="line">const port &#x3D; 8000</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;form路由打开页面 是个表单 可提交文件</span><br><span class="line">app.get(&#39;&#x2F;form&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  var form &#x3D; fs.readFileSync(&#39;.&#x2F;index.html&#39;, &#123; encoding: &#39;utf-8&#39; &#125;)</span><br><span class="line">  res.send(form)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;提交的name 是 logo</span><br><span class="line">app.post(&#39;&#x2F;upload&#39;, upload.single(&#39;logo&#39;), (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send(&#123; code: 0 &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, () &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;server is running at port: &#39; + port)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>表单页面 同目录下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;!-- formdata处理数据 --&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&#x2F;upload&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt;</span><br><span class="line">      &lt;h2&gt;单图上传&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;logo&quot; &#x2F;&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/23/express1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/02/23/express1/" class="post-title-link" itemprop="url">使用express获取参数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-23 14:13:23" itemprop="dateCreated datePublished" datetime="2018-02-23T14:13:23+08:00">2018-02-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-25 17:48:21" itemprop="dateModified" datetime="2021-04-25T17:48:21+08:00">2021-04-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const bodyParser &#x3D; require(&#39;body-parser&#39;)</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;))</span><br><span class="line">&#x2F;&#x2F;app.use(bodyParser.json()) &#x2F;&#x2F;如果需要发送JSON数据</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数 query http:&#x2F;&#x2F;localhost:3333&#x2F;?a&#x3D;1</span><br><span class="line">app.get(&#39;&#x2F;&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send(&#39;this is homepage&#39;)</span><br><span class="line">  console.log(req.query) &#x2F;&#x2F;&#123;a:1&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数 params http:&#x2F;&#x2F;localhost:3000&#x2F;profile&#x2F;123&#x2F;user&#x2F;weibin</span><br><span class="line">app.get(&#39;&#x2F;profile&#x2F;:id&#x2F;user&#x2F;:name&#39;, function (req, res) &#123;</span><br><span class="line">  res.send(&#96;your id is $&#123;req.params.id&#125;,yourname is $&#123;req.params.name&#125;&#96;) &#x2F;&#x2F;your id is 123,yourname is weibin</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用bodyParser 获取post的参数,参数挂到了req.body上面  使用postman测试</span><br><span class="line">app.post(&#39;&#x2F;&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  console.dir(req.body)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(4000)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/cssStyle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -895,201 +1060,6 @@
 <h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a><strong>jsonp</strong></h3><p>1.html标签的src属性没有同源限制（支持跨域）,创建script标签，src属性指向外部链接，并有一个和后端约定好的函数执行代码，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域</p>
 <p>缺点：没有关于 JSONP 调用的错误处理。如果动态脚本插入有效，就执行调用；如果无效，就静默失败。失败是没有任何提示的</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/05/mongoDB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/05/mongoDB/" class="post-title-link" itemprop="url">mongoDB安装</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-12-05 14:13:23" itemprop="dateCreated datePublished" datetime="2017-12-05T14:13:23+08:00">2017-12-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB官网</a>下选择 try it free进行下载。双击安装</p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><h4 id="1-前提准备"><a href="#1-前提准备" class="headerlink" title="1) 前提准备"></a>1) 前提准备</h4><ol>
-<li>将 <code>mongo.exe</code> 所在目录 加入到系统环境变量当中</li>
-<li>数据存放：在<code>MongoDB</code>安装目录下面新建文件夹 <code>mkdir data\db</code> </li>
-<li>日志存放：在<code>MongoDB</code>安装目录下面新建文件夹 <code>mkdir log</code>，并新建文件 <code>mongod.log</code> </li>
-</ol>
-<h4 id="2-双击-安装目录下的-mongod-exe-直接启动服务"><a href="#2-双击-安装目录下的-mongod-exe-直接启动服务" class="headerlink" title="2) 双击 安装目录下的 mongod.exe 直接启动服务"></a>2) 双击 安装目录下的 <code>mongod.exe</code> 直接启动服务</h4><h4 id="3-命令行启动服务"><a href="#3-命令行启动服务" class="headerlink" title="3) 命令行启动服务"></a>3) 命令行启动服务</h4><h5 id="1-命令行直接运行"><a href="#1-命令行直接运行" class="headerlink" title="1. 命令行直接运行"></a>1. 命令行直接运行</h5><p><code>mongod.exe --dbpath=&quot;C:\Program Files\MongoDB\data\db&quot;</code><br>后面的文件路径既是 之前创建好的 <code>data\db</code></p>
-<h5 id="2-通过配置文件启动服务"><a href="#2-通过配置文件启动服务" class="headerlink" title="2. 通过配置文件启动服务"></a>2. 通过配置文件启动服务</h5><ul>
-<li>c盘根目录下创建文件 <code>mongod.cfg</code>。在其中配置好要输出的 data 与 log  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: C:\Program Files\MongoDB\log\mongod.log</span><br><span class="line">storage:</span><br><span class="line">  dbPath: C:\Program Files\MongoDB\data\db</span><br></pre></td></tr></table></figure></li>
-<li>命令行通过配置文件启动服务 <code>mongod --config c:\mongod.cfg</code></li>
-</ul>
-<h5 id="3-通过安装服务来启动"><a href="#3-通过安装服务来启动" class="headerlink" title="3. 通过安装服务来启动"></a>3. 通过安装服务来启动</h5><ul>
-<li>命令行直接输入命令来安装<br><code>mongod.exe --dbpath=&quot;C:\Program Files\MongoDB\data\db&quot; --logpath=&quot;C:\Program Files\MongoDB\log\mongod.log&quot; --install</code></li>
-<li>通过上面创建好的配置文件来安装<br><code>mongod --config c:\mongod.cfg --install</code> </li>
-<li>启动MongoDB服务<br><code>net start MongoDB</code></li>
-<li>关闭MongoDB服务<br><code>net stop MongoDB</code></li>
-</ul>
-<h3 id="进入mongodb"><a href="#进入mongodb" class="headerlink" title="进入mongodb"></a>进入mongodb</h3><p>命令行直接敲入 <code>mongo</code> 即可</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>Windows 10 的 C盘下面有些权限的问题。可将MongoDB文件夹的各项权限提高。</li>
-<li>安装服务不能成功的，以管理员身份运行安装下即可</li>
-</ol>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
-<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/Jason_first/article/details/75439043">JasonCeng_的博客</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.runoob.com/mongodb/mongodb-window-install.html">Windows 平台安装MongoDB</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/lsc183/archive/2012/08/16/mongodb.html">lsc183</a></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/16/redux-login/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/16/redux-login/" class="post-title-link" itemprop="url">react-redux开发登录校验</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-11-16 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-16T14:13:23+08:00">2017-11-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>1.基础原理详见上一篇 react-redux 理解<br>2.分为两个页面 auth.js是登录页 Dashbord是主页 ，默认不输入登录页地址的话直接到dashbord.js做验证，没有登录的话去auth.js</p>
-<h3 id="index-js入口页面-引用"><a href="#index-js入口页面-引用" class="headerlink" title="index.js入口页面 引用"></a>index.js入口页面 引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">&#x2F;&#x2F;npm install redux-thunk -save  </span><br><span class="line">import thunk from &#39;redux-thunk&#39; &#x2F;&#x2F;applyMiddleware中间件，redux-thunk处理异步获取</span><br><span class="line">import combineReducers from &#39;.&#x2F;reducer&#39;  &#x2F;&#x2F;涉及到合并reducer 不合并的话可以不用</span><br><span class="line">import &#123;Provider&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F;路由</span><br><span class="line">import &#123;BrowserRouter,Route,Redirect,Switch&#125; from &#39;react-router-dom&#39;</span><br><span class="line">&#x2F;&#x2F;分为登录页和主页  做权限校验</span><br><span class="line">import Auth from &#39;.&#x2F;Auth.js&#39;</span><br><span class="line">import Dashbord from &#39;.&#x2F;Dashbord&#39;</span><br></pre></td></tr></table></figure>
-<h3 id="index-js-页面逻辑-默认去dashbord页面"><a href="#index-js-页面逻辑-默认去dashbord页面" class="headerlink" title="index.js 页面逻辑 默认去dashbord页面"></a>index.js 页面逻辑 默认去dashbord页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果不处理异步 直接const store &#x3D; createStore(counter)就可以了</span><br><span class="line">&#x2F;&#x2F;这里用了combineReducer  合并了auth.redux.js index.redux.js里两个reducer</span><br><span class="line">const store &#x3D; createStore(combineReducers,applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用react-redux 方便了很多 Provider只在入口页面写一次 负责传入store 也不需要subscribe订阅了</span><br><span class="line"></span><br><span class="line">        (&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                  &lt;Switch&gt;</span><br><span class="line">                      &#123;&#x2F;*只命中匹配上的第一个route*&#x2F;&#125;</span><br><span class="line">                      &lt;Route exact path&#x3D;&#39;&#x2F;Auth&#39; component&#x3D;&#123;Auth&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                      &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#39; component&#x3D;&#123;Dashbord&#125;&gt;&lt;&#x2F;Route&gt;                   </span><br><span class="line">                      &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">                  &lt;&#x2F;Switch&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;BrowserRouter&gt;</span><br><span class="line">         &lt;&#x2F;Provider&gt;),        </span><br><span class="line">        document.getElementById(&#39;root&#39;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="Auth-redux-js"><a href="#Auth-redux-js" class="headerlink" title="Auth.redux.js"></a>Auth.redux.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">const LOGIN &#x3D; &#39;LOGIN&#39;</span><br><span class="line">const LOGOUT &#x3D; &#39;LOGOUT&#39;</span><br><span class="line">const USERDATA &#x3D; &#39;USERDATA&#39;</span><br><span class="line">const init &#x3D; &#123;</span><br><span class="line">   &#x2F;&#x2F; isAuth:false,</span><br><span class="line">    user:&#39;李云龙&#39;,</span><br><span class="line">    age:20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 这是一个 reducer，形式为 (state, action) &#x3D;&gt; state 的纯函数。</span><br><span class="line"> * 描述了 action 如何把 state 转变成下一个 state。**&#x2F;</span><br><span class="line">export function auth(state &#x3D; init ,action)&#123; </span><br><span class="line">    console.log(&#39;auth.redux.js里的 state ： &#39; + JSON.stringify(state))</span><br><span class="line">    console.log(&#39;auth.redux.js里的 action ： &#39; + JSON.stringify(action))</span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case LOGIN:</span><br><span class="line">            return &#123;...state,isAuth:true&#125;</span><br><span class="line">        case LOGOUT:</span><br><span class="line">            return &#123;...state,isAuth:false&#125;</span><br><span class="line">        case USERDATA:</span><br><span class="line">           return &#123;...state,user:action.payload.user,age:action.payload.age&#125;</span><br><span class="line">        default :</span><br><span class="line">            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象</span><br><span class="line">&#x2F;&#x2F;&#x2F;&#x2F; 改变内部 state 惟一方法是 dispatch 一个 action。</span><br><span class="line">&#x2F;&#x2F;action</span><br><span class="line">export function login()&#123;</span><br><span class="line">    return &#123;type:LOGIN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function logout()&#123;</span><br><span class="line">    return &#123;type:LOGOUT&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;可传入一个载荷 将在reducer的action中体现</span><br><span class="line">export function userData(data)</span><br><span class="line">&#123;</span><br><span class="line">    return &#123;type:USERDATA,payload:data&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;建立一个异步的action 因为数据传输是异步的 需要手动dispatch</span><br><span class="line">export function getUserData()&#123;</span><br><span class="line">    return dispatch&#x3D;&gt;&#123;</span><br><span class="line">        axios.get(&#39;&#x2F;data&#39;).then(res&#x3D;&gt;&#123;</span><br><span class="line">            if(res.status &#x3D;&#x3D;&#x3D; 200)&#123;</span><br><span class="line">                dispatch(userData(res.data))</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Dashbord-js-进入这个页面-要做用户是否登录的判断，如果没登录跳转到auth-js页面"><a href="#Dashbord-js-进入这个页面-要做用户是否登录的判断，如果没登录跳转到auth-js页面" class="headerlink" title="Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面"></a>Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面</h3><p>1.通过connect state.auth和 logout方法挂载到当前组件的this.props下了<br>2.默认this.props.isAuth肯定是没有定义的 this.props.isAuth ? app : redirectToLogin</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">&#x2F;&#x2F;路由</span><br><span class="line">import &#123;Route,Link,Switch,Redirect&#125; from &#39;react-router-dom&#39;</span><br><span class="line">import App from &#39;.&#x2F;App&#39;;</span><br><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">import &#123;logout&#125; from &#39;.&#x2F;Auth.redux&#39;</span><br><span class="line"></span><br><span class="line">@connect(</span><br><span class="line">     state&#x3D;&gt;state.auth,</span><br><span class="line">    &#123;logout&#125; </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class Dashbord extends Component&#123;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(this.props)</span><br><span class="line"></span><br><span class="line">        const redirectToLogin &#x3D; &lt;Redirect to&#x3D;&#39;&#x2F;Auth&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">        const match &#x3D; this.props.match;</span><br><span class="line">        const app &#x3D; (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">          &#123;this.props.isAuth?&lt;button onClick&#x3D;&#123;this.props.logout&#125;&gt;注销&lt;&#x2F;button&gt; : null&#125;</span><br><span class="line">              &lt;ul&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;&#96;&#125;&gt;一营&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;erying&#96;&#125;&gt;二营&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;qibinglian&#96;&#125;&gt;骑兵连&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">              &lt;&#x2F;ul&gt;  </span><br><span class="line">              &lt;Switch&gt;</span><br><span class="line">                  &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;&#39; exact component&#x3D;&#123;App&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                  &#123;&#x2F;*&lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;erying&#39; component&#x3D;&#123;Erying&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                  &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;qibinglian&#39; component&#x3D;&#123;Qibinglian&#125;&gt;&lt;&#x2F;Route&gt;*&#x2F;&#125;</span><br><span class="line">              &lt;&#x2F;Switch&gt;</span><br><span class="line">          &lt;&#x2F;div&gt;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return this.props.isAuth ? app : redirectToLogin</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Dashbord</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Auth-js"><a href="#Auth-js" class="headerlink" title="Auth.js"></a>Auth.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F; import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F; import &#123;addGun,addGunAnsyc,removeGun&#125; from &#39;.&#x2F;index.redux&#39;</span><br><span class="line">import &#123;login,getUserData&#125; from &#39;.&#x2F;Auth.redux.js&#39;</span><br><span class="line">import &#123;Redirect&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;通过connect state属性 和 方法 都挂载到props</span><br><span class="line">&#x2F;&#x2F;这里挂了state.auth  所以下面可以通过this.props.isAuth 取得用户是否登录</span><br><span class="line">@connect(</span><br><span class="line">    state &#x3D;&gt; state.auth,</span><br><span class="line">    &#123;login,getUserData&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class Auth extends Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            data:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    componentWillMount()&#123;</span><br><span class="line">        </span><br><span class="line">        this.props.getUserData()</span><br><span class="line">        console.log(this.props)</span><br><span class="line">        &#x2F;&#x2F; axios.get(&#39;&#x2F;data&#39;).then(res&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F;         if(res.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">        &#x2F;&#x2F;             this.setState(&#123;</span><br><span class="line">        &#x2F;&#x2F;                 data:res.data</span><br><span class="line">        &#x2F;&#x2F;             &#125;)</span><br><span class="line">        &#x2F;&#x2F;         &#125;   </span><br><span class="line">                </span><br><span class="line">        &#x2F;&#x2F;         console.log(&#39;state.data &#39;,JSON.stringify(this.state.data.user,null,2))  </span><br><span class="line">        &#x2F;&#x2F; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(&#39;auth页面的props&#39; + JSON.stringify(this.props))</span><br><span class="line"></span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &#123;&#x2F;*&lt;h2&gt;我的名字是&#123;this.state.data.user&#125;&lt;&#x2F;h2&gt;*&#x2F;&#125;</span><br><span class="line">                &lt;h2&gt;用户名：&#123;this.props.user&#125;,年龄:&#123;this.props.age&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">                </span><br><span class="line">                &#123;this.props.isAuth ? &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39; &#x2F;&gt; : &lt;h2&gt;你没有权限，需要登录才能看&lt;&#x2F;h2&gt;&#125;</span><br><span class="line"></span><br><span class="line">                &lt;button onClick&#x3D;&#123;this.props.login&#125;&gt;登录&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Auth</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 

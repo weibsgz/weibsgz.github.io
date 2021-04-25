@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,192 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2015/06/27/2015-06-17-less/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/06/27/2015-06-17-less/" class="post-title-link" itemprop="url">less简易使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-06-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-06-27T01:08:00+08:00">2015-06-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="less常用"><a href="#less常用" class="headerlink" title="less常用"></a>less常用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line">body&#123;font-size: 20px;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;*我是被编译的*&#x2F;</span><br><span class="line">&#x2F;&#x2F;我是不被编译的</span><br><span class="line"></span><br><span class="line">&#x2F;*变量*&#x2F;</span><br><span class="line">@testWidth:300px;</span><br><span class="line">.div&#123;width: @testWidth&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;*混合 就是复用别的样式，加入自己独特的样式，DIV1的样式和DIV基本一样，多了个border*&#x2F;</span><br><span class="line">.border&#123;border:5px solid #000&#125;</span><br><span class="line">.div1&#123;</span><br><span class="line">  height:29px;</span><br><span class="line">  .div;</span><br><span class="line">  .border;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;*混合带参数*&#x2F;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.border2(@border_width)</span><br><span class="line">&#123;</span><br><span class="line">  border:@border_width solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.div3&#123;</span><br><span class="line">  .border2(25px)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;*混合带默认参数*&#x2F;</span><br><span class="line">.border3(@border_width:10px)</span><br><span class="line">&#123;</span><br><span class="line">  border: @border_width solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.div4&#123;</span><br><span class="line">  .border3()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;*css3兼容性混合列子*&#x2F;</span><br><span class="line">.borderRadius(@radius:5px)</span><br><span class="line">&#123;</span><br><span class="line">  -webkit-border-radius:@radius;</span><br><span class="line">  -moz-border-radius: @radius;</span><br><span class="line">  border-radius: @radius;</span><br><span class="line">&#125;</span><br><span class="line">.div5&#123;</span><br><span class="line">  height: 30px;</span><br><span class="line">  width: 30px;</span><br><span class="line">  .borderRadius(3px);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;*三角*&#x2F;</span><br><span class="line">.triangle(top,@w:15px,@c:#ccc )</span><br><span class="line">&#123;</span><br><span class="line">  border-width:@w;</span><br><span class="line">  border-color:transparent transparent @c transparent;</span><br><span class="line">  border-style:dashed dashed solid dashed;</span><br><span class="line">&#125;</span><br><span class="line">.triangle(bottom,@w:15px,@c:#ccc )</span><br><span class="line">&#123;</span><br><span class="line">  border-width:@w;</span><br><span class="line">  border-color:@c transparent transparent transparent;</span><br><span class="line">  border-style:solid dashed dashed dashed;</span><br><span class="line">&#125;</span><br><span class="line">.triangle(left,@w:15px,@c:#ccc )</span><br><span class="line">&#123;</span><br><span class="line">  border-width:@w;</span><br><span class="line">  border-color:transparent @c transparent transparent;</span><br><span class="line">  border-style:dashed solid dashed dashed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.triangle(right,@w:15px,@c:#ccc )</span><br><span class="line">&#123;</span><br><span class="line">  border-width:@w;</span><br><span class="line">  border-color:transparent transparent transparent @c;</span><br><span class="line">  border-style:dashed dashed dashed solid;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;@_ 代表无论上边选了谁，都带着这个内容</span><br><span class="line">.triangle(@_,@w:15px,@c:#ccc)</span><br><span class="line">&#123;</span><br><span class="line">  width: 0;</span><br><span class="line">  height:0;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;调用</span><br><span class="line">.sanjiao&#123;</span><br><span class="line">  .triangle(bottom,30px,red);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;*运算*&#x2F;</span><br><span class="line">@test:300px;</span><br><span class="line">.test&#123;</span><br><span class="line">  width: @test+20*5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;*嵌套*&#x2F;</span><br><span class="line">.list&#123;</span><br><span class="line">  width: 600px;</span><br><span class="line">  li&#123;</span><br><span class="line">    float:left;</span><br><span class="line">      p&#123;</span><br><span class="line">        width:100px;</span><br><span class="line">      &#125;;</span><br><span class="line">      &amp;_content&#123;</span><br><span class="line">        color:red;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  a&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    &#x2F;&#x2F;&amp;代表他的上一层选择器</span><br><span class="line">    &amp;:hover&#123;</span><br><span class="line">      color:red;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .ly&#123;</span><br><span class="line">    width: 111px;</span><br><span class="line">    &amp;_ly&#123;</span><br><span class="line">      width: 121px;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;*避免编译，比如calc这种*&#x2F;</span><br><span class="line">.cc&#123;</span><br><span class="line">  width: calc(300px-30px);</span><br><span class="line">&#125;</span><br><span class="line">.cc&#123;</span><br><span class="line">  width: ~&#39;calc(300px-30px)&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2015/03/27/2015-03-27-ie8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/03/27/2015-03-27-ie8/" class="post-title-link" itemprop="url">ie8兼容问题汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-03-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-03-27T01:08:00+08:00">2015-03-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="IE8问题汇总及解决方案"><a href="#IE8问题汇总及解决方案" class="headerlink" title="IE8问题汇总及解决方案"></a>IE8问题汇总及解决方案</h1><p>1,调整浏览器渲染模式     <br /></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge,chrome&#x3D;1&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><br /><br /><br>2,针对双核浏览器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;renderer&quot; content&#x3D;&quot;webkit&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>3,IE8无法识别 Media Query <br /><br>推荐采用Respond.js<br /><br /></p>
+<p>4,H5新标签 <br><br>html5shiv<br /><br /></p>
+<p>5,background-size: cover<br><br>filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=Enabled, sizingMethod=Size , src=URL) <br /><br /></p>
+<p>6,inline-block下padding元素重叠<br><br>使用float: left替代display: inline-block实现水平布局<br /><br /></p>
+<p>7,placeholder <br><br>使用插件比如：<a target="_blank" rel="noopener" href="https://github.com/mathiasbynens/jquery-placeholder">https://github.com/mathiasbynens/jquery-placeholder</a> 或者使用JS实现<br></p>
+<p>8,es5的一些属性，方法(主要是针对数组那些) <br><br>es5-shim<br><br></p>
+<p>9，echarts图表在ie8里不显示<br><br>(1)ajax由get传值改成post传值。(2)配置图表时去掉最后面的一项数据后面的逗号。<br><br></p>
+<p>10，d3在ie8不显示问题<br><br>try{。。。}catch{ 。。。}容错解决。并进行友好提示。<br><br></p>
+<p>11，行内样式垂直居中问题，有时line-height和高度相等在ie8无效果<br><br>加vertical-align：middle;解决<br><br></p>
+<p>12，button按钮左右两边的留白的问题<br><br>用overflow:visible;padding:0;<br><br></p>
+<p>13，hack方法解决一些边距等问题<br><br>针对仅ie8内input框文字不居中的问题单独写css后缀加\9区分<br><br></p>
+<p>14，z-index失效<br><br>给元素都添加postion:relative<br><br></p>
+<p>15，table的隔行变色 用nth-child(even)不兼容<br><br>用JQUERY实现<br><br></p>
+<p>16，Ajax获取数据的时候用get有的时候由于后台传的汉字转译之后太长，会导致ie取不到后台的数据<br><br>改成用post<br><br></p>
+<p>17，文字有和图片，表单一行的时候，在IE8中布局会乱<br><br>文字的行高一定要写的和Input（image、select等等）一样高，外边上下的边距不要用行高撑开，用margin或者padding都行，只用高度撑开的话在ie8中会布局乱。<br><br></p>
+<p>18，marin不起作用<br><br>塌陷问题，常见于浮动布局，解决方案1清除浮动 2，给父及元素加overflow:hidden;<br><br></p>
+<p>19，IE8 不支持CSS3 选择器，<br><br>1. 可引入 selectivizr-min.js 解决。selectivizr-min.js 需要其它js库进行支持，不同js库对其支持程度不同，推荐使用nwmatcher.js。两者结合可满足CSS3 绝大多数选择器。&lt;!- -[if (gte IE 6)&amp;(lte IE 8)]&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;Lib&#x2F;nwmatcher.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">          &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;Lib&#x2F;selectivizr-min.js&quot;&gt;&lt;&#x2F;script</span><br><span class="line">&lt;![endif]- -&gt;</span><br></pre></td></tr></table></figure>
+<p>20 CSS属性颜色渐变linear-gradient<br><br>渐变做法使用hack技术添加一纯色背景。background-color: #f5840c\9;<br><br></p>
+<p>21，IE 缓存过大，比如一些请求，或者动态更换img地址等<br><br>请求后加时间戳<br><br></p>
+<p>22，ajax在ie8，ie9之下有时候不能跨域<br><br>使用 jquery.xdomainrequest.min.js  解决<br><br></p>
+<p>23，echarts部分图表在ie8之下二次加载的时候不能清空 <br><br>每次在加载之前清空容纳图表的容器<br><br></p>
+<p>24,ajax在ie8，ie9之下有时候不能跨域   <br><br>使用 jquery.xdomainrequest.min.js  解决<br><br></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
