@@ -23,21 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta name="description" content="使用nginx处理的问题 使用NODE起服务（GULP）页面要交给后端，那么静态资源都以’&#x2F;&#x2F;asserts.xcarimg.com&#x2F;resource&#x2F;delayLoading.min.js&#96;这种形式提交后端使用NGINX代理保证页面直接使用这种连接，交后端后不用修改  后端的接口存了cookie 到x c a r域名 ，我们本地如果用localhost是取不到的SO，使用NGINX代理URL到一">
+<meta name="description" content="server.js  123456789101112131415161718192021222324252627const express &#x3D; require(&#39;express&#39;)const fs &#x3D; require(&#39;fs&#39;)const path &#x3D; require(&#39;path&#39;)const port &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx使用">
-<meta property="og:url" content="http://example.com/2019/04/16/2018-04-16-nginx/index.html">
+<meta property="og:title" content="express ejs模板使用">
+<meta property="og:url" content="http://example.com/2018/02/25/express-ejs/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="使用nginx处理的问题 使用NODE起服务（GULP）页面要交给后端，那么静态资源都以’&#x2F;&#x2F;asserts.xcarimg.com&#x2F;resource&#x2F;delayLoading.min.js&#96;这种形式提交后端使用NGINX代理保证页面直接使用这种连接，交后端后不用修改  后端的接口存了cookie 到x c a r域名 ，我们本地如果用localhost是取不到的SO，使用NGINX代理URL到一">
+<meta property="og:description" content="server.js  123456789101112131415161718192021222324252627const express &#x3D; require(&#39;express&#39;)const fs &#x3D; require(&#39;fs&#39;)const path &#x3D; require(&#39;path&#39;)const port &#x3D;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-04-15T17:08:00.000Z">
-<meta property="article:modified_time" content="2020-12-25T09:09:50.247Z">
+<meta property="article:published_time" content="2018-02-25T06:13:23.000Z">
+<meta property="article:modified_time" content="2021-04-26T06:51:54.374Z">
 <meta property="article:author" content="魏彬">
-<meta property="article:tag" content="工具">
+<meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2019/04/16/2018-04-16-nginx/">
+<link rel="canonical" href="http://example.com/2018/02/25/express-ejs/">
 
 
 <script class="page-configurations">
@@ -49,7 +49,7 @@
     lang   : 'en'
   };
 </script>
-<title>nginx使用 | Hexo</title>
+<title>express ejs模板使用 | Hexo</title>
   
 
 
@@ -135,7 +135,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -148,7 +148,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8nginx%E5%A4%84%E7%90%86%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">使用nginx处理的问题</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -213,7 +212,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/16/2018-04-16-nginx/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/25/express-ejs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
@@ -226,7 +225,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          nginx使用
+          express ejs模板使用
         </h1>
 
         <div class="post-meta-container">
@@ -237,14 +236,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2019-04-16 01:08:00" itemprop="dateCreated datePublished" datetime="2019-04-16T01:08:00+08:00">2019-04-16</time>
+      <time title="Created: 2018-02-25 14:13:23" itemprop="dateCreated datePublished" datetime="2018-02-25T14:13:23+08:00">2018-02-25</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+        <time title="Modified: 2021-04-26 14:51:54" itemprop="dateModified" datetime="2021-04-26T14:51:54+08:00">2021-04-26</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -252,7 +251,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+          <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
         </span>
     </span>
 
@@ -266,14 +265,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="使用nginx处理的问题"><a href="#使用nginx处理的问题" class="headerlink" title="使用nginx处理的问题"></a>使用nginx处理的问题</h3><ol>
-<li><p>使用NODE起服务（GULP）页面要交给后端，那么静态资源都以’//asserts.xcarimg.com/resource/delayLoading.min.js`这种形式提交后端<br>使用NGINX代理保证页面直接使用这种连接，交后端后不用修改</p>
-</li>
-<li><p>后端的接口存了cookie 到x c a r域名 ，我们本地如果用localhost是取不到的<br>SO，使用NGINX代理URL到一个虚拟的 X C A R 域名</p>
-</li>
+        <ol>
+<li>server.js</li>
 </ol>
-<p>下载NGINX包 配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">### 为了指定asserts.xcar.com到本地，之后给后端的路径就不用变了 需要指定HOST  127.0.0.1 asserts.xcarimg.com</span><br><span class="line">   server &#123;</span><br><span class="line">       listen       80;</span><br><span class="line">       server_name  asserts.xcarimg.com;</span><br><span class="line">       root   &quot;D:&#x2F;work&#x2F;&quot;;</span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">           index  index.html index.htm index.php;</span><br><span class="line">           if (!-e $request_filename)&#123;</span><br><span class="line">               rewrite ^&#x2F;(.*) &#x2F;index.php last;</span><br><span class="line">           &#125;</span><br><span class="line">           #autoindex  on;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   ###转发域名到dev1.xcar.com.cn 后端存COOKIE为了取COOKIE  需要指定HOST 127.0.0.1 dev1.xccar.com.cn 保证在相同域名下</span><br><span class="line">    server &#123;</span><br><span class="line">       listen       80;</span><br><span class="line">       server_name  dev1.xcar.com.cn;</span><br><span class="line">       root   &quot;D:&#x2F;work&#x2F;resource&#x2F;index2019&#x2F;dist&#x2F;html&#x2F;index&#x2F;&quot;;</span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">           index  index.html index.htm index.php;</span><br><span class="line">           if (!-e $request_filename)&#123;</span><br><span class="line">               rewrite ^&#x2F;(.*) &#x2F;index.php last;</span><br><span class="line">           &#125;</span><br><span class="line">           #autoindex  on;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const port &#x3D; 8000</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 设置模板引擎 路径是views目录下</span><br><span class="line">app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;))</span><br><span class="line">app.set(&#39;view engine&#39;, &#39;ejs&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;form路由打开页面 是个表单 可提交文件  访问路由：http:&#x2F;&#x2F;localhost:8000&#x2F;form&#x2F;weibin</span><br><span class="line">app.get(&#39;&#x2F;form&#x2F;:name&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  const person &#x3D; req.params.name</span><br><span class="line"></span><br><span class="line">  const data &#x3D; &#123; age: 18, hobbie: [&#39;eating&#39;, &#39;sleeping&#39;, &#39;working&#39;] &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;渲染数据并返回html.index.ejs文件</span><br><span class="line">  res.render(&#39;index&#39;, &#123; person: person, data: data &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, () &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;server is running at port: &#39; + port)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>server.js 下同目录文件夹 views 下 index.ejs</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;%- include(&#39;header&#39;) -%&gt;</span><br><span class="line">    &lt;h2&gt;&lt;%&#x3D; person %&gt;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;h2&gt;&lt;%&#x3D; data.age %&gt;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;h2&gt;hobbie：&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;% data.hobbie.forEach((item)&#x3D;&gt;&#123; %&gt;</span><br><span class="line">      &lt;li&gt;&lt;%&#x3D; item %&gt;&lt;&#x2F;li&gt;</span><br><span class="line">      &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;!-- formdata处理数据 --&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&#x2F;upload&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt;</span><br><span class="line">      &lt;h2&gt;ejs模板引擎&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;logo&quot; &#x2F;&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -282,20 +281,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/node/" rel="tag"># node</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2018/12/05/2018-12-5-fiddle/" rel="prev" title="fiddle拦截使用">
-                  <i class="fa fa-chevron-left"></i> fiddle拦截使用
+                <a href="/2018/02/23/express-multer/" rel="prev" title="使用express 结合multer中间件上传文件">
+                  <i class="fa fa-chevron-left"></i> 使用express 结合multer中间件上传文件
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2019/07/14/apply/" rel="next" title="js的apply问题">
-                  js的apply问题 <i class="fa fa-chevron-right"></i>
+                <a href="/2018/02/28/pxToRem/" rel="next" title="rem相关问题">
+                  rem相关问题 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -745,6 +745,92 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/25/express-ejs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/02/25/express-ejs/" class="post-title-link" itemprop="url">express ejs模板使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-25 14:13:23" itemprop="dateCreated datePublished" datetime="2018-02-25T14:13:23+08:00">2018-02-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-26 14:51:54" itemprop="dateModified" datetime="2021-04-26T14:51:54+08:00">2021-04-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>server.js</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const port &#x3D; 8000</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 设置模板引擎 路径是views目录下</span><br><span class="line">app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;))</span><br><span class="line">app.set(&#39;view engine&#39;, &#39;ejs&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;form路由打开页面 是个表单 可提交文件  访问路由：http:&#x2F;&#x2F;localhost:8000&#x2F;form&#x2F;weibin</span><br><span class="line">app.get(&#39;&#x2F;form&#x2F;:name&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  const person &#x3D; req.params.name</span><br><span class="line"></span><br><span class="line">  const data &#x3D; &#123; age: 18, hobbie: [&#39;eating&#39;, &#39;sleeping&#39;, &#39;working&#39;] &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;渲染数据并返回html.index.ejs文件</span><br><span class="line">  res.render(&#39;index&#39;, &#123; person: person, data: data &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, () &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;server is running at port: &#39; + port)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>server.js 下同目录文件夹 views 下 index.ejs</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;%- include(&#39;header&#39;) -%&gt;</span><br><span class="line">    &lt;h2&gt;&lt;%&#x3D; person %&gt;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;h2&gt;&lt;%&#x3D; data.age %&gt;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;h2&gt;hobbie：&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;% data.hobbie.forEach((item)&#x3D;&gt;&#123; %&gt;</span><br><span class="line">      &lt;li&gt;&lt;%&#x3D; item %&gt;&lt;&#x2F;li&gt;</span><br><span class="line">      &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;!-- formdata处理数据 --&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&#x2F;upload&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt;</span><br><span class="line">      &lt;h2&gt;ejs模板引擎&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;logo&quot; &#x2F;&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/23/express-multer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -776,7 +862,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-25 17:50:30" itemprop="dateModified" datetime="2021-04-25T17:50:30+08:00">2021-04-25</time>
+        <time title="Modified: 2021-04-26 11:29:16" itemprop="dateModified" datetime="2021-04-26T11:29:16+08:00">2021-04-26</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -801,7 +887,7 @@
           <ol>
 <li>server.js</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">var multer &#x3D; require(&#39;multer&#39;)</span><br><span class="line">&#x2F;&#x2F;Multer 是一个 node.js 中间件，用于处理 multipart&#x2F;form-data 类型的表单数据</span><br><span class="line">&#x2F;&#x2F;指定上传文件的目录，再当前文件夹下的uploads  但是存储的是一段哈希值的文件，所以用下面的storage方法</span><br><span class="line">&#x2F;&#x2F; var upload &#x3D; multer(&#123; dest: &#39;uploads&#x2F;&#39; &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断目录不存在就创建目录</span><br><span class="line">var createFolder &#x3D; (folder) &#x3D;&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    fs.accessSync(folder)</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    fs.mkdirSync(folder)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var uploadFolder &#x3D; &#39;.&#x2F;upload&#x2F;&#39;</span><br><span class="line">createFolder(uploadFolder)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;控制存储 将上传的文件存在指定文件夹下</span><br><span class="line">var storage &#x3D; multer.diskStorage(&#123;</span><br><span class="line">  &#x2F;&#x2F;放置目标位置</span><br><span class="line">  destination: function (req, file, cb) &#123;</span><br><span class="line">    cb(null, uploadFolder)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;上传文件的名称和扩展名一起originalname</span><br><span class="line">  filename: function (req, file, cb) &#123;</span><br><span class="line">    cb(null, file.originalname)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var upload &#x3D; multer(&#123; storage: storage &#125;)</span><br><span class="line"></span><br><span class="line">const port &#x3D; 8000</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;form路由打开页面 是个表单 可提交文件</span><br><span class="line">app.get(&#39;&#x2F;form&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  var form &#x3D; fs.readFileSync(&#39;.&#x2F;index.html&#39;, &#123; encoding: &#39;utf-8&#39; &#125;)</span><br><span class="line">  res.send(form)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;提交的name 是 logo</span><br><span class="line">app.post(&#39;&#x2F;upload&#39;, upload.single(&#39;logo&#39;), (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send(&#123; code: 0 &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, () &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;server is running at port: &#39; + port)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">var multer &#x3D; require(&#39;multer&#39;)</span><br><span class="line">&#x2F;&#x2F;Multer 是一个 node.js 中间件，用于处理 multipart&#x2F;form-data 类型的表单数据</span><br><span class="line">&#x2F;&#x2F;指定上传文件的目录，再当前文件夹下的uploads  但是存储的是一段哈希值的文件，所以用下面的storage方法</span><br><span class="line">&#x2F;&#x2F; var upload &#x3D; multer(&#123; dest: &#39;uploads&#x2F;&#39; &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断目录不存在就创建目录</span><br><span class="line">var createFolder &#x3D; (folder) &#x3D;&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    fs.accessSync(folder)</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    fs.mkdirSync(folder)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var uploadFolder &#x3D; &#39;.&#x2F;upload&#x2F;&#39;</span><br><span class="line">createFolder(uploadFolder)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;控制存储 将上传的文件存在指定文件夹下</span><br><span class="line">var storage &#x3D; multer.diskStorage(&#123;</span><br><span class="line">  &#x2F;&#x2F;放置目标位置</span><br><span class="line">  destination: function (req, file, cb) &#123;</span><br><span class="line">    cb(null, uploadFolder)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;上传文件的名称和扩展名一起originalname</span><br><span class="line">  filename: function (req, file, cb) &#123;</span><br><span class="line">    cb(null, file.originalname)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var upload &#x3D; multer(&#123; storage: storage &#125;)</span><br><span class="line"></span><br><span class="line">const port &#x3D; 8000</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;form路由打开页面 是个表单 可提交文件</span><br><span class="line">app.get(&#39;&#x2F;form&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  var form &#x3D; fs.readFileSync(&#39;.&#x2F;index.html&#39;, &#123; encoding: &#39;utf-8&#39; &#125;)</span><br><span class="line">  res.send(form)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;或者直接使用express提供的sendFile</span><br><span class="line">  &#x2F;&#x2F; res.sendFile(__dirname + &#39;&#x2F;index.html&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;提交的name 是 logo</span><br><span class="line">app.post(&#39;&#x2F;upload&#39;, upload.single(&#39;logo&#39;), (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send(&#123; code: 0 &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, () &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;server is running at port: &#39; + port)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>表单页面 同目录下</li>
 </ol>
@@ -862,7 +948,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-25 17:48:21" itemprop="dateModified" datetime="2021-04-25T17:48:21+08:00">2021-04-25</time>
+        <time title="Modified: 2021-04-26 14:32:53" itemprop="dateModified" datetime="2021-04-26T14:32:53+08:00">2021-04-26</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -884,7 +970,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const bodyParser &#x3D; require(&#39;body-parser&#39;)</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;))</span><br><span class="line">&#x2F;&#x2F;app.use(bodyParser.json()) &#x2F;&#x2F;如果需要发送JSON数据</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数 query http:&#x2F;&#x2F;localhost:3333&#x2F;?a&#x3D;1</span><br><span class="line">app.get(&#39;&#x2F;&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send(&#39;this is homepage&#39;)</span><br><span class="line">  console.log(req.query) &#x2F;&#x2F;&#123;a:1&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数 params http:&#x2F;&#x2F;localhost:3000&#x2F;profile&#x2F;123&#x2F;user&#x2F;weibin</span><br><span class="line">app.get(&#39;&#x2F;profile&#x2F;:id&#x2F;user&#x2F;:name&#39;, function (req, res) &#123;</span><br><span class="line">  res.send(&#96;your id is $&#123;req.params.id&#125;,yourname is $&#123;req.params.name&#125;&#96;) &#x2F;&#x2F;your id is 123,yourname is weibin</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用bodyParser 获取post的参数,参数挂到了req.body上面  使用postman测试</span><br><span class="line">app.post(&#39;&#x2F;&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  console.dir(req.body)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(4000)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const bodyParser &#x3D; require(&#39;body-parser&#39;)</span><br><span class="line"></span><br><span class="line">const app &#x3D; express()</span><br><span class="line">&#x2F;&#x2F;支持不同的请求体</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;)) &#x2F;&#x2F;application&#x2F;x-www-form-urlencoded</span><br><span class="line">&#x2F;&#x2F;app.use(bodyParser.json()) &#x2F;&#x2F;如果需要发送JSON数据  application&#x2F;json</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数 query http:&#x2F;&#x2F;localhost:3333&#x2F;?a&#x3D;1</span><br><span class="line">app.get(&#39;&#x2F;&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send(&#39;this is homepage&#39;)</span><br><span class="line">  console.log(req.query) &#x2F;&#x2F;&#123;a:1&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数 params http:&#x2F;&#x2F;localhost:3000&#x2F;profile&#x2F;123&#x2F;user&#x2F;weibin</span><br><span class="line">app.get(&#39;&#x2F;profile&#x2F;:id&#x2F;user&#x2F;:name&#39;, function (req, res) &#123;</span><br><span class="line">  res.send(&#96;your id is $&#123;req.params.id&#125;,yourname is $&#123;req.params.name&#125;&#96;) &#x2F;&#x2F;your id is 123,yourname is weibin</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用bodyParser 获取post的参数,参数挂到了req.body上面  使用postman测试</span><br><span class="line">app.post(&#39;&#x2F;&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  console.dir(req.body)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(4000)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -966,99 +1052,6 @@
           <p><img src="/uploads/c1.png" alt="显示效果"></p>
 <h3 id="css"><a href="#css" class="headerlink" title="css"></a><strong>css</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">body&#123;background-color: blue&#125;</span><br><span class="line">    .box&#123;</span><br><span class="line">        width: 500px;</span><br><span class="line">        height: 500px;</span><br><span class="line">        position: relative;</span><br><span class="line">        border:1px solid #ccc;</span><br><span class="line">         background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.02) 75%, transparent 75%, transparent);</span><br><span class="line">        background-size: 20px 20px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box::before &#123;</span><br><span class="line">      content: &#39;&#39;;</span><br><span class="line">      display: block;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: 0;</span><br><span class="line">      top: 0;</span><br><span class="line">      z-index: -1;</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: #05305C;</span><br><span class="line">      background: linear-gradient(135deg, transparent 15px, #173B6B 0, #173B6B 16px, transparent 15px, #05305C 0) top left, linear-gradient(-135deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) top right, linear-gradient(-45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom right, linear-gradient(45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom left;</span><br><span class="line">      background-size: 51% 51%;</span><br><span class="line">      background-repeat: no-repeat;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/front-end-contact/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/03/front-end-contact/" class="post-title-link" itemprop="url">前后端通信类问题汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-01-03 14:13:23" itemprop="dateCreated datePublished" datetime="2018-01-03T14:13:23+08:00">2018-01-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a><strong>同源策略</strong></h3><p>协议，域名 和 端口  <a href="http://www.baidu.com:80,三者必须都一样，否则跨域，">http://www.baidu.com:80,三者必须都一样，否则跨域，</a><br>非同源操作不了 cookie,ajax,dom</p>
-<h3 id="HTTP-HTTPS协议"><a href="#HTTP-HTTPS协议" class="headerlink" title="HTTP/HTTPS协议"></a><strong>HTTP/HTTPS协议</strong></h3><p>HTTP 是基于 TCP/IP 协议的应用层协议。默认使用80端口。<br>HTTPS协议：简单来说，可以理解为安全版的HTTP协议，基于TCP/IP协议和SSL/TLS协议之上的应用层协议。默认端口443。</p>
-<p>HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此HTTP协议不适合传输一些敏感信息，比如密码等。</p>
-<p>为了解决HTTP协议的这一缺陷，需要使用另一种协议：安全套接字层超文本传输协议HTTPS。为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。缺点：1，申请证书需要钱，2，耗费性能，3.也不是绝对安全</p>
-<p>http协议特点：<br>1.无状态：http协议没法保存客户机信息，也就没法区分每次请求的不同之处。关于http无状态阻碍了交互式应用程序的实现。比如记录用户浏览哪些网页、判断用户是否拥有权限访问等。于是，两种用于保持HTTP状态的技术就应运而生了，一个是Cookie，而另一个则是Session。<br>2，无连接：是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
-<h3 id="HTTP协议工作流程"><a href="#HTTP协议工作流程" class="headerlink" title="HTTP协议工作流程"></a><strong>HTTP协议工作流程</strong></h3><p>3次握手<br>客户端和服务器之间建立一条连接<br>连接建立后，客户端向服务器发起一个请求（request）<br>服务器收到一个请求后，给客户端一个响应（应答，response）<br>客户端收到响应后做进一步处理</p>
-<h3 id="OPTIONS请求是什么"><a href="#OPTIONS请求是什么" class="headerlink" title="OPTIONS请求是什么"></a>OPTIONS请求是什么</h3><p>OPTIONS是一个预请求，跨域的情况下，如果有以下情况发生，则会先发送OPTIONS，服务端允许才会<br>发送真正的请求，否则不会发送<br>1、请求方法不是GET/HEAD/POST<br>2、POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain<br>3、请求设置了自定义的header字段</p>
-<h3 id="301-302区别"><a href="#301-302区别" class="headerlink" title="301 302区别"></a>301 302区别</h3><p>301和302都在response头里设置，301是永久重定向，302是临时重定向<br>301表示这个请求第一次请求服务器后，以后再发送就不询问服务器了，客户端直接跳转到新地址<br>302每次还是要访问服务器看有没有新的地址跳转</p>
-<h3 id="CSP-安全策略"><a href="#CSP-安全策略" class="headerlink" title="CSP 安全策略"></a>CSP 安全策略</h3><p>缓解某些类型的攻击，包括跨站脚本 (XSS) 和数据注入等攻击。<br>后端response头设置X-Content-Security-Policy<br>也可在META标签内设置 <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#39;self&#39;; img-src https://*; child-src &#39;none&#39;;script-src userscripts.example.com&quot;&gt;</code><br>一个网站管理者想要所有内容均来自站点的同一个源 (不包括其子域名)所有脚本必须从特定主机服务器获取可信的代码.</p>
-<h3 id="前端后端如何跨域通信"><a href="#前端后端如何跨域通信" class="headerlink" title="前端后端如何跨域通信"></a><strong>前端后端如何跨域通信</strong></h3><p>1.JSONP<br>2.websocket （不限制同源策略）<br>3.cros   （支持同源，非同源通信）<br>4.postMessage (h5)</p>
-<h3 id="如何创建AJAX"><a href="#如何创建AJAX" class="headerlink" title="如何创建AJAX"></a><strong>如何创建AJAX</strong></h3><p>ajax请求过程：创建XMLHttpRequest（兼容性）、连接服务器、发送请求、服务器做出响应、接收响应数据 </p>
-<h3 id="GET-POST区别"><a href="#GET-POST区别" class="headerlink" title="GET,POST区别"></a><strong>GET,POST区别</strong></h3><p>1.GET后退按钮/刷新无害，POST数据会被重新提交（浏览器应该告知用户数据会被重新提交）<br>2.GET能被缓存，POST不能缓存 。<br>3.GET历史参数保留在浏览器历史中。POST参数不会保存在浏览器历史中<br>4.GET对数据长度有限制，当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。POST无限制。<br>5.GET的数据在 URL 中对所有人都是可见的。POST的数据不会显示在 URL 中</p>
-<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a><strong>jsonp</strong></h3><p>1.html标签的src属性没有同源限制（支持跨域）,创建script标签，src属性指向外部链接，并有一个和后端约定好的函数执行代码，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域</p>
-<p>缺点：没有关于 JSONP 调用的错误处理。如果动态脚本插入有效，就执行调用；如果无效，就静默失败。失败是没有任何提示的</p>
 
       
     </div>
