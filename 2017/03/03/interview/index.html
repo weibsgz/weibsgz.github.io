@@ -23,15 +23,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta name="description" content="安全类1.CSRF 攻击引诱用户点击链接登录到目标网站防范措施：加 token 验证 ， 第一次登录的时候存 token，refer 验证：看来源是不是本网站的，不是一律拦截 2.XSS 攻击  一个博客网站，我发表了一篇博客，其中嵌入脚本脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）发布这篇博客，有人查看他，可以轻松收割访问者的 cookie  注入脚本防范措施：对一些表单输入">
+<meta name="description" content="安全类1.CSRF 攻击引诱用户点击链接登录到目标网站防范措施：加 token 验证 ， 第一次登录的时候存 token，refer 验证：看来源是不是本网站的，不是一律拦截 2.XSS 攻击  一个博客网站，我发表了一篇博客，其中嵌入 script 脚本脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）发布这篇博客，有人查看他，可以轻松收割访问者的 cookie  注入脚本防范措施">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端一些安全类，渲染机制，运行机制，性能的面试问题">
 <meta property="og:url" content="http://example.com/2017/03/03/interview/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="安全类1.CSRF 攻击引诱用户点击链接登录到目标网站防范措施：加 token 验证 ， 第一次登录的时候存 token，refer 验证：看来源是不是本网站的，不是一律拦截 2.XSS 攻击  一个博客网站，我发表了一篇博客，其中嵌入脚本脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）发布这篇博客，有人查看他，可以轻松收割访问者的 cookie  注入脚本防范措施：对一些表单输入">
+<meta property="og:description" content="安全类1.CSRF 攻击引诱用户点击链接登录到目标网站防范措施：加 token 验证 ， 第一次登录的时候存 token，refer 验证：看来源是不是本网站的，不是一律拦截 2.XSS 攻击  一个博客网站，我发表了一篇博客，其中嵌入 script 脚本脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）发布这篇博客，有人查看他，可以轻松收割访问者的 cookie  注入脚本防范措施">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-03-03T06:13:23.000Z">
-<meta property="article:modified_time" content="2021-07-27T08:38:45.557Z">
+<meta property="article:modified_time" content="2021-07-27T08:42:30.186Z">
 <meta property="article:author" content="魏彬">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
@@ -148,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">安全类</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">安全类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%8E%92%E9%87%8D%E7%BB%98"><span class="nav-number">2.</span> <span class="nav-text">重排重绘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">防抖和节流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">JS 运行机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">JS 垃圾回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">6.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">经典问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">提升页面性能的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">9.</span> <span class="nav-text">****</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E8%BE%93%E5%85%A5-URL-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">10.</span> <span class="nav-text">从输入 URL 到页面加载发生了什么</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -244,7 +244,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-27 16:38:45" itemprop="dateModified" datetime="2021-07-27T16:38:45+08:00">2021-07-27</time>
+        <time title="Modified: 2021-07-27 16:42:30" itemprop="dateModified" datetime="2021-07-27T16:42:30+08:00">2021-07-27</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,7 +269,7 @@
         <h3 id="安全类"><a href="#安全类" class="headerlink" title="安全类"></a><strong>安全类</strong></h3><p>1.CSRF 攻击<br>引诱用户点击链接登录到目标网站<br>防范措施：加 token 验证 ， 第一次登录的时候存 token，refer 验证：看来源是不是本网站的，不是一律拦截</p>
 <p>2.XSS 攻击</p>
 <ul>
-<li>一个博客网站，我发表了一篇博客，其中嵌入<script>脚本<br>脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）<br>发布这篇博客，有人查看他，可以轻松收割访问者的 cookie</li>
+<li>一个博客网站，我发表了一篇博客，其中嵌入 script 脚本<br>脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）<br>发布这篇博客，有人查看他，可以轻松收割访问者的 cookie</li>
 </ul>
 <p>注入脚本<br>防范措施：对一些表单输入的参数进行过滤限制</p>
 <h3 id="重排重绘"><a href="#重排重绘" class="headerlink" title="重排重绘"></a><strong>重排重绘</strong></h3><p>重绘：当页面中元素样式的改变并不影响它在文档流中的位置时（例如：color、background-color、visibility 等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘</p>
