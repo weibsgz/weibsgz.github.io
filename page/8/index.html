@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,174 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/01/2016-12-1-vue-star/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/01/2016-12-1-vue-star/" class="post-title-link" itemprop="url">star星级评价组件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-01 01:08:00" itemprop="dateCreated datePublished" datetime="2016-12-01T01:08:00+08:00">2016-12-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>star组件的实现（星星评分）</p>
+<h1 id="header-vue-父组件"><a href="#header-vue-父组件" class="headerlink" title="header.vue(父组件)"></a>header.vue(父组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;star :size&#x3D;&quot;48&quot; :score&#x3D;&quot;seller.score&quot;&gt;&lt;&#x2F;star&gt;</span><br></pre></td></tr></table></figure>
+<p>:size=”48” 是传的星星大小，实际项目中可以不用，seller.score是后台传过来的分数比如4.2,3.6之类的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    import star from &#39;components&#x2F;star&#x2F;star&#39;</span><br><span class="line">    export default&#123;</span><br><span class="line">      props:&#123;</span><br><span class="line">        &#x2F;&#x2F;props接受父组件传递来的props,父组件中定义了&lt;v-head :seller&gt;</span><br><span class="line">        seller:&#123;</span><br><span class="line">          type:Object</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">     </span><br><span class="line">      components: &#123;</span><br><span class="line">          star</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="app-vue-子组件"><a href="#app-vue-子组件" class="headerlink" title="app.vue(子组件)"></a>app.vue(子组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">    &lt;template&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;star&quot; :class&#x3D;&quot;starType&quot;&gt;</span><br><span class="line">        &lt;!-- 循环星星，星星的每个CLASS不同，itemClass是单独的样式：on half off, star-item是一样的样式 track-by&#x3D;&quot;$index不加会有警告 --&gt;</span><br><span class="line">       &lt;span v-for&#x3D;&quot;itemClass in itemClasses&quot; :class&#x3D;&quot;itemClass&quot; class&#x3D;&quot;star-item&quot; track-by&#x3D;&quot;$index&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">const LENGTH &#x3D; 5;</span><br><span class="line">const CLS_ON &#x3D; &#39;on&#39;;</span><br><span class="line">const CLS_HALF &#x3D; &#39;half&#39;;</span><br><span class="line">const CLS_OFF &#x3D; &#39;off&#39;;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        size:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;,</span><br><span class="line">        score:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        starType()&#123;</span><br><span class="line">            return &#39;star-&#39;+this.size</span><br><span class="line">        &#125;,</span><br><span class="line">        itemClasses()&#123;            </span><br><span class="line">            var result &#x3D; [];</span><br><span class="line">            &#x2F;&#x2F;四舍五入 小数位数大于0.5的 取完后会有小数保留，反之只保留整数</span><br><span class="line">            let score &#x3D; Math.floor(this.score*2)&#x2F;2;</span><br><span class="line">           </span><br><span class="line">            &#x2F;&#x2F;是否有小数,如果scrore是小数 % 1后就不是0</span><br><span class="line">            var hasDecimal &#x3D; score % 1 !&#x3D;&#x3D; 0 ;</span><br><span class="line">            console.log(hasDecimal)</span><br><span class="line">            &#x2F;&#x2F;整数有多少分，也就是有几个全星星</span><br><span class="line">            let integer &#x3D; Math.floor(score);</span><br><span class="line">            console.info(integer)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;先把整的星星放进去</span><br><span class="line">            for(let i&#x3D;0; i&lt;integer; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               </span><br><span class="line">                result.push(CLS_ON);</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(result)</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F;如果有小数，就放进去一个半星，半星最多有一个</span><br><span class="line">            if(hasDecimal)&#123;</span><br><span class="line">                result.push(CLS_HALF)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;如果不足5颗星，补足黑色星星</span><br><span class="line">            while(result.length&lt;LENGTH)</span><br><span class="line">            &#123;</span><br><span class="line">                result.push(CLS_OFF);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.star&#123;font-size: 0&#125;</span><br><span class="line">.star .star-item&#123;display: inline-block; background-repeat: no-repeat;&#125;</span><br><span class="line">.star .star-item:last-child&#123;margin-right: 0&#125;</span><br><span class="line">.star-48 .star-item&#123; width: 20px; height: 20px; margin-right: 22px; background-size: 20px 20px;&#125;</span><br><span class="line">.star-48 .star-item.on&#123;background-image:url(&quot;star48_on@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.half&#123;background-image:url(&quot;star48_half@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.off&#123;background-image:url(&quot;star48_off@3x.png&quot;);&#125;</span><br><span class="line">.star-36 .star-item&#123;&#125;</span><br><span class="line">.star-24 .star-item&#123;&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/01/2016-11-29-vue-tranistion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/01/2016-11-29-vue-tranistion/" class="post-title-link" itemprop="url">vue1.0 transition效果</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-01 01:08:00" itemprop="dateCreated datePublished" datetime="2016-12-01T01:08:00+08:00">2016-12-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="html"><a href="#html" class="headerlink" title="html"></a>html</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-show&#x3D;&quot;detailShow&quot; class&#x3D;&quot;detail&quot; transition&#x3D;&quot;fade&quot;&gt;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.detail&#123;position: fixed;z-index: 100;width: 100%; height: 100%;overflow:auto;background: rgba(7,17,27,0.8);top: 0; left: 0;transition: all 0.5s;backdrop-filter:blur(10px);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*动画结束的状态*&#x2F;</span><br><span class="line">.detail.fade-transition&#123;</span><br><span class="line"> opacity: 1;</span><br><span class="line"> background: rgba(7,17,27,0.8);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*动画开始的状态*&#x2F;</span><br><span class="line">.detail.fade-enter,.detail.fade-leave&#123;</span><br><span class="line"> opacity: 0;</span><br><span class="line"> background: rgba(7,17,27,0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -821,93 +989,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/15/js-extends/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/07/15/js-extends/" class="post-title-link" itemprop="url">js继承</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-07-15 14:13:23" itemprop="dateCreated datePublished" datetime="2016-07-15T14:13:23+08:00">2016-07-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="call-apply方法继承"><a href="#call-apply方法继承" class="headerlink" title="call/apply方法继承"></a><strong>call/apply方法继承</strong></h3><p> 第一种方法也是最简单的方法，使用call或apply方法，<br> 将父对象的构造函数绑定在子对象上，即在子对象构造函数中加一行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  function Animal(name)&#123;</span><br><span class="line">　　　　this.name &#x3D; name;</span><br><span class="line">     this.spec &#x3D; &#39;动物&#39;;</span><br><span class="line">     this.run &#x3D; function()&#123;</span><br><span class="line">         console.log(this.name + &#39;是&#39; + this.spec +　&#39; ,它可以跑步&#39;)</span><br><span class="line">     &#125;</span><br><span class="line">　　 &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  function Cat(name,color)&#123;</span><br><span class="line">     console.log(arguments) &#x2F;&#x2F;[&quot;猫&quot;, &quot;黄色&quot;]</span><br><span class="line">     Animal.call(this,arguments)  &#x2F;&#x2F;这里其实也是不传arguments</span><br><span class="line">　　　　this.name &#x3D; name;</span><br><span class="line">　　　　this.color &#x3D; color;</span><br><span class="line">　　 &#125;</span><br><span class="line">     </span><br><span class="line">var cat &#x3D; new Cat(&#39;猫&#39;,&#39;黄色&#39;);</span><br><span class="line">cat.run()  &#x2F;&#x2F;猫是动物 ,它可以跑步</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="prototype模式"><a href="#prototype模式" class="headerlink" title="**prototype模式 **"></a>**prototype模式 **</h3><p>如果”猫”的prototype对象，指向一个Animal的实例，那么所有”猫”的实例，就能继承Animal了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Cat.prototype &#x3D; new Animal();&#x2F;&#x2F;相当于完全删除了prototype 对象原先的值，然后赋予一个新值</span><br><span class="line">   Cat.prototype.constructor &#x3D; Cat  &#x2F;&#x2F;constructor指回Cat 防止继承链的紊乱</span><br><span class="line">   var cat &#x3D; new Cat(&#39;猫&#39;,&#39;黄色&#39;);</span><br><span class="line">   cat.run() &#x2F;&#x2F;猫是动物 ,它可以跑步</span><br></pre></td></tr></table></figure>
-
-<h3 id="ES6继承"><a href="#ES6继承" class="headerlink" title="ES6继承"></a><strong>ES6继承</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class AnimalEs6 &#123;</span><br><span class="line">     constructor(props)&#123;</span><br><span class="line">        this.name&#x3D;props.name||&#39;未知&#39;;</span><br><span class="line">     &#125;</span><br><span class="line">     eat()&#123;</span><br><span class="line">        console.log(this.name+&quot;在吃东西...&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   class Bird extends AnimalEs6 &#123;</span><br><span class="line">        constructor(props)&#123;</span><br><span class="line">             super(props)</span><br><span class="line">             this.name&#x3D;props.name||&#39;未知&#39;;</span><br><span class="line">             this.color &#x3D; props.color;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fly()&#123;</span><br><span class="line">            console.log(this.name + &quot;在飞。。。&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   var bird &#x3D; new Bird(&#123;</span><br><span class="line">        name : &#39;花花&#39;,</span><br><span class="line">        color : &#39;白色&#39;</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   bird.eat()</span><br><span class="line">   bird.fly()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/15/js-input/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -965,90 +1046,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/03/17/2016-03-17-nodejs-server/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/03/17/2016-03-17-nodejs-server/" class="post-title-link" itemprop="url">如何使用nodejs快速搭建本地服务器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-03-17 01:08:00" itemprop="dateCreated datePublished" datetime="2016-03-17T01:08:00+08:00">2016-03-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用anywhere快速搭建本地服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install anywhere -g</span><br></pre></td></tr></table></figure>
-<p>之后找到你想搭建服务器的路径，然后再当前路径下输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anywhere 8860</span><br></pre></td></tr></table></figure>
-<p>然后浏览器就自动打开本地访问网址，一个简单的node服务器就这样被我们搭建好啦！</p>
 
       
     </div>

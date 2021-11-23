@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,258 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/03/03/interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/03/03/interview/" class="post-title-link" itemprop="url">前端一些安全类，渲染机制，运行机制，性能的面试问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-03 14:13:23" itemprop="dateCreated datePublished" datetime="2017-03-03T14:13:23+08:00">2017-03-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-08-12 15:10:50" itemprop="dateModified" datetime="2021-08-12T15:10:50+08:00">2021-08-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="安全类"><a href="#安全类" class="headerlink" title="安全类"></a><strong>安全类</strong></h3><p>1.CSRF 攻击<br>引诱用户点击链接登录到目标网站<br>防范措施：加 token 验证 ， 第一次登录的时候存 token，refer 验证：看来源是不是本网站的，不是一律拦截</p>
+<p>2.XSS 攻击</p>
+<ul>
+<li>一个博客网站，我发表了一篇博客，其中嵌入 script 脚本<br>脚本内容：获取 cookie，发送到我的服务器（服务器配合跨域）<br>发布这篇博客，有人查看他，可以轻松收割访问者的 cookie</li>
+</ul>
+<p>注入脚本<br>防范措施：对一些表单输入的参数进行过滤限制</p>
+<h3 id="重排重绘"><a href="#重排重绘" class="headerlink" title="重排重绘"></a><strong>重排重绘</strong></h3><p>重绘：当页面中元素样式的改变并不影响它在文档流中的位置时（例如：color、background-color、visibility 等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘</p>
+<p>重排：页面上的盒模型都有自己的样式，浏览器会把他放在他该出现的位置<br>导致重排：改动 dom,display:none,加动画,resize 窗口等</p>
+<p>减少重排重会：</p>
+<p>避免使用 table 布局。<br>尽可能在 DOM 树的最末端改变 class。</p>
+<p>避免使用 CSS 表达式（例如：calc()）</p>
+<p>避免频繁操作样式，最好一次性重写 style 属性，或者将样式列表定义为 class 并一次性更改 class 属性。</p>
+<p>可以使用 absolute 脱离文档流。</p>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><ul>
+<li>防抖：触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间；多应用于 用户输入，防止频繁触发 change 事件</li>
+<li>函数在一段时间内的多次调用，仅使得最后一次调用有效</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 防抖</span><br><span class="line">function debounce(func, delay) &#123;</span><br><span class="line">    var timeout;</span><br><span class="line">    return function() &#123;</span><br><span class="line">        clearTimeout(timeout);</span><br><span class="line">        timeout &#x3D; setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">            func.apply(this, arguments);</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>节流：高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率。多应用于 拖拽元素 获取位置</li>
+<li>函数在一段时间内的多次调用，仅第一次有效。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">function throttle(func, delay) &#123;</span><br><span class="line">    var timer &#x3D; null;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (!timer) &#123;</span><br><span class="line">            func.apply(this, arguments);</span><br><span class="line">            timer &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">                timer &#x3D; null;</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            console.log(&quot;上一个定时器尚未完成&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;时间戳版</span><br><span class="line">function throttle(func, delay) &#123;</span><br><span class="line">    var last &#x3D; 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var now &#x3D; Date.now();</span><br><span class="line">        if (now &gt;&#x3D; delay + last) &#123;</span><br><span class="line">            func.apply(this, arguments);</span><br><span class="line">            last &#x3D; now;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            console.log(&quot;距离上次调用的时间差不满足要求哦&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>为什么用闭包写防抖和节流？ 因为避免 timer 全局污染</li>
+</ul>
+<h3 id="JS-运行机制"><a href="#JS-运行机制" class="headerlink" title="JS 运行机制"></a><strong>JS 运行机制</strong></h3><p>js 是单线程，异步任务先挂起，同步任务处理完毕再处理异步任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">setTimeout(funciton()&#123;</span><br><span class="line"> console.log(2)</span><br><span class="line">&#125;,0)</span><br><span class="line">console.log(3)  &#x2F;&#x2F;1 3 2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;a&#39;)</span><br><span class="line"></span><br><span class="line">while(true)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(&#39;b&#39;)  &#x2F;&#x2F;a 同步任务  while一直在循环 执行不到B</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(var i&#x3D;0; i&lt;4; i++)&#123;</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">        console.log(i)   &#x2F;&#x2F; 4 4 4 4  循环是同步的每次执行都将异步挂起，都循环完i &#x3D;4 这个时候才把挂起的4次异步任务加入</span><br><span class="line">    &#125;,0)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>同步&gt;promise&gt;promise.then&gt;setTimeout</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">      console.log(1)</span><br><span class="line">  &#125;, 0);</span><br><span class="line">  new Promise((resolve) &#x3D;&gt;&#123;</span><br><span class="line">      console.log(4)</span><br><span class="line">          resolve();</span><br><span class="line">  &#125;).then(function () &#123;</span><br><span class="line">      console.log(2);</span><br><span class="line">  &#125;);</span><br><span class="line">  console.log(3)    &#x2F;&#x2F;4,3,2,1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="JS-垃圾回收机制"><a href="#JS-垃圾回收机制" class="headerlink" title="JS 垃圾回收机制"></a><strong>JS 垃圾回收机制</strong></h3><p>基本类型是：Undefined/Null/Boolean/Number/String</p>
+<p>基本类型的值存在内存中，被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本。</p>
+<p>引用类型：object</p>
+<p>引用类型的值是对象，保存在堆内存中。</p>
+<p>基本类型保存在栈中引用的内存地址不会改变，引用类型的保存在堆区内存可以改变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 2;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">b &#x3D; 3</span><br><span class="line"></span><br><span class="line">console.log(a) &#x2F;&#x2F;2</span><br><span class="line">console.log(b) &#x2F;&#x2F;3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var b = a 这里 b 和 a 是独立的，因为 a 是值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; [1,2,3]</span><br><span class="line">var b &#x3D; a</span><br><span class="line">b.push(4)</span><br><span class="line">console.log(a) &#x2F;&#x2F;[1,2,3,4]</span><br><span class="line">console.log(b) &#x2F;&#x2F;[1,2,3,4]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>a 存放在栈 【1，2，3】在堆 栈区保存的变量指向堆区 var b = a 实际上 让 b 也指向这个堆区 ，所以就都改变了</p>
+<p>JS 中最常见的垃圾回收方式是 1.标记清除。 2.引用计数</p>
+<p>标记清楚：是当变量进入环境时，将这个变量标记为“进入环境”。当变量离开环境时，则将其标记为“离开环境”。标记“离开环境”的就回收内存。</p>
+<p>引用计数（低版本 IE 内存泄漏）1. 声明了一个变量并将一个引用类型的值赋值给这个变量，这个引用类型值的引用次数就是 1。 3. 当包含这个引用类型值的变量又被赋值成另一个值了，那么这个引用类型值的引用次数减 1.当垃圾收集器下一次运行时，它就会释放引用次数是 0 的值所占的内存</p>
+<p>引起内存泄漏的原因：</p>
+<p>1.变量相互引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function problem() &#123;</span><br><span class="line">    var objA &#x3D; new Object();</span><br><span class="line">    var objB &#x3D; new Object();</span><br><span class="line"></span><br><span class="line">    objA.someOtherObject &#x3D; objB;</span><br><span class="line">    objB.anotherObject &#x3D; objA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里存在循环引用会引起内存泄漏，引起内存泄漏解决方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objA.someOtherObject &#x3D; null</span><br><span class="line">objB.anotherObject &#x3D; null</span><br></pre></td></tr></table></figure>
+<p>2.意外的全局变量引起的内存泄漏。<br>全局变量，不会被回收，使用严格模式避免</p>
+<p>3.闭包引起的内存泄漏</p>
+<p>原因：闭包可以维持函数内局部变量，使其得不到释放。<br>解决：将事件处理函数定义在外部，解除闭包,或者在定义事件处理函数的外部函数中，删除对 dom 的引用。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a><strong>闭包</strong></h3><p>1，可以访问外部函数作用域中变量的函数<br>2，被内部函数访问的外部函数的变量可以保存在外部函数作用域内而不被回收</p>
+<p>实现累加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; (function()&#123;</span><br><span class="line">          var s &#x3D; 0;</span><br><span class="line">          return function ()&#123;</span><br><span class="line">            s++;</span><br><span class="line">            console.log(s)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)()</span><br><span class="line"></span><br><span class="line">        a()&#x2F;&#x2F;1</span><br><span class="line">        a()&#x2F;&#x2F;2</span><br><span class="line">        a()&#x2F;&#x2F;3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var oli &#x3D; document.getElementsByTagName(&#39;li&#39;);</span><br><span class="line">     var i;</span><br><span class="line">     for(i &#x3D; 0;i &lt; 5;i++)&#123;</span><br><span class="line">         oli[i].onclick &#x3D; (function(num)&#123;</span><br><span class="line">             var a &#x3D; num; &#x2F;&#x2F; 为了说明问题</span><br><span class="line">             return function()&#123;</span><br><span class="line">                 alert(a);</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;)(i)</span><br><span class="line">     &#125;</span><br><span class="line">     console.log(i); &#x2F;&#x2F; 5</span><br></pre></td></tr></table></figure>
+<h3 id="经典问题"><a href="#经典问题" class="headerlink" title="经典问题"></a><strong>经典问题</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(var i&#x3D;0; i&lt;5;i++)&#123;</span><br><span class="line">          listArr[i].onclick &#x3D; (function(n)&#123;</span><br><span class="line">              return function() &#123;</span><br><span class="line">                console.log(n)</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;)(i)</span><br><span class="line">       &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.为什么不写闭包就输出 5<br>因为 js 是单线程的 循环是同步，先执行， onclick 指向的匿名函数需要 onclick 才执行所以是异步，后执行，var 没有块级作用域，所以循环到 5 后 window.i ==5 因此，这时你点击任何一个 li，都要 alert(i); 局部作用域内没有声明 i 变量，因此会追溯到全局作用域的 i，所以弹出的都是 5。可以用 let 解决</p>
+<p>2.为什么写闭包就正确了<br>循环的时候 已经将 listArr[i] 这里的 i 变成 0,1,2,3,4 ，click 时候 function 内找 n 没有，找向上层定义时的作用域，里面形参 n 是 for 时候赋值的当时的 i 值。</p>
+<h3 id="提升页面性能的方法"><a href="#提升页面性能的方法" class="headerlink" title="提升页面性能的方法"></a><strong>提升页面性能的方法</strong></h3><p>1.资源的压缩合并，减少 HTTP 请求</p>
+<p>2.异步加载：动态脚本加载，defer(html 加载完后，逐一按顺序加载) async(无序的)</p>
+<p>3.浏览器缓存 配置 Expires 头，设置过期时间 缺点：要求客户端时间和服务端严格一致，经常发送请求检查<br>cache-control 使用 max-age 指令指定组建被缓存多久，它以秒为单位定义一个更新窗。如果从组件被请求开始过去的秒数少于 max-age，浏览器就使用缓存的版本，这就避免了额外的 http 请求。</p>
+<p>4.使用 cdn</p>
+<p>5.DNS 预解析</p>
+<h3 id=""><a href="#" class="headerlink" title="****"></a>****</h3><h3 id="从输入-URL-到页面加载发生了什么"><a href="#从输入-URL-到页面加载发生了什么" class="headerlink" title="从输入 URL 到页面加载发生了什么"></a><strong>从输入 URL 到页面加载发生了什么</strong></h3><p>DNS 解析<br>TCP 连接<br>发送 HTTP 请求<br>服务器处理请求并返回 HTTP 报文<br>浏览器解析渲染页面<br>连接结束</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/03/01/2017-03-01-webpack-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/03/01/2017-03-01-webpack-start/" class="post-title-link" itemprop="url">webpack-start</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-01 01:08:00" itemprop="dateCreated datePublished" datetime="2017-03-01T01:08:00+08:00">2017-03-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.npm init</span><br><span class="line"></span><br><span class="line">2.进入目录  npm install webpack --save-dev</span><br><span class="line"></span><br><span class="line">npm install webpack -g</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>1.读取css需要loader<br>npm install css-loader style-loader –save-dev</p>
+<p>在入口的JS文件引入<br>require(‘style-loader!css-loader!./style.css’)</p>
+<p>2.一些参数</p>
+<p>webpack hello.js hello.bundle.js –watch –progress –display-modules –display-reasons</p>
+<h1 id="使用webpack-config-js配置"><a href="#使用webpack-config-js配置" class="headerlink" title="使用webpack.config.js配置"></a>使用webpack.config.js配置</h1><p>改写package.json   –config webpack.config.js webpack.config.js改名了也用这个 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">    &quot;webpack&quot;:&quot;webpack --config webpack.config.js --watch --progress --display-modules --display-reason --colors&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>npm run webpack 运行</p>
+<h1 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin --save-dev</span><br><span class="line">var htmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">module.exports&#x3D;&#123;</span><br><span class="line">   &#x2F;&#x2F;单入口</span><br><span class="line">   &#x2F;&#x2F; entry:&#39;.&#x2F;src&#x2F;script&#x2F;main.js&#39;,</span><br><span class="line">   &#x2F;&#x2F;多入口</span><br><span class="line">    &#x2F;&#x2F;entry:[&#39;.&#x2F;src&#x2F;script&#x2F;main.js&#39;,&#39;.&#x2F;src&#x2F;script&#x2F;a.js&#39;],</span><br><span class="line">    &#x2F;&#x2F;穿一个对象，假设有3个页面a,b,c 每个页面都引入main.js 每个页面都有单独的JS a,b,c</span><br><span class="line">    entry:&#123;</span><br><span class="line">        main:&#39;.&#x2F;src&#x2F;script&#x2F;main.js&#39;,</span><br><span class="line">        a:&#39;.&#x2F;src&#x2F;script&#x2F;a.js&#39;,</span><br><span class="line">        b:&#39;.&#x2F;src&#x2F;script&#x2F;b.js&#39;,</span><br><span class="line">        c:&#39;.&#x2F;src&#x2F;script&#x2F;c.js&#39;,</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        &#x2F;&#x2F;注意路径 这里只配到dist根目录下  在filename中才指定js&#x2F;</span><br><span class="line">        path:&#39;.&#x2F;dist&#39;,</span><br><span class="line">        &#x2F;&#x2F;如果entry 是一个对象，有多个键值对(chunk), filename就不能写死一个名字</span><br><span class="line">        &#x2F;&#x2F;其中hash是每次打包的哈希值，chunkhash 是每次打包都不同的哈希值 相当于md5</span><br><span class="line">        filename:&#39;js&#x2F;[name]-[chunkhash].js&#39;,</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;打包上线后，替换路径为以下路径开头</span><br><span class="line">       &#x2F;&#x2F; publicPath:&#39;http:&#x2F;&#x2F;cdn.com&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        &#x2F;&#x2F;html-webpack-plugin 这个插件可以把打包生成js自动引入到页面中，因为打包生成的名字带有</span><br><span class="line">        &#x2F;&#x2F;哈希值，每次都不同</span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            &#x2F;&#x2F;模板参照根目录下的index.html,这样根目录的index.</span><br><span class="line">            &#x2F;&#x2F;html里的内容也会被搬进这个插件生成的index.html</span><br><span class="line">             template: &#39;index.html&#39;,</span><br><span class="line">             &#x2F;&#x2F;指定带有hash值的名称 index-[hash].html,每次都生成不同的INDEX.HTML</span><br><span class="line">             filename:&#39;a.html&#39;,</span><br><span class="line">             &#x2F;&#x2F;可将JS直接插入到头部，不写就是尾部</span><br><span class="line">            &#x2F;&#x2F; inject:&#39;head&#39;,</span><br><span class="line">            &#x2F;&#x2F;设置false 手动在 头尾自定义script引入位置</span><br><span class="line">             inject:&#39;body&#39;,</span><br><span class="line">             &#x2F;&#x2F;可在index.html中通过&lt;%&#x3D; htmlWebpackPlugin.options.title %&gt;</span><br><span class="line">             title:&#39;this is a&#39;,</span><br><span class="line">             &#x2F;&#x2F;任何属性都可以被通过ejs模板方式引入到页面           </span><br><span class="line">             &#x2F;&#x2F;date:new Date(),</span><br><span class="line">             &#x2F;&#x2F;仅引入和自己页面相关的chunks</span><br><span class="line">             chunks:[&#39;main&#39;,&#39;a&#39;]</span><br><span class="line"></span><br><span class="line">             &#x2F;&#x2F;压缩output</span><br><span class="line">            &#x2F;* minify:&#123;</span><br><span class="line">                &#x2F;&#x2F;删除注释，空格</span><br><span class="line">                removeComments:true,</span><br><span class="line">                collapseWhitespace:true</span><br><span class="line"></span><br><span class="line">             &#125;*&#x2F;</span><br><span class="line"></span><br><span class="line">        &#125;) ,</span><br><span class="line"></span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            template: &#39;index.html&#39;,             </span><br><span class="line">            filename:&#39;b.html&#39;,</span><br><span class="line">            inject:&#39;body&#39;,</span><br><span class="line">            title:&#39;this is b&#39;,</span><br><span class="line">            &#x2F;&#x2F;date:new Date(),</span><br><span class="line">            chunks:[&#39;main&#39;,&#39;b&#39;]</span><br><span class="line">        &#125;) ,</span><br><span class="line"></span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            template: &#39;index.html&#39;,             </span><br><span class="line">            filename:&#39;c.html&#39;,</span><br><span class="line">            inject:&#39;body&#39;,</span><br><span class="line">            title:&#39;this is c&#39;,</span><br><span class="line">            &#x2F;&#x2F;date:new Date(),</span><br><span class="line">            chunks:[&#39;c&#39;]</span><br><span class="line">        &#125;)              </span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h1><p>1.安装babel loader(es6 转 es5)<br> npm install –save-dev babel-loader babel-core</p>
+<p>2,安装preset latest</p>
+<p>npm install –save-dev babel-preset-latest</p>
+<p>建立.babelrc  内容<br>{<br>    “presets”:[“latest”]<br>}</p>
+<p>3.安装css-loaer postcss<br> npm install css-loader style-loader –save-dev<br> npm install postcss-loader –save-dev<br> npm install autoprefixer –save-dev</p>
+<p> 可以查看npm官网  postcss用法<br>webpack.config.js<br>{<br>     test: /.css$/,<br>     loader:’style-loader!css-loader!postcss-loader’<br> }</p>
+<p> 根目录下建立postcss.config.js</p>
+<p> module.exports = {<br>  plugins: [<br>   require(‘autoprefixer’)({<br>            browsers:[‘last 5 versions’]<br>        })<br>  ]<br>}</p>
+<p>4，安装less-loader<br>$ npm install -g less<br>npm install less-loader –save-dev</p>
+<p>5.安装html-loader</p>
+<p>npm install html-loader –save-dev</p>
+<p>6,处理图片  </p>
+<p>npm install file-loader –save-dev</p>
+<p>npm install url-loader –save-dev<br>//处理图片可以用file-loader ,也可以用url-loader<br> //limit 限制图片大小 200000代表200K 我插入的图片是109K<br> //如果小于这个200K ，则插入BASE64编码，大于还是插入图片</p>
+<p> 压缩图片</p>
+<p> npm install image-webpack-loader –save-dev</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -852,174 +1104,6 @@
 <h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651553180&amp;idx=2&amp;sn=612991e9ea514a1e500a2002c50b183e&amp;chksm=8025aa5db752234b2c1d8e55954f4cb63067a3a137cdec7d1917b13239b2de1f7e58153e3569&amp;mpshare=1&amp;scene=1&amp;srcid=12024zyw8IOv0qMjBaE8jIY0#rd">http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651553180&amp;idx=2&amp;sn=612991e9ea514a1e500a2002c50b183e&amp;chksm=8025aa5db752234b2c1d8e55954f4cb63067a3a137cdec7d1917b13239b2de1f7e58153e3569&amp;mpshare=1&amp;scene=1&amp;srcid=12024zyw8IOv0qMjBaE8jIY0#rd</a> </p>
 <p><a target="_blank" rel="noopener" href="https://brucewar.gitbooks.io/svg-tutorial/1.SVG%E6%95%99%E7%A8%8B.html">https://brucewar.gitbooks.io/svg-tutorial/1.SVG%E6%95%99%E7%A8%8B.html</a> </p>
 <h2 id="react-中文"><a href="#react-中文" class="headerlink" title="react 中文"></a>react 中文</h2><p><a target="_blank" rel="noopener" href="https://doc.react-china.org/">https://doc.react-china.org/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/01/2016-11-29-vue-tranistion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/12/01/2016-11-29-vue-tranistion/" class="post-title-link" itemprop="url">vue1.0 transition效果</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-12-01 01:08:00" itemprop="dateCreated datePublished" datetime="2016-12-01T01:08:00+08:00">2016-12-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="html"><a href="#html" class="headerlink" title="html"></a>html</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-show&#x3D;&quot;detailShow&quot; class&#x3D;&quot;detail&quot; transition&#x3D;&quot;fade&quot;&gt;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.detail&#123;position: fixed;z-index: 100;width: 100%; height: 100%;overflow:auto;background: rgba(7,17,27,0.8);top: 0; left: 0;transition: all 0.5s;backdrop-filter:blur(10px);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*动画结束的状态*&#x2F;</span><br><span class="line">.detail.fade-transition&#123;</span><br><span class="line"> opacity: 1;</span><br><span class="line"> background: rgba(7,17,27,0.8);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*动画开始的状态*&#x2F;</span><br><span class="line">.detail.fade-enter,.detail.fade-leave&#123;</span><br><span class="line"> opacity: 0;</span><br><span class="line"> background: rgba(7,17,27,0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/01/2016-12-1-vue-star/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/12/01/2016-12-1-vue-star/" class="post-title-link" itemprop="url">star星级评价组件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-12-01 01:08:00" itemprop="dateCreated datePublished" datetime="2016-12-01T01:08:00+08:00">2016-12-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>star组件的实现（星星评分）</p>
-<h1 id="header-vue-父组件"><a href="#header-vue-父组件" class="headerlink" title="header.vue(父组件)"></a>header.vue(父组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;star :size&#x3D;&quot;48&quot; :score&#x3D;&quot;seller.score&quot;&gt;&lt;&#x2F;star&gt;</span><br></pre></td></tr></table></figure>
-<p>:size=”48” 是传的星星大小，实际项目中可以不用，seller.score是后台传过来的分数比如4.2,3.6之类的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    import star from &#39;components&#x2F;star&#x2F;star&#39;</span><br><span class="line">    export default&#123;</span><br><span class="line">      props:&#123;</span><br><span class="line">        &#x2F;&#x2F;props接受父组件传递来的props,父组件中定义了&lt;v-head :seller&gt;</span><br><span class="line">        seller:&#123;</span><br><span class="line">          type:Object</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">     </span><br><span class="line">      components: &#123;</span><br><span class="line">          star</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="app-vue-子组件"><a href="#app-vue-子组件" class="headerlink" title="app.vue(子组件)"></a>app.vue(子组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">    &lt;template&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;star&quot; :class&#x3D;&quot;starType&quot;&gt;</span><br><span class="line">        &lt;!-- 循环星星，星星的每个CLASS不同，itemClass是单独的样式：on half off, star-item是一样的样式 track-by&#x3D;&quot;$index不加会有警告 --&gt;</span><br><span class="line">       &lt;span v-for&#x3D;&quot;itemClass in itemClasses&quot; :class&#x3D;&quot;itemClass&quot; class&#x3D;&quot;star-item&quot; track-by&#x3D;&quot;$index&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">const LENGTH &#x3D; 5;</span><br><span class="line">const CLS_ON &#x3D; &#39;on&#39;;</span><br><span class="line">const CLS_HALF &#x3D; &#39;half&#39;;</span><br><span class="line">const CLS_OFF &#x3D; &#39;off&#39;;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        size:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;,</span><br><span class="line">        score:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        starType()&#123;</span><br><span class="line">            return &#39;star-&#39;+this.size</span><br><span class="line">        &#125;,</span><br><span class="line">        itemClasses()&#123;            </span><br><span class="line">            var result &#x3D; [];</span><br><span class="line">            &#x2F;&#x2F;四舍五入 小数位数大于0.5的 取完后会有小数保留，反之只保留整数</span><br><span class="line">            let score &#x3D; Math.floor(this.score*2)&#x2F;2;</span><br><span class="line">           </span><br><span class="line">            &#x2F;&#x2F;是否有小数,如果scrore是小数 % 1后就不是0</span><br><span class="line">            var hasDecimal &#x3D; score % 1 !&#x3D;&#x3D; 0 ;</span><br><span class="line">            console.log(hasDecimal)</span><br><span class="line">            &#x2F;&#x2F;整数有多少分，也就是有几个全星星</span><br><span class="line">            let integer &#x3D; Math.floor(score);</span><br><span class="line">            console.info(integer)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;先把整的星星放进去</span><br><span class="line">            for(let i&#x3D;0; i&lt;integer; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               </span><br><span class="line">                result.push(CLS_ON);</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(result)</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F;如果有小数，就放进去一个半星，半星最多有一个</span><br><span class="line">            if(hasDecimal)&#123;</span><br><span class="line">                result.push(CLS_HALF)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;如果不足5颗星，补足黑色星星</span><br><span class="line">            while(result.length&lt;LENGTH)</span><br><span class="line">            &#123;</span><br><span class="line">                result.push(CLS_OFF);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.star&#123;font-size: 0&#125;</span><br><span class="line">.star .star-item&#123;display: inline-block; background-repeat: no-repeat;&#125;</span><br><span class="line">.star .star-item:last-child&#123;margin-right: 0&#125;</span><br><span class="line">.star-48 .star-item&#123; width: 20px; height: 20px; margin-right: 22px; background-size: 20px 20px;&#125;</span><br><span class="line">.star-48 .star-item.on&#123;background-image:url(&quot;star48_on@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.half&#123;background-image:url(&quot;star48_half@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.off&#123;background-image:url(&quot;star48_off@3x.png&quot;);&#125;</span><br><span class="line">.star-36 .star-item&#123;&#125;</span><br><span class="line">.star-24 .star-item&#123;&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>

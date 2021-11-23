@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,220 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/06/git/" class="post-title-link" itemprop="url">git 常用命令解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-06 01:08:00" itemprop="dateCreated datePublished" datetime="2021-11-06T01:08:00+08:00">2021-11-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-11-23 16:37:11" itemprop="dateModified" datetime="2021-11-23T16:37:11+08:00">2021-11-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="撤回方案-git-reset"><a href="#撤回方案-git-reset" class="headerlink" title="撤回方案 git reset"></a>撤回方案 git reset</h3><ol>
+<li>reset 命令的原理是根据 commitId 来恢复版本。因为每次提交都会生成一个 commitId，所以说 reset 可以帮你恢复到历史的任何一个版本。</li>
+</ol>
+<ul>
+<li>比如，要撤回到某一次提交，命令是这样：<br><code>$ git reset --hard cc7b5be</code></li>
+<li><code>git log</code> 命令查看提交记录，可以看到 commitId 值, 这个值很长，我们取前 7 位即可。</li>
+</ul>
+<ol start="2">
+<li><p>比如你已经commit过了 这时候可能又不想commit了 比如你想修改一下提交的信息</p>
+</li>
+<li><p> 比如说当前提交，你已经推送到了远程仓库；现在你用 reset 撤回了一次提交，此时本地 git 仓库要落后于远程仓库一个版本。此时你再 push，远程仓库会拒绝，要求你先 pull.如果你需要远程仓库也后退版本，就需要 -f 参数，强制推送，这时本地代码会覆盖远程代码。</p>
+</li>
+</ol>
+<p><code>git reset HEAD^</code> </p>
+<ul>
+<li>HEAD^ 表示上一个提交，可多次使用。之后再重新 <code>git add . git commit -m &#39;....&#39;</code></li>
+</ul>
+<h3 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h3><ul>
+<li><p>revert 与 reset 的作用一样，都是恢复版本，但是它们两的实现方式不同。</p>
+</li>
+<li><p>简单来说，reset 直接恢复到上一个提交，工作区代码自然也是上一个提交的代码；而 revert 是新增一个提交，但是这个提交是使用上一个提交的代码。</p>
+</li>
+<li><p>因此，它们两恢复后的代码是一致的，区别是一个新增提交（revert），一个回退提交（reset）。</p>
+</li>
+<li><p>正因为 revert 永远是在新增提交，因此本地仓库版本永远不可能落后于远程仓库，可以直接推送到远程仓库，故而解决了 reset 后推送需要加 -f 参数的问题，提高了安全性。</p>
+</li>
+<li><p>说完了原理，我们再看一下使用方法：<br><code>git revert -n [commitId]</code></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/menus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/06/menus/" class="post-title-link" itemprop="url">vue3 权限菜单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-06 01:08:00" itemprop="dateCreated datePublished" datetime="2021-11-06T01:08:00+08:00">2021-11-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-11-23 15:53:28" itemprop="dateModified" datetime="2021-11-23T15:53:28+08:00">2021-11-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/vue3.2.8-">https://github.com/weibsgz/vue3.2.8-</a></p>
+<h3 id="菜单权限两种思路"><a href="#菜单权限两种思路" class="headerlink" title="菜单权限两种思路"></a>菜单权限两种思路</h3><ol>
+<li>后端返回路由表  前端做个映射 省事了</li>
+</ol>
+<ul>
+<li>简易思路<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var data &#x3D;  [</span><br><span class="line">      &#123;</span><br><span class="line">        &#39;userManage&#39;:[&#39;user1&#39;,&#39;user2&#39;]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pofile&quot;:[&quot;pro1&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var routeObj &#x3D; &#123;</span><br><span class="line">      &#39;userManage&#39;:&#123;</span><br><span class="line">        name:&#39;userManage&#39;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user1&quot;:&#123;</span><br><span class="line">        name:&quot;user1&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user2&quot;:&#123;</span><br><span class="line">        name:&quot;user2&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;:&#123;</span><br><span class="line">        name:&quot;roleList&quot;,</span><br><span class="line">        path:&#39;&#x2F;roleList&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;roleList&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pofile&quot;:&#123;</span><br><span class="line">        name:&quot;pofile&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;pofile&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pro1&quot;:&#123;</span><br><span class="line">        name:&quot;pro1&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;pro1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&#39;&#x2F;pofile&#x2F;pro1&#x2F;Comindex&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var generateRoute &#x3D; function(data,routeObj) &#123;</span><br><span class="line">      var route &#x3D; []</span><br><span class="line"></span><br><span class="line">      data.map(function(v,i)&#123;</span><br><span class="line">         if(Object.prototype.toString.call(v) &#x3D;&#x3D;&#x3D; &#39;[object Object]&#39;) &#123;</span><br><span class="line">             var key &#x3D; Object.keys(v)[0];</span><br><span class="line">             var arr &#x3D; v[key];</span><br><span class="line">             var obj &#x3D; routeObj[key]</span><br><span class="line">             obj.children &#x3D; []</span><br><span class="line">             for(var i&#x3D;0; i&lt;arr.length; i++) &#123;</span><br><span class="line">              obj.children.push(routeObj[arr[i]])</span><br><span class="line">             &#125;</span><br><span class="line">             route.push(obj)</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">         else &#123;</span><br><span class="line">           route.push(routeObj[v])</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      return route</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   console.log( generateRoute(data,routeObj))</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li><p>自己根据后端返回的权限字段，动态生成路由  需要用到addRoutes<br>慕课网项目 权限相关：<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/vue3/elementAdmin8.html">https://www.imooc.com/wiki/vue3/elementAdmin8.html</a></p>
+<p>路由需要公有路由 和 私有路由  我们处理的是根据返回的权限 来动态插入匹配到的私有路由（addRoutes方法）</p>
+<p>本项目中  </p>
+<ul>
+<li><p>把私有路由分成几块（根据不同权限） <code>./store/modules</code></p>
+</li>
+<li><p>根据权限筛选路由 menus 是后端返回的权限字段 <code>[&quot;userManage&quot;, &quot;roleList&quot;, &quot;permissionList&quot;, &quot;articleRanking&quot;, &quot;articleCreate&quot;]</code><br>privateRoutes是拆分好的私有路由集合 每个私有路由上的name和 menus中的字段对应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">filterRoutes(context, menus) &#123;</span><br><span class="line">  const routes &#x3D; []</span><br><span class="line">  &#x2F;&#x2F; 路由权限匹配</span><br><span class="line">  menus.forEach(key &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 权限名 与 路由的 name 匹配</span><br><span class="line">    routes.push(...privateRoutes.filter(item &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; key))</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 最后添加 不匹配路由进入 404</span><br><span class="line">  routes.push(&#123;</span><br><span class="line">    path: &#39;&#x2F;:catchAll(.*)&#39;,</span><br><span class="line">    redirect: &#39;&#x2F;404&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">  context.commit(&#39;setRoutes&#39;, routes) &#x2F;&#x2F;  vuex中state.routes &#x3D; [...publicRoutes, ...newRoutes]</span><br><span class="line">  return routes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p><code>src/permission.js</code> （路由守卫） 中 使用addRoutes方法动态添加路由，最后添加404页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断用户资料是否获取</span><br><span class="line">      &#x2F;&#x2F; 若不存在用户信息，则需要获取用户信息</span><br><span class="line">      if (!store.getters.hasUserInfo) &#123;</span><br><span class="line">        &#x2F;&#x2F; 触发获取用户信息的 action，并获取用户当前权限 （通过接口返回权限菜单）</span><br><span class="line">        const &#123; permission &#125; &#x3D; await store.dispatch(&#39;user&#x2F;getUserInfo&#39;)</span><br><span class="line">        &#x2F;&#x2F; 处理用户权限，筛选出需要添加的权限</span><br><span class="line">        const filterRoutes &#x3D; await store.dispatch(</span><br><span class="line">          &#39;permission&#x2F;filterRoutes&#39;,</span><br><span class="line">          permission.menus</span><br><span class="line">        )</span><br><span class="line">        &#x2F;&#x2F; 利用 addRoute 循环添加</span><br><span class="line">        filterRoutes.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">          router.addRoute(item)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 添加完动态路由之后，需要在进行一次主动跳转</span><br><span class="line">        return next(to.path)</span><br><span class="line">      &#125;</span><br><span class="line">      next()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出登录时，添加的路由表并未被删除 需要退出时候重置路由表</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 初始化路由表</span><br><span class="line"> *&#x2F;</span><br><span class="line">export function resetRouter() &#123;</span><br><span class="line">  if (</span><br><span class="line">    store.getters.userInfo &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission.menus</span><br><span class="line">  ) &#123;</span><br><span class="line">    const menus &#x3D; store.getters.userInfo.permission.menus</span><br><span class="line">    menus.forEach((menu) &#x3D;&gt; &#123;</span><br><span class="line">      router.removeRoute(menu)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1387,215 +1601,6 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">callback （执行数组中每个值的函数，包含四个参数）</span><br><span class="line"></span><br><span class="line">    1、previousValue （上一次调用回调返回的值，或者是提供的初始值（initialValue））</span><br><span class="line">    2、currentValue （数组中当前被处理的元素）</span><br><span class="line">    3、index （当前元素在数组中的索引）</span><br><span class="line">    4、array （调用 reduce 的数组）</span><br><span class="line"></span><br><span class="line">initialValue （作为第一次调用 callback 的第一个参数。）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;计算数组中每个元素出现的次数</span><br><span class="line">   const names &#x3D; [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Tiff&#39;, &#39;Bruce&#39;, &#39;Alice&#39;];</span><br><span class="line"></span><br><span class="line">   function CharacterTimes(arr) &#123;</span><br><span class="line">     return arr.reduce((prev, cur, i) &#x3D;&gt; &#123;</span><br><span class="line">       if (prev.hasOwnProperty(cur)) &#123;</span><br><span class="line">         prev[cur]++;</span><br><span class="line">       &#125;</span><br><span class="line">       else &#123;</span><br><span class="line">         prev[cur] &#x3D; 1;</span><br><span class="line">       &#125;</span><br><span class="line">       return prev</span><br><span class="line">     &#125;, &#123;&#125;)</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(CharacterTimes(names))</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;将二维数组转化为一维</span><br><span class="line">   let arr &#x3D; [[0, 1], [2, 3], [4, 5]];</span><br><span class="line">   const _arr &#x3D; arr.reduce((prev, cur) &#x3D;&gt; &#123;</span><br><span class="line">     return prev.concat(cur)</span><br><span class="line">   &#125;, [])</span><br><span class="line"></span><br><span class="line">   console.log(_arr)</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;数组 对象 互相转换</span><br><span class="line">   const testData &#x3D; [</span><br><span class="line">     &#123; id: 1, name: &#39;a&#39; &#125;,</span><br><span class="line">     &#123; id: 2, name: &#39;b&#39; &#125;</span><br><span class="line">   ]</span><br><span class="line"></span><br><span class="line">   const testData2 &#x3D; &#123;</span><br><span class="line">     1: &#123; id: &#39;1&#39;, name: &#39;a&#39; &#125;,</span><br><span class="line">     2: &#123; id: &#39;2&#39;, name: &#39;b&#39; &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   &#x2F;&#x2F;将 testData 转为 testData2 形式 （数组转对象）</span><br><span class="line">   function ArrayToObj(arr) &#123;</span><br><span class="line">     return arr.reduce((prev, cur) &#x3D;&gt; &#123;</span><br><span class="line">       if (cur.id) &#123;</span><br><span class="line">         prev[cur.id] &#x3D; cur</span><br><span class="line">       &#125;</span><br><span class="line">       return prev</span><br><span class="line">     &#125;, &#123;&#125;)</span><br><span class="line">   &#125;</span><br><span class="line">   const res &#x3D; ArrayToObj(testData)</span><br><span class="line">   console.log(res)</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;将 testData2 转为 testData 形式 （对象转数组）</span><br><span class="line">   function ObjToArray(obj) &#123;</span><br><span class="line">     return Object.keys(obj).map(key &#x3D;&gt; obj[key])</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(ObjToArray(testData2))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/23/vue_new_skill/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/06/23/vue_new_skill/" class="post-title-link" itemprop="url">vue 新技巧</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-06-23 14:13:23" itemprop="dateCreated datePublished" datetime="2020-06-23T14:13:23+08:00">2020-06-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-13 11:52:48" itemprop="dateModified" datetime="2021-09-13T11:52:48+08:00">2021-09-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="使用-Vue2-6-提供的新-API-Vue-observable-手动打造一个-Vuex-简单的-vuex-替代方案"><a href="#使用-Vue2-6-提供的新-API-Vue-observable-手动打造一个-Vuex-简单的-vuex-替代方案" class="headerlink" title="使用 Vue2.6 提供的新 API Vue.observable 手动打造一个 Vuex(简单的 vuex 替代方案)"></a>使用 Vue2.6 提供的新 API Vue.observable 手动打造一个 Vuex(简单的 vuex 替代方案)</h3><ol>
-<li>创建 store</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过Vue.observable创建一个可响应的对象</span><br><span class="line">export const store &#x3D; Vue.observable(&#123;</span><br><span class="line">  userInfo: &#123;&#125;,</span><br><span class="line">  roleIds: []</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义 mutations, 修改属性</span><br><span class="line">export const mutations &#x3D; &#123;</span><br><span class="line">  setUserInfo(userInfo) &#123;</span><br><span class="line">    store.userInfo &#x3D; userInfo</span><br><span class="line">  &#125;,</span><br><span class="line">  setRoleIds(roleIds) &#123;</span><br><span class="line">    store.roleIds &#x3D; roleIds</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在组件中引用</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123;&#123; userInfo.name &#125;&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; store, mutations &#125; from &#39;..&#x2F;store&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    userInfo() &#123;</span><br><span class="line">      return store.userInfo</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    mutations.setUserInfo(&#123;</span><br><span class="line">      name: &#39;子君&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="attrs"><a href="#attrs" class="headerlink" title="attrs"></a>attrs</h3><ol>
-<li><p>父组件上定义的属性，样式 可以直接完全让子组件继承</p>
-</li>
-<li><p>子组件可以设置<code>inheritAttrs: false</code> 父组件中的样式 不在跟元素中继承 在你定义的 v-bind=”$attrs” 的元素中继承</p>
-</li>
-</ol>
-<h3 id="按钮权限"><a href="#按钮权限" class="headerlink" title="按钮权限"></a>按钮权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">app.directive(&#39;has&#39;, &#123;</span><br><span class="line">  &#x2F;&#x2F; 比如 v-has:add&#x3D;&quot;&#39;user-create&#39;&quot;(注意，一定要用字符串引起来，否则是个函数了，)</span><br><span class="line">  &#x2F;&#x2F; el是绑定过的元素   ， binding.args &#x3D; &#39;add&#39;  binding.value &#x3D; &#39;user-crate&#39;</span><br><span class="line">  &#x2F;&#x2F;使用 USER.VUE &lt;el-button type&#x3D;&quot;danger&quot; v-has&#x3D;&quot;&#39;user-patch-delete&#39;&quot;@click&#x3D;&quot;handlePatchDel&quot;&gt;批量删除&lt;&#x2F;el-button&gt;</span><br><span class="line">  beforeMount: function (el, binding) &#123;</span><br><span class="line">    let actionList &#x3D; storage.getItem(&#39;actionList&#39;)</span><br><span class="line">    let value &#x3D; binding.value</span><br><span class="line">    let hasPermission &#x3D; actionList.includes(value)</span><br><span class="line">    if (!hasPermission) &#123;</span><br><span class="line">      el.style &#x3D; &#39;display:none&#39;</span><br><span class="line">      &#x2F;&#x2F;光隐藏不够，删了他，做个异步因为在beforeMount钩子了  他还没有渲染到DOM上</span><br><span class="line">      setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        el.parentNode.removeChild(el)</span><br><span class="line">      &#125;, 0)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;路由配置</span><br><span class="line">&#123;</span><br><span class="line">    name: &#39;404&#39;,</span><br><span class="line">    path: &#39;&#x2F;404&#39;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &#39;页面不存在&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;404.vue&#39;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断当前地址是否可以访问</span><br><span class="line">function checkPermission(path) &#123;</span><br><span class="line">  console.log(router.getRoutes()) &#x2F;&#x2F;所有路由的数组</span><br><span class="line">  let hasPermission &#x3D; router</span><br><span class="line">    .getRoutes()</span><br><span class="line">    .filter((route) &#x3D;&gt; route.path &#x3D;&#x3D; path).length</span><br><span class="line">  if (hasPermission) &#123;</span><br><span class="line">    return true</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 导航守卫</span><br><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">  if (checkPermission(to.path)) &#123;  &#x2F;&#x2F;或者直接用 router.hasRoute(to.name)</span><br><span class="line">    document.title &#x3D; to.meta.title</span><br><span class="line">    next()</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next(&#39;&#x2F;404&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="storeage-封装"><a href="#storeage-封装" class="headerlink" title="storeage 封装"></a>storeage 封装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import config from &#39;..&#x2F;config&#x2F;index.js&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;这个项目所有的storage存储在一个命名空间对象上</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  getStorage() &#123;</span><br><span class="line">    return JSON.parse(window.localStorage.getItem(config.namespace) || &#39;&#123;&#125;&#39;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  setItem(key, val) &#123;</span><br><span class="line">    let storage &#x3D; this.getStorage()</span><br><span class="line">    storage[key] &#x3D; val</span><br><span class="line">    window.localStorage.setItem(config.namespace, JSON.stringify(storage))</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  getItem(key) &#123;</span><br><span class="line">    return this.getStorage()[key]</span><br><span class="line">  &#125;,</span><br><span class="line">  clearItem(key) &#123;</span><br><span class="line">    let storage &#x3D; this.getStorage()</span><br><span class="line">    delete storage[key]</span><br><span class="line">    window.localStorage.setItem(config.namespace, JSON.stringify(storage))</span><br><span class="line">  &#125;,</span><br><span class="line">  clearAlliItem() &#123;</span><br><span class="line">    window.localStorage.clear()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const env &#x3D; import.meta.env.MODE || &#39;production&#39;</span><br><span class="line"></span><br><span class="line">const envConfig &#x3D; &#123;</span><br><span class="line">  development: &#123;</span><br><span class="line">    baseApi: &#39;&#x2F;api&#39;,</span><br><span class="line">    mockApi:</span><br><span class="line">      &#39;https:&#x2F;&#x2F;www.fastmock.site&#x2F;mock&#x2F;3aa8fc6d77553c0405584d0dc88c5457&#x2F;api&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  test: &#123;</span><br><span class="line">    baseApi: &#39;test.xxx.com&#39;,</span><br><span class="line">    mockApi:</span><br><span class="line">      &#39;https:&#x2F;&#x2F;www.fastmock.site&#x2F;mock&#x2F;3aa8fc6d77553c0405584d0dc88c5457&#x2F;api&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  production: &#123;</span><br><span class="line">    baseApi: &#39;prod.xxx.com&#39;,</span><br><span class="line">    mockApi: &#39;&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  env,</span><br><span class="line">  mock: false,</span><br><span class="line">  namespace: &#39;manager&#39;,</span><br><span class="line">  ...envConfig[env]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="request-js"><a href="#request-js" class="headerlink" title="request.js"></a>request.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#39;axios&#39;</span><br><span class="line">import config from &#39;..&#x2F;config&#39;</span><br><span class="line">import &#123; ElMessage &#125; from &#39;element-plus&#39;</span><br><span class="line">import router from &#39;..&#x2F;router&#39;</span><br><span class="line">import storage from &#39;.&#x2F;storage&#39;</span><br><span class="line"></span><br><span class="line">const NETWORKERROR &#x3D; &#39;网络错误&#39;</span><br><span class="line">const TOKEN_INVALID &#x3D; &#39;TOKEN认证失败，请重新登录&#39;</span><br><span class="line">const ERROR_OK &#x3D; 200</span><br><span class="line"></span><br><span class="line">const service &#x3D; axios.create(&#123;</span><br><span class="line">  baseURL: config.baseApi,</span><br><span class="line">  timeout: 8000</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">service.interceptors.request.use((req) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F;TOKEN判断</span><br><span class="line">  &#x2F;&#x2F; const headers &#x3D; req.headers</span><br><span class="line">  &#x2F;&#x2F; const userInfo &#x3D; storage.getItem(&#39;userInfo&#39;)</span><br><span class="line">  &#x2F;&#x2F; let token &#x3D; &#39;&#39;</span><br><span class="line">  &#x2F;&#x2F; if (userInfo) &#123;</span><br><span class="line">  &#x2F;&#x2F;   token &#x3D; userInfo.token</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  &#x2F;&#x2F; if (!headers.Authorization) headers.Authorization &#x3D; &#39;Bearer &#39; + token</span><br><span class="line"></span><br><span class="line">  const headers &#x3D; req.headers</span><br><span class="line">  const &#123; token &#125; &#x3D; storage.getItem(&#39;userInfo&#39;) || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  if (!headers.Authorization)</span><br><span class="line">    headers.Authorization &#x3D; &#39;Bearer &#39; + token ? token : &#39;&#39;</span><br><span class="line"></span><br><span class="line">  return req</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">service.interceptors.response.use((res) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; code, data, msg &#125; &#x3D; res.data</span><br><span class="line">  if (code &#x3D;&#x3D;&#x3D; ERROR_OK) &#123;</span><br><span class="line">    return data</span><br><span class="line">  &#125; else if (code &#x3D;&#x3D;&#x3D; 500001) &#123;</span><br><span class="line">    ElMessage.error(TOKEN_INVALID)</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      router.push(&#39;&#x2F;login&#39;)</span><br><span class="line">    &#125;, 1500)</span><br><span class="line">    return Promise.reject(TOKEN_INVALID)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    ElMessage.error(msg || NETWORKERROR)</span><br><span class="line">    return Promise.reject(msg || NETWORKERROR)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default function request(options) &#123;</span><br><span class="line">  options.method &#x3D; options.method || &#39;get&#39;</span><br><span class="line">  if (options.method.toLowerCase() &#x3D;&#x3D;&#x3D; &#39;get&#39;) &#123;</span><br><span class="line">    options.params &#x3D; options.data</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F;取全局的MOCK 就是config&#x2F;index.js配置的mock:false</span><br><span class="line">  let isMock &#x3D; config.mock</span><br><span class="line">  if (typeof options.mock !&#x3D;&#x3D; &#39;undefined&#39;) &#123;</span><br><span class="line">    isMock &#x3D; options.mock</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;以防万一 线上地址一定用线上接口</span><br><span class="line">  if (config.env &#x3D;&#x3D;&#x3D; &#39;production&#39;) &#123;</span><br><span class="line">    service.defaults.baseURL &#x3D; config.baseApi</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    service.defaults.baseURL &#x3D; isMock ? config.mockApi : config.baseApi</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return service(options)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">;[&#39;get&#39;, &#39;post&#39;, &#39;put&#39;, &#39;delete&#39;, &#39;patch&#39;].forEach((item) &#x3D;&gt; &#123;</span><br><span class="line">  request[item] &#x3D; (url, data, options) &#x3D;&gt; &#123;</span><br><span class="line">    return request(&#123;</span><br><span class="line">      url,</span><br><span class="line">      method: item,</span><br><span class="line">      data,</span><br><span class="line">      ...options</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="将一个-prop-限制在一个类型的列表中"><a href="#将一个-prop-限制在一个类型的列表中" class="headerlink" title="将一个 prop 限制在一个类型的列表中"></a>将一个 prop 限制在一个类型的列表中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  name: &#39;Image&#39;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    src: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">    &#125;,</span><br><span class="line">    style: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      validator: s &#x3D;&gt; [&#39;square&#39;, &#39;rounded&#39;].includes(s)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这个验证函数接受一个 prop，如果 prop 有效或无效，则返回 true 或 false。</p>
-<p>当单单传入的 true 或 false 来控制某些条件不能满足需求时，我通常使用这个方法来做。</p>
-<p>按钮类型或警告类型(信息、成功、危险、警告)是最常见的用法、、。颜色也是一个很好的用途。</p>
-<h3 id="页面加载进度条"><a href="#页面加载进度条" class="headerlink" title="页面加载进度条"></a>页面加载进度条</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import NProgress from &#39;nprogress&#39;;</span><br><span class="line"></span><br><span class="line">router.beforeEach(() &#x3D;&gt; &#123;</span><br><span class="line">  NProgress.start();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.afterEach(() &#x3D;&gt; &#123;</span><br><span class="line">  NProgress.done();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="移动端-100vh-问题"><a href="#移动端-100vh-问题" class="headerlink" title="移动端 100vh 问题"></a>移动端 100vh 问题</h3><ul>
-<li><p>在移动端使用 100vh 时，发现在 Chrome、Safari 浏览器中，因为浏览器栏和一些导航栏、链接栏导致不一样的呈现：</p>
-</li>
-<li><p>你以为的 100vh === 视口高度</p>
-</li>
-<li><p>实际上 100vh === 视口高度 + 浏览器工具栏（地址栏等等）的高度</p>
-</li>
-<li><p>安装 vh-check npm install vh-check --save</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import vhCheck from &#39;vh-check&#39;;</span><br><span class="line">vhCheck(&#39;browser-address-bar&#39;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>定义一个 CSS Mixin</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@mixin vh($height: 100vh) &#123;</span><br><span class="line">  height: $height;</span><br><span class="line">  height: calc(#&#123;$height&#125; - var(--browser-address-bar, 0px));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>之后就是哪里不会点哪里。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/15/instance_new/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/04/15/instance_new/" class="post-title-link" itemprop="url">重写instance&&new</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-04-15 01:08:00" itemprop="dateCreated datePublished" datetime="2020-04-15T01:08:00+08:00">2020-04-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="instance"><a href="#instance" class="headerlink" title="instance"></a><strong>instance</strong></h3><ul>
-<li>instance 方法本质是 instanceof 第一个变量是一个对象 A，第二个变量是一个函数 B，</li>
-<li>沿着 A 的原型链<strong>proto</strong>一直向上找，如果能找到一个<strong>proto</strong>等于 B 的 prototype，则返回 true；</li>
-<li>如果找到终点还没找到则返回 false。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function _instance(a, b) &#123;</span><br><span class="line">  if (!a || !b) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  var A &#x3D; a.__proto__;</span><br><span class="line">  var B &#x3D; b.prototype;</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    if (A &#x3D;&#x3D;&#x3D; null) &#123;</span><br><span class="line">      return false;</span><br><span class="line">    &#125; else if (A &#x3D;&#x3D;&#x3D; B) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F;每次循环继续找__proto__</span><br><span class="line">      A &#x3D; A.__proto__;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>new 本质上就是调用构造函数生成一个对象，</li>
-<li>这个对象能够访问构造函数的的原型对象，因为我们来尝试模拟一下 new 的实现。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function _new(Fn, ...param) &#123;</span><br><span class="line">       var obj &#x3D; &#123;&#125;;</span><br><span class="line">       &#x2F;&#x2F;apply第二个参数接收一个数组，call则不是，call可以有n个参数有多少放多少就行</span><br><span class="line">       var result &#x3D; Fn.call(obj, ...param);</span><br><span class="line">       obj.__proto__ &#x3D; Fn.prototype;</span><br><span class="line">       &#x2F;&#x2F; 如果构造函数返回一个对象，则将该对象返回，否则返回步骤1创建的对象</span><br><span class="line">       return typeof result &#x3D;&#x3D;&#x3D; &quot;object&quot; ? result : obj;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function Person(name) &#123;</span><br><span class="line">       this.name &#x3D; name;</span><br><span class="line">       this.say &#x3D; function() &#123;</span><br><span class="line">         console.log(&quot;say&quot;, this.name);</span><br><span class="line">       &#125;;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     var obj &#x3D; _new(Person, &quot;weibin&quot;);</span><br><span class="line">     console.log(obj);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
