@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/01/2016-12-1-vue-star/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/06/2016-12-6-favto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
@@ -221,7 +221,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/12/01/2016-12-1-vue-star/" class="post-title-link" itemprop="url">star星级评价组件</a>
+          <a href="/2016/12/06/2016-12-6-favto/" class="post-title-link" itemprop="url">一些教程收录地址</a>
         </h2>
 
         <div class="post-meta-container">
@@ -232,7 +232,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2016-12-01 01:08:00" itemprop="dateCreated datePublished" datetime="2016-12-01T01:08:00+08:00">2016-12-01</time>
+      <time title="Created: 2016-12-06 13:31:01" itemprop="dateCreated datePublished" datetime="2016-12-06T13:31:01+08:00">2016-12-06</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -247,7 +247,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
         </span>
     </span>
 
@@ -261,12 +261,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>star组件的实现（星星评分）</p>
-<h1 id="header-vue-父组件"><a href="#header-vue-父组件" class="headerlink" title="header.vue(父组件)"></a>header.vue(父组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;star :size&#x3D;&quot;48&quot; :score&#x3D;&quot;seller.score&quot;&gt;&lt;&#x2F;star&gt;</span><br></pre></td></tr></table></figure>
-<p>:size=”48” 是传的星星大小，实际项目中可以不用，seller.score是后台传过来的分数比如4.2,3.6之类的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    import star from &#39;components&#x2F;star&#x2F;star&#39;</span><br><span class="line">    export default&#123;</span><br><span class="line">      props:&#123;</span><br><span class="line">        &#x2F;&#x2F;props接受父组件传递来的props,父组件中定义了&lt;v-head :seller&gt;</span><br><span class="line">        seller:&#123;</span><br><span class="line">          type:Object</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">     </span><br><span class="line">      components: &#123;</span><br><span class="line">          star</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="app-vue-子组件"><a href="#app-vue-子组件" class="headerlink" title="app.vue(子组件)"></a>app.vue(子组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">    &lt;template&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;star&quot; :class&#x3D;&quot;starType&quot;&gt;</span><br><span class="line">        &lt;!-- 循环星星，星星的每个CLASS不同，itemClass是单独的样式：on half off, star-item是一样的样式 track-by&#x3D;&quot;$index不加会有警告 --&gt;</span><br><span class="line">       &lt;span v-for&#x3D;&quot;itemClass in itemClasses&quot; :class&#x3D;&quot;itemClass&quot; class&#x3D;&quot;star-item&quot; track-by&#x3D;&quot;$index&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">const LENGTH &#x3D; 5;</span><br><span class="line">const CLS_ON &#x3D; &#39;on&#39;;</span><br><span class="line">const CLS_HALF &#x3D; &#39;half&#39;;</span><br><span class="line">const CLS_OFF &#x3D; &#39;off&#39;;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        size:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;,</span><br><span class="line">        score:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        starType()&#123;</span><br><span class="line">            return &#39;star-&#39;+this.size</span><br><span class="line">        &#125;,</span><br><span class="line">        itemClasses()&#123;            </span><br><span class="line">            var result &#x3D; [];</span><br><span class="line">            &#x2F;&#x2F;四舍五入 小数位数大于0.5的 取完后会有小数保留，反之只保留整数</span><br><span class="line">            let score &#x3D; Math.floor(this.score*2)&#x2F;2;</span><br><span class="line">           </span><br><span class="line">            &#x2F;&#x2F;是否有小数,如果scrore是小数 % 1后就不是0</span><br><span class="line">            var hasDecimal &#x3D; score % 1 !&#x3D;&#x3D; 0 ;</span><br><span class="line">            console.log(hasDecimal)</span><br><span class="line">            &#x2F;&#x2F;整数有多少分，也就是有几个全星星</span><br><span class="line">            let integer &#x3D; Math.floor(score);</span><br><span class="line">            console.info(integer)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;先把整的星星放进去</span><br><span class="line">            for(let i&#x3D;0; i&lt;integer; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               </span><br><span class="line">                result.push(CLS_ON);</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(result)</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F;如果有小数，就放进去一个半星，半星最多有一个</span><br><span class="line">            if(hasDecimal)&#123;</span><br><span class="line">                result.push(CLS_HALF)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;如果不足5颗星，补足黑色星星</span><br><span class="line">            while(result.length&lt;LENGTH)</span><br><span class="line">            &#123;</span><br><span class="line">                result.push(CLS_OFF);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.star&#123;font-size: 0&#125;</span><br><span class="line">.star .star-item&#123;display: inline-block; background-repeat: no-repeat;&#125;</span><br><span class="line">.star .star-item:last-child&#123;margin-right: 0&#125;</span><br><span class="line">.star-48 .star-item&#123; width: 20px; height: 20px; margin-right: 22px; background-size: 20px 20px;&#125;</span><br><span class="line">.star-48 .star-item.on&#123;background-image:url(&quot;star48_on@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.half&#123;background-image:url(&quot;star48_half@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.off&#123;background-image:url(&quot;star48_off@3x.png&quot;);&#125;</span><br><span class="line">.star-36 .star-item&#123;&#125;</span><br><span class="line">.star-24 .star-item&#123;&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h2 id="vue-1-0"><a href="#vue-1-0" class="headerlink" title="vue 1.0"></a>vue 1.0</h2><p><a target="_blank" rel="noopener" href="http://vuejs.org.cn/guide/">http://vuejs.org.cn/guide/</a></p>
+<h2 id="vue-1-0-router"><a href="#vue-1-0-router" class="headerlink" title="vue 1.0 router"></a>vue 1.0 router</h2><p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-router/tree/1.0/docs/zh-cn">https://github.com/vuejs/vue-router/tree/1.0/docs/zh-cn</a></p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html?from=groupmessage&amp;isappinstalled=0">https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html?from=groupmessage&amp;isappinstalled=0</a></p>
+<h2 id="Gulp中的增量编译"><a href="#Gulp中的增量编译" class="headerlink" title="Gulp中的增量编译"></a>Gulp中的增量编译</h2><p><a target="_blank" rel="noopener" href="http://fedvic.com/2016/01/29/gulpIncrementalBuild/">http://fedvic.com/2016/01/29/gulpIncrementalBuild/</a></p>
+<h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651553180&amp;idx=2&amp;sn=612991e9ea514a1e500a2002c50b183e&amp;chksm=8025aa5db752234b2c1d8e55954f4cb63067a3a137cdec7d1917b13239b2de1f7e58153e3569&amp;mpshare=1&amp;scene=1&amp;srcid=12024zyw8IOv0qMjBaE8jIY0#rd">http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651553180&amp;idx=2&amp;sn=612991e9ea514a1e500a2002c50b183e&amp;chksm=8025aa5db752234b2c1d8e55954f4cb63067a3a137cdec7d1917b13239b2de1f7e58153e3569&amp;mpshare=1&amp;scene=1&amp;srcid=12024zyw8IOv0qMjBaE8jIY0#rd</a> </p>
+<p><a target="_blank" rel="noopener" href="https://brucewar.gitbooks.io/svg-tutorial/1.SVG%E6%95%99%E7%A8%8B.html">https://brucewar.gitbooks.io/svg-tutorial/1.SVG%E6%95%99%E7%A8%8B.html</a> </p>
+<h2 id="react-中文"><a href="#react-中文" class="headerlink" title="react 中文"></a>react 中文</h2><p><a target="_blank" rel="noopener" href="https://doc.react-china.org/">https://doc.react-china.org/</a></p>
 
       
     </div>
@@ -351,6 +352,91 @@
 
 
 <h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.detail&#123;position: fixed;z-index: 100;width: 100%; height: 100%;overflow:auto;background: rgba(7,17,27,0.8);top: 0; left: 0;transition: all 0.5s;backdrop-filter:blur(10px);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*动画结束的状态*&#x2F;</span><br><span class="line">.detail.fade-transition&#123;</span><br><span class="line"> opacity: 1;</span><br><span class="line"> background: rgba(7,17,27,0.8);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*动画开始的状态*&#x2F;</span><br><span class="line">.detail.fade-enter,.detail.fade-leave&#123;</span><br><span class="line"> opacity: 0;</span><br><span class="line"> background: rgba(7,17,27,0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/01/2016-12-1-vue-star/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/01/2016-12-1-vue-star/" class="post-title-link" itemprop="url">star星级评价组件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-01 01:08:00" itemprop="dateCreated datePublished" datetime="2016-12-01T01:08:00+08:00">2016-12-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>star组件的实现（星星评分）</p>
+<h1 id="header-vue-父组件"><a href="#header-vue-父组件" class="headerlink" title="header.vue(父组件)"></a>header.vue(父组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;star :size&#x3D;&quot;48&quot; :score&#x3D;&quot;seller.score&quot;&gt;&lt;&#x2F;star&gt;</span><br></pre></td></tr></table></figure>
+<p>:size=”48” 是传的星星大小，实际项目中可以不用，seller.score是后台传过来的分数比如4.2,3.6之类的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    import star from &#39;components&#x2F;star&#x2F;star&#39;</span><br><span class="line">    export default&#123;</span><br><span class="line">      props:&#123;</span><br><span class="line">        &#x2F;&#x2F;props接受父组件传递来的props,父组件中定义了&lt;v-head :seller&gt;</span><br><span class="line">        seller:&#123;</span><br><span class="line">          type:Object</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">     </span><br><span class="line">      components: &#123;</span><br><span class="line">          star</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="app-vue-子组件"><a href="#app-vue-子组件" class="headerlink" title="app.vue(子组件)"></a>app.vue(子组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">    &lt;template&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;star&quot; :class&#x3D;&quot;starType&quot;&gt;</span><br><span class="line">        &lt;!-- 循环星星，星星的每个CLASS不同，itemClass是单独的样式：on half off, star-item是一样的样式 track-by&#x3D;&quot;$index不加会有警告 --&gt;</span><br><span class="line">       &lt;span v-for&#x3D;&quot;itemClass in itemClasses&quot; :class&#x3D;&quot;itemClass&quot; class&#x3D;&quot;star-item&quot; track-by&#x3D;&quot;$index&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">const LENGTH &#x3D; 5;</span><br><span class="line">const CLS_ON &#x3D; &#39;on&#39;;</span><br><span class="line">const CLS_HALF &#x3D; &#39;half&#39;;</span><br><span class="line">const CLS_OFF &#x3D; &#39;off&#39;;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        size:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;,</span><br><span class="line">        score:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        starType()&#123;</span><br><span class="line">            return &#39;star-&#39;+this.size</span><br><span class="line">        &#125;,</span><br><span class="line">        itemClasses()&#123;            </span><br><span class="line">            var result &#x3D; [];</span><br><span class="line">            &#x2F;&#x2F;四舍五入 小数位数大于0.5的 取完后会有小数保留，反之只保留整数</span><br><span class="line">            let score &#x3D; Math.floor(this.score*2)&#x2F;2;</span><br><span class="line">           </span><br><span class="line">            &#x2F;&#x2F;是否有小数,如果scrore是小数 % 1后就不是0</span><br><span class="line">            var hasDecimal &#x3D; score % 1 !&#x3D;&#x3D; 0 ;</span><br><span class="line">            console.log(hasDecimal)</span><br><span class="line">            &#x2F;&#x2F;整数有多少分，也就是有几个全星星</span><br><span class="line">            let integer &#x3D; Math.floor(score);</span><br><span class="line">            console.info(integer)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;先把整的星星放进去</span><br><span class="line">            for(let i&#x3D;0; i&lt;integer; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               </span><br><span class="line">                result.push(CLS_ON);</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(result)</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F;如果有小数，就放进去一个半星，半星最多有一个</span><br><span class="line">            if(hasDecimal)&#123;</span><br><span class="line">                result.push(CLS_HALF)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;如果不足5颗星，补足黑色星星</span><br><span class="line">            while(result.length&lt;LENGTH)</span><br><span class="line">            &#123;</span><br><span class="line">                result.push(CLS_OFF);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.star&#123;font-size: 0&#125;</span><br><span class="line">.star .star-item&#123;display: inline-block; background-repeat: no-repeat;&#125;</span><br><span class="line">.star .star-item:last-child&#123;margin-right: 0&#125;</span><br><span class="line">.star-48 .star-item&#123; width: 20px; height: 20px; margin-right: 22px; background-size: 20px 20px;&#125;</span><br><span class="line">.star-48 .star-item.on&#123;background-image:url(&quot;star48_on@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.half&#123;background-image:url(&quot;star48_half@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.off&#123;background-image:url(&quot;star48_off@3x.png&quot;);&#125;</span><br><span class="line">.star-36 .star-item&#123;&#125;</span><br><span class="line">.star-24 .star-item&#123;&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -981,91 +1067,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/15/js-input/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/07/15/js-input/" class="post-title-link" itemprop="url">输入框输入延迟提交（避免每次输入都发请求）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-07-15 14:13:23" itemprop="dateCreated datePublished" datetime="2016-07-15T14:13:23+08:00">2016-07-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">     &lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input id&#x3D;&quot;inputObj&quot;  &#x2F;&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">  </span><br><span class="line">var inputObj &#x3D; document.getElementById(&#39;inputObj&#39;)</span><br><span class="line">var timer &#x3D; null;</span><br><span class="line">inputObj.addEventListener(&#39;input&#39;,function()&#123;</span><br><span class="line">  </span><br><span class="line">  if(timer)&#123;</span><br><span class="line">    clearTimeout(timer)</span><br><span class="line">  &#125;</span><br><span class="line">  timer &#x3D; setTimeout(function()&#123;</span><br><span class="line">    console.log(inputObj.value)</span><br><span class="line">  &#125;,500)</span><br><span class="line">&#125;,false)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

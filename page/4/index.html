@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,99 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/28/pxToRem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/02/28/pxToRem/" class="post-title-link" itemprop="url">rem相关问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-28 14:13:23" itemprop="dateCreated datePublished" datetime="2018-02-28T14:13:23+08:00">2018-02-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="利用SASS转换REM"><a href="#利用SASS转换REM" class="headerlink" title="利用SASS转换REM"></a><strong>利用SASS转换REM</strong></h3><p>这里以IPONE6标准375宽度 / 10 = 37.5作为基准值 10这个数字是随便写的， 当然也可以选择不除，只要在后面动态js计算时保证一样的值就可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@function px2rem($px) &#123;</span><br><span class="line">  $rem: 37.5px;  </span><br><span class="line">  @return ($px &#x2F; $rem) + rem; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用</span><br><span class="line">  .header&#123;</span><br><span class="line">    height:px2rem(40px);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="配合用JS转换"><a href="#配合用JS转换" class="headerlink" title="配合用JS转换"></a><strong>配合用JS转换</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    window.onresize &#x3D; function() &#123;</span><br><span class="line">       change()</span><br><span class="line">     &#125;</span><br><span class="line">     change()</span><br><span class="line">    function change() &#123;</span><br><span class="line">      let html &#x3D; document.documentElement || document.body;</span><br><span class="line">      html.style.fontSize &#x3D; html.clientWidth &#x2F; 10  + &quot;px&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="炎黄JS方案"><a href="#炎黄JS方案" class="headerlink" title="炎黄JS方案"></a><strong>炎黄JS方案</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">new function ()&#123;</span><br><span class="line">  var _self &#x3D;  this ;</span><br><span class="line">  _self.width &#x3D; 640; &#x2F;&#x2F; 设置默认最大宽度 </span><br><span class="line">  _self.fontSize &#x3D; 100; &#x2F;&#x2F; 默认字体大小 </span><br><span class="line">  _self.widthProportion &#x3D;  function ()&#123; var p &#x3D; (document.body&amp;&amp;document.body.clientWidth||document.getElementsByTagName(&quot;html&quot;)[0].offsetWidth)&#x2F;_self.width;return p&gt;1?1:p&lt;0.5?0.5:p;&#125;;</span><br><span class="line">  _self.changePage &#x3D;  function ()&#123;</span><br><span class="line">  document.getElementsByTagName(&quot;html&quot;)[0].setAttribute(&quot;style&quot;,&quot;font-size:&quot;+_self.widthProportion()*_self.fontSize+&quot;px !important&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  _self.changePage();</span><br><span class="line">  window.addEventListener(&#39;resize&#39;, function ()&#123;_self.changePage();&#125;, false );</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1009,91 +1102,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/09/box-shadow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/09/box-shadow/" class="post-title-link" itemprop="url">用box-shadow做背景部分透明效果</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-11-09 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-09T14:13:23+08:00">2017-11-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot;</span><br><span class="line">          content&#x3D;&quot;width&#x3D;device-width, user-scalable&#x3D;no, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body&#123;</span><br><span class="line">            background:#6EC3FF;</span><br><span class="line">        &#125;</span><br><span class="line">        .hl-box&#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            top: 400px;</span><br><span class="line">            left: 300px;</span><br><span class="line">            width: 300px;</span><br><span class="line">            box-shadow: 0 0 1px 2000px rgba(0,0,0,.5), 0 2px 15px rgba(0,0,0,.4);</span><br><span class="line">            height: 200px;</span><br><span class="line">            border-radius: 4px;</span><br><span class="line">            transition: all 1s;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;hl-box&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开就卡萨爱上大还是打开就卡萨爱上大还是打开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开就卡萨爱上大还是打开就卡萨爱上大还是打开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开爱上大还是打开就卡萨爱上大还是打开就卡萨就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打开爱上大还是打开就卡萨爱上大还是打开就卡萨就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h1&gt;爱上大还是打爱上大还是打开就卡萨爱上大还是打开就卡萨开就卡萨丁和&lt;&#x2F;h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    &#x2F;&#x2F; window.onload&#x3D;function()&#123;</span><br><span class="line">    &#x2F;&#x2F;     setTimeout(function()&#123;</span><br><span class="line">    &#x2F;&#x2F;        document.getElementsByClassName(&#39;hl-box&#39;)[0].style.left&#x3D;&#39;500px&#39;;</span><br><span class="line">    &#x2F;&#x2F;     &#125;,1000)</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/uploads/box-shadow.png" alt="显示效果"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
