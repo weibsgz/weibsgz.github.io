@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/02/28/prototype-face-object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/02/28/prototype-face-object/" class="post-title-link" itemprop="url">js原型及面向对象</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-28 14:13:23" itemprop="dateCreated datePublished" datetime="2018-02-28T14:13:23+08:00">2018-02-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="new-一个对象的步骤"><a href="#new-一个对象的步骤" class="headerlink" title="new 一个对象的步骤"></a><strong>new 一个对象的步骤</strong></h3><p>1.创建一个空对象instance<br>2.设置空对象的原型链继承自创建这个空对象的构造函数的原型  instance.<strong>proto</strong>=F.prototype;<br>3.构造函数执行  this 指向新事例<br>4.判断构造函数的返回结果是对象类型就返回这个对象，前边就废了，如果不是就返回原来的instance</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        function M() &#123;</span><br><span class="line">            this.a &#x3D; 1;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        let o &#x3D; new M()</span><br><span class="line">        &#x2F;&#x2F;函数的prototype有个constructor属性 指向本身的构造函数 如果重新定义了prototype则为false;  </span><br><span class="line">        M.prototype.constructor &#x3D;&#x3D;&#x3D; M &#x2F;&#x2F;true</span><br><span class="line">        &#x2F;&#x2F; js里所有的对象都有proto属性，指向构造该对象的构造函数的原型（用于继承）</span><br><span class="line">        &#x2F;&#x2F;原型prototype是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法    </span><br><span class="line">        o.__proto__ &#x3D;&#x3D;&#x3D; M.prototype &#x2F;&#x2F;true</span><br><span class="line">        M.__proto__ &#x3D;&#x3D;&#x3D; Function.prototype &#x2F;&#x2F;true 一层一层向上找</span><br><span class="line">            </span><br><span class="line">        &#x2F;&#x2F;instanceof 的原理就是判断实例对象的__proto__和 构造函数的原型是不是引用同一个地址</span><br><span class="line">        M.prototype.__proto__ &#x3D;&#x3D;&#x3D; Object.prototype &#x2F;&#x2F;true</span><br><span class="line">        </span><br><span class="line">        console.log(o instanceof M) &#x2F;&#x2F;true</span><br><span class="line">        console.log(o instanceof Object) &#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 那么如何判断 o 到底是谁创建的呢                                </span><br><span class="line">        console.log(o.__proto__.constructor &#x3D;&#x3D;&#x3D; M) &#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="继承方式"><a href="#继承方式" class="headerlink" title="继承方式"></a><strong>继承方式</strong></h3><p>1.借助构造函数 实现继承（call),但是父类的原型链的方法 子类无法继承，只能继承父类构造函数里边的属性和方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Parent()&#123;</span><br><span class="line">    this.name &#x3D; &#39;parent&#39;</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.say &#x3D; function () &#123;...&#125;</span><br><span class="line"></span><br><span class="line">function Child()&#123;</span><br><span class="line">    Parent.call(this)</span><br><span class="line">    this.type &#x3D; &#39;child&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(new Child()) &#x2F;&#x2F;&#123;name:parent,type:child&#125; 注意，没有父类原型的方法</span><br></pre></td></tr></table></figure>
+<p>2.原型链实现继承 由于子类的的对象原型链都是父类是一样的，所以改变一个子类的继承父类的属性，另一个子类也变了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function Parent()&#123;</span><br><span class="line">    this.name &#x3D; &#39;parent&#39;;</span><br><span class="line">    this.arr &#x3D; [1,2,3]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.say &#x3D; function () &#123;console.log(&quot;say parent&quot;)&#125;</span><br><span class="line"></span><br><span class="line">function Child()&#123;</span><br><span class="line">    this.type &#x3D; &#39;child&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new Parent()</span><br><span class="line"></span><br><span class="line">console.log(new Child().name ) &#x2F;&#x2F;parent</span><br><span class="line">console.log(new Child().say() ) &#x2F;&#x2F;say parent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var c1 &#x3D; new Child()</span><br><span class="line">var c2 &#x3D; new Child()</span><br><span class="line">c1.arr.push(4)</span><br><span class="line">console.log(c1.arr ,c2.arr)  &#x2F;&#x2F;[1,2,3,4]  [1,2,3,4]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>3.组合继承方式  防止上边两种的缺点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Parent() &#123;</span><br><span class="line">   this.name &#x3D; &#39;Parent&#39;</span><br><span class="line">   this.arr &#x3D; [1,2,3]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child()&#123;</span><br><span class="line">  Parent.call(this)</span><br><span class="line">  this.type &#x3D; &#39;child&#39;</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype &#x3D; new Parent()</span><br><span class="line"></span><br><span class="line">var c1 &#x3D; new Child()</span><br><span class="line">var c2 &#x3D; new Child()</span><br><span class="line"></span><br><span class="line">c1.arr.push(4)</span><br><span class="line"></span><br><span class="line">console.log(c1.arr,c2.arr)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -976,115 +1062,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;全选</span><br><span class="line">  $(&quot;#checkall&quot;).click(function() &#123;  </span><br><span class="line">        var checked &#x3D; $(this).is(&quot;:checked&quot;);</span><br><span class="line">        console.log(checked)</span><br><span class="line">        if(!checked)&#123;</span><br><span class="line">            console.log(&#39;没选中&#39;)</span><br><span class="line">            $(&quot;input[name&#x3D;&#39;checkName&#39;]&quot;).each(function() &#123;  </span><br><span class="line">              $(this).prop(&quot;checked&quot;, false); </span><br><span class="line">            &#125;); </span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">          console.log(&#39;选中&#39;)</span><br><span class="line">          $(&quot;input[name&#x3D;&#39;checkName&#39;]&quot;).each(function() &#123;  </span><br><span class="line">            $(this).prop(&quot;checked&quot;, true); </span><br><span class="line">          &#125;); </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;); </span><br><span class="line">    </span><br><span class="line">    var chks &#x3D;  $(&quot;input[name&#x3D;&#39;checkName&#39;]&quot;)</span><br><span class="line">    chks.click(function()&#123;</span><br><span class="line">            for(var i &#x3D;0 ; i &lt; chks.length ; i++)&#123;   </span><br><span class="line">                if(!chks[i].checked)&#123;</span><br><span class="line">                    console.log(&#39;有一个没选&#39;)</span><br><span class="line">                    $(&quot;#checkall&quot;).prop(&quot;checked&quot;, false);</span><br><span class="line">                    return ;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(&#39;都选了 &#39;)</span><br><span class="line">            $(&quot;#checkall&quot;).prop(&quot;checked&quot;,true);</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/14/redux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/14/redux/" class="post-title-link" itemprop="url">react-redux理解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-11-14 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-14T14:13:23+08:00">2017-11-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用react-redux的好处 想必较 直接使用redux<br>他不用处理dispatch  通过connect挂载到所需组件的props上 方法直接有了dispatch<br>通过provider给所有组件传入store 不用store.subscribe(render) 去做订阅了</p>
-<h3 id="总体说明"><a href="#总体说明" class="headerlink" title="总体说明"></a>总体说明</h3><p>1.应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。</p>
-<p>2.惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象<br>改变内部 state 惟一方法是 dispatch 一个 action。</p>
-<p>3.为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
-<p>4.reducer，形式为 (state, action) =&gt; state 的纯函数。描述了 action 如何把 state 转变成下一个 state。</p>
-<p>5.Action 本质上是 JavaScript 普通对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。</p>
-<p>6.同步不用手动dispatch react-redux帮我们做了，<br>  我目前认为的是在组件内部挂载到connect下。同步方法就给你加了dispatch了见下边的this.props.addGun</p>
-<p>  异步需要手动的dispatch  不管同步异步 都要通过dispatch修改action 只有action能告诉reducer 如何改变state</p>
-<p>  applyMiddleware(thunk) 这个中间件的作用就是为了处理异步的action(比如需要向后台发送数据)</p>
-<p>7。withRouter可以包装任何自定义组件，将react-router 的 history,location,match 三个对象传入 因为 只有Router 的component组件能够自动带有三个属性</p>
-<h3 id="index-js入口页面"><a href="#index-js入口页面" class="headerlink" title="index.js入口页面"></a>index.js入口页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">&#x2F;&#x2F;npm install redux-thunk -save  </span><br><span class="line">import thunk from &#39;redux-thunk&#39; &#x2F;&#x2F;applyMiddleware中间件，redux-thunk处理异步获取</span><br><span class="line">import combineReducers from &#39;.&#x2F;reducer&#39; &#x2F;&#x2F;负责合并reducer</span><br><span class="line">import &#123;Provider&#125; from &#39;react-redux&#39; &#x2F;&#x2F;provider 负责把STORE传入到组件中</span><br></pre></td></tr></table></figure>
-<p>applyMiddleware，redux-thunk都是处理异步的</p>
-<p>#combineReducers   reducer.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;合并所有reducer 并返回</span><br><span class="line"></span><br><span class="line">import &#123;combineReducers&#125; from &#39;redux&#39;</span><br><span class="line">import &#123;counter&#125; from &#39;.&#x2F;index.redux&#39;</span><br><span class="line">import &#123;auth&#125; from &#39;.&#x2F;Auth.redux&#39;</span><br><span class="line"></span><br><span class="line">export default combineReducers(&#123;counter,auth&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>#两个reducer index.redux.js<br>1.加减机关枪</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const ADD_GUN &#x3D; &#39;加机关枪&#39;</span><br><span class="line">const REMOVE_GUN &#x3D; &#39;减机关枪&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 这个东西就是reducer</span><br><span class="line">export function counter(state &#x3D; 0 , action)&#123;</span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case ADD_GUN:</span><br><span class="line">            return state + 1</span><br><span class="line">        case REMOVE_GUN:</span><br><span class="line">            return state - 1</span><br><span class="line">        default:</span><br><span class="line">            return 10</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;action 同步的action 这里不用dispatch了 页面调用的时候</span><br><span class="line"></span><br><span class="line">export function addGun()&#123;</span><br><span class="line">    return &#123;type:ADD_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function removeGun()&#123;</span><br><span class="line">    return &#123;type:REMOVE_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;这就是异步了  需要手动触发dispatch</span><br><span class="line">export function addGunAnsyc()&#123;</span><br><span class="line">    return dispatch&#x3D;&gt;&#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            dispatch(addGun())</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>2.Auth.redux.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const LOGIN &#x3D; &#39;LOGIN&#39;</span><br><span class="line">const LOGOUT &#x3D; &#39;LOGOUT&#39;</span><br><span class="line"></span><br><span class="line">export function auth(state &#x3D; &#123;isAuth:false,user:&#39;李云龙&#39;&#125;,action)&#123; </span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case LOGIN:</span><br><span class="line">            return &#123;...state,isAuth:true&#125;</span><br><span class="line">        case LOGOUT:</span><br><span class="line">            return &#123;...state,isAuth:false&#125;</span><br><span class="line">        default :</span><br><span class="line">            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;action</span><br><span class="line">export function login()&#123;</span><br><span class="line">    return &#123;type:LOGIN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function logout()&#123;</span><br><span class="line">    return &#123;type:LOGOUT&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="index-js-页面创建-store"><a href="#index-js-页面创建-store" class="headerlink" title="index.js 页面创建 store"></a>index.js 页面创建 store</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果不处理异步 直接const store &#x3D; createStore(counter)就可以了</span><br><span class="line">&#x2F;&#x2F;这里用了combineReducer  合并了auth.redux.js index.redux.js里两个reducer</span><br><span class="line">const store &#x3D; createStore(combineReducers,applyMiddleware(thunk))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>#通过provider将STORE传入根组件  下面所有的组件就都有了store</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用react-redux 方便了很多 Provider只在入口页面写一次 负责传入store 也不需要subscribe订阅了</span><br><span class="line"></span><br><span class="line">        (&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                  &lt;Switch&gt;</span><br><span class="line">                      &#123;&#x2F;*只命中匹配上的第一个route*&#x2F;&#125;</span><br><span class="line">                      &lt;Route exact path&#x3D;&#39;&#x2F;Auth&#39; component&#x3D;&#123;Auth&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                      &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#39; component&#x3D;&#123;Dashbord&#125;&gt;&lt;&#x2F;Route&gt;                   </span><br><span class="line">                      &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">                  &lt;&#x2F;Switch&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;BrowserRouter&gt;</span><br><span class="line">         &lt;&#x2F;Provider&gt;),        </span><br><span class="line">        document.getElementById(&#39;root&#39;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-
-<p>#组件调取store   通过connect 将本组件使用到的store里的属性 和 方法挂载到本组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">@connect(</span><br><span class="line">    state &#x3D;&gt;(&#123;num:state.counter&#125;),</span><br><span class="line">    &#123;addGun,removeGun,addGunAnsyc&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">   </span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.addGun&#125;&gt;申请武器&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.removeGun&#125;&gt;上交武器&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.addGunAnsyc&#125;&gt;拖两天再给&lt;&#x2F;Button&gt;</span><br><span class="line"></span><br><span class="line">            &lt;h1&gt;现在有机枪&#123;this.props.num&#125;把&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>this.props.num 因为通过connect 把state.counter放到this.props.num上了</p>
-<p>同理其他方法 也挂载到props里了</p>
-
       
     </div>
 

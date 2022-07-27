@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,115 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/14/redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/14/redux/" class="post-title-link" itemprop="url">react-redux理解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-11-14 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-14T14:13:23+08:00">2017-11-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>用react-redux的好处 想必较 直接使用redux<br>他不用处理dispatch  通过connect挂载到所需组件的props上 方法直接有了dispatch<br>通过provider给所有组件传入store 不用store.subscribe(render) 去做订阅了</p>
+<h3 id="总体说明"><a href="#总体说明" class="headerlink" title="总体说明"></a>总体说明</h3><p>1.应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。</p>
+<p>2.惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象<br>改变内部 state 惟一方法是 dispatch 一个 action。</p>
+<p>3.为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
+<p>4.reducer，形式为 (state, action) =&gt; state 的纯函数。描述了 action 如何把 state 转变成下一个 state。</p>
+<p>5.Action 本质上是 JavaScript 普通对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。</p>
+<p>6.同步不用手动dispatch react-redux帮我们做了，<br>  我目前认为的是在组件内部挂载到connect下。同步方法就给你加了dispatch了见下边的this.props.addGun</p>
+<p>  异步需要手动的dispatch  不管同步异步 都要通过dispatch修改action 只有action能告诉reducer 如何改变state</p>
+<p>  applyMiddleware(thunk) 这个中间件的作用就是为了处理异步的action(比如需要向后台发送数据)</p>
+<p>7。withRouter可以包装任何自定义组件，将react-router 的 history,location,match 三个对象传入 因为 只有Router 的component组件能够自动带有三个属性</p>
+<h3 id="index-js入口页面"><a href="#index-js入口页面" class="headerlink" title="index.js入口页面"></a>index.js入口页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">&#x2F;&#x2F;npm install redux-thunk -save  </span><br><span class="line">import thunk from &#39;redux-thunk&#39; &#x2F;&#x2F;applyMiddleware中间件，redux-thunk处理异步获取</span><br><span class="line">import combineReducers from &#39;.&#x2F;reducer&#39; &#x2F;&#x2F;负责合并reducer</span><br><span class="line">import &#123;Provider&#125; from &#39;react-redux&#39; &#x2F;&#x2F;provider 负责把STORE传入到组件中</span><br></pre></td></tr></table></figure>
+<p>applyMiddleware，redux-thunk都是处理异步的</p>
+<p>#combineReducers   reducer.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;合并所有reducer 并返回</span><br><span class="line"></span><br><span class="line">import &#123;combineReducers&#125; from &#39;redux&#39;</span><br><span class="line">import &#123;counter&#125; from &#39;.&#x2F;index.redux&#39;</span><br><span class="line">import &#123;auth&#125; from &#39;.&#x2F;Auth.redux&#39;</span><br><span class="line"></span><br><span class="line">export default combineReducers(&#123;counter,auth&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>#两个reducer index.redux.js<br>1.加减机关枪</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const ADD_GUN &#x3D; &#39;加机关枪&#39;</span><br><span class="line">const REMOVE_GUN &#x3D; &#39;减机关枪&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 这个东西就是reducer</span><br><span class="line">export function counter(state &#x3D; 0 , action)&#123;</span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case ADD_GUN:</span><br><span class="line">            return state + 1</span><br><span class="line">        case REMOVE_GUN:</span><br><span class="line">            return state - 1</span><br><span class="line">        default:</span><br><span class="line">            return 10</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;action 同步的action 这里不用dispatch了 页面调用的时候</span><br><span class="line"></span><br><span class="line">export function addGun()&#123;</span><br><span class="line">    return &#123;type:ADD_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function removeGun()&#123;</span><br><span class="line">    return &#123;type:REMOVE_GUN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;这就是异步了  需要手动触发dispatch</span><br><span class="line">export function addGunAnsyc()&#123;</span><br><span class="line">    return dispatch&#x3D;&gt;&#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            dispatch(addGun())</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.Auth.redux.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const LOGIN &#x3D; &#39;LOGIN&#39;</span><br><span class="line">const LOGOUT &#x3D; &#39;LOGOUT&#39;</span><br><span class="line"></span><br><span class="line">export function auth(state &#x3D; &#123;isAuth:false,user:&#39;李云龙&#39;&#125;,action)&#123; </span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case LOGIN:</span><br><span class="line">            return &#123;...state,isAuth:true&#125;</span><br><span class="line">        case LOGOUT:</span><br><span class="line">            return &#123;...state,isAuth:false&#125;</span><br><span class="line">        default :</span><br><span class="line">            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;action</span><br><span class="line">export function login()&#123;</span><br><span class="line">    return &#123;type:LOGIN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function logout()&#123;</span><br><span class="line">    return &#123;type:LOGOUT&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="index-js-页面创建-store"><a href="#index-js-页面创建-store" class="headerlink" title="index.js 页面创建 store"></a>index.js 页面创建 store</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果不处理异步 直接const store &#x3D; createStore(counter)就可以了</span><br><span class="line">&#x2F;&#x2F;这里用了combineReducer  合并了auth.redux.js index.redux.js里两个reducer</span><br><span class="line">const store &#x3D; createStore(combineReducers,applyMiddleware(thunk))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>#通过provider将STORE传入根组件  下面所有的组件就都有了store</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用react-redux 方便了很多 Provider只在入口页面写一次 负责传入store 也不需要subscribe订阅了</span><br><span class="line"></span><br><span class="line">        (&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                  &lt;Switch&gt;</span><br><span class="line">                      &#123;&#x2F;*只命中匹配上的第一个route*&#x2F;&#125;</span><br><span class="line">                      &lt;Route exact path&#x3D;&#39;&#x2F;Auth&#39; component&#x3D;&#123;Auth&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                      &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#39; component&#x3D;&#123;Dashbord&#125;&gt;&lt;&#x2F;Route&gt;                   </span><br><span class="line">                      &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">                  &lt;&#x2F;Switch&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;BrowserRouter&gt;</span><br><span class="line">         &lt;&#x2F;Provider&gt;),        </span><br><span class="line">        document.getElementById(&#39;root&#39;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<p>#组件调取store   通过connect 将本组件使用到的store里的属性 和 方法挂载到本组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">@connect(</span><br><span class="line">    state &#x3D;&gt;(&#123;num:state.counter&#125;),</span><br><span class="line">    &#123;addGun,removeGun,addGunAnsyc&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">   </span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.addGun&#125;&gt;申请武器&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.removeGun&#125;&gt;上交武器&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button type&#x3D;&quot;primary&quot; size&#x3D;&quot;small&quot; onClick&#x3D;&#123;this.props.addGunAnsyc&#125;&gt;拖两天再给&lt;&#x2F;Button&gt;</span><br><span class="line"></span><br><span class="line">            &lt;h1&gt;现在有机枪&#123;this.props.num&#125;把&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>this.props.num 因为通过connect 把state.counter放到this.props.num上了</p>
+<p>同理其他方法 也挂载到props里了</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1004,138 +1113,6 @@
 <h3 id="index-sass-文件说明"><a href="#index-sass-文件说明" class="headerlink" title="index.sass 文件说明"></a>index.sass 文件说明</h3><p>index.sass 文件主要负责引入其它 基本样式重置文件 框架样式文件等，不可以在其中引入 包含宏 或者 变量的文件，webpack 的 sass-loader 并不能直接将这些宏 使各自的组件中直接使用<br><strong>宏文件 和 变量文件只可在各自组件中单独引入</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;.&#x2F;reset&quot;</span><br><span class="line">@import &quot;.&#x2F;base&quot;</span><br><span class="line">@import &quot;.&#x2F;iconfont&quot;</span><br><span class="line"></span><br><span class="line">@import &quot;.&#x2F;frame&quot;</span><br><span class="line">@import &quot;.&#x2F;public&quot;</span><br></pre></td></tr></table></figure>
 <h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>vue-cli 中通过 <code>npm install sass-loader node-sass webpack --save-dev</code><br>gulp 宏 <code>npm install gulp-sass --save-dev </code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/28/vue-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/07/28/vue-tips/" class="post-title-link" itemprop="url">VueJS 开发常见问题集锦</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-07-28 14:13:23" itemprop="dateCreated datePublished" datetime="2017-07-28T14:13:23+08:00">2017-07-28</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="封装echarts组件"><a href="#封装echarts组件" class="headerlink" title="封装echarts组件"></a><strong>封装echarts组件</strong></h3><p>在父组件 data里 必须定义好图形初始的必须值，否则报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">lineChartsData:&#123;</span><br><span class="line">               id:&#39;lineChart&#39;,</span><br><span class="line">               height : 500,</span><br><span class="line">               option:&#123;</span><br><span class="line">                   &quot;xAxis&quot;:&#123;</span><br><span class="line">                       &quot;name&quot;:&quot;&quot;,</span><br><span class="line">                       &quot;data&quot;:[]</span><br><span class="line">                   &#125;,</span><br><span class="line">                   &quot;series&quot;:&#123;</span><br><span class="line">                       &quot;name&quot;:&quot;&quot;,</span><br><span class="line">                       &quot;data&quot;:[]</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>传递数据只改变option的值 需要在封装的echarts组件里 watch</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">        lineChartsData: &#123;</span><br><span class="line">          handler: function (val, oldVal) &#123; </span><br><span class="line">            console.log(&quot;watch&quot;)</span><br><span class="line">            this.initLineChart()</span><br><span class="line">          &#125;,</span><br><span class="line">          deep: true  &#x2F;&#x2F;增加deep 观察对象的子对象变化</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="element-ui-的样式需要写在public-css里-因为如果写在封装的-elementui组件里-即使去掉scoped-打包build后还是不能覆盖原有样式"><a href="#element-ui-的样式需要写在public-css里-因为如果写在封装的-elementui组件里-即使去掉scoped-打包build后还是不能覆盖原有样式" class="headerlink" title="element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式"></a><strong>element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式</strong></h3><h3 id="给分页组件传递当前页page-分页组件内部要通过watch-把page变成currentPage-否则会有警告-大义是子组件通过不正确的方法更改了父组件的值"><a href="#给分页组件传递当前页page-分页组件内部要通过watch-把page变成currentPage-否则会有警告-大义是子组件通过不正确的方法更改了父组件的值" class="headerlink" title="给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值"></a><strong>给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值</strong></h3><p>父组件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;pagination</span><br><span class="line">        :pageSize &#x3D; &quot;pageSize&quot;</span><br><span class="line">        :total&#x3D;&quot;total&quot;</span><br><span class="line">        :layout &#x3D; &quot;layout&quot;</span><br><span class="line">        :page&#x3D;&quot;page&quot;</span><br><span class="line">        @pageChange&#x3D;&quot;pageChange&quot;</span><br><span class="line">        &gt;</span><br><span class="line">&lt;&#x2F;pagination&gt;</span><br></pre></td></tr></table></figure>
-<p>分页组件:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-pagination</span><br><span class="line">    :page-size&#x3D;&quot;pageSize&quot;</span><br><span class="line">    :total&#x3D;&quot;total&quot;</span><br><span class="line">    :layout &#x3D; &quot;layout&quot;</span><br><span class="line">    :current-page.sync &#x3D; &quot;currentPage&quot;</span><br><span class="line">    @current-change&#x3D;&quot;handleCurrentChange&quot;</span><br><span class="line">    @size-change&#x3D;&quot;handleSizeChange&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-pagination&gt;</span><br><span class="line"></span><br><span class="line">  watch: &#123;</span><br><span class="line">    page: function (val, oldVal) &#123;</span><br><span class="line">          this.currentPage &#x3D; val</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。"><a href="#vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。" class="headerlink" title="vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。"></a><strong>vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。</strong></h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29266022">https://zhuanlan.zhihu.com/p/29266022</a><br>父组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;gHeader&gt;&lt;&#x2F;gHeader&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">两种写法</span><br><span class="line">.g-header &#x2F;deep&#x2F; span.name&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.g-header &gt;&gt;&gt; span.time&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>子组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;g-header&quot;&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;name&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;time&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="polyfill-与-transform-runtime"><a href="#polyfill-与-transform-runtime" class="headerlink" title="polyfill 与 transform-runtime"></a><strong>polyfill 与 transform-runtime</strong></h3><p>首先，vue-cli 为我们自动添加了 babel-plugin-transform-runtime 这个插件，该插件多数情况下都运作正常，可以转换大部分 ES6 语法。<br>但是，存在如下两个问题：</p>
-<p>异步加载组件时，会产生 polyfill 代码冗余<br>不支持对全局函数与实例方法的 polyfill</p>
-<p>两个问题的原因均归因于 babel-plugin-transform-runtime 采用了沙箱机制来编译我们的代码（即：不修改宿主环境的内置对象）。</p>
-<p>由于异步组件最终会被编译为一个单独的文件，所以即使多个组件中使用了同一个新特性（例如：Object.keys()），那么在每个编译后的文件中都会有一份该新特性的 polyfill 拷贝。如果项目较小可以考虑不使用异步加载，但是首屏的压力会比较大。</p>
-<p>不支持全局函数（如：Promise、Set、Map），Set 跟 Map 这两种数据结构应该大家用的也不多，影响较小。但是 Promise 影响可能就比较大了。</p>
-<p>不支持实例方法（如：’abc’.include(‘b’)、[‘1’, ‘2’, ‘3’].find((n) =&gt; n 等等），这个限制几乎废掉了大部分字符串和一半左右数组的新特性。</p>
-<p>一般情况下 babel-plugin-transform-runtime 能满足大部分的需求，当不满足需求时，推荐使用完整的 babel-polyfill。</p>
-<p>首先，从项目中移除 babel-plugin-transform-runtime<br>卸载该依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un babel-plugin-transform-runtime -D</span><br></pre></td></tr></table></figure>
-<p>修改 babel 配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .babelrc</span><br><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;...</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    &#x2F;&#x2F; - &quot;transform-runtime&quot;</span><br><span class="line">  ]</span><br><span class="line">  &#x2F;&#x2F;...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后，安装 babel-polyfill 依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-polyfill -D</span><br></pre></td></tr></table></figure>
-<p>最后，在入口文件中导入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;main.js</span><br><span class="line">import &#39;babel-polyfill&#39;</span><br></pre></td></tr></table></figure>
-<h3 id="Moment-JS-与-Webpack"><a href="#Moment-JS-与-Webpack" class="headerlink" title="Moment.JS 与 Webpack"></a><strong>Moment.JS 与 Webpack</strong></h3><p>在使用 Moment.js 遇到一些问题，发现最终打包的文件中将 Moment.js 的全部语言包都打包了，导致最终文件徒然增加 100+kB。查了一下，发现可能是 webpack 打包或是 Moment.js 资源引用问题（?），目前该问题还未被妥善处理，需要通过一些 trick 来解决这个问题。</p>
-<p>在 webpack 的生产配置文件中的 plugins 字段中添加一个插件，使用内置的方法类 ContextReplacementPlugin 过滤掉 Moment.js 中那些用不到的语言包：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; build&#x2F;webpack.prod.conf.js</span><br><span class="line">new webpack.ContextReplacementPlugin(&#x2F;moment[\\&#x2F;]locale$&#x2F;, &#x2F;^\.\&#x2F;(zh-cn)$&#x2F;)</span><br></pre></td></tr></table></figure>
-<p>解决方案采自 oleg-nogin@webpack/webpack#3128。<br>问题讨论详见 GitHub Issue: moment/moment#2373、webpack/webpack#3128。</p>
-<h3 id="自定义路径别名"><a href="#自定义路径别名" class="headerlink" title="自定义路径别名"></a><strong>自定义路径别名</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; build&#x2F;webpack.base.js</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [&#39;.js&#39;, &#39;.vue&#39;, &#39;.json&#39;],</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;vue$&#39;: &#39;vue&#x2F;dist&#x2F;vue.esm.js&#39;,</span><br><span class="line">      &#39;@&#39;: resolve(&#39;src&#39;),</span><br><span class="line">      &#39;common&#39;:resolve(&#39;src&#x2F;common&#39;),</span><br><span class="line">      &#39;components&#39;:resolve(&#39;src&#x2F;components&#39;),</span><br><span class="line">      &#39;api&#39;: resolve(&#39;src&#x2F;api&#39;),</span><br><span class="line">      &#39;base&#39;:resolve(&#39;src&#x2F;base&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="获取表单控件值"><a href="#获取表单控件值" class="headerlink" title="获取表单控件值"></a><strong>获取表单控件值</strong></h3><p>通常我们可以直接使用 v-model 将表单控件与数据进行绑定，但是有时候我们也会需要在用户输入的时候获取当前值（比如：实时验证当前输入控件内容的有效性）。</p>
-<p>这时我们可以使用@input或 @change事件绑定我们自己的处理函数，并传入 $event象以获取当前控件的输入值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;text&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">change (e) &#123;</span><br><span class="line">  let curVal &#x3D; e.target.value</span><br><span class="line">  if (&#x2F;^\d+$&#x2F;.test(curVal)) &#123;</span><br><span class="line">    this.num &#x3D; +curVal</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.error(&#39;%s is not a number!&#39;, curVal)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="项目路径配置"><a href="#项目路径配置" class="headerlink" title="项目路径配置"></a><strong>项目路径配置</strong></h3><p>由于 vue-cli 配置的项目提供了一个内置的静态服务器，在开发阶段基本不会有什么问题。但是，当我们把代码放到服务器上时，经常会遇到静态资源引用错误，导致界面一片空白的问题。</p>
-<p>这是由于 vue-cli 默认配置的 webpack 是以站点根目录引用的文件，然而有时候我们可能需要把项目部署到子目录中。</p>
-<p>我们可以通过 config/index.js 来修改文件引用的相对路径：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">build.assetsSubDirectory: &#39;static&#39;</span><br><span class="line">  build.assetsPublicPath: &#39;&#x2F;&#39;</span><br><span class="line"> </span><br><span class="line">  dev.assetsSubDirectory: &#39;static&#39;</span><br><span class="line">  dev.assetsPublicPath: &#39;&#x2F;&#39;</span><br></pre></td></tr></table></figure>
-<p>我们可以看到导出对象中 build 与 dev 均有 assetsSubDirectory、assetsPublicPath 这两个属性。</p>
-<p>其中 assetsSubDirectory 指静态资源文件夹，也就是打包后的　js、css、图片等文件所放置的文件夹，这个默认一般不会有问题。</p>
-<p>assetsPublicPath 指静态资源的引用路径，默认配置为 /，即网站根目录，与 assetsSubDirectory 组合起来就是完整的静态资源引用路径 /static。</p>
-<p>写到这里解决方法已经很明显了，只要把根目录改为相对目录就好了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">build.assetsSubDirectory: &#39;static&#39;</span><br><span class="line"> build.assetsPublicPath: &#39;.&#x2F;&#39;</span><br></pre></td></tr></table></figure>
-<p>没错！就是一个 . 的问题。ㄟ( ▔, ▔ )ㄏ</p>
-<h3 id="打包后背景图显示不出来的问题"><a href="#打包后背景图显示不出来的问题" class="headerlink" title="打包后背景图显示不出来的问题"></a><strong>打包后背景图显示不出来的问题</strong></h3><p><img src="/uploads/vue2.jpg" alt="百度"></p>
-<p><img src="/uploads/vue3.jpg" alt="百度"></p>
-<h3 id="使用vue-cli开发时跨域问题"><a href="#使用vue-cli开发时跨域问题" class="headerlink" title="使用vue-cli开发时跨域问题"></a><strong>使用vue-cli开发时跨域问题</strong></h3><p>打开config文件夹下的index.js,配置proxyTable：</p>
-<p><img src="/uploads/vue1.png" alt="百度"></p>
-<p>其中，taget是要访问的api的域名，配置完proxyTable后，若要访问’<a target="_blank" rel="noopener" href="http://apis.haoservice.com/lifeservice/chicken/duck&#39;%EF%BC%8Cajax%E9%87%8C%E7%9A%84url%E5%8F%AA%E9%9C%80%E8%AE%BE%E4%B8%BA&#39;/lifeservice/chicken/duck&#39;(%E5%8D%B3%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)%E5%8D%B3%E5%8F%AF%EF%BC%8Cwebpack%E4%BC%9A%E5%B8%AE%E4%BD%A0%E6%8A%8A%E2%80%98/lifeservice%E2%80%99%E4%B8%8B%E7%9A%84%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E8%87%B3&#39;http://apis.haoservice.com/lifeservice/chicken/duck&#39;%EF%BC%81">http://apis.haoservice.com/lifeservice/chicken/duck&#39;，ajax里的url只需设为&#39;/lifeservice/chicken/duck&#39;(即绝对路径)即可，webpack会帮你把‘/lifeservice’下的请求转发至&#39;http://apis.haoservice.com/lifeservice/chicken/duck&#39;！</a></p>
 
       
     </div>

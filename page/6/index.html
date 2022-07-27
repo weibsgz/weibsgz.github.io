@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,138 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/28/vue-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/07/28/vue-tips/" class="post-title-link" itemprop="url">VueJS 开发常见问题集锦</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-07-28 14:13:23" itemprop="dateCreated datePublished" datetime="2017-07-28T14:13:23+08:00">2017-07-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="封装echarts组件"><a href="#封装echarts组件" class="headerlink" title="封装echarts组件"></a><strong>封装echarts组件</strong></h3><p>在父组件 data里 必须定义好图形初始的必须值，否则报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">lineChartsData:&#123;</span><br><span class="line">               id:&#39;lineChart&#39;,</span><br><span class="line">               height : 500,</span><br><span class="line">               option:&#123;</span><br><span class="line">                   &quot;xAxis&quot;:&#123;</span><br><span class="line">                       &quot;name&quot;:&quot;&quot;,</span><br><span class="line">                       &quot;data&quot;:[]</span><br><span class="line">                   &#125;,</span><br><span class="line">                   &quot;series&quot;:&#123;</span><br><span class="line">                       &quot;name&quot;:&quot;&quot;,</span><br><span class="line">                       &quot;data&quot;:[]</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>传递数据只改变option的值 需要在封装的echarts组件里 watch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">        lineChartsData: &#123;</span><br><span class="line">          handler: function (val, oldVal) &#123; </span><br><span class="line">            console.log(&quot;watch&quot;)</span><br><span class="line">            this.initLineChart()</span><br><span class="line">          &#125;,</span><br><span class="line">          deep: true  &#x2F;&#x2F;增加deep 观察对象的子对象变化</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="element-ui-的样式需要写在public-css里-因为如果写在封装的-elementui组件里-即使去掉scoped-打包build后还是不能覆盖原有样式"><a href="#element-ui-的样式需要写在public-css里-因为如果写在封装的-elementui组件里-即使去掉scoped-打包build后还是不能覆盖原有样式" class="headerlink" title="element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式"></a><strong>element-ui 的样式需要写在public.css里  因为如果写在封装的 elementui组件里 即使去掉scoped 打包build后还是不能覆盖原有样式</strong></h3><h3 id="给分页组件传递当前页page-分页组件内部要通过watch-把page变成currentPage-否则会有警告-大义是子组件通过不正确的方法更改了父组件的值"><a href="#给分页组件传递当前页page-分页组件内部要通过watch-把page变成currentPage-否则会有警告-大义是子组件通过不正确的方法更改了父组件的值" class="headerlink" title="给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值"></a><strong>给分页组件传递当前页page 分页组件内部要通过watch 把page变成currentPage 否则会有警告 大义是子组件通过不正确的方法更改了父组件的值</strong></h3><p>父组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;pagination</span><br><span class="line">        :pageSize &#x3D; &quot;pageSize&quot;</span><br><span class="line">        :total&#x3D;&quot;total&quot;</span><br><span class="line">        :layout &#x3D; &quot;layout&quot;</span><br><span class="line">        :page&#x3D;&quot;page&quot;</span><br><span class="line">        @pageChange&#x3D;&quot;pageChange&quot;</span><br><span class="line">        &gt;</span><br><span class="line">&lt;&#x2F;pagination&gt;</span><br></pre></td></tr></table></figure>
+<p>分页组件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-pagination</span><br><span class="line">    :page-size&#x3D;&quot;pageSize&quot;</span><br><span class="line">    :total&#x3D;&quot;total&quot;</span><br><span class="line">    :layout &#x3D; &quot;layout&quot;</span><br><span class="line">    :current-page.sync &#x3D; &quot;currentPage&quot;</span><br><span class="line">    @current-change&#x3D;&quot;handleCurrentChange&quot;</span><br><span class="line">    @size-change&#x3D;&quot;handleSizeChange&quot;</span><br><span class="line">    &gt;</span><br><span class="line">&lt;&#x2F;el-pagination&gt;</span><br><span class="line"></span><br><span class="line">  watch: &#123;</span><br><span class="line">    page: function (val, oldVal) &#123;</span><br><span class="line">          this.currentPage &#x3D; val</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。"><a href="#vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。" class="headerlink" title="vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。"></a><strong>vue开发中，父组件添加scoped之后。解决在父组件中无法修改子组件样式问题。</strong></h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29266022">https://zhuanlan.zhihu.com/p/29266022</a><br>父组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;gHeader&gt;&lt;&#x2F;gHeader&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">两种写法</span><br><span class="line">.g-header &#x2F;deep&#x2F; span.name&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.g-header &gt;&gt;&gt; span.time&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>子组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;g-header&quot;&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;name&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;time&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="polyfill-与-transform-runtime"><a href="#polyfill-与-transform-runtime" class="headerlink" title="polyfill 与 transform-runtime"></a><strong>polyfill 与 transform-runtime</strong></h3><p>首先，vue-cli 为我们自动添加了 babel-plugin-transform-runtime 这个插件，该插件多数情况下都运作正常，可以转换大部分 ES6 语法。<br>但是，存在如下两个问题：</p>
+<p>异步加载组件时，会产生 polyfill 代码冗余<br>不支持对全局函数与实例方法的 polyfill</p>
+<p>两个问题的原因均归因于 babel-plugin-transform-runtime 采用了沙箱机制来编译我们的代码（即：不修改宿主环境的内置对象）。</p>
+<p>由于异步组件最终会被编译为一个单独的文件，所以即使多个组件中使用了同一个新特性（例如：Object.keys()），那么在每个编译后的文件中都会有一份该新特性的 polyfill 拷贝。如果项目较小可以考虑不使用异步加载，但是首屏的压力会比较大。</p>
+<p>不支持全局函数（如：Promise、Set、Map），Set 跟 Map 这两种数据结构应该大家用的也不多，影响较小。但是 Promise 影响可能就比较大了。</p>
+<p>不支持实例方法（如：’abc’.include(‘b’)、[‘1’, ‘2’, ‘3’].find((n) =&gt; n 等等），这个限制几乎废掉了大部分字符串和一半左右数组的新特性。</p>
+<p>一般情况下 babel-plugin-transform-runtime 能满足大部分的需求，当不满足需求时，推荐使用完整的 babel-polyfill。</p>
+<p>首先，从项目中移除 babel-plugin-transform-runtime<br>卸载该依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un babel-plugin-transform-runtime -D</span><br></pre></td></tr></table></figure>
+<p>修改 babel 配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .babelrc</span><br><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;...</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    &#x2F;&#x2F; - &quot;transform-runtime&quot;</span><br><span class="line">  ]</span><br><span class="line">  &#x2F;&#x2F;...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，安装 babel-polyfill 依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-polyfill -D</span><br></pre></td></tr></table></figure>
+<p>最后，在入口文件中导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;main.js</span><br><span class="line">import &#39;babel-polyfill&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="Moment-JS-与-Webpack"><a href="#Moment-JS-与-Webpack" class="headerlink" title="Moment.JS 与 Webpack"></a><strong>Moment.JS 与 Webpack</strong></h3><p>在使用 Moment.js 遇到一些问题，发现最终打包的文件中将 Moment.js 的全部语言包都打包了，导致最终文件徒然增加 100+kB。查了一下，发现可能是 webpack 打包或是 Moment.js 资源引用问题（?），目前该问题还未被妥善处理，需要通过一些 trick 来解决这个问题。</p>
+<p>在 webpack 的生产配置文件中的 plugins 字段中添加一个插件，使用内置的方法类 ContextReplacementPlugin 过滤掉 Moment.js 中那些用不到的语言包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; build&#x2F;webpack.prod.conf.js</span><br><span class="line">new webpack.ContextReplacementPlugin(&#x2F;moment[\\&#x2F;]locale$&#x2F;, &#x2F;^\.\&#x2F;(zh-cn)$&#x2F;)</span><br></pre></td></tr></table></figure>
+<p>解决方案采自 oleg-nogin@webpack/webpack#3128。<br>问题讨论详见 GitHub Issue: moment/moment#2373、webpack/webpack#3128。</p>
+<h3 id="自定义路径别名"><a href="#自定义路径别名" class="headerlink" title="自定义路径别名"></a><strong>自定义路径别名</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; build&#x2F;webpack.base.js</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [&#39;.js&#39;, &#39;.vue&#39;, &#39;.json&#39;],</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;vue$&#39;: &#39;vue&#x2F;dist&#x2F;vue.esm.js&#39;,</span><br><span class="line">      &#39;@&#39;: resolve(&#39;src&#39;),</span><br><span class="line">      &#39;common&#39;:resolve(&#39;src&#x2F;common&#39;),</span><br><span class="line">      &#39;components&#39;:resolve(&#39;src&#x2F;components&#39;),</span><br><span class="line">      &#39;api&#39;: resolve(&#39;src&#x2F;api&#39;),</span><br><span class="line">      &#39;base&#39;:resolve(&#39;src&#x2F;base&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取表单控件值"><a href="#获取表单控件值" class="headerlink" title="获取表单控件值"></a><strong>获取表单控件值</strong></h3><p>通常我们可以直接使用 v-model 将表单控件与数据进行绑定，但是有时候我们也会需要在用户输入的时候获取当前值（比如：实时验证当前输入控件内容的有效性）。</p>
+<p>这时我们可以使用@input或 @change事件绑定我们自己的处理函数，并传入 $event象以获取当前控件的输入值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;text&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">change (e) &#123;</span><br><span class="line">  let curVal &#x3D; e.target.value</span><br><span class="line">  if (&#x2F;^\d+$&#x2F;.test(curVal)) &#123;</span><br><span class="line">    this.num &#x3D; +curVal</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.error(&#39;%s is not a number!&#39;, curVal)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目路径配置"><a href="#项目路径配置" class="headerlink" title="项目路径配置"></a><strong>项目路径配置</strong></h3><p>由于 vue-cli 配置的项目提供了一个内置的静态服务器，在开发阶段基本不会有什么问题。但是，当我们把代码放到服务器上时，经常会遇到静态资源引用错误，导致界面一片空白的问题。</p>
+<p>这是由于 vue-cli 默认配置的 webpack 是以站点根目录引用的文件，然而有时候我们可能需要把项目部署到子目录中。</p>
+<p>我们可以通过 config/index.js 来修改文件引用的相对路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">build.assetsSubDirectory: &#39;static&#39;</span><br><span class="line">  build.assetsPublicPath: &#39;&#x2F;&#39;</span><br><span class="line"> </span><br><span class="line">  dev.assetsSubDirectory: &#39;static&#39;</span><br><span class="line">  dev.assetsPublicPath: &#39;&#x2F;&#39;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到导出对象中 build 与 dev 均有 assetsSubDirectory、assetsPublicPath 这两个属性。</p>
+<p>其中 assetsSubDirectory 指静态资源文件夹，也就是打包后的　js、css、图片等文件所放置的文件夹，这个默认一般不会有问题。</p>
+<p>assetsPublicPath 指静态资源的引用路径，默认配置为 /，即网站根目录，与 assetsSubDirectory 组合起来就是完整的静态资源引用路径 /static。</p>
+<p>写到这里解决方法已经很明显了，只要把根目录改为相对目录就好了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">build.assetsSubDirectory: &#39;static&#39;</span><br><span class="line"> build.assetsPublicPath: &#39;.&#x2F;&#39;</span><br></pre></td></tr></table></figure>
+<p>没错！就是一个 . 的问题。ㄟ( ▔, ▔ )ㄏ</p>
+<h3 id="打包后背景图显示不出来的问题"><a href="#打包后背景图显示不出来的问题" class="headerlink" title="打包后背景图显示不出来的问题"></a><strong>打包后背景图显示不出来的问题</strong></h3><p><img src="/uploads/vue2.jpg" alt="百度"></p>
+<p><img src="/uploads/vue3.jpg" alt="百度"></p>
+<h3 id="使用vue-cli开发时跨域问题"><a href="#使用vue-cli开发时跨域问题" class="headerlink" title="使用vue-cli开发时跨域问题"></a><strong>使用vue-cli开发时跨域问题</strong></h3><p>打开config文件夹下的index.js,配置proxyTable：</p>
+<p><img src="/uploads/vue1.png" alt="百度"></p>
+<p>其中，taget是要访问的api的域名，配置完proxyTable后，若要访问’<a target="_blank" rel="noopener" href="http://apis.haoservice.com/lifeservice/chicken/duck&#39;%EF%BC%8Cajax%E9%87%8C%E7%9A%84url%E5%8F%AA%E9%9C%80%E8%AE%BE%E4%B8%BA&#39;/lifeservice/chicken/duck&#39;(%E5%8D%B3%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)%E5%8D%B3%E5%8F%AF%EF%BC%8Cwebpack%E4%BC%9A%E5%B8%AE%E4%BD%A0%E6%8A%8A%E2%80%98/lifeservice%E2%80%99%E4%B8%8B%E7%9A%84%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E8%87%B3&#39;http://apis.haoservice.com/lifeservice/chicken/duck&#39;%EF%BC%81">http://apis.haoservice.com/lifeservice/chicken/duck&#39;，ajax里的url只需设为&#39;/lifeservice/chicken/duck&#39;(即绝对路径)即可，webpack会帮你把‘/lifeservice’下的请求转发至&#39;http://apis.haoservice.com/lifeservice/chicken/duck&#39;！</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -983,90 +1115,6 @@
 
 
 <h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;switch&quot;&gt;&lt;em&gt;ON&lt;&#x2F;em&gt;&lt;i&gt;&lt;&#x2F;i&gt;&lt;&#x2F;div&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line"> $(&quot;.switch&quot;).click(function() &#123;</span><br><span class="line">     if ($(this).hasClass(&quot;switchOn&quot;)) &#123;</span><br><span class="line">         $(this).removeClass(&quot;switchOn&quot;);</span><br><span class="line">         $(this).find(&quot;em&quot;).text(&quot;ON&quot;);</span><br><span class="line">     &#125; else &#123;</span><br><span class="line">         $(this).addClass(&quot;switchOn&quot;);</span><br><span class="line">         $(this).find(&quot;em&quot;).text(&quot;OFF&quot;);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;)</span><br><span class="line"> &lt;&#x2F;script&gt; </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/18/2017-04-18-herfToTop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/18/2017-04-18-herfToTop/" class="post-title-link" itemprop="url">锚点平滑滚动</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-18 01:08:00" itemprop="dateCreated datePublished" datetime="2017-04-18T01:08:00+08:00">2017-04-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>====================================</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  $(&quot;.navbar-item&quot;).on(&quot;click&quot;, &quot;li &gt; a&quot;, function()&#123;</span><br><span class="line">    &#x2F;&#x2F; 激活态</span><br><span class="line">    $(&quot;.navbar-item ul a&quot;).removeClass(&quot;active&quot;);</span><br><span class="line">    $(this).addClass(&quot;active&quot;);</span><br><span class="line"></span><br><span class="line">    var href &#x3D; $(this).attr(&quot;href&quot;);</span><br><span class="line">    if (href.substring(href.length - 1) !&#x3D; &quot;#&quot;) &#123;</span><br><span class="line">        var pos &#x3D; $(href).offset().top;</span><br><span class="line">        $(&quot;html,body&quot;).animate(&#123;scrollTop: pos&#125;, 300);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
       
     </div>
 
