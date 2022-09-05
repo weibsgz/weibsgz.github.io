@@ -159,18 +159,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -199,6 +199,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/07/14/apply/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/07/14/apply/" class="post-title-link" itemprop="url">js的apply问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-14 14:13:23" itemprop="dateCreated datePublished" datetime="2019-07-14T14:13:23+08:00">2019-07-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a><strong>apply</strong></h3><p>MSDN定义：</p>
+<p>func.apply(thisArg, [argsArray])<br>参数节<br>thisArg<br>可选的。在 func 函数运行时使用的 this 值。请注意，this可能不是该方法看到的实际值：如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。<br>argsArray<br>可选的。一个数组或者类数组对象，<code>其中的数组元素将作为单独的参数传给 func 函数</code>。如果该参数的值为 null 或  undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。 浏览器兼容性 请参阅本文底部内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Test &#123;</span><br><span class="line">        do1() &#123;</span><br><span class="line">            var arg &#x3D; Array.prototype.slice.call(arguments)</span><br><span class="line">            console.log(arg)</span><br><span class="line">        &#125;</span><br><span class="line">        do2() &#123;</span><br><span class="line">            this.do1.apply(this,arguments)</span><br><span class="line">        &#125;</span><br><span class="line">        do3() &#123;</span><br><span class="line">            this.do1(arguments)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    var a &#x3D; new Test()</span><br><span class="line">    a.do2(test) &#x2F;&#x2F;[f]</span><br><span class="line">    a.do3(test) &#x2F;&#x2F;[Arguments(f)]</span><br><span class="line"></span><br><span class="line">     a.do2(1) &#x2F;&#x2F; [1]</span><br><span class="line">     a.do3(1) &#x2F;&#x2F;[Arguments(1)]</span><br><span class="line"></span><br><span class="line">    function test() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>arguments 是一个对应于传递给函数的参数的类数组对象<br>还可以使用Array.from()方法或扩展运算符将参数转换为真实数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var args &#x3D; Array.from(arguments);</span><br><span class="line">var args &#x3D; [...arguments];</span><br></pre></td></tr></table></figure>
+<p>以上代码如果执行DO3方法 不用apply 那么传入的无论是函数还是数字就不是一个单一的函数或者数字<br>会被arguments包一层或者用do4方法，将数组解构</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -823,90 +908,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
-<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
-
-<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
-<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-layout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1006,7 +1007,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/dom-event/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
@@ -1019,7 +1020,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/03/02/dom-event/" class="post-title-link" itemprop="url">dom事件</a>
+          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1045,7 +1046,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
         </span>
     </span>
 
@@ -1059,16 +1060,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="dom事件级别"><a href="#dom事件级别" class="headerlink" title="dom事件级别"></a><strong>dom事件级别</strong></h3><p>DOM0：element.oncick= fn<br>DOM2: element.addEventListener(‘click’,fn,false) / attachEvent<br>DOM3: element.addEventListener(‘keyup’,fn,false) </p>
-<h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a><strong>事件模型</strong></h3><p>冒泡或者捕获<br>事件流：事件通过捕获到达目标元素（捕获阶段），从目标元素上传到window对象（冒泡阶段）<br>捕获：从window-&gt;document-&gt;html</p>
-<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a><strong>事件对象</strong></h3><p>event.preventDefault() 阻止默认行为(链接跳转)<br>event.stopProgatation() 阻止冒泡</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#39;list&#39;).addEventListener(&#39;click&#39;, function (e) &#123;</span><br><span class="line">  &#x2F;&#x2F; 兼容性处理</span><br><span class="line">  var event &#x3D; e || window.event;</span><br><span class="line">  var target &#x3D; event.target || event.srcElement;</span><br><span class="line">  &#x2F;&#x2F; 判断是否匹配目标元素</span><br><span class="line">  if (target.nodeName.toLocaleLowerCase &#x3D;&#x3D;&#x3D; &#39;li&#39;) &#123;</span><br><span class="line">    console.log(&#39;the content is: &#39;, target.innerHTML);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
+<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
+<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
 
       
     </div>

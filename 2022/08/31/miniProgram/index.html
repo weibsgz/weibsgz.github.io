@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="github 地址https:&#x2F;&#x2F;github.com&#x2F;weibsgz&#x2F;miniProgram  关于WXS   小程序的运行环境分成渲染层和逻辑层，其中 WXML 模板和 WXSS 样式工作在渲染层，JS 脚本工作在逻辑层。响应的数据绑定系统通过this.setData()在两者之间进行数据传输。有频繁用户交互的效果在小程序上表现是比较卡顿的。比如你在bind:touchmove事件中去不停的s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序一些问题">
+<meta property="og:url" content="http://example.com/2022/08/31/miniProgram/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="github 地址https:&#x2F;&#x2F;github.com&#x2F;weibsgz&#x2F;miniProgram  关于WXS   小程序的运行环境分成渲染层和逻辑层，其中 WXML 模板和 WXSS 样式工作在渲染层，JS 脚本工作在逻辑层。响应的数据绑定系统通过this.setData()在两者之间进行数据传输。有频繁用户交互的效果在小程序上表现是比较卡顿的。比如你在bind:touchmove事件中去不停的s">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-31T06:13:23.000Z">
+<meta property="article:modified_time" content="2022-09-05T03:32:51.934Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="小程序">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/08/31/miniProgram/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>小程序一些问题 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#github-%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">github 地址</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/31/miniProgram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小程序一些问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-08-31 14:13:23" itemprop="dateCreated datePublished" datetime="2022-08-31T14:13:23+08:00">2022-08-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-09-05 11:32:51" itemprop="dateModified" datetime="2022-09-05T11:32:51+08:00">2022-09-05</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="github-地址"><a href="#github-地址" class="headerlink" title="github 地址"></a>github 地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/miniProgram">https://github.com/weibsgz/miniProgram</a></p>
+<ol>
+<li>关于WXS</li>
+</ol>
+<ul>
+<li>小程序的运行环境分成渲染层和逻辑层，其中 WXML 模板和 WXSS 样式工作在渲染层，JS 脚本工作在逻辑层。响应的数据绑定系统通过this.setData()在两者之间进行数据传输。有频繁用户交互的效果在小程序上表现是比较卡顿的。比如你在bind:touchmove事件中去不停的setData试图改变一个节点的位置，这是行不通的，太卡了。</li>
+<li>基于以上情况，微信小程序的设计者就提出了wxs的概念。 WXS 直接在渲染层做通信 性能消耗低</li>
+<li>WXS 不依赖于运行时的基础库版本，可以在所有版本的小程序中运行</li>
+<li>WXS 的运行环境和其他 JavaScript 代码是隔离的，WXS 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的API。</li>
+<li>WXS只能使用 JavaScript 的 ES5 语法</li>
+<li>本项目中 components/tabs  中首页滑动内容区域执行wxs的 touchstart touchend方法。</li>
+<li>wxs也可以做数据格式化处理 /common/wxs/status-text.wxs</li>
+</ul>
+<ol start="2">
+<li>如果多个页面都要用到的公共组件 可以放到app.json中声明</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;</span><br><span class="line">  &quot;c-icon&quot; : &quot;&#x2F;components&#x2F;icon&#x2F;icon&quot;,</span><br><span class="line">  &quot;c-tabs&quot;:&quot;&#x2F;components&#x2F;tabs&#x2F;tabs&quot;,</span><br><span class="line">  &quot;c-service-preivew&quot; : &quot;&#x2F;components&#x2F;service-preview&#x2F;service-preview&quot;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>下拉刷新，需要在目标页JSON或者全局app.json中配置enablePullDownRefresh,默认加载中的样式是白色的，需要在app.json中修改backgroundTextStyle</li>
+</ol>
+<ol start="4">
+<li>IOS手机 <ul>
+<li>底部橡皮筋白色 通过在app.json中设置 backgroundColorBottom为你的背景色解决</li>
+<li>顶部橡皮筋白色 通过在业务页面的JSON中设置 backgroundColorTop解决</li>
+</ul>
+</li>
+</ol>
+<ol start="5">
+<li>position: sticky吸顶效果  如果他的父元素是 height:100%  那么他滚动到100%高度的时候就无效了 ，需要把父元素设置为 min-height:100%</li>
+</ol>
+<ul>
+<li>fixed 生成固定定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。<br>sticky 粘性定位，该定位基于用户滚动的位置。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。</li>
+</ul>
+<ol start="6">
+<li>safe-area  只有IOS10以上才有底部一个黑条 他所在的区域就是安全区域，我们的业务内容需要避开这个区域</li>
+</ol>
+<p><code>components/safe-area/safe-area.wxss</code> 中是处理安全区域的组件  使用不同的边距样式</p>
+<ol start="7">
+<li>外部样式类</li>
+</ol>
+<ul>
+<li>组件JS中加入配置 <code>  externalClasses: [ &#39;i-button-class&#39;, &#39;i-button-special-class&#39; ],</code></li>
+<li>组件WXML中 <code>&lt;view wx:if=&quot;&#123;&#123;!special&#125;&#125;&quot;class=&quot;i-button i-button-class&gt;</code></li>
+<li>父组件 <code>&lt;c-button i-button-class=&quot;my-i-button-class&quot;&gt;</code></li>
+<li>父组件 wxss <code>.my-i-button-class &#123;color: red !important;&#125;</code></li>
+</ul>
+<ol start="8">
+<li>引入 WEUI</li>
+</ol>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/extended/weui/">https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/extended/weui/</a></p>
+</li>
+<li><p>app.json中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F;mp-msg是某个组件</span><br><span class="line"></span><br><span class="line">  &quot;usingComponents&quot;: &#123;    </span><br><span class="line">    &quot;mp-msg&quot;:&quot;weui-miniprogram&#x2F;msg&#x2F;msg&quot;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;useExtendedLib&quot;: &#123;</span><br><span class="line">    &quot;weui&quot;:true</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="9">
+<li>引入TIM SDK </li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/269/37411">https://cloud.tencent.com/document/product/269/37411</a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/tim-wx-sdk">https://www.npmjs.com/package/tim-wx-sdk</a></p>
+<ul>
+<li>在小程序目录下     node.js &gt; v12<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">npm install tim-wx-sdk --save</span><br><span class="line">npm install tim-upload-plugin --save</span><br></pre></td></tr></table></figure></li>
+<li>小程序编辑器中 开发者工具菜单——工具——构建 npm</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/">https://console.cloud.tencent.com/</a> 注册账号 在搜索中搜索IM 在IM控制台创建项目 获取SDKAPPID </li>
+</ul>
+<p><code>model/tim.js</code> 中初始化TIM</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import TIM from &#39;tim-wx-sdk&#39;;</span><br><span class="line">import TIMUploadPlugin from &#39;tim-upload-plugin&#39;;</span><br><span class="line"></span><br><span class="line">let options &#x3D; &#123;</span><br><span class="line">  SDKAppID: 你申请的SDKAPPID &#x2F;&#x2F; 接入时需要将 0 替换为您的云通信应用的 SDKAppID，类型为 Number</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; 创建 SDK 实例，&#96;TIM.create()&#96;方法对于同一个 &#96;SDKAppID&#96; 只会返回同一份实例</span><br><span class="line">let tim &#x3D; TIM.create(options); &#x2F;&#x2F; SDK 实例通常用 tim 表示</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 设置 SDK 日志输出级别，详细分级请参见 setLogLevel 接口的说明</span><br><span class="line">tim.setLogLevel(0); &#x2F;&#x2F; 普通级别，日志量较多，接入时建议使用</span><br><span class="line">&#x2F;&#x2F; tim.setLogLevel(1); &#x2F;&#x2F; release级别，SDK 输出关键信息，生产环境时建议使用</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 注册腾讯云即时通信 IM 上传插件</span><br><span class="line">tim.registerPlugin(&#123;&#39;tim-upload-plugin&#39;: TIMUploadPlugin&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 接下来可以通过 tim 进行事件绑定和构建 IM 应用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>项目中使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Tim from &#39;..&#x2F;..&#x2F;model&#x2F;tim&#39;</span><br><span class="line"></span><br><span class="line">new Tim()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>看到IDE的控制台打印出TIM的信息 代表引入成功</p>
+</li>
+<li><p>userSig生成 <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/im/detail">https://console.cloud.tencent.com/im/detail</a></p>
+</li>
+<li><p>用sdkAppid 和 密钥生成签名 本项目中前端生成签名 （开发阶段）实际使用时候必须后端生成签名</p>
+</li>
+<li><p>前端生成签名方法：</p>
+</li>
+<li><p><code>libs/tim/两个文件</code></p>
+</li>
+<li><p>generate-test-usersig.js 里 配置你的 用sdkAppid和密钥</p>
+</li>
+</ul>
+<ol start="10">
+<li>安装MBOX</li>
+</ol>
+<ul>
+<li><p>package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 配置以下这两个依赖信息</span><br><span class="line">&quot;mobx-miniprogram&quot;: &quot;4.13.2&quot;,</span><br><span class="line">&quot;mobx-miniprogram-bindings&quot;: &quot;2.0.0&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>构建NPM</p>
+</li>
+<li><p><code>/store/tim.js</code> 配置文件</p>
+</li>
+<li><p>page中调用   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import &#123; createStoreBindings &#125; from &quot;mobx-miniprogram-bindings&quot;;</span><br><span class="line">import &#123; timStore &#125; from &quot;..&#x2F;..&#x2F;store&#x2F;tim&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> onLoad: function (options) &#123;</span><br><span class="line">   &#x2F;**  mbox调用</span><br><span class="line">   * this 当前页面的this</span><br><span class="line">   * store </span><br><span class="line">   * fields &#x2F;&#x2F;使用store 中哪个state</span><br><span class="line">   * actiion  &#x2F;&#x2F;store中用哪个action</span><br><span class="line">   * </span><br><span class="line">   * 配置好后 createStoreBindings 就可以把我们在store中配置的状态绑定到我们当前page对象下</span><br><span class="line">   *&#x2F;</span><br><span class="line"></span><br><span class="line">    this.storeBindings &#x3D; createStoreBindings(this, &#123;</span><br><span class="line">      store: timStore,</span><br><span class="line">      fields: [&#39;sdkReady&#39;],</span><br><span class="line">      actions: [&#39;login&#39;]</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F;当前页面的this直接可以调用store的方法了</span><br><span class="line">    &#x2F;&#x2F; this.data.sdkReady 也会有值  页面中可以使用&#123;&#123;sdkReady&#125;&#125;</span><br><span class="line">    this.login()</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;页面销毁时候同时 销毁STORE的绑定</span><br><span class="line"> onUnload: function () &#123;</span><br><span class="line">    this.storeBindings.destroyStoreBindings()</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+<li><p>js中使用同样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStoreBindings &#125; from &quot;mobx-miniprogram-bindings&quot;;</span><br><span class="line">import &#123; timStore &#125; from &quot;..&#x2F;store&#x2F;tim&quot;;</span><br><span class="line"></span><br><span class="line">this.storeBindings &#x3D; createStoreBindings(this, &#123;</span><br><span class="line">    store: timStore,</span><br><span class="line">    fields: [&#39;sdkReady&#39;],</span><br><span class="line">    actions: &#123; timLogout: &#39;logout&#39; &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"> if (this.sdkReady) &#123;</span><br><span class="line">        this.timLogout()</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在自定义组件中使用 用behaviors </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import &#123; storeBindingsBehavior &#125; from &quot;mobx-miniprogram-bindings&quot;;</span><br><span class="line">import &#123; timStore &#125; from &quot;..&#x2F;..&#x2F;..&#x2F;..&#x2F;store&#x2F;tim&quot;;</span><br><span class="line"></span><br><span class="line">Component(&#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的属性列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  behaviors:[storeBindingsBehavior],</span><br><span class="line">  storeBindings:&#123;</span><br><span class="line">    store:timStore,</span><br><span class="line">    fields:[&#39;messageList&#39;],</span><br><span class="line">    actions:[&#39;getMessageList&#39;,&#39;setTargetUserId&#39;]</span><br><span class="line">  &#125;,</span><br><span class="line">  properties: &#123;</span><br><span class="line">      </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的初始数据</span><br><span class="line">   *&#x2F;</span><br><span class="line">  data: &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的方法列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  methods: &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="11">
+<li>本项目为了测试聊天  需要 下载的腾讯小程序IM DEMO  在里边创建了一个用户weibsgz 输入我们当前这个项目的userId(微信授权登录后是2573) 和 2573聊天 在conversation中可以看到聊天</li>
+</ol>
+<ul>
+<li><p>model/tim.js login方法里边可以知道我们的微信登录后获取接口给我们设置的用户ID （2573）</p>
+</li>
+<li><p>在<code>conversation.js</code>中设置目标聊天人(weibsgz) 和本项目中登录的用户和weibsgz的聊天列表<br><code>this.setTargetUserId(&#39;weibsgz&#39;)</code></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag"># 小程序</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/27/css-animation/" rel="prev" title="css动画小栗子">
+                  <i class="fa fa-chevron-left"></i> css动画小栗子
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

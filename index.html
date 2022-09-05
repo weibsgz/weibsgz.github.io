@@ -159,18 +159,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -199,6 +199,203 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/31/miniProgram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/31/miniProgram/" class="post-title-link" itemprop="url">小程序一些问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-08-31 14:13:23" itemprop="dateCreated datePublished" datetime="2022-08-31T14:13:23+08:00">2022-08-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-09-05 11:32:51" itemprop="dateModified" datetime="2022-09-05T11:32:51+08:00">2022-09-05</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="github-地址"><a href="#github-地址" class="headerlink" title="github 地址"></a>github 地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/miniProgram">https://github.com/weibsgz/miniProgram</a></p>
+<ol>
+<li>关于WXS</li>
+</ol>
+<ul>
+<li>小程序的运行环境分成渲染层和逻辑层，其中 WXML 模板和 WXSS 样式工作在渲染层，JS 脚本工作在逻辑层。响应的数据绑定系统通过this.setData()在两者之间进行数据传输。有频繁用户交互的效果在小程序上表现是比较卡顿的。比如你在bind:touchmove事件中去不停的setData试图改变一个节点的位置，这是行不通的，太卡了。</li>
+<li>基于以上情况，微信小程序的设计者就提出了wxs的概念。 WXS 直接在渲染层做通信 性能消耗低</li>
+<li>WXS 不依赖于运行时的基础库版本，可以在所有版本的小程序中运行</li>
+<li>WXS 的运行环境和其他 JavaScript 代码是隔离的，WXS 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的API。</li>
+<li>WXS只能使用 JavaScript 的 ES5 语法</li>
+<li>本项目中 components/tabs  中首页滑动内容区域执行wxs的 touchstart touchend方法。</li>
+<li>wxs也可以做数据格式化处理 /common/wxs/status-text.wxs</li>
+</ul>
+<ol start="2">
+<li>如果多个页面都要用到的公共组件 可以放到app.json中声明</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;</span><br><span class="line">  &quot;c-icon&quot; : &quot;&#x2F;components&#x2F;icon&#x2F;icon&quot;,</span><br><span class="line">  &quot;c-tabs&quot;:&quot;&#x2F;components&#x2F;tabs&#x2F;tabs&quot;,</span><br><span class="line">  &quot;c-service-preivew&quot; : &quot;&#x2F;components&#x2F;service-preview&#x2F;service-preview&quot;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>下拉刷新，需要在目标页JSON或者全局app.json中配置enablePullDownRefresh,默认加载中的样式是白色的，需要在app.json中修改backgroundTextStyle</li>
+</ol>
+<ol start="4">
+<li>IOS手机 <ul>
+<li>底部橡皮筋白色 通过在app.json中设置 backgroundColorBottom为你的背景色解决</li>
+<li>顶部橡皮筋白色 通过在业务页面的JSON中设置 backgroundColorTop解决</li>
+</ul>
+</li>
+</ol>
+<ol start="5">
+<li>position: sticky吸顶效果  如果他的父元素是 height:100%  那么他滚动到100%高度的时候就无效了 ，需要把父元素设置为 min-height:100%</li>
+</ol>
+<ul>
+<li>fixed 生成固定定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。<br>sticky 粘性定位，该定位基于用户滚动的位置。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。</li>
+</ul>
+<ol start="6">
+<li>safe-area  只有IOS10以上才有底部一个黑条 他所在的区域就是安全区域，我们的业务内容需要避开这个区域</li>
+</ol>
+<p><code>components/safe-area/safe-area.wxss</code> 中是处理安全区域的组件  使用不同的边距样式</p>
+<ol start="7">
+<li>外部样式类</li>
+</ol>
+<ul>
+<li>组件JS中加入配置 <code>  externalClasses: [ &#39;i-button-class&#39;, &#39;i-button-special-class&#39; ],</code></li>
+<li>组件WXML中 <code>&lt;view wx:if=&quot;&#123;&#123;!special&#125;&#125;&quot;class=&quot;i-button i-button-class&gt;</code></li>
+<li>父组件 <code>&lt;c-button i-button-class=&quot;my-i-button-class&quot;&gt;</code></li>
+<li>父组件 wxss <code>.my-i-button-class &#123;color: red !important;&#125;</code></li>
+</ul>
+<ol start="8">
+<li>引入 WEUI</li>
+</ol>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/extended/weui/">https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/extended/weui/</a></p>
+</li>
+<li><p>app.json中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F;mp-msg是某个组件</span><br><span class="line"></span><br><span class="line">  &quot;usingComponents&quot;: &#123;    </span><br><span class="line">    &quot;mp-msg&quot;:&quot;weui-miniprogram&#x2F;msg&#x2F;msg&quot;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;useExtendedLib&quot;: &#123;</span><br><span class="line">    &quot;weui&quot;:true</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="9">
+<li>引入TIM SDK </li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/269/37411">https://cloud.tencent.com/document/product/269/37411</a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/tim-wx-sdk">https://www.npmjs.com/package/tim-wx-sdk</a></p>
+<ul>
+<li>在小程序目录下     node.js &gt; v12<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">npm install tim-wx-sdk --save</span><br><span class="line">npm install tim-upload-plugin --save</span><br></pre></td></tr></table></figure></li>
+<li>小程序编辑器中 开发者工具菜单——工具——构建 npm</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/">https://console.cloud.tencent.com/</a> 注册账号 在搜索中搜索IM 在IM控制台创建项目 获取SDKAPPID </li>
+</ul>
+<p><code>model/tim.js</code> 中初始化TIM</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import TIM from &#39;tim-wx-sdk&#39;;</span><br><span class="line">import TIMUploadPlugin from &#39;tim-upload-plugin&#39;;</span><br><span class="line"></span><br><span class="line">let options &#x3D; &#123;</span><br><span class="line">  SDKAppID: 你申请的SDKAPPID &#x2F;&#x2F; 接入时需要将 0 替换为您的云通信应用的 SDKAppID，类型为 Number</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; 创建 SDK 实例，&#96;TIM.create()&#96;方法对于同一个 &#96;SDKAppID&#96; 只会返回同一份实例</span><br><span class="line">let tim &#x3D; TIM.create(options); &#x2F;&#x2F; SDK 实例通常用 tim 表示</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 设置 SDK 日志输出级别，详细分级请参见 setLogLevel 接口的说明</span><br><span class="line">tim.setLogLevel(0); &#x2F;&#x2F; 普通级别，日志量较多，接入时建议使用</span><br><span class="line">&#x2F;&#x2F; tim.setLogLevel(1); &#x2F;&#x2F; release级别，SDK 输出关键信息，生产环境时建议使用</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 注册腾讯云即时通信 IM 上传插件</span><br><span class="line">tim.registerPlugin(&#123;&#39;tim-upload-plugin&#39;: TIMUploadPlugin&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 接下来可以通过 tim 进行事件绑定和构建 IM 应用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>项目中使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Tim from &#39;..&#x2F;..&#x2F;model&#x2F;tim&#39;</span><br><span class="line"></span><br><span class="line">new Tim()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>看到IDE的控制台打印出TIM的信息 代表引入成功</p>
+</li>
+<li><p>userSig生成 <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/im/detail">https://console.cloud.tencent.com/im/detail</a></p>
+</li>
+<li><p>用sdkAppid 和 密钥生成签名 本项目中前端生成签名 （开发阶段）实际使用时候必须后端生成签名</p>
+</li>
+<li><p>前端生成签名方法：</p>
+</li>
+<li><p><code>libs/tim/两个文件</code></p>
+</li>
+<li><p>generate-test-usersig.js 里 配置你的 用sdkAppid和密钥</p>
+</li>
+</ul>
+<ol start="10">
+<li>安装MBOX</li>
+</ol>
+<ul>
+<li><p>package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 配置以下这两个依赖信息</span><br><span class="line">&quot;mobx-miniprogram&quot;: &quot;4.13.2&quot;,</span><br><span class="line">&quot;mobx-miniprogram-bindings&quot;: &quot;2.0.0&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>构建NPM</p>
+</li>
+<li><p><code>/store/tim.js</code> 配置文件</p>
+</li>
+<li><p>page中调用   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import &#123; createStoreBindings &#125; from &quot;mobx-miniprogram-bindings&quot;;</span><br><span class="line">import &#123; timStore &#125; from &quot;..&#x2F;..&#x2F;store&#x2F;tim&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> onLoad: function (options) &#123;</span><br><span class="line">   &#x2F;**  mbox调用</span><br><span class="line">   * this 当前页面的this</span><br><span class="line">   * store </span><br><span class="line">   * fields &#x2F;&#x2F;使用store 中哪个state</span><br><span class="line">   * actiion  &#x2F;&#x2F;store中用哪个action</span><br><span class="line">   * </span><br><span class="line">   * 配置好后 createStoreBindings 就可以把我们在store中配置的状态绑定到我们当前page对象下</span><br><span class="line">   *&#x2F;</span><br><span class="line"></span><br><span class="line">    this.storeBindings &#x3D; createStoreBindings(this, &#123;</span><br><span class="line">      store: timStore,</span><br><span class="line">      fields: [&#39;sdkReady&#39;],</span><br><span class="line">      actions: [&#39;login&#39;]</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F;当前页面的this直接可以调用store的方法了</span><br><span class="line">    &#x2F;&#x2F; this.data.sdkReady 也会有值  页面中可以使用&#123;&#123;sdkReady&#125;&#125;</span><br><span class="line">    this.login()</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;页面销毁时候同时 销毁STORE的绑定</span><br><span class="line"> onUnload: function () &#123;</span><br><span class="line">    this.storeBindings.destroyStoreBindings()</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+<li><p>js中使用同样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStoreBindings &#125; from &quot;mobx-miniprogram-bindings&quot;;</span><br><span class="line">import &#123; timStore &#125; from &quot;..&#x2F;store&#x2F;tim&quot;;</span><br><span class="line"></span><br><span class="line">this.storeBindings &#x3D; createStoreBindings(this, &#123;</span><br><span class="line">    store: timStore,</span><br><span class="line">    fields: [&#39;sdkReady&#39;],</span><br><span class="line">    actions: &#123; timLogout: &#39;logout&#39; &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"> if (this.sdkReady) &#123;</span><br><span class="line">        this.timLogout()</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在自定义组件中使用 用behaviors </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import &#123; storeBindingsBehavior &#125; from &quot;mobx-miniprogram-bindings&quot;;</span><br><span class="line">import &#123; timStore &#125; from &quot;..&#x2F;..&#x2F;..&#x2F;..&#x2F;store&#x2F;tim&quot;;</span><br><span class="line"></span><br><span class="line">Component(&#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的属性列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  behaviors:[storeBindingsBehavior],</span><br><span class="line">  storeBindings:&#123;</span><br><span class="line">    store:timStore,</span><br><span class="line">    fields:[&#39;messageList&#39;],</span><br><span class="line">    actions:[&#39;getMessageList&#39;,&#39;setTargetUserId&#39;]</span><br><span class="line">  &#125;,</span><br><span class="line">  properties: &#123;</span><br><span class="line">      </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的初始数据</span><br><span class="line">   *&#x2F;</span><br><span class="line">  data: &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 组件的方法列表</span><br><span class="line">   *&#x2F;</span><br><span class="line">  methods: &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="11">
+<li>本项目为了测试聊天  需要 下载的腾讯小程序IM DEMO  在里边创建了一个用户weibsgz 输入我们当前这个项目的userId(微信授权登录后是2573) 和 2573聊天 在conversation中可以看到聊天</li>
+</ol>
+<ul>
+<li><p>model/tim.js login方法里边可以知道我们的微信登录后获取接口给我们设置的用户ID （2573）</p>
+</li>
+<li><p>在<code>conversation.js</code>中设置目标聊天人(weibsgz) 和本项目中登录的用户和weibsgz的聊天列表<br><code>this.setTargetUserId(&#39;weibsgz&#39;)</code></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -383,6 +580,112 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/menus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/06/menus/" class="post-title-link" itemprop="url">vue3 权限菜单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-06 01:08:00" itemprop="dateCreated datePublished" datetime="2021-11-06T01:08:00+08:00">2021-11-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-11-23 15:53:28" itemprop="dateModified" datetime="2021-11-23T15:53:28+08:00">2021-11-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/vue3.2.8-">https://github.com/weibsgz/vue3.2.8-</a></p>
+<h3 id="菜单权限两种思路"><a href="#菜单权限两种思路" class="headerlink" title="菜单权限两种思路"></a>菜单权限两种思路</h3><ol>
+<li>后端返回路由表  前端做个映射 省事了</li>
+</ol>
+<ul>
+<li>简易思路<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var data &#x3D;  [</span><br><span class="line">      &#123;</span><br><span class="line">        &#39;userManage&#39;:[&#39;user1&#39;,&#39;user2&#39;]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pofile&quot;:[&quot;pro1&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var routeObj &#x3D; &#123;</span><br><span class="line">      &#39;userManage&#39;:&#123;</span><br><span class="line">        name:&#39;userManage&#39;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user1&quot;:&#123;</span><br><span class="line">        name:&quot;user1&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user2&quot;:&#123;</span><br><span class="line">        name:&quot;user2&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;:&#123;</span><br><span class="line">        name:&quot;roleList&quot;,</span><br><span class="line">        path:&#39;&#x2F;roleList&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;roleList&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pofile&quot;:&#123;</span><br><span class="line">        name:&quot;pofile&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;pofile&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pro1&quot;:&#123;</span><br><span class="line">        name:&quot;pro1&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;pro1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&#39;&#x2F;pofile&#x2F;pro1&#x2F;Comindex&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var generateRoute &#x3D; function(data,routeObj) &#123;</span><br><span class="line">      var route &#x3D; []</span><br><span class="line"></span><br><span class="line">      data.map(function(v,i)&#123;</span><br><span class="line">         if(Object.prototype.toString.call(v) &#x3D;&#x3D;&#x3D; &#39;[object Object]&#39;) &#123;</span><br><span class="line">             var key &#x3D; Object.keys(v)[0];</span><br><span class="line">             var arr &#x3D; v[key];</span><br><span class="line">             var obj &#x3D; routeObj[key]</span><br><span class="line">             obj.children &#x3D; []</span><br><span class="line">             for(var i&#x3D;0; i&lt;arr.length; i++) &#123;</span><br><span class="line">              obj.children.push(routeObj[arr[i]])</span><br><span class="line">             &#125;</span><br><span class="line">             route.push(obj)</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">         else &#123;</span><br><span class="line">           route.push(routeObj[v])</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      return route</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   console.log( generateRoute(data,routeObj))</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li><p>自己根据后端返回的权限字段，动态生成路由  需要用到addRoutes<br>慕课网项目 权限相关：<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/vue3/elementAdmin8.html">https://www.imooc.com/wiki/vue3/elementAdmin8.html</a></p>
+<p>路由需要公有路由 和 私有路由  我们处理的是根据返回的权限 来动态插入匹配到的私有路由（addRoutes方法）</p>
+<p>本项目中  </p>
+<ul>
+<li><p>把私有路由分成几块（根据不同权限） <code>./store/modules</code></p>
+</li>
+<li><p>根据权限筛选路由 menus 是后端返回的权限字段 <code>[&quot;userManage&quot;, &quot;roleList&quot;, &quot;permissionList&quot;, &quot;articleRanking&quot;, &quot;articleCreate&quot;]</code><br>privateRoutes是拆分好的私有路由集合 每个私有路由上的name和 menus中的字段对应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">filterRoutes(context, menus) &#123;</span><br><span class="line">  const routes &#x3D; []</span><br><span class="line">  &#x2F;&#x2F; 路由权限匹配</span><br><span class="line">  menus.forEach(key &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 权限名 与 路由的 name 匹配</span><br><span class="line">    routes.push(...privateRoutes.filter(item &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; key))</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 最后添加 不匹配路由进入 404</span><br><span class="line">  routes.push(&#123;</span><br><span class="line">    path: &#39;&#x2F;:catchAll(.*)&#39;,</span><br><span class="line">    redirect: &#39;&#x2F;404&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">  context.commit(&#39;setRoutes&#39;, routes) &#x2F;&#x2F;  vuex中state.routes &#x3D; [...publicRoutes, ...newRoutes]</span><br><span class="line">  return routes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p><code>src/permission.js</code> （路由守卫） 中 使用addRoutes方法动态添加路由，最后添加404页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断用户资料是否获取</span><br><span class="line">      &#x2F;&#x2F; 若不存在用户信息，则需要获取用户信息</span><br><span class="line">      if (!store.getters.hasUserInfo) &#123;</span><br><span class="line">        &#x2F;&#x2F; 触发获取用户信息的 action，并获取用户当前权限 （通过接口返回权限菜单）</span><br><span class="line">        const &#123; permission &#125; &#x3D; await store.dispatch(&#39;user&#x2F;getUserInfo&#39;)</span><br><span class="line">        &#x2F;&#x2F; 处理用户权限，筛选出需要添加的权限</span><br><span class="line">        const filterRoutes &#x3D; await store.dispatch(</span><br><span class="line">          &#39;permission&#x2F;filterRoutes&#39;,</span><br><span class="line">          permission.menus</span><br><span class="line">        )</span><br><span class="line">        &#x2F;&#x2F; 利用 addRoute 循环添加</span><br><span class="line">        filterRoutes.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">          router.addRoute(item)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 添加完动态路由之后，需要在进行一次主动跳转</span><br><span class="line">        return next(to.path)</span><br><span class="line">      &#125;</span><br><span class="line">      next()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出登录时，添加的路由表并未被删除 需要退出时候重置路由表</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 初始化路由表</span><br><span class="line"> *&#x2F;</span><br><span class="line">export function resetRouter() &#123;</span><br><span class="line">  if (</span><br><span class="line">    store.getters.userInfo &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission.menus</span><br><span class="line">  ) &#123;</span><br><span class="line">    const menus &#x3D; store.getters.userInfo.permission.menus</span><br><span class="line">    menus.forEach((menu) &#x3D;&gt; &#123;</span><br><span class="line">      router.removeRoute(menu)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -466,112 +769,6 @@
 </li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/menus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/06/menus/" class="post-title-link" itemprop="url">vue3 权限菜单</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-11-06 01:08:00" itemprop="dateCreated datePublished" datetime="2021-11-06T01:08:00+08:00">2021-11-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-11-23 15:53:28" itemprop="dateModified" datetime="2021-11-23T15:53:28+08:00">2021-11-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/vue3.2.8-">https://github.com/weibsgz/vue3.2.8-</a></p>
-<h3 id="菜单权限两种思路"><a href="#菜单权限两种思路" class="headerlink" title="菜单权限两种思路"></a>菜单权限两种思路</h3><ol>
-<li>后端返回路由表  前端做个映射 省事了</li>
-</ol>
-<ul>
-<li>简易思路<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var data &#x3D;  [</span><br><span class="line">      &#123;</span><br><span class="line">        &#39;userManage&#39;:[&#39;user1&#39;,&#39;user2&#39;]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pofile&quot;:[&quot;pro1&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var routeObj &#x3D; &#123;</span><br><span class="line">      &#39;userManage&#39;:&#123;</span><br><span class="line">        name:&#39;userManage&#39;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user1&quot;:&#123;</span><br><span class="line">        name:&quot;user1&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user2&quot;:&#123;</span><br><span class="line">        name:&quot;user2&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;:&#123;</span><br><span class="line">        name:&quot;roleList&quot;,</span><br><span class="line">        path:&#39;&#x2F;roleList&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;roleList&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pofile&quot;:&#123;</span><br><span class="line">        name:&quot;pofile&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;pofile&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pro1&quot;:&#123;</span><br><span class="line">        name:&quot;pro1&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;pro1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&#39;&#x2F;pofile&#x2F;pro1&#x2F;Comindex&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var generateRoute &#x3D; function(data,routeObj) &#123;</span><br><span class="line">      var route &#x3D; []</span><br><span class="line"></span><br><span class="line">      data.map(function(v,i)&#123;</span><br><span class="line">         if(Object.prototype.toString.call(v) &#x3D;&#x3D;&#x3D; &#39;[object Object]&#39;) &#123;</span><br><span class="line">             var key &#x3D; Object.keys(v)[0];</span><br><span class="line">             var arr &#x3D; v[key];</span><br><span class="line">             var obj &#x3D; routeObj[key]</span><br><span class="line">             obj.children &#x3D; []</span><br><span class="line">             for(var i&#x3D;0; i&lt;arr.length; i++) &#123;</span><br><span class="line">              obj.children.push(routeObj[arr[i]])</span><br><span class="line">             &#125;</span><br><span class="line">             route.push(obj)</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">         else &#123;</span><br><span class="line">           route.push(routeObj[v])</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      return route</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   console.log( generateRoute(data,routeObj))</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="2">
-<li><p>自己根据后端返回的权限字段，动态生成路由  需要用到addRoutes<br>慕课网项目 权限相关：<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/vue3/elementAdmin8.html">https://www.imooc.com/wiki/vue3/elementAdmin8.html</a></p>
-<p>路由需要公有路由 和 私有路由  我们处理的是根据返回的权限 来动态插入匹配到的私有路由（addRoutes方法）</p>
-<p>本项目中  </p>
-<ul>
-<li><p>把私有路由分成几块（根据不同权限） <code>./store/modules</code></p>
-</li>
-<li><p>根据权限筛选路由 menus 是后端返回的权限字段 <code>[&quot;userManage&quot;, &quot;roleList&quot;, &quot;permissionList&quot;, &quot;articleRanking&quot;, &quot;articleCreate&quot;]</code><br>privateRoutes是拆分好的私有路由集合 每个私有路由上的name和 menus中的字段对应</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">filterRoutes(context, menus) &#123;</span><br><span class="line">  const routes &#x3D; []</span><br><span class="line">  &#x2F;&#x2F; 路由权限匹配</span><br><span class="line">  menus.forEach(key &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 权限名 与 路由的 name 匹配</span><br><span class="line">    routes.push(...privateRoutes.filter(item &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; key))</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 最后添加 不匹配路由进入 404</span><br><span class="line">  routes.push(&#123;</span><br><span class="line">    path: &#39;&#x2F;:catchAll(.*)&#39;,</span><br><span class="line">    redirect: &#39;&#x2F;404&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">  context.commit(&#39;setRoutes&#39;, routes) &#x2F;&#x2F;  vuex中state.routes &#x3D; [...publicRoutes, ...newRoutes]</span><br><span class="line">  return routes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p><code>src/permission.js</code> （路由守卫） 中 使用addRoutes方法动态添加路由，最后添加404页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断用户资料是否获取</span><br><span class="line">      &#x2F;&#x2F; 若不存在用户信息，则需要获取用户信息</span><br><span class="line">      if (!store.getters.hasUserInfo) &#123;</span><br><span class="line">        &#x2F;&#x2F; 触发获取用户信息的 action，并获取用户当前权限 （通过接口返回权限菜单）</span><br><span class="line">        const &#123; permission &#125; &#x3D; await store.dispatch(&#39;user&#x2F;getUserInfo&#39;)</span><br><span class="line">        &#x2F;&#x2F; 处理用户权限，筛选出需要添加的权限</span><br><span class="line">        const filterRoutes &#x3D; await store.dispatch(</span><br><span class="line">          &#39;permission&#x2F;filterRoutes&#39;,</span><br><span class="line">          permission.menus</span><br><span class="line">        )</span><br><span class="line">        &#x2F;&#x2F; 利用 addRoute 循环添加</span><br><span class="line">        filterRoutes.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">          router.addRoute(item)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 添加完动态路由之后，需要在进行一次主动跳转</span><br><span class="line">        return next(to.path)</span><br><span class="line">      &#125;</span><br><span class="line">      next()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>退出登录时，添加的路由表并未被删除 需要退出时候重置路由表</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 初始化路由表</span><br><span class="line"> *&#x2F;</span><br><span class="line">export function resetRouter() &#123;</span><br><span class="line">  if (</span><br><span class="line">    store.getters.userInfo &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission.menus</span><br><span class="line">  ) &#123;</span><br><span class="line">    const menus &#x3D; store.getters.userInfo.permission.menus</span><br><span class="line">    menus.forEach((menu) &#x3D;&gt; &#123;</span><br><span class="line">      router.removeRoute(menu)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1259,160 +1456,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>测试新电脑博客</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/vue-directives/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/15/vue-directives/" class="post-title-link" itemprop="url">vue 实用指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-12-15 14:13:23" itemprop="dateCreated datePublished" datetime="2020-12-15T14:13:23+08:00">2020-12-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://github.com/Michael-lzg/v-directives">所有指令源码地址</a></p>
-<p>在 Vue，除了核心功能默认内置的指令 ( v-model 和 v-show )，Vue 也允许注册自定义指令。它的作用价值在于当开发人员在某些场景下需要对普通 DOM 元素进行操作。<br>Vue 自定义指令有全局注册和局部注册两种方式。先来看看注册全局指令的方式，通过 <code>Vue.directive( id, [definition] ) </code> 方式注册全局指令。然后在入口文件中进行 <code>Vue.use()</code> 调用。<br>批量注册指令，新建 directives/index.js 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import copy from &#39;.&#x2F;copy&#39;</span><br><span class="line">import longpress from &#39;.&#x2F;longpress&#39;</span><br><span class="line">&#x2F;&#x2F; 自定义指令</span><br><span class="line">const directives &#x3D; &#123;</span><br><span class="line">  copy,</span><br><span class="line">  longpress,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  install(Vue) &#123;</span><br><span class="line">    Object.keys(directives).forEach((key) &#x3D;&gt; &#123;</span><br><span class="line">      Vue.directive(key, directives[key])</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在 main.js 引入并调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import Directives from &#39;.&#x2F;JS&#x2F;directives&#39;</span><br><span class="line">Vue.use(Directives)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>指令定义函数提供了几个钩子函数（可选）：</p>
-<p>bind: 只调用一次，指令第一次绑定到元素时调用，可以定义一个在绑定时执行一次的初始化动作。<br>inserted: 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）。<br>update: 被绑定元素所在的模板更新时调用，而不论绑定值是否变化。通过比较更新前后的绑定值。<br>componentUpdated: 被绑定元素所在模板完成一次更新周期时调用。<br>unbind: 只调用一次， 指令与元素解绑时调用。</p>
-<h3 id="v-copy"><a href="#v-copy" class="headerlink" title="v-copy"></a>v-copy</h3><p>需求：实现一键复制文本内容，用于鼠标右键粘贴。<br>思路：</p>
-<ol>
-<li>动态创建 textarea 标签，并设置 readOnly 属性及移出可视区域</li>
-<li>将要复制的值赋给 textarea 标签的 value 属性，并插入到 body</li>
-<li>选中值 textarea 并复制</li>
-<li>将 body 中插入的 textarea 移除</li>
-<li>在第一次调用时绑定事件，在解绑时移除事件</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">const copy &#x3D; &#123;</span><br><span class="line">  bind(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value</span><br><span class="line">    el.handler &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      if (!el.$value) &#123;</span><br><span class="line">        &#x2F;&#x2F; 值为空的时候，给出提示。可根据项目UI仔细设计</span><br><span class="line">        console.log(&#39;无复制内容&#39;)</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F; 动态创建 textarea 标签</span><br><span class="line">      const textarea &#x3D; document.createElement(&#39;textarea&#39;)</span><br><span class="line">      &#x2F;&#x2F; 将该 textarea 设为 readonly 防止 iOS 下自动唤起键盘，同时将 textarea 移出可视区域</span><br><span class="line">      textarea.readOnly &#x3D; &#39;readonly&#39;</span><br><span class="line">      textarea.style.position &#x3D; &#39;absolute&#39;</span><br><span class="line">      textarea.style.left &#x3D; &#39;-9999px&#39;</span><br><span class="line">      &#x2F;&#x2F; 将要 copy 的值赋给 textarea 标签的 value 属性</span><br><span class="line">      textarea.value &#x3D; el.$value</span><br><span class="line">      &#x2F;&#x2F; 将 textarea 插入到 body 中</span><br><span class="line">      document.body.appendChild(textarea)</span><br><span class="line">      &#x2F;&#x2F; 选中值并复制</span><br><span class="line">      textarea.select()</span><br><span class="line">      const result &#x3D; document.execCommand(&#39;Copy&#39;)</span><br><span class="line">      if (result) &#123;</span><br><span class="line">        console.log(&#39;复制成功&#39;) &#x2F;&#x2F; 可根据项目UI仔细设计</span><br><span class="line">      &#125;</span><br><span class="line">      document.body.removeChild(textarea)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 绑定点击事件，就是所谓的一键 copy 啦</span><br><span class="line">    el.addEventListener(&#39;click&#39;, el.handler)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 当传进来的值更新的时候触发</span><br><span class="line">  componentUpdated(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 指令与元素解绑的时候，移除事件绑定</span><br><span class="line">  unbind(el) &#123;</span><br><span class="line">    el.removeEventListener(&#39;click&#39;, el.handler)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default copy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用：给 Dom 加上 v-copy 及复制的文本即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button v-copy&#x3D;&quot;copyText&quot;&gt;复制&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        copyText: &#39;a copy directives&#39;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="v-longpress"><a href="#v-longpress" class="headerlink" title="v-longpress"></a>v-longpress</h3><p>需求：实现长按，用户需要按下并按住按钮几秒钟，触发相应的事件<br>思路：</p>
-<ol>
-<li>创建一个计时器， 2 秒后执行函数</li>
-<li>当用户按下按钮时触发 mousedown 事件，启动计时器；用户松开按钮时调用 mouseout 事件。</li>
-<li>如果 mouseup 事件 2 秒内被触发，就清除计时器，当作一个普通的点击事件</li>
-<li>如果计时器没有在 2 秒内清除，则判定为一次长按，可以执行关联的函数。</li>
-<li>在移动端要考虑 touchstart，touchend 事件</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">const longpress &#x3D; &#123;</span><br><span class="line">  bind: function (el, binding, vNode) &#123;</span><br><span class="line">    if (typeof binding.value !&#x3D;&#x3D; &#39;function&#39;) &#123;</span><br><span class="line">      throw &#39;callback must be a function&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 定义变量</span><br><span class="line">    let pressTimer &#x3D; null</span><br><span class="line">    &#x2F;&#x2F; 创建计时器（ 2秒后执行函数 ）</span><br><span class="line">    let start &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">      if (e.type &#x3D;&#x3D;&#x3D; &#39;click&#39; &amp;&amp; e.button !&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      if (pressTimer &#x3D;&#x3D;&#x3D; null) &#123;</span><br><span class="line">        pressTimer &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">          handler()</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 取消计时器</span><br><span class="line">    let cancel &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">      if (pressTimer !&#x3D;&#x3D; null) &#123;</span><br><span class="line">        clearTimeout(pressTimer)</span><br><span class="line">        pressTimer &#x3D; null</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 运行函数</span><br><span class="line">    const handler &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">      binding.value(e)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 添加事件监听器</span><br><span class="line">    el.addEventListener(&#39;mousedown&#39;, start)</span><br><span class="line">    el.addEventListener(&#39;touchstart&#39;, start)</span><br><span class="line">    &#x2F;&#x2F; 取消计时器</span><br><span class="line">    el.addEventListener(&#39;click&#39;, cancel)</span><br><span class="line">    el.addEventListener(&#39;mouseout&#39;, cancel)</span><br><span class="line">    el.addEventListener(&#39;touchend&#39;, cancel)</span><br><span class="line">    el.addEventListener(&#39;touchcancel&#39;, cancel)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 当传进来的值更新的时候触发</span><br><span class="line">  componentUpdated(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 指令与元素解绑的时候，移除事件绑定</span><br><span class="line">  unbind(el) &#123;</span><br><span class="line">    el.removeEventListener(&#39;click&#39;, el.handler)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default longpress</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用：给 Dom 加上 v-longpress 及回调函数即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button v-longpress&#x3D;&quot;longpress&quot;&gt;长按&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    longpress () &#123;</span><br><span class="line">      alert(&#39;长按指令生效&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="v-debounce"><a href="#v-debounce" class="headerlink" title="v-debounce"></a>v-debounce</h3><p>背景：在开发中，有些提交保存按钮有时候会在短时间内被点击多次，这样就会多次重复请求后端接口，造成数据的混乱，比如新增表单的提交按钮，多次点击就会新增多条重复的数据。<br>需求：防止按钮在短时间内被多次点击，使用防抖函数限制规定时间内只能点击一次。<br>思路：</p>
-<ol>
-<li>定义一个延迟执行的方法，如果在延迟时间内再调用该方法，则重新计算执行时间。</li>
-<li>将事件绑定在 click 方法上。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const debounce &#x3D; &#123;</span><br><span class="line">  inserted: function (el, binding) &#123;</span><br><span class="line">    let timer</span><br><span class="line">    el.addEventListener(&#39;click&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      if (timer) &#123;</span><br><span class="line">        clearTimeout(timer)</span><br><span class="line">      &#125;</span><br><span class="line">      timer &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        binding.value()</span><br><span class="line">      &#125;, 1000)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default debounce</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用：给 Dom 加上 v-debounce 及回调函数即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button v-debounce&#x3D;&quot;debounceClick&quot;&gt;防抖&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    debounceClick () &#123;</span><br><span class="line">      console.log(&#39;只触发一次&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="v-LazyLoad"><a href="#v-LazyLoad" class="headerlink" title="v-LazyLoad"></a>v-LazyLoad</h3><p>背景：在类电商类项目，往往存在大量的图片，如 banner 广告图，菜单导航图，美团等商家列表头图等。图片众多以及图片体积过大往往会影响页面加载速度，造成不良的用户体验，所以进行图片懒加载优化势在必行。<br>需求：实现一个图片懒加载指令，只加载浏览器可见区域的图片。<br>思路：</p>
-<ol>
-<li>图片懒加载的原理主要是判断当前图片是否到了可视区域这一核心逻辑实现的</li>
-<li>拿到所有的图片 Dom ，遍历每个图片判断当前图片是否到了可视区范围内</li>
-<li>如果到了就设置图片的 src 属性，否则显示默认图片</li>
-</ol>
-<p>图片懒加载有两种方式可以实现，一是绑定 srcoll 事件进行监听，二是使用 IntersectionObserver 判断图片是否到了可视区域，但是有浏览器兼容性问题。</p>
-<p>下面封装一个懒加载指令兼容两种方法，判断浏览器是否支持 IntersectionObserver API，如果支持就使用 IntersectionObserver 实现懒加载，否则则使用 srcoll 事件监听 + 节流的方法实现。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">const LazyLoad &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; install方法</span><br><span class="line">  install(Vue, options) &#123;</span><br><span class="line">    const defaultSrc &#x3D; options.default</span><br><span class="line">    Vue.directive(&#39;lazy&#39;, &#123;</span><br><span class="line">      bind(el, binding) &#123;</span><br><span class="line">        LazyLoad.init(el, binding.value, defaultSrc)</span><br><span class="line">      &#125;,</span><br><span class="line">      inserted(el) &#123;</span><br><span class="line">        if (IntersectionObserver) &#123;</span><br><span class="line">          LazyLoad.observe(el)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          LazyLoad.listenerScroll(el)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 初始化</span><br><span class="line">  init(el, val, def) &#123;</span><br><span class="line">    el.setAttribute(&#39;data-src&#39;, val)</span><br><span class="line">    el.setAttribute(&#39;src&#39;, def)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 利用IntersectionObserver监听el</span><br><span class="line">  observe(el) &#123;</span><br><span class="line">    var io &#x3D; new IntersectionObserver((entries) &#x3D;&gt; &#123;</span><br><span class="line">      const realSrc &#x3D; el.dataset.src</span><br><span class="line">      if (entries[0].isIntersecting) &#123;</span><br><span class="line">        if (realSrc) &#123;</span><br><span class="line">          el.src &#x3D; realSrc</span><br><span class="line">          el.removeAttribute(&#39;data-src&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    io.observe(el)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 监听scroll事件</span><br><span class="line">  listenerScroll(el) &#123;</span><br><span class="line">    const handler &#x3D; LazyLoad.throttle(LazyLoad.load, 300)</span><br><span class="line">    LazyLoad.load(el)</span><br><span class="line">    window.addEventListener(&#39;scroll&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      handler(el)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 加载真实图片</span><br><span class="line">  load(el) &#123;</span><br><span class="line">    const windowHeight &#x3D; document.documentElement.clientHeight</span><br><span class="line">    const elTop &#x3D; el.getBoundingClientRect().top</span><br><span class="line">    const elBtm &#x3D; el.getBoundingClientRect().bottom</span><br><span class="line">    const realSrc &#x3D; el.dataset.src</span><br><span class="line">    if (elTop - windowHeight &lt; 0 &amp;&amp; elBtm &gt; 0) &#123;</span><br><span class="line">      if (realSrc) &#123;</span><br><span class="line">        el.src &#x3D; realSrc</span><br><span class="line">        el.removeAttribute(&#39;data-src&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 节流</span><br><span class="line">  throttle(fn, delay) &#123;</span><br><span class="line">    let timer</span><br><span class="line">    let prevTime</span><br><span class="line">    return function (...args) &#123;</span><br><span class="line">      const currTime &#x3D; Date.now()</span><br><span class="line">      const context &#x3D; this</span><br><span class="line">      if (!prevTime) prevTime &#x3D; currTime</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line"></span><br><span class="line">      if (currTime - prevTime &gt; delay) &#123;</span><br><span class="line">        prevTime &#x3D; currTime</span><br><span class="line">        fn.apply(context, args)</span><br><span class="line">        clearTimeout(timer)</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      timer &#x3D; setTimeout(function () &#123;</span><br><span class="line">        prevTime &#x3D; Date.now()</span><br><span class="line">        timer &#x3D; null</span><br><span class="line">        fn.apply(context, args)</span><br><span class="line">      &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default LazyLoad</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用，将组件内  标签的 src 换成 v-LazyLoad</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img v-LazyLoad&#x3D;&quot;xxx.jpg&quot; &#x2F;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="v-permission"><a href="#v-permission" class="headerlink" title="v-permission"></a>v-permission</h3><p>背景：在一些后台管理系统，我们可能需要根据用户角色进行一些操作权限的判断，很多时候我们都是粗暴地给一个元素添加 v-if / v-show 来进行显示隐藏，但如果判断条件繁琐且多个地方需要判断，这种方式的代码不仅不优雅而且冗余。针对这种情况，我们可以通过全局自定义指令来处理。<br>需求：自定义一个权限指令，对需要权限判断的 Dom 进行显示隐藏。</p>
-<p>思路：</p>
-<ol>
-<li>自定义一个权限数组</li>
-<li>判断用户的权限是否在这个数组内，如果是则显示，否则则移除 Dom<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function checkArray(key) &#123;</span><br><span class="line">  let arr &#x3D; [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;]</span><br><span class="line">  let index &#x3D; arr.indexOf(key)</span><br><span class="line">  if (index &gt; -1) &#123;</span><br><span class="line">    return true &#x2F;&#x2F; 有权限</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return false &#x2F;&#x2F; 无权限</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const permission &#x3D; &#123;</span><br><span class="line">  inserted: function (el, binding) &#123;</span><br><span class="line">    let permission &#x3D; binding.value &#x2F;&#x2F; 获取到 v-permission的值</span><br><span class="line">    if (permission) &#123;</span><br><span class="line">      let hasPermission &#x3D; checkArray(permission)</span><br><span class="line">      if (!hasPermission) &#123;</span><br><span class="line">        &#x2F;&#x2F; 没有权限 移除Dom元素</span><br><span class="line">        el.parentNode &amp;&amp; el.parentNode.removeChild(el)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default permission</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-使用：给 v-permission 赋值判断即可</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;btns&quot;&gt;</span><br><span class="line">  &lt;!-- 显示 --&gt;</span><br><span class="line">  &lt;button v-permission&#x3D;&quot;&#39;1&#39;&quot;&gt;权限按钮1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;!-- 不显示 --&gt;</span><br><span class="line">  &lt;button v-permission&#x3D;&quot;&#39;10&#39;&quot;&gt;权限按钮2&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="vue-waterMarker"><a href="#vue-waterMarker" class="headerlink" title="vue-waterMarker"></a>vue-waterMarker</h3><p>需求：给整个页面添加背景水印</p>
-<p>思路：</p>
-<ol>
-<li>使用 canvas 特性生成 base64 格式的图片文件，设置其字体大小，颜色等。</li>
-<li>将其设置为背景图片，从而实现页面或组件水印效果</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function addWaterMarker(str, parentNode, font, textColor) &#123;</span><br><span class="line">  &#x2F;&#x2F; 水印文字，父元素，字体，文字颜色</span><br><span class="line">  var can &#x3D; document.createElement(&#39;canvas&#39;)</span><br><span class="line">  parentNode.appendChild(can)</span><br><span class="line">  can.width &#x3D; 200</span><br><span class="line">  can.height &#x3D; 150</span><br><span class="line">  can.style.display &#x3D; &#39;none&#39;</span><br><span class="line">  var cans &#x3D; can.getContext(&#39;2d&#39;)</span><br><span class="line">  cans.rotate((-20 * Math.PI) &#x2F; 180)</span><br><span class="line">  cans.font &#x3D; font || &#39;16px Microsoft JhengHei&#39;</span><br><span class="line">  cans.fillStyle &#x3D; textColor || &#39;rgba(180, 180, 180, 0.3)&#39;</span><br><span class="line">  cans.textAlign &#x3D; &#39;left&#39;</span><br><span class="line">  cans.textBaseline &#x3D; &#39;Middle&#39;</span><br><span class="line">  cans.fillText(str, can.width &#x2F; 10, can.height &#x2F; 2)</span><br><span class="line">  parentNode.style.backgroundImage &#x3D; &#39;url(&#39; + can.toDataURL(&#39;image&#x2F;png&#39;) + &#39;)&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const waterMarker &#x3D; &#123;</span><br><span class="line">  bind: function (el, binding) &#123;</span><br><span class="line">    addWaterMarker(binding.value.text, el, binding.value.font, binding.value.textColor)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default waterMarker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用，设置水印文案，颜色，字体大小即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div v-waterMarker&#x3D;&quot;&#123;text:&#39;lzg版权所有&#39;,textColor:&#39;rgba(180, 180, 180, 0.4)&#39;&#125;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="v-draggable"><a href="#v-draggable" class="headerlink" title="v-draggable"></a>v-draggable</h3><p>需求：实现一个拖拽指令，可在页面可视区域任意拖拽元素。<br>思路：</p>
-<ol>
-<li>设置需要拖拽的元素为相对定位，其父元素为绝对定位。</li>
-<li>鼠标按下(onmousedown)时记录目标元素当前的 left 和 top 值。</li>
-<li>鼠标移动(onmousemove)时计算每次移动的横向距离和纵向距离的变化值，并改变元素的 left 和 top 值</li>
-<li>鼠标松开(onmouseup)时完成一次拖拽</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const draggable &#x3D; &#123;</span><br><span class="line">  inserted: function (el) &#123;</span><br><span class="line">    el.style.cursor &#x3D; &#39;move&#39;</span><br><span class="line">    el.onmousedown &#x3D; function (e) &#123;</span><br><span class="line">      let disx &#x3D; e.pageX - el.offsetLeft</span><br><span class="line">      let disy &#x3D; e.pageY - el.offsetTop</span><br><span class="line">      document.onmousemove &#x3D; function (e) &#123;</span><br><span class="line">        let x &#x3D; e.pageX - disx</span><br><span class="line">        let y &#x3D; e.pageY - disy</span><br><span class="line">        let maxX &#x3D; document.body.clientWidth - parseInt(window.getComputedStyle(el).width)</span><br><span class="line">        let maxY &#x3D; document.body.clientHeight - parseInt(window.getComputedStyle(el).height)</span><br><span class="line">        if (x &lt; 0) &#123;</span><br><span class="line">          x &#x3D; 0</span><br><span class="line">        &#125; else if (x &gt; maxX) &#123;</span><br><span class="line">          x &#x3D; maxX</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (y &lt; 0) &#123;</span><br><span class="line">          y &#x3D; 0</span><br><span class="line">        &#125; else if (y &gt; maxY) &#123;</span><br><span class="line">          y &#x3D; maxY</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        el.style.left &#x3D; x + &#39;px&#39;</span><br><span class="line">        el.style.top &#x3D; y + &#39;px&#39;</span><br><span class="line">      &#125;</span><br><span class="line">      document.onmouseup &#x3D; function () &#123;</span><br><span class="line">        document.onmousemove &#x3D; document.onmouseup &#x3D; null</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">export default draggable</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用: 在 Dom 上加上 v-draggable 即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;el-dialog&quot; v-draggable&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
