@@ -580,112 +580,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/menus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/06/menus/" class="post-title-link" itemprop="url">vue3 权限菜单</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-11-06 01:08:00" itemprop="dateCreated datePublished" datetime="2021-11-06T01:08:00+08:00">2021-11-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-11-23 15:53:28" itemprop="dateModified" datetime="2021-11-23T15:53:28+08:00">2021-11-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/vue3.2.8-">https://github.com/weibsgz/vue3.2.8-</a></p>
-<h3 id="菜单权限两种思路"><a href="#菜单权限两种思路" class="headerlink" title="菜单权限两种思路"></a>菜单权限两种思路</h3><ol>
-<li>后端返回路由表  前端做个映射 省事了</li>
-</ol>
-<ul>
-<li>简易思路<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var data &#x3D;  [</span><br><span class="line">      &#123;</span><br><span class="line">        &#39;userManage&#39;:[&#39;user1&#39;,&#39;user2&#39;]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pofile&quot;:[&quot;pro1&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var routeObj &#x3D; &#123;</span><br><span class="line">      &#39;userManage&#39;:&#123;</span><br><span class="line">        name:&#39;userManage&#39;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user1&quot;:&#123;</span><br><span class="line">        name:&quot;user1&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user2&quot;:&#123;</span><br><span class="line">        name:&quot;user2&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;:&#123;</span><br><span class="line">        name:&quot;roleList&quot;,</span><br><span class="line">        path:&#39;&#x2F;roleList&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;roleList&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pofile&quot;:&#123;</span><br><span class="line">        name:&quot;pofile&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;pofile&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pro1&quot;:&#123;</span><br><span class="line">        name:&quot;pro1&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;pro1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&#39;&#x2F;pofile&#x2F;pro1&#x2F;Comindex&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var generateRoute &#x3D; function(data,routeObj) &#123;</span><br><span class="line">      var route &#x3D; []</span><br><span class="line"></span><br><span class="line">      data.map(function(v,i)&#123;</span><br><span class="line">         if(Object.prototype.toString.call(v) &#x3D;&#x3D;&#x3D; &#39;[object Object]&#39;) &#123;</span><br><span class="line">             var key &#x3D; Object.keys(v)[0];</span><br><span class="line">             var arr &#x3D; v[key];</span><br><span class="line">             var obj &#x3D; routeObj[key]</span><br><span class="line">             obj.children &#x3D; []</span><br><span class="line">             for(var i&#x3D;0; i&lt;arr.length; i++) &#123;</span><br><span class="line">              obj.children.push(routeObj[arr[i]])</span><br><span class="line">             &#125;</span><br><span class="line">             route.push(obj)</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">         else &#123;</span><br><span class="line">           route.push(routeObj[v])</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      return route</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   console.log( generateRoute(data,routeObj))</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="2">
-<li><p>自己根据后端返回的权限字段，动态生成路由  需要用到addRoutes<br>慕课网项目 权限相关：<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/vue3/elementAdmin8.html">https://www.imooc.com/wiki/vue3/elementAdmin8.html</a></p>
-<p>路由需要公有路由 和 私有路由  我们处理的是根据返回的权限 来动态插入匹配到的私有路由（addRoutes方法）</p>
-<p>本项目中  </p>
-<ul>
-<li><p>把私有路由分成几块（根据不同权限） <code>./store/modules</code></p>
-</li>
-<li><p>根据权限筛选路由 menus 是后端返回的权限字段 <code>[&quot;userManage&quot;, &quot;roleList&quot;, &quot;permissionList&quot;, &quot;articleRanking&quot;, &quot;articleCreate&quot;]</code><br>privateRoutes是拆分好的私有路由集合 每个私有路由上的name和 menus中的字段对应</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">filterRoutes(context, menus) &#123;</span><br><span class="line">  const routes &#x3D; []</span><br><span class="line">  &#x2F;&#x2F; 路由权限匹配</span><br><span class="line">  menus.forEach(key &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 权限名 与 路由的 name 匹配</span><br><span class="line">    routes.push(...privateRoutes.filter(item &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; key))</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 最后添加 不匹配路由进入 404</span><br><span class="line">  routes.push(&#123;</span><br><span class="line">    path: &#39;&#x2F;:catchAll(.*)&#39;,</span><br><span class="line">    redirect: &#39;&#x2F;404&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">  context.commit(&#39;setRoutes&#39;, routes) &#x2F;&#x2F;  vuex中state.routes &#x3D; [...publicRoutes, ...newRoutes]</span><br><span class="line">  return routes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p><code>src/permission.js</code> （路由守卫） 中 使用addRoutes方法动态添加路由，最后添加404页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断用户资料是否获取</span><br><span class="line">      &#x2F;&#x2F; 若不存在用户信息，则需要获取用户信息</span><br><span class="line">      if (!store.getters.hasUserInfo) &#123;</span><br><span class="line">        &#x2F;&#x2F; 触发获取用户信息的 action，并获取用户当前权限 （通过接口返回权限菜单）</span><br><span class="line">        const &#123; permission &#125; &#x3D; await store.dispatch(&#39;user&#x2F;getUserInfo&#39;)</span><br><span class="line">        &#x2F;&#x2F; 处理用户权限，筛选出需要添加的权限</span><br><span class="line">        const filterRoutes &#x3D; await store.dispatch(</span><br><span class="line">          &#39;permission&#x2F;filterRoutes&#39;,</span><br><span class="line">          permission.menus</span><br><span class="line">        )</span><br><span class="line">        &#x2F;&#x2F; 利用 addRoute 循环添加</span><br><span class="line">        filterRoutes.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">          router.addRoute(item)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 添加完动态路由之后，需要在进行一次主动跳转</span><br><span class="line">        return next(to.path)</span><br><span class="line">      &#125;</span><br><span class="line">      next()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>退出登录时，添加的路由表并未被删除 需要退出时候重置路由表</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 初始化路由表</span><br><span class="line"> *&#x2F;</span><br><span class="line">export function resetRouter() &#123;</span><br><span class="line">  if (</span><br><span class="line">    store.getters.userInfo &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission.menus</span><br><span class="line">  ) &#123;</span><br><span class="line">    const menus &#x3D; store.getters.userInfo.permission.menus</span><br><span class="line">    menus.forEach((menu) &#x3D;&gt; &#123;</span><br><span class="line">      router.removeRoute(menu)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -769,6 +663,112 @@
 </li>
 </ul>
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/06/menus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/06/menus/" class="post-title-link" itemprop="url">vue3 权限菜单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-06 01:08:00" itemprop="dateCreated datePublished" datetime="2021-11-06T01:08:00+08:00">2021-11-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-11-23 15:53:28" itemprop="dateModified" datetime="2021-11-23T15:53:28+08:00">2021-11-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/weibsgz/vue3.2.8-">https://github.com/weibsgz/vue3.2.8-</a></p>
+<h3 id="菜单权限两种思路"><a href="#菜单权限两种思路" class="headerlink" title="菜单权限两种思路"></a>菜单权限两种思路</h3><ol>
+<li>后端返回路由表  前端做个映射 省事了</li>
+</ol>
+<ul>
+<li>简易思路<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var data &#x3D;  [</span><br><span class="line">      &#123;</span><br><span class="line">        &#39;userManage&#39;:[&#39;user1&#39;,&#39;user2&#39;]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pofile&quot;:[&quot;pro1&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var routeObj &#x3D; &#123;</span><br><span class="line">      &#39;userManage&#39;:&#123;</span><br><span class="line">        name:&#39;userManage&#39;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user1&quot;:&#123;</span><br><span class="line">        name:&quot;user1&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;user2&quot;:&#123;</span><br><span class="line">        name:&quot;user2&quot;,</span><br><span class="line">        path:&#39;&#x2F;userManage&#x2F;user1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;userManage&#x2F;user1&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;roleList&quot;:&#123;</span><br><span class="line">        name:&quot;roleList&quot;,</span><br><span class="line">        path:&#39;&#x2F;roleList&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;roleList&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pofile&quot;:&#123;</span><br><span class="line">        name:&quot;pofile&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;indexPath&#39;,</span><br><span class="line">        component:&quot;&#x2F;pofile&#x2F;Comindex&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pro1&quot;:&#123;</span><br><span class="line">        name:&quot;pro1&quot;,</span><br><span class="line">        path:&#39;&#x2F;pofile&#x2F;pro1&#x2F;indexPath&#39;,</span><br><span class="line">        component:&#39;&#x2F;pofile&#x2F;pro1&#x2F;Comindex&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var generateRoute &#x3D; function(data,routeObj) &#123;</span><br><span class="line">      var route &#x3D; []</span><br><span class="line"></span><br><span class="line">      data.map(function(v,i)&#123;</span><br><span class="line">         if(Object.prototype.toString.call(v) &#x3D;&#x3D;&#x3D; &#39;[object Object]&#39;) &#123;</span><br><span class="line">             var key &#x3D; Object.keys(v)[0];</span><br><span class="line">             var arr &#x3D; v[key];</span><br><span class="line">             var obj &#x3D; routeObj[key]</span><br><span class="line">             obj.children &#x3D; []</span><br><span class="line">             for(var i&#x3D;0; i&lt;arr.length; i++) &#123;</span><br><span class="line">              obj.children.push(routeObj[arr[i]])</span><br><span class="line">             &#125;</span><br><span class="line">             route.push(obj)</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">         else &#123;</span><br><span class="line">           route.push(routeObj[v])</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      return route</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   console.log( generateRoute(data,routeObj))</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li><p>自己根据后端返回的权限字段，动态生成路由  需要用到addRoutes<br>慕课网项目 权限相关：<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/vue3/elementAdmin8.html">https://www.imooc.com/wiki/vue3/elementAdmin8.html</a></p>
+<p>路由需要公有路由 和 私有路由  我们处理的是根据返回的权限 来动态插入匹配到的私有路由（addRoutes方法）</p>
+<p>本项目中  </p>
+<ul>
+<li><p>把私有路由分成几块（根据不同权限） <code>./store/modules</code></p>
+</li>
+<li><p>根据权限筛选路由 menus 是后端返回的权限字段 <code>[&quot;userManage&quot;, &quot;roleList&quot;, &quot;permissionList&quot;, &quot;articleRanking&quot;, &quot;articleCreate&quot;]</code><br>privateRoutes是拆分好的私有路由集合 每个私有路由上的name和 menus中的字段对应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">filterRoutes(context, menus) &#123;</span><br><span class="line">  const routes &#x3D; []</span><br><span class="line">  &#x2F;&#x2F; 路由权限匹配</span><br><span class="line">  menus.forEach(key &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 权限名 与 路由的 name 匹配</span><br><span class="line">    routes.push(...privateRoutes.filter(item &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; key))</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 最后添加 不匹配路由进入 404</span><br><span class="line">  routes.push(&#123;</span><br><span class="line">    path: &#39;&#x2F;:catchAll(.*)&#39;,</span><br><span class="line">    redirect: &#39;&#x2F;404&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">  context.commit(&#39;setRoutes&#39;, routes) &#x2F;&#x2F;  vuex中state.routes &#x3D; [...publicRoutes, ...newRoutes]</span><br><span class="line">  return routes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p><code>src/permission.js</code> （路由守卫） 中 使用addRoutes方法动态添加路由，最后添加404页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断用户资料是否获取</span><br><span class="line">      &#x2F;&#x2F; 若不存在用户信息，则需要获取用户信息</span><br><span class="line">      if (!store.getters.hasUserInfo) &#123;</span><br><span class="line">        &#x2F;&#x2F; 触发获取用户信息的 action，并获取用户当前权限 （通过接口返回权限菜单）</span><br><span class="line">        const &#123; permission &#125; &#x3D; await store.dispatch(&#39;user&#x2F;getUserInfo&#39;)</span><br><span class="line">        &#x2F;&#x2F; 处理用户权限，筛选出需要添加的权限</span><br><span class="line">        const filterRoutes &#x3D; await store.dispatch(</span><br><span class="line">          &#39;permission&#x2F;filterRoutes&#39;,</span><br><span class="line">          permission.menus</span><br><span class="line">        )</span><br><span class="line">        &#x2F;&#x2F; 利用 addRoute 循环添加</span><br><span class="line">        filterRoutes.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">          router.addRoute(item)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 添加完动态路由之后，需要在进行一次主动跳转</span><br><span class="line">        return next(to.path)</span><br><span class="line">      &#125;</span><br><span class="line">      next()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出登录时，添加的路由表并未被删除 需要退出时候重置路由表</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 初始化路由表</span><br><span class="line"> *&#x2F;</span><br><span class="line">export function resetRouter() &#123;</span><br><span class="line">  if (</span><br><span class="line">    store.getters.userInfo &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission &amp;&amp;</span><br><span class="line">    store.getters.userInfo.permission.menus</span><br><span class="line">  ) &#123;</span><br><span class="line">    const menus &#x3D; store.getters.userInfo.permission.menus</span><br><span class="line">    menus.forEach((menu) &#x3D;&gt; &#123;</span><br><span class="line">      router.removeRoute(menu)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
