@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/09/27/2016-7-17-vuejs-selectall/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/09/27/2016-7-17-vuejs-selectall/" class="post-title-link" itemprop="url">vuejs实现全选</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-09-27 01:08:00" itemprop="dateCreated datePublished" datetime="2016-09-27T01:08:00+08:00">2016-09-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;vue.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">     &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">        &lt;input type&#x3D;&#39;checkbox&#39; class&#x3D;&#39;input-checkbox&#39; v-on:click&#x3D;&#39;checkedAll($event)&#39;&gt;全选</span><br><span class="line">        &lt;button @click&#x3D;&quot;checkBtn($event)&quot;&gt;全选&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;template v-for&#x3D;&#39;checkb in checkboxData&#39;&gt;</span><br><span class="line">            &lt;input type&#x3D;&#39;checkbox&#39; name&#x3D;&#39;checkboxinput&#39; class&#x3D;&#39;input-checkbox&#39; v-model&#x3D;&#39;checkboxModel&#39; value&#x3D;&#39;&#123;&#123;checkb.id&#125;&#125;&#39;&gt;&#123;&#123;checkb.value&#125;&#125;</span><br><span class="line">         &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;div id&#x3D;&quot;app1&quot;&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;checkbox&quot; value&#x3D;&quot;Jack123&quot; v-model&#x3D;&quot;checkedNames&quot;&gt;</span><br><span class="line">        &lt;label for&#x3D;&quot;jack&quot;&gt;Jack&lt;&#x2F;label&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;checkbox&quot;  value&#x3D;&quot;John&quot; v-model&#x3D;&quot;checkedNames&quot;&gt;</span><br><span class="line">        &lt;label for&#x3D;&quot;john&quot;&gt;John&lt;&#x2F;label&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;checkbox&quot;  value&#x3D;&quot;Mike&quot; v-model&#x3D;&quot;checkedNames&quot;&gt;</span><br><span class="line">        &lt;label for&#x3D;&quot;mike&quot;&gt;Mike&lt;&#x2F;label&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line">        &lt;span&gt;Checked names: &#123;&#123; checkedNames | json &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">        var vm &#x3D; new Vue(&#123;</span><br><span class="line">            el:&quot;#app&quot;,</span><br><span class="line">            data:&#123;</span><br><span class="line">                    checkboxData:[&#123;</span><br><span class="line">                      id:&#39;1&#39;,</span><br><span class="line">                      value:&#39;苹果&#39;</span><br><span class="line">                    &#125;,&#123;</span><br><span class="line">                      id:&#39;2&#39;,</span><br><span class="line">                      value:&#39;荔枝&#39;</span><br><span class="line">                    &#125;,&#123;</span><br><span class="line">                      id:&#39;3&#39;,</span><br><span class="line">                      value:&#39;香蕉&#39;</span><br><span class="line">                    &#125;,&#123;</span><br><span class="line">                      id:&#39;4&#39;,</span><br><span class="line">                      value:&#39;火龙果&#39;</span><br><span class="line">                    &#125;],</span><br><span class="line">                    checkboxModel:[&#39;3&#39;,&#39;1&#39;,&#39;4&#39;],</span><br><span class="line">                    checked:&quot;&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            methods:&#123;</span><br><span class="line">              checkedAll: function(event) &#123;</span><br><span class="line">               &#x2F;&#x2F;event.currentTarget 取得当前的DOM元素</span><br><span class="line">                var ischeck &#x3D; event.currentTarget.checked</span><br><span class="line">                var _this &#x3D; this;</span><br><span class="line">                if (!ischeck) &#123;&#x2F;&#x2F;实现反选</span><br><span class="line">                  console.log(ischeck)</span><br><span class="line">                  _this.checkboxModel &#x3D; [];</span><br><span class="line">                  &#x2F;&#x2F; console.log(_this.checkboxModel);</span><br><span class="line"></span><br><span class="line">                &#125;else&#123;&#x2F;&#x2F;实现全选</span><br><span class="line">                  console.log(ischeck)</span><br><span class="line">                  _this.checkboxModel &#x3D; [];</span><br><span class="line">                  _this.checkboxData.forEach(function(item) &#123;</span><br><span class="line">                    _this.checkboxModel.push(item.id);</span><br><span class="line">                  &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;,</span><br><span class="line">              checkBtn:function(event)&#123;</span><br><span class="line">                var btnDom &#x3D; event.currentTarget;</span><br><span class="line">                var _this &#x3D; this;</span><br><span class="line">                if(btnDom.innerHTML &#x3D;&#x3D; &quot;全选&quot;)</span><br><span class="line">                &#123;</span><br><span class="line">                     _this.checkboxModel &#x3D; [];</span><br><span class="line">                     _this.checkboxData.forEach(function(item) &#123;</span><br><span class="line">                     _this.checkboxModel.push(item.id);</span><br><span class="line">                     btnDom.innerHTML &#x3D; &quot;取消全选&quot;</span><br><span class="line">                  &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    _this.checkboxModel &#x3D; [];</span><br><span class="line"></span><br><span class="line">                     btnDom.innerHTML &#x3D; &quot;全选&quot;</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        var vm1 &#x3D; new Vue(&#123;</span><br><span class="line">          el: &#39;#app1&#39;,</span><br><span class="line">          data: &#123;</span><br><span class="line">            checkedNames: []</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -952,112 +1032,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2015/03/27/2015-03-27-ie8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/03/27/2015-03-27-ie8/" class="post-title-link" itemprop="url">ie8兼容问题汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2015-03-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-03-27T01:08:00+08:00">2015-03-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="IE8问题汇总及解决方案"><a href="#IE8问题汇总及解决方案" class="headerlink" title="IE8问题汇总及解决方案"></a>IE8问题汇总及解决方案</h1><p>1,调整浏览器渲染模式     <br /></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge,chrome&#x3D;1&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p><br /><br /><br>2,针对双核浏览器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;renderer&quot; content&#x3D;&quot;webkit&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>3,IE8无法识别 Media Query <br /><br>推荐采用Respond.js<br /><br /></p>
-<p>4,H5新标签 <br><br>html5shiv<br /><br /></p>
-<p>5,background-size: cover<br><br>filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=Enabled, sizingMethod=Size , src=URL) <br /><br /></p>
-<p>6,inline-block下padding元素重叠<br><br>使用float: left替代display: inline-block实现水平布局<br /><br /></p>
-<p>7,placeholder <br><br>使用插件比如：<a target="_blank" rel="noopener" href="https://github.com/mathiasbynens/jquery-placeholder">https://github.com/mathiasbynens/jquery-placeholder</a> 或者使用JS实现<br></p>
-<p>8,es5的一些属性，方法(主要是针对数组那些) <br><br>es5-shim<br><br></p>
-<p>9，echarts图表在ie8里不显示<br><br>(1)ajax由get传值改成post传值。(2)配置图表时去掉最后面的一项数据后面的逗号。<br><br></p>
-<p>10，d3在ie8不显示问题<br><br>try{。。。}catch{ 。。。}容错解决。并进行友好提示。<br><br></p>
-<p>11，行内样式垂直居中问题，有时line-height和高度相等在ie8无效果<br><br>加vertical-align：middle;解决<br><br></p>
-<p>12，button按钮左右两边的留白的问题<br><br>用overflow:visible;padding:0;<br><br></p>
-<p>13，hack方法解决一些边距等问题<br><br>针对仅ie8内input框文字不居中的问题单独写css后缀加\9区分<br><br></p>
-<p>14，z-index失效<br><br>给元素都添加postion:relative<br><br></p>
-<p>15，table的隔行变色 用nth-child(even)不兼容<br><br>用JQUERY实现<br><br></p>
-<p>16，Ajax获取数据的时候用get有的时候由于后台传的汉字转译之后太长，会导致ie取不到后台的数据<br><br>改成用post<br><br></p>
-<p>17，文字有和图片，表单一行的时候，在IE8中布局会乱<br><br>文字的行高一定要写的和Input（image、select等等）一样高，外边上下的边距不要用行高撑开，用margin或者padding都行，只用高度撑开的话在ie8中会布局乱。<br><br></p>
-<p>18，marin不起作用<br><br>塌陷问题，常见于浮动布局，解决方案1清除浮动 2，给父及元素加overflow:hidden;<br><br></p>
-<p>19，IE8 不支持CSS3 选择器，<br><br>1. 可引入 selectivizr-min.js 解决。selectivizr-min.js 需要其它js库进行支持，不同js库对其支持程度不同，推荐使用nwmatcher.js。两者结合可满足CSS3 绝大多数选择器。&lt;!- -[if (gte IE 6)&amp;(lte IE 8)]&gt;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;Lib&#x2F;nwmatcher.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">          &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;Lib&#x2F;selectivizr-min.js&quot;&gt;&lt;&#x2F;script</span><br><span class="line">&lt;![endif]- -&gt;</span><br></pre></td></tr></table></figure>
-<p>20 CSS属性颜色渐变linear-gradient<br><br>渐变做法使用hack技术添加一纯色背景。background-color: #f5840c\9;<br><br></p>
-<p>21，IE 缓存过大，比如一些请求，或者动态更换img地址等<br><br>请求后加时间戳<br><br></p>
-<p>22，ajax在ie8，ie9之下有时候不能跨域<br><br>使用 jquery.xdomainrequest.min.js  解决<br><br></p>
-<p>23，echarts部分图表在ie8之下二次加载的时候不能清空 <br><br>每次在加载之前清空容纳图表的容器<br><br></p>
-<p>24,ajax在ie8，ie9之下有时候不能跨域   <br><br>使用 jquery.xdomainrequest.min.js  解决<br><br></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
@@ -1093,7 +1067,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

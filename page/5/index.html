@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,95 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/16/redux-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/16/redux-login/" class="post-title-link" itemprop="url">react-redux开发登录校验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-11-16 14:13:23" itemprop="dateCreated datePublished" datetime="2017-11-16T14:13:23+08:00">2017-11-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1.基础原理详见上一篇 react-redux 理解<br>2.分为两个页面 auth.js是登录页 Dashbord是主页 ，默认不输入登录页地址的话直接到dashbord.js做验证，没有登录的话去auth.js</p>
+<h3 id="index-js入口页面-引用"><a href="#index-js入口页面-引用" class="headerlink" title="index.js入口页面 引用"></a>index.js入口页面 引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;;</span><br><span class="line">&#x2F;&#x2F;npm install redux-thunk -save  </span><br><span class="line">import thunk from &#39;redux-thunk&#39; &#x2F;&#x2F;applyMiddleware中间件，redux-thunk处理异步获取</span><br><span class="line">import combineReducers from &#39;.&#x2F;reducer&#39;  &#x2F;&#x2F;涉及到合并reducer 不合并的话可以不用</span><br><span class="line">import &#123;Provider&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F;路由</span><br><span class="line">import &#123;BrowserRouter,Route,Redirect,Switch&#125; from &#39;react-router-dom&#39;</span><br><span class="line">&#x2F;&#x2F;分为登录页和主页  做权限校验</span><br><span class="line">import Auth from &#39;.&#x2F;Auth.js&#39;</span><br><span class="line">import Dashbord from &#39;.&#x2F;Dashbord&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="index-js-页面逻辑-默认去dashbord页面"><a href="#index-js-页面逻辑-默认去dashbord页面" class="headerlink" title="index.js 页面逻辑 默认去dashbord页面"></a>index.js 页面逻辑 默认去dashbord页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果不处理异步 直接const store &#x3D; createStore(counter)就可以了</span><br><span class="line">&#x2F;&#x2F;这里用了combineReducer  合并了auth.redux.js index.redux.js里两个reducer</span><br><span class="line">const store &#x3D; createStore(combineReducers,applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用react-redux 方便了很多 Provider只在入口页面写一次 负责传入store 也不需要subscribe订阅了</span><br><span class="line"></span><br><span class="line">        (&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                  &lt;Switch&gt;</span><br><span class="line">                      &#123;&#x2F;*只命中匹配上的第一个route*&#x2F;&#125;</span><br><span class="line">                      &lt;Route exact path&#x3D;&#39;&#x2F;Auth&#39; component&#x3D;&#123;Auth&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                      &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#39; component&#x3D;&#123;Dashbord&#125;&gt;&lt;&#x2F;Route&gt;                   </span><br><span class="line">                      &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">                  &lt;&#x2F;Switch&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;BrowserRouter&gt;</span><br><span class="line">         &lt;&#x2F;Provider&gt;),        </span><br><span class="line">        document.getElementById(&#39;root&#39;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="Auth-redux-js"><a href="#Auth-redux-js" class="headerlink" title="Auth.redux.js"></a>Auth.redux.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">const LOGIN &#x3D; &#39;LOGIN&#39;</span><br><span class="line">const LOGOUT &#x3D; &#39;LOGOUT&#39;</span><br><span class="line">const USERDATA &#x3D; &#39;USERDATA&#39;</span><br><span class="line">const init &#x3D; &#123;</span><br><span class="line">   &#x2F;&#x2F; isAuth:false,</span><br><span class="line">    user:&#39;李云龙&#39;,</span><br><span class="line">    age:20</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 这是一个 reducer，形式为 (state, action) &#x3D;&gt; state 的纯函数。</span><br><span class="line"> * 描述了 action 如何把 state 转变成下一个 state。**&#x2F;</span><br><span class="line">export function auth(state &#x3D; init ,action)&#123; </span><br><span class="line">    console.log(&#39;auth.redux.js里的 state ： &#39; + JSON.stringify(state))</span><br><span class="line">    console.log(&#39;auth.redux.js里的 action ： &#39; + JSON.stringify(action))</span><br><span class="line">    switch(action.type)&#123;</span><br><span class="line">        case LOGIN:</span><br><span class="line">            return &#123;...state,isAuth:true&#125;</span><br><span class="line">        case LOGOUT:</span><br><span class="line">            return &#123;...state,isAuth:false&#125;</span><br><span class="line">        case USERDATA:</span><br><span class="line">           return &#123;...state,user:action.payload.user,age:action.payload.age&#125;</span><br><span class="line">        default :</span><br><span class="line">            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象</span><br><span class="line">&#x2F;&#x2F;&#x2F;&#x2F; 改变内部 state 惟一方法是 dispatch 一个 action。</span><br><span class="line">&#x2F;&#x2F;action</span><br><span class="line">export function login()&#123;</span><br><span class="line">    return &#123;type:LOGIN&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function logout()&#123;</span><br><span class="line">    return &#123;type:LOGOUT&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;可传入一个载荷 将在reducer的action中体现</span><br><span class="line">export function userData(data)</span><br><span class="line">&#123;</span><br><span class="line">    return &#123;type:USERDATA,payload:data&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;建立一个异步的action 因为数据传输是异步的 需要手动dispatch</span><br><span class="line">export function getUserData()&#123;</span><br><span class="line">    return dispatch&#x3D;&gt;&#123;</span><br><span class="line">        axios.get(&#39;&#x2F;data&#39;).then(res&#x3D;&gt;&#123;</span><br><span class="line">            if(res.status &#x3D;&#x3D;&#x3D; 200)&#123;</span><br><span class="line">                dispatch(userData(res.data))</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Dashbord-js-进入这个页面-要做用户是否登录的判断，如果没登录跳转到auth-js页面"><a href="#Dashbord-js-进入这个页面-要做用户是否登录的判断，如果没登录跳转到auth-js页面" class="headerlink" title="Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面"></a>Dashbord.js 进入这个页面 要做用户是否登录的判断，如果没登录跳转到auth.js页面</h3><p>1.通过connect state.auth和 logout方法挂载到当前组件的this.props下了<br>2.默认this.props.isAuth肯定是没有定义的 this.props.isAuth ? app : redirectToLogin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">&#x2F;&#x2F;路由</span><br><span class="line">import &#123;Route,Link,Switch,Redirect&#125; from &#39;react-router-dom&#39;</span><br><span class="line">import App from &#39;.&#x2F;App&#39;;</span><br><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">import &#123;logout&#125; from &#39;.&#x2F;Auth.redux&#39;</span><br><span class="line"></span><br><span class="line">@connect(</span><br><span class="line">     state&#x3D;&gt;state.auth,</span><br><span class="line">    &#123;logout&#125; </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class Dashbord extends Component&#123;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(this.props)</span><br><span class="line"></span><br><span class="line">        const redirectToLogin &#x3D; &lt;Redirect to&#x3D;&#39;&#x2F;Auth&#39;&gt;&lt;&#x2F;Redirect&gt;</span><br><span class="line">        const match &#x3D; this.props.match;</span><br><span class="line">        const app &#x3D; (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">          &#123;this.props.isAuth?&lt;button onClick&#x3D;&#123;this.props.logout&#125;&gt;注销&lt;&#x2F;button&gt; : null&#125;</span><br><span class="line">              &lt;ul&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;&#96;&#125;&gt;一营&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;erying&#96;&#125;&gt;二营&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">                  &lt;li&gt;</span><br><span class="line">                      &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;qibinglian&#96;&#125;&gt;骑兵连&lt;&#x2F;Link&gt;</span><br><span class="line">                  &lt;&#x2F;li&gt;</span><br><span class="line">              &lt;&#x2F;ul&gt;  </span><br><span class="line">              &lt;Switch&gt;</span><br><span class="line">                  &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;&#39; exact component&#x3D;&#123;App&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                  &#123;&#x2F;*&lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;erying&#39; component&#x3D;&#123;Erying&#125;&gt;&lt;&#x2F;Route&gt;</span><br><span class="line">                  &lt;Route path&#x3D;&#39;&#x2F;Dashbord&#x2F;qibinglian&#39; component&#x3D;&#123;Qibinglian&#125;&gt;&lt;&#x2F;Route&gt;*&#x2F;&#125;</span><br><span class="line">              &lt;&#x2F;Switch&gt;</span><br><span class="line">          &lt;&#x2F;div&gt;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return this.props.isAuth ? app : redirectToLogin</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Dashbord</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Auth-js"><a href="#Auth-js" class="headerlink" title="Auth.js"></a>Auth.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F; import &#123;connect&#125; from &#39;react-redux&#39;</span><br><span class="line">&#x2F;&#x2F; import &#123;addGun,addGunAnsyc,removeGun&#125; from &#39;.&#x2F;index.redux&#39;</span><br><span class="line">import &#123;login,getUserData&#125; from &#39;.&#x2F;Auth.redux.js&#39;</span><br><span class="line">import &#123;Redirect&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;通过connect state属性 和 方法 都挂载到props</span><br><span class="line">&#x2F;&#x2F;这里挂了state.auth  所以下面可以通过this.props.isAuth 取得用户是否登录</span><br><span class="line">@connect(</span><br><span class="line">    state &#x3D;&gt; state.auth,</span><br><span class="line">    &#123;login,getUserData&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class Auth extends Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            data:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    componentWillMount()&#123;</span><br><span class="line">        </span><br><span class="line">        this.props.getUserData()</span><br><span class="line">        console.log(this.props)</span><br><span class="line">        &#x2F;&#x2F; axios.get(&#39;&#x2F;data&#39;).then(res&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F;         if(res.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">        &#x2F;&#x2F;             this.setState(&#123;</span><br><span class="line">        &#x2F;&#x2F;                 data:res.data</span><br><span class="line">        &#x2F;&#x2F;             &#125;)</span><br><span class="line">        &#x2F;&#x2F;         &#125;   </span><br><span class="line">                </span><br><span class="line">        &#x2F;&#x2F;         console.log(&#39;state.data &#39;,JSON.stringify(this.state.data.user,null,2))  </span><br><span class="line">        &#x2F;&#x2F; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(&#39;auth页面的props&#39; + JSON.stringify(this.props))</span><br><span class="line"></span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &#123;&#x2F;*&lt;h2&gt;我的名字是&#123;this.state.data.user&#125;&lt;&#x2F;h2&gt;*&#x2F;&#125;</span><br><span class="line">                &lt;h2&gt;用户名：&#123;this.props.user&#125;,年龄:&#123;this.props.age&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">                </span><br><span class="line">                &#123;this.props.isAuth ? &lt;Redirect to&#x3D;&#39;&#x2F;Dashbord&#39; &#x2F;&gt; : &lt;h2&gt;你没有权限，需要登录才能看&lt;&#x2F;h2&gt;&#125;</span><br><span class="line"></span><br><span class="line">                &lt;button onClick&#x3D;&#123;this.props.login&#125;&gt;登录&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Auth</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -648,6 +737,94 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/09/03/star-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/09/03/star-js/" class="post-title-link" itemprop="url">星星评价JS</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-09-03 14:13:23" itemprop="dateCreated datePublished" datetime="2017-09-03T14:13:23+08:00">2017-09-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>分为两种封装形式  对象封装 和 函数封装</p>
+<h3 id="html"><a href="#html" class="headerlink" title="html"></a><strong>html</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            *&#123;margin:0; padding:0&#125;</span><br><span class="line">            div ul&#123;</span><br><span class="line">                display: flex;</span><br><span class="line">            &#125;</span><br><span class="line">            div ul li&#123;</span><br><span class="line">                list-style-type:none;</span><br><span class="line">                width: 50px; height: 50px; background-color:yellow; margin:0 10px; transition: all .3s;</span><br><span class="line">            &#125;</span><br><span class="line">            div ul li.active&#123;</span><br><span class="line">                background: red</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li class&#x3D;&quot;active&quot;&gt;1&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;2&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;3&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;4&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;5&lt;&#x2F;li&gt;</span><br><span class="line">            &lt;&#x2F;ul&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/09/03/star-js/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/09/03/socketIo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -716,94 +893,6 @@
 
 
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/09/03/star-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/09/03/star-js/" class="post-title-link" itemprop="url">星星评价JS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-09-03 14:13:23" itemprop="dateCreated datePublished" datetime="2017-09-03T14:13:23+08:00">2017-09-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>分为两种封装形式  对象封装 和 函数封装</p>
-<h3 id="html"><a href="#html" class="headerlink" title="html"></a><strong>html</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            *&#123;margin:0; padding:0&#125;</span><br><span class="line">            div ul&#123;</span><br><span class="line">                display: flex;</span><br><span class="line">            &#125;</span><br><span class="line">            div ul li&#123;</span><br><span class="line">                list-style-type:none;</span><br><span class="line">                width: 50px; height: 50px; background-color:yellow; margin:0 10px; transition: all .3s;</span><br><span class="line">            &#125;</span><br><span class="line">            div ul li.active&#123;</span><br><span class="line">                background: red</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li class&#x3D;&quot;active&quot;&gt;1&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;2&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;3&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;4&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;li&gt;5&lt;&#x2F;li&gt;</span><br><span class="line">            &lt;&#x2F;ul&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/09/03/star-js/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1030,100 +1119,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/28/lineargradient/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/08/28/lineargradient/" class="post-title-link" itemprop="url">liner-gradient学习写一个省略号</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-08-28 14:13:23" itemprop="dateCreated datePublished" datetime="2017-08-28T14:13:23+08:00">2017-08-28</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>  div &#123;
-            width: 100px;
-            height: 2px;
-            margin-top: 10px;
-
-        &#125;
-        #test &#123;
-
-            background-image: linear-gradient(90deg,red 0, red 25%, transparent 25%,transparent 50%, red 50%,red 75%,transparent 75%,transparent 100%);  
-
-            background-size: 8px 2px;
-
-        &#125;
-</code></pre>
-<p>从0-25% 红色  25%-25%红色和透明色混合 就是突变为透明色 25%-50%透明色混合 还是透明色<br>50% - 50% 突变为红色  50%-75%红色….</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
@@ -1159,7 +1154,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
