@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -281,6 +281,90 @@
 
 
 
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
+<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
+<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
 
       
     </div>
@@ -975,112 +1059,6 @@
 <h3 id="GET-POST区别"><a href="#GET-POST区别" class="headerlink" title="GET,POST区别"></a><strong>GET,POST区别</strong></h3><p>1.GET后退按钮/刷新无害，POST数据会被重新提交（浏览器应该告知用户数据会被重新提交）<br>2.GET能被缓存，POST不能缓存 。<br>3.GET历史参数保留在浏览器历史中。POST参数不会保存在浏览器历史中<br>4.GET对数据长度有限制，当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。POST无限制。<br>5.GET的数据在 URL 中对所有人都是可见的。POST的数据不会显示在 URL 中</p>
 <h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a><strong>jsonp</strong></h3><p>1.html标签的src属性没有同源限制（支持跨域）,创建script标签，src属性指向外部链接，并有一个和后端约定好的函数执行代码，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域</p>
 <p>缺点：没有关于 JSONP 调用的错误处理。如果动态脚本插入有效，就执行调用；如果无效，就静默失败。失败是没有任何提示的</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/05/mongoDB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/05/mongoDB/" class="post-title-link" itemprop="url">mongoDB安装</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-12-05 14:13:23" itemprop="dateCreated datePublished" datetime="2017-12-05T14:13:23+08:00">2017-12-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB官网</a>下选择 try it free进行下载。双击安装</p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><h4 id="1-前提准备"><a href="#1-前提准备" class="headerlink" title="1) 前提准备"></a>1) 前提准备</h4><ol>
-<li>将 <code>mongo.exe</code> 所在目录 加入到系统环境变量当中</li>
-<li>数据存放：在<code>MongoDB</code>安装目录下面新建文件夹 <code>mkdir data\db</code> </li>
-<li>日志存放：在<code>MongoDB</code>安装目录下面新建文件夹 <code>mkdir log</code>，并新建文件 <code>mongod.log</code> </li>
-</ol>
-<h4 id="2-双击-安装目录下的-mongod-exe-直接启动服务"><a href="#2-双击-安装目录下的-mongod-exe-直接启动服务" class="headerlink" title="2) 双击 安装目录下的 mongod.exe 直接启动服务"></a>2) 双击 安装目录下的 <code>mongod.exe</code> 直接启动服务</h4><h4 id="3-命令行启动服务"><a href="#3-命令行启动服务" class="headerlink" title="3) 命令行启动服务"></a>3) 命令行启动服务</h4><h5 id="1-命令行直接运行"><a href="#1-命令行直接运行" class="headerlink" title="1. 命令行直接运行"></a>1. 命令行直接运行</h5><p><code>mongod.exe --dbpath=&quot;C:\Program Files\MongoDB\data\db&quot;</code><br>后面的文件路径既是 之前创建好的 <code>data\db</code></p>
-<h5 id="2-通过配置文件启动服务"><a href="#2-通过配置文件启动服务" class="headerlink" title="2. 通过配置文件启动服务"></a>2. 通过配置文件启动服务</h5><ul>
-<li>c盘根目录下创建文件 <code>mongod.cfg</code>。在其中配置好要输出的 data 与 log  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: C:\Program Files\MongoDB\log\mongod.log</span><br><span class="line">storage:</span><br><span class="line">  dbPath: C:\Program Files\MongoDB\data\db</span><br></pre></td></tr></table></figure></li>
-<li>命令行通过配置文件启动服务 <code>mongod --config c:\mongod.cfg</code></li>
-</ul>
-<h5 id="3-通过安装服务来启动"><a href="#3-通过安装服务来启动" class="headerlink" title="3. 通过安装服务来启动"></a>3. 通过安装服务来启动</h5><ul>
-<li>命令行直接输入命令来安装<br><code>mongod.exe --dbpath=&quot;C:\Program Files\MongoDB\data\db&quot; --logpath=&quot;C:\Program Files\MongoDB\log\mongod.log&quot; --install</code></li>
-<li>通过上面创建好的配置文件来安装<br><code>mongod --config c:\mongod.cfg --install</code> </li>
-<li>启动MongoDB服务<br><code>net start MongoDB</code></li>
-<li>关闭MongoDB服务<br><code>net stop MongoDB</code></li>
-</ul>
-<h3 id="进入mongodb"><a href="#进入mongodb" class="headerlink" title="进入mongodb"></a>进入mongodb</h3><p>命令行直接敲入 <code>mongo</code> 即可</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>Windows 10 的 C盘下面有些权限的问题。可将MongoDB文件夹的各项权限提高。</li>
-<li>安装服务不能成功的，以管理员身份运行安装下即可</li>
-</ol>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
-<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/Jason_first/article/details/75439043">JasonCeng_的博客</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.runoob.com/mongodb/mongodb-window-install.html">Windows 平台安装MongoDB</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/lsc183/archive/2012/08/16/mongodb.html">lsc183</a></li>
-</ol>
 
       
     </div>
