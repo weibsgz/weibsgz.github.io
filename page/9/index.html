@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,88 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/09/28/2016-7-17-vuejs-cart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/09/28/2016-7-17-vuejs-cart/" class="post-title-link" itemprop="url">vuejs简易购物车</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-09-28 01:08:00" itemprop="dateCreated datePublished" datetime="2016-09-28T01:08:00+08:00">2016-09-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>模拟假数据 data.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var data &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">        name:&#39;ipone6&#39;,</span><br><span class="line">        price:5499,</span><br><span class="line">        id:1,</span><br><span class="line">        count:1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name:&#39;ipad&#39;,</span><br><span class="line">        price:3299,</span><br><span class="line">        id:2,</span><br><span class="line">        count:1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name:&#39;iMac&#39;,</span><br><span class="line">        price:15999,</span><br><span class="line">        id:3,</span><br><span class="line">        count:1</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot; xmlns:v-on&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;margin: 0; padding:0;-moz-user-select: none; &#x2F;*火狐*&#x2F;</span><br><span class="line">            -webkit-user-select: none; &#x2F;*webkit浏览器*&#x2F;-ms-user-select: none; &#x2F;*IE10*&#x2F;-khtml-user-select: none; &#x2F;*早期浏览器*&#x2F;</span><br><span class="line">            user-select: none;&#125;</span><br><span class="line">        .products .item span&#123;border: 1px solid #ccc; width: 100px; display: inline-block; text-align: center; height:40px; line-height:40px;&#125;</span><br><span class="line">        .products .item span em&#123;width: 20px;height: 20px; text-align: center; border: 1px solid #ccc;</span><br><span class="line">            background-color:orangered; color: #fff; display: inline-block;line-height: 20px; cursor: pointer;&#125;</span><br><span class="line">        .products .item span i&#123;width: 50px; line-height: 30px; text-align: center; background: orangered; color: #fff;</span><br><span class="line">            height:30px; font-size: 14px; font-style: normal; display: inline-block&#125;</span><br><span class="line">        .info&#123;margin-top: 50px&#125;</span><br><span class="line">        .products .item span em.off&#123;background-color: #ccc;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;vue.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;data.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">       &lt;!--用template 判断购物车是不是为空 做不同的显示--&gt;</span><br><span class="line">        &lt;template v-if&#x3D;&quot;data.length&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;products&quot;&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;item&quot;&gt;</span><br><span class="line">                    &lt;span&gt;商品名称&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;购买单价&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;商品数量&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;操作&lt;&#x2F;span&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;item&quot; v-for&#x3D;&quot;item in data&quot;&gt;</span><br><span class="line">                    &lt;span&gt;&#123;&#123;item.name&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;&#123;&#123;item.price | currency &#39;￥&#39; 0&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;</span><br><span class="line">                    &lt;em :class&#x3D;&quot;&#123;off:item.count &#x3D;&#x3D; 1&#125;&quot; @click&#x3D;&quot;reduce($index)&quot;&gt;-&lt;&#x2F;em&gt;</span><br><span class="line">                    &#123;&#123;item.count&#125;&#125;</span><br><span class="line">                    &lt;em @click&#x3D;&quot;add($index)&quot;&gt;+&lt;&#x2F;em&gt;</span><br><span class="line">                &lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;span&gt;</span><br><span class="line">                    &lt;i v-on:click&#x3D;&quot;remove($index)&quot;&gt;移除&lt;&#x2F;i&gt;</span><br><span class="line">                &lt;&#x2F;span&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;info&quot;&gt;</span><br><span class="line">                &lt;label for&#x3D;&quot;&quot;&gt;收件人:&lt;&#x2F;label&gt;</span><br><span class="line">                &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;name&quot;&gt;</span><br><span class="line">                &lt;label for&#x3D;&quot;&quot;&gt;收货地址:&lt;&#x2F;label&gt;</span><br><span class="line">                &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;address&quot;&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;result&quot;&gt;</span><br><span class="line">                &lt;h3&gt;清单&lt;&#x2F;h3&gt;</span><br><span class="line">                &lt;!--内置过滤器， 第三个参数代表保留几位--&gt;</span><br><span class="line">                商品总价：&#123;&#123; price | currency &#39;￥&#39; 0&#125;&#125;&lt;br&gt;</span><br><span class="line">                收件人：&#123;&#123;name&#125;&#125;&lt;br&gt;</span><br><span class="line">                收货地址：&#123;&#123;address&#125;&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line">        &lt;template v-else&gt;</span><br><span class="line">            购物车为空</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var vm &#x3D; new Vue(&#123;</span><br><span class="line">        el:&quot;#app&quot;,</span><br><span class="line">        data:&#123;</span><br><span class="line">            data:data,</span><br><span class="line">            name:&quot;&quot;,</span><br><span class="line">            address:&quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed:&#123;</span><br><span class="line">            &#x2F;&#x2F;自动计算所有单价*数量</span><br><span class="line">          price:function()&#123;</span><br><span class="line">              var price &#x3D; 0;</span><br><span class="line">              for(var i&#x3D;0; i&lt;this.data.length; i++)</span><br><span class="line">              &#123;</span><br><span class="line">                  price +&#x3D; this.data[i].price* this.data[i].count</span><br><span class="line">              &#125;</span><br><span class="line">              return price</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            reduce:function(index)&#123;</span><br><span class="line">                if(this.data[index].count &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    return false</span><br><span class="line">                &#125;</span><br><span class="line">                this.data[index].count--</span><br><span class="line">            &#125;,</span><br><span class="line">            add:function(index)&#123;</span><br><span class="line">                this.data[index].count++</span><br><span class="line">            &#125;,</span><br><span class="line">            remove:function(index)</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F;spilce 方法 第一个参数是要删除的起始位置，第二个参数是要删除的个数</span><br><span class="line">                this.data.splice(index,1)</span><br><span class="line"></span><br><span class="line">              &#x2F;&#x2F;  this.data.$remove(item) &#x2F;&#x2F;如果上边传进来这个item 可以用这种VUE自带的方法直接删除这个ITEM；</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -567,6 +649,89 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/15/js-input/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/07/15/js-input/" class="post-title-link" itemprop="url">输入框输入延迟提交（避免每次输入都发请求）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-07-15 14:13:23" itemprop="dateCreated datePublished" datetime="2016-07-15T14:13:23+08:00">2016-07-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">     &lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input id&#x3D;&quot;inputObj&quot;  &#x2F;&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">  </span><br><span class="line">var inputObj &#x3D; document.getElementById(&#39;inputObj&#39;)</span><br><span class="line">var timer &#x3D; null;</span><br><span class="line">inputObj.addEventListener(&#39;input&#39;,function()&#123;</span><br><span class="line">  </span><br><span class="line">  if(timer)&#123;</span><br><span class="line">    clearTimeout(timer)</span><br><span class="line">  &#125;</span><br><span class="line">  timer &#x3D; setTimeout(function()&#123;</span><br><span class="line">    console.log(inputObj.value)</span><br><span class="line">  &#125;,500)</span><br><span class="line">&#125;,false)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/15/js-extends/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -629,89 +794,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Cat.prototype &#x3D; new Animal();&#x2F;&#x2F;相当于完全删除了prototype 对象原先的值，然后赋予一个新值</span><br><span class="line">   Cat.prototype.constructor &#x3D; Cat  &#x2F;&#x2F;constructor指回Cat 防止继承链的紊乱</span><br><span class="line">   var cat &#x3D; new Cat(&#39;猫&#39;,&#39;黄色&#39;);</span><br><span class="line">   cat.run() &#x2F;&#x2F;猫是动物 ,它可以跑步</span><br></pre></td></tr></table></figure>
 
 <h3 id="ES6继承"><a href="#ES6继承" class="headerlink" title="ES6继承"></a><strong>ES6继承</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class AnimalEs6 &#123;</span><br><span class="line">     constructor(props)&#123;</span><br><span class="line">        this.name&#x3D;props.name||&#39;未知&#39;;</span><br><span class="line">     &#125;</span><br><span class="line">     eat()&#123;</span><br><span class="line">        console.log(this.name+&quot;在吃东西...&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   class Bird extends AnimalEs6 &#123;</span><br><span class="line">        constructor(props)&#123;</span><br><span class="line">             super(props)</span><br><span class="line">             this.name&#x3D;props.name||&#39;未知&#39;;</span><br><span class="line">             this.color &#x3D; props.color;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fly()&#123;</span><br><span class="line">            console.log(this.name + &quot;在飞。。。&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   var bird &#x3D; new Bird(&#123;</span><br><span class="line">        name : &#39;花花&#39;,</span><br><span class="line">        color : &#39;白色&#39;</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   bird.eat()</span><br><span class="line">   bird.fly()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/15/js-input/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/07/15/js-input/" class="post-title-link" itemprop="url">输入框输入延迟提交（避免每次输入都发请求）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-07-15 14:13:23" itemprop="dateCreated datePublished" datetime="2016-07-15T14:13:23+08:00">2016-07-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">     &lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input id&#x3D;&quot;inputObj&quot;  &#x2F;&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">  </span><br><span class="line">var inputObj &#x3D; document.getElementById(&#39;inputObj&#39;)</span><br><span class="line">var timer &#x3D; null;</span><br><span class="line">inputObj.addEventListener(&#39;input&#39;,function()&#123;</span><br><span class="line">  </span><br><span class="line">  if(timer)&#123;</span><br><span class="line">    clearTimeout(timer)</span><br><span class="line">  &#125;</span><br><span class="line">  timer &#x3D; setTimeout(function()&#123;</span><br><span class="line">    console.log(inputObj.value)</span><br><span class="line">  &#125;,500)</span><br><span class="line">&#125;,false)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
       
     </div>
 
@@ -959,99 +1041,6 @@
 
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(&#x2F;Android [4-6]&#x2F;.test(navigator.appVersion)) &#123;</span><br><span class="line">   window.addEventListener(&quot;resize&quot;, function() &#123;</span><br><span class="line">     if(document.activeElement.tagName&#x3D;&#x3D;&quot;INPUT&quot; || document.activeElement.tagName&#x3D;&#x3D;&quot;TEXTAREA&quot;) &#123;</span><br><span class="line">       window.setTimeout(function() &#123;</span><br><span class="line">         document.activeElement.scrollIntoViewIfNeeded();</span><br><span class="line">       &#125;,0);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2015/08/27/2015-04-17-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/08/27/2015-04-17-js/" class="post-title-link" itemprop="url">记录一些JS考点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2015-08-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-08-27T01:08:00+08:00">2015-08-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-11-07 15:47:03" itemprop="dateModified" datetime="2022-11-07T15:47:03+08:00">2022-11-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="100个请求，最大并发10-，最后得到一个数组，是所有请求的返回结果，顺序和请求地址数组一致。"><a href="#100个请求，最大并发10-，最后得到一个数组，是所有请求的返回结果，顺序和请求地址数组一致。" class="headerlink" title="100个请求，最大并发10 ，最后得到一个数组，是所有请求的返回结果，顺序和请求地址数组一致。"></a>100个请求，最大并发10 ，最后得到一个数组，是所有请求的返回结果，顺序和请求地址数组一致。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">const urls &#x3D; []</span><br><span class="line"></span><br><span class="line"> for(var i&#x3D;0 ; i&lt;10; i++) &#123;</span><br><span class="line">   urls.push(&#96;https:&#x2F;&#x2F;newcar.xcar.com.cn&#x2F;auto&#x2F;index.php?r&#x3D;Ajax&#x2F;GetUsedCars&amp;province_id&#x3D;$&#123;i&#125;&#96;)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> conCurRequest(urls,3).then(res&#x3D;&gt;&#123;</span><br><span class="line">   console.log(res)</span><br><span class="line"> &#125;)</span><br><span class="line"></span><br><span class="line"> function conCurRequest(urls,maxNum) &#123;</span><br><span class="line">    return new Promise(resolve&#x3D;&gt;&#123;</span><br><span class="line">        if(urls.length &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">          resolve([])</span><br><span class="line">          return </span><br><span class="line">        &#125;</span><br><span class="line">        const results &#x3D; []</span><br><span class="line">        &#x2F;&#x2F; 每次取出这个索引指向的URL地址</span><br><span class="line">        let index &#x3D; 0</span><br><span class="line">        &#x2F;&#x2F; 请求完成的数量</span><br><span class="line">        let count &#x3D; 0; </span><br><span class="line">        async function request() &#123;</span><br><span class="line">          &#x2F;&#x2F;如果发送的地址超过了URL数组的长度 </span><br><span class="line">          if(urls.length &#x3D;&#x3D;&#x3D; index) &#123;</span><br><span class="line">            return</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          &#x2F;&#x2F;保存之前的url数组的index,按顺序保存入返回的数组用</span><br><span class="line">          const i &#x3D; index;              </span><br><span class="line">          let url &#x3D; urls[index]</span><br><span class="line">          console.log(url)</span><br><span class="line">          index++;</span><br><span class="line">          </span><br><span class="line">          try&#123;</span><br><span class="line">            const reps &#x3D; await fetch(url)</span><br><span class="line">            results[i] &#x3D; reps</span><br><span class="line">          &#125;catch(e) &#123;</span><br><span class="line">            &#x2F;&#x2F;不管成功或者失败，都把结果按顺序放入数组中</span><br><span class="line">            results[i] &#x3D; err</span><br><span class="line">          &#125;</span><br><span class="line">          finally&#123;</span><br><span class="line">            &#x2F;&#x2F;无论成功失败都继续发送下一次请求</span><br><span class="line">            request()</span><br><span class="line">            count++;</span><br><span class="line">            &#x2F;&#x2F;发送所有url完成 reslove结果</span><br><span class="line">            if(urls.length &#x3D;&#x3D;&#x3D; count) &#123;</span><br><span class="line">              console.log(&#39;所有请求都已完成&#39;)</span><br><span class="line">              resolve(results)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">         </span><br><span class="line">        &#125;</span><br><span class="line">         const times &#x3D; Math.min(maxNum,urls.length);</span><br><span class="line">         for(var i&#x3D;0; i&lt; times; i++) &#123;</span><br><span class="line">           request()</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">    &#125;)        </span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="js-深拷貝"><a href="#js-深拷貝" class="headerlink" title="js 深拷貝"></a>js 深拷貝</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj&#x3D;&#123;&#125;)&#123;</span><br><span class="line">    if(typeof obj !&#x3D;&#39;object&#39; || obj !&#x3D; null)&#123;</span><br><span class="line">        &#x2F;&#x2F; obj如果不是对象或者数组，是null，直接返回</span><br><span class="line">        return obj</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 初始化返回结果</span><br><span class="line">    let result</span><br><span class="line">    if(obj instanceof Array)&#123;</span><br><span class="line">        result &#x3D; []</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        result &#x3D; &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for(let key in obj)&#123;</span><br><span class="line">        &#x2F;&#x2F; 保证 key 不是原型的属性</span><br><span class="line">        if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">            &#x2F;&#x2F; 递归调用！！！！</span><br><span class="line">            result[key] &#x3D; deepClone(obj[key])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 返回结果</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let obj1 &#x3D; &#123;</span><br><span class="line">    age:20,</span><br><span class="line">    name:&#39;xxx&#39;,</span><br><span class="line">    address:&#123;</span><br><span class="line">        city:&#39;beijing&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    arr:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let  obj2 &#x3D; deepClone(obj1)</span><br><span class="line"></span><br><span class="line">obj2.age &#x3D; 21;</span><br><span class="line">console.log(obj1.age) &#x2F;&#x2F; 20;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">export const $ &#x3D; function() &#123;</span><br><span class="line">  var copyIsArray,</span><br><span class="line">    toString &#x3D; Object.prototype.toString,</span><br><span class="line">    hasOwn &#x3D; Object.prototype.hasOwnProperty,</span><br><span class="line"></span><br><span class="line">    class2type &#x3D; &#123;</span><br><span class="line">      &#39;[object Boolean]&#39;: &#39;boolean&#39;,</span><br><span class="line">      &#39;[object Number]&#39;: &#39;number&#39;,</span><br><span class="line">      &#39;[object String]&#39;: &#39;string&#39;,</span><br><span class="line">      &#39;[object Function]&#39;: &#39;function&#39;,</span><br><span class="line">      &#39;[object Array]&#39;: &#39;array&#39;,</span><br><span class="line">      &#39;[object Date]&#39;: &#39;date&#39;,</span><br><span class="line">      &#39;[object RegExp]&#39;: &#39;regExp&#39;,</span><br><span class="line">      &#39;[object Object]&#39;: &#39;object&#39;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    type &#x3D; function(obj) &#123;</span><br><span class="line">      return obj &#x3D;&#x3D; null ? String(obj) : class2type[toString.call(obj)] || &quot;object&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    isWindow &#x3D; function(obj) &#123;</span><br><span class="line">      return obj &amp;&amp; typeof obj &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; &quot;setInterval&quot; in obj;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    isArray &#x3D; Array.isArray || function(obj) &#123;</span><br><span class="line">      return type(obj) &#x3D;&#x3D;&#x3D; &quot;array&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    isPlainObject &#x3D; function(obj) &#123;</span><br><span class="line">      if (!obj || type(obj) !&#x3D;&#x3D; &quot;object&quot; || obj.nodeType || isWindow(obj)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (obj.constructor &amp;&amp; !hasOwn.call(obj, &quot;constructor&quot;) &amp;&amp;</span><br><span class="line">        !hasOwn.call(obj.constructor.prototype, &quot;isPrototypeOf&quot;)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      var key;</span><br><span class="line">      for (key in obj) &#123;&#125;</span><br><span class="line"></span><br><span class="line">      return key &#x3D;&#x3D;&#x3D; undefined || hasOwn.call(obj, key);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    extend &#x3D; function(deep, target, options) &#123;</span><br><span class="line">      for (var name in options) &#123;</span><br><span class="line">        var src &#x3D; target[name];</span><br><span class="line">        var copy &#x3D; options[name];</span><br><span class="line"></span><br><span class="line">        if (target &#x3D;&#x3D;&#x3D; copy) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (deep &amp;&amp; copy &amp;&amp;</span><br><span class="line">          (isPlainObject(copy) || (copyIsArray &#x3D; isArray(copy)))) &#123;</span><br><span class="line">          if (copyIsArray) &#123;</span><br><span class="line">            copyIsArray &#x3D; false;</span><br><span class="line">            var clone &#x3D; src &amp;&amp; isArray(src) ? src : [];</span><br><span class="line"></span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            var clone &#x3D; src &amp;&amp; isPlainObject(src) ? src : &#123;&#125;;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          target[name] &#x3D; extend(deep, clone, copy);</span><br><span class="line">        &#125; else if (copy !&#x3D;&#x3D; undefined) &#123;</span><br><span class="line">          target[name] &#x3D; copy;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return target;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  return &#123; extend: extend &#125;;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="比较两个元素（可以是数组，字符串，对象）是否相等"><a href="#比较两个元素（可以是数组，字符串，对象）是否相等" class="headerlink" title="比较两个元素（可以是数组，字符串，对象）是否相等"></a>比较两个元素（可以是数组，字符串，对象）是否相等</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6989513100856672293">https://juejin.cn/post/6989513100856672293</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 实现如下效果</span><br><span class="line">const obj1 &#x3D; &#123;a: 10, b: &#123;x: 100, y:200 &#125;&#125;</span><br><span class="line">const obj2 &#x3D; &#123;a: 10, b: &#123;x: 100, y:200 &#125;&#125;</span><br><span class="line">isEqual(obj1, obj2) &#x3D;&#x3D;&#x3D; true</span><br><span class="line"></span><br><span class="line">function isObject(obj)&#123;</span><br><span class="line">    return typeof obj &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; obj !&#x3D; null</span><br><span class="line">&#125;</span><br><span class="line">function isEqual(obj1,obj2)&#123;</span><br><span class="line">    &#x2F;&#x2F;</span><br><span class="line">    if(!isObject(obj1) || !isObject(obj2))&#123;</span><br><span class="line">        return obj &#x3D;&#x3D;&#x3D; obj2</span><br><span class="line">    &#125;</span><br><span class="line">    if(obj1&#x3D;&#x3D;&#x3D;obj2)&#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 两个都是对象或数组，而且不相等</span><br><span class="line">    &#x2F;&#x2F; 1.先取出 obj1 和 obj2 的keys  比较个数</span><br><span class="line">    const obj1Keys &#x3D; Object.keys(obj1)</span><br><span class="line">    const obj2Keys &#x3D; Object.keys(obj2)</span><br><span class="line">    if(obj1Keys.length !&#x3D; obj2Keys.length)&#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 2.以obj1为基准，和obj2 依次递归比较</span><br><span class="line">    for(let key in obj1)&#123;</span><br><span class="line">        &#x2F;&#x2F; 比较当前的key的val</span><br><span class="line">        const res &#x3D; isEqual(obj1[key],obj2[key])</span><br><span class="line">        if(!res)&#123;</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 3.全相等</span><br><span class="line">    return true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;</span><br><span class="line">        name : &quot;1&quot;,</span><br><span class="line">        other:&#123;</span><br><span class="line">            name:&#39;imooc&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      const obj1 &#x3D; &#123;</span><br><span class="line">        name : &quot;1&quot;,</span><br><span class="line">        other:&#123;</span><br><span class="line">            name:&#39;imooc&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      function compare(obj1,obj2)&#123;</span><br><span class="line">         &#x2F;&#x2F;如果只比较数组，字符串，数字 直接返回真</span><br><span class="line">         if(obj1 &#x3D;&#x3D; obj2)&#123;</span><br><span class="line">            return true</span><br><span class="line">         &#125;</span><br><span class="line">         &#x2F;&#x2F;对象的key的数量不一样返回假</span><br><span class="line">         if(Object.keys(obj1).length!&#x3D;&#x3D; Object.keys(obj2).length)&#123;</span><br><span class="line">            return false</span><br><span class="line">         &#125;</span><br><span class="line">         &#x2F;&#x2F;循环 对象 如果key的值还是一个对象递归判断</span><br><span class="line">         for(let k in obj1)&#123;</span><br><span class="line">            if(Object.prototype.toString.call(obj1[k]) &#x3D;&#x3D; &quot;[object Object]&quot;)&#123;</span><br><span class="line">                return compare(obj1[k],obj2[k])</span><br><span class="line">            &#125;</span><br><span class="line">            else if(obj1[k]!&#x3D;&#x3D;obj2[k])&#123;</span><br><span class="line">                return false</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         return true</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      console.log(compare(obj,obj1))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="取最大值最小值之间随机的一个数"><a href="#取最大值最小值之间随机的一个数" class="headerlink" title="取最大值最小值之间随机的一个数"></a>取最大值最小值之间随机的一个数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Random(min,max)</span><br><span class="line">  &#123;</span><br><span class="line">    var num &#x3D; max - min + 1; &#x2F;&#x2F;最大值 - 最小值 +1 取得最小和最大之间可能有几个值</span><br><span class="line">    return Math.floor(Math.random() * num + min)  &#x2F;&#x2F;高级程序设计中提到的公式，P136</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(Random(0,5))</span><br><span class="line">  &#123;% endhighlight %&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="利用-apply-取数组中最大或最小值"><a href="#利用-apply-取数组中最大或最小值" class="headerlink" title="利用 apply 取数组中最大或最小值"></a>利用 apply 取数组中最大或最小值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;因为不支持Math.max([1,2,3])这种写法，就是不能直接传入一个数组,</span><br><span class="line">&#x2F;&#x2F;但是它支持Math.max(param1,param2...)</span><br><span class="line">&#x2F;&#x2F;所以可以变相通过 apply（apply和call的区别就是传入参数不同）</span><br><span class="line">&#x2F;&#x2F;调用的时候第一个参数给了null，这是因为没有对象去调用这个方法，我只需要用这个方法帮我运算，得到返回的结果就行，所以直接传递了一个null过去。</span><br><span class="line">var arr &#x3D; [1,2,3,5,6];</span><br><span class="line">function getMax(arr)&#123;</span><br><span class="line">    return Math.max.apply(null,arr)</span><br><span class="line">&#125;</span><br><span class="line">function getMin(arr)&#123;</span><br><span class="line">    return Math.min.apply(null,arr)</span><br><span class="line">&#125;</span><br><span class="line">alert(getMax(arr));</span><br><span class="line">alert(getMin(arr));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;ES6 写法</span><br><span class="line">Math.max(...[1,2,3])  &#x2F;&#x2F;3</span><br></pre></td></tr></table></figure>
-<h1 id="点击按钮，有三种状态-一直输出-1-2-3…1-2-3…1-2-3"><a href="#点击按钮，有三种状态-一直输出-1-2-3…1-2-3…1-2-3" class="headerlink" title="点击按钮，有三种状态 一直输出 1,2,3…1,2,3…1,2,3"></a>点击按钮，有三种状态 一直输出 1,2,3…1,2,3…1,2,3</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;button onclick&#x3D;&quot;fn1()&quot;&gt;click&lt;&#x2F;button&gt;</span><br><span class="line">   &lt;div id&#x3D;&quot;txt&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">   &lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">      var a &#x3D; 0;</span><br><span class="line"></span><br><span class="line">      var txt &#x3D; document.getElementById(&#39;txt&#39;)</span><br><span class="line">      function fn1()&#123;</span><br><span class="line">        a &#x3D; a + 1;</span><br><span class="line">        console.log(a%3)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">   &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="统计出现次数最多的字符"><a href="#统计出现次数最多的字符" class="headerlink" title="统计出现次数最多的字符"></a>统计出现次数最多的字符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.max_num &#x3D; function()&#123;</span><br><span class="line">    var obj &#x3D; &#123;&#125;</span><br><span class="line">    var res;</span><br><span class="line">    var max_num &#x3D; 0;</span><br><span class="line">    var max_key;</span><br><span class="line">    for(var i&#x3D;0; i&lt;this.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res &#x3D; this[i];</span><br><span class="line">       if(!obj[res])</span><br><span class="line">       &#123;</span><br><span class="line">            obj[res] &#x3D; 1</span><br><span class="line">       &#125;</span><br><span class="line">       else</span><br><span class="line">       &#123;</span><br><span class="line">            obj[res]++;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(var key in obj)</span><br><span class="line">    &#123;</span><br><span class="line">        if(max_num &lt; obj[key])</span><br><span class="line">        &#123;</span><br><span class="line">            max_num &#x3D; obj[key];</span><br><span class="line">            max_key &#x3D; key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return max_key</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(str.max_num())</span><br></pre></td></tr></table></figure>
-<h3 id="手写-flatern-考虑多层级（数组拍平）"><a href="#手写-flatern-考虑多层级（数组拍平）" class="headerlink" title="手写 flatern 考虑多层级（数组拍平）"></a>手写 flatern 考虑多层级（数组拍平）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr)&#123;</span><br><span class="line">    &#x2F;&#x2F;验证arr中还有没有深层数组</span><br><span class="line">    const isDeep &#x3D; arr.some(item&#x3D;&gt;item.instanceof Array)</span><br><span class="line">    if(!isDeep) return arr</span><br><span class="line">    const res &#x3D; Array.prototype.concat.apply([],arr)</span><br><span class="line">    return flat(res)</span><br><span class="line">&#125;</span><br><span class="line">const res &#x3D; flat([1,2,[3,4]])</span><br><span class="line">console.log(res)               &#x2F;&#x2F; [1,2,3,4]</span><br><span class="line"></span><br><span class="line">Array.prototype.flat([depth])  &#x2F;&#x2F;默认为1,Infinity 无限层</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.unique1 &#x3D; function()</span><br><span class="line">	&#123;</span><br><span class="line">		var n &#x3D; [];</span><br><span class="line">		for(var i&#x3D;0; i&lt; this.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(n.indexOf(this[i]) &#x3D;&#x3D; -1)</span><br><span class="line">			&#123;</span><br><span class="line">				n.push(this[i])</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return n;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	var array1 &#x3D; [1,2,2,4,4,1,5,6]</span><br><span class="line">	var s &#x3D; array1.unique1();</span><br><span class="line">	console.info(s)</span><br></pre></td></tr></table></figure>
-<h1 id="全选全不选反选"><a href="#全选全不选反选" class="headerlink" title="全选全不选反选"></a>全选全不选反选</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;全选&#x2F;全不选&quot; id&#x3D;&quot;button1&quot; &#x2F;&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;反选&quot; id&#x3D;&quot;button2&quot; &#x2F;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;</span><br><span class="line">	&lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">window.onload &#x3D; function()</span><br><span class="line">	&#123;</span><br><span class="line">			var flag &#x3D; true;   &#x2F;&#x2F;全选，全不选的按钮的标志</span><br><span class="line">			var btn1 &#x3D; document.getElementById(&quot;button1&quot;);</span><br><span class="line">			var btn2 &#x3D; document.getElementById(&quot;button2&quot;);</span><br><span class="line">			var oDiv &#x3D; document.getElementById(&quot;div1&quot;);</span><br><span class="line">			var aInput &#x3D; oDiv.getElementsByTagName(&quot;input&quot;);</span><br><span class="line">			&#x2F;&#x2F;初始让所有复选框都不选中，为了兼容IE FF</span><br><span class="line">			for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				aInput[i].checked &#x3D; false;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			btn1.onclick &#x3D; function()</span><br><span class="line">			&#123;</span><br><span class="line">				if(flag)</span><br><span class="line">				&#123;</span><br><span class="line">					for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">					&#123;</span><br><span class="line">						aInput[i].checked &#x3D; true;</span><br><span class="line">					&#125;</span><br><span class="line">					flag &#x3D; false;</span><br><span class="line">				&#125;</span><br><span class="line">				else</span><br><span class="line">				&#123;</span><br><span class="line">					for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">					&#123;</span><br><span class="line">						aInput[i].checked &#x3D; false;</span><br><span class="line">					&#125;</span><br><span class="line">					flag &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			btn2.onclick &#x3D; function()</span><br><span class="line">			&#123;</span><br><span class="line">				for(var i&#x3D;0 ;i&lt;aInput.length;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					if(aInput[i].checked &#x3D;&#x3D; true)</span><br><span class="line">					&#123;</span><br><span class="line">						aInput[i].checked &#x3D; false</span><br><span class="line">					&#125;</span><br><span class="line">					else</span><br><span class="line">						aInput[i].checked &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
