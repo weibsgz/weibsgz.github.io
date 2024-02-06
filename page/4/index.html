@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,93 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/06/15/vue-login-intercept/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/06/15/vue-login-intercept/" class="post-title-link" itemprop="url">VUE登录拦截</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-06-15 14:13:23" itemprop="dateCreated datePublished" datetime="2018-06-15T14:13:23+08:00">2018-06-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-首先，应该在登录页面点击登录按钮时候-存token"><a href="#1-首先，应该在登录页面点击登录按钮时候-存token" class="headerlink" title="1.首先，应该在登录页面点击登录按钮时候 存token"></a><strong>1.首先，应该在登录页面点击登录按钮时候 存token</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cacheUtils.cookie.setObject(consts.ACCESSTOKEN,response.data.accessToken);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/15/vue-login-intercept/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -269,90 +356,6 @@
 
 
 <h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a><strong>源码解析</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">          data:&#123;</span><br><span class="line">            a:1</span><br><span class="line">          &#125;,</span><br><span class="line">          methods:&#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">       function Vue(options) &#123;</span><br><span class="line">          this.data &#x3D; options.data;</span><br><span class="line">          this.methods &#x3D; options.methods;</span><br><span class="line">          var self &#x3D; this;</span><br><span class="line">          &#x2F;&#x2F;循环data中的数据，每个key做代理</span><br><span class="line">          Object.keys(this.data).forEach(function(key)&#123;</span><br><span class="line">              self.proxyKeys(key)</span><br><span class="line">          &#125;)  </span><br><span class="line"></span><br><span class="line">          observe(this.data)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       Vue.prototype &#x3D; &#123;</span><br><span class="line">          proxyKeys:function(key)&#123;</span><br><span class="line">            var self &#x3D; this;</span><br><span class="line">            &#x2F;&#x2F;注意：这里this代表vm实例，绑定data中的key直接到vm上，就实现了 vm.key &#x3D; vm.data.key的效果</span><br><span class="line">            &#x2F;&#x2F;所以你代码里写this.a &#x3D; this.data.a</span><br><span class="line">            Object.defineProperty(this,key,&#123;</span><br><span class="line">              enumerable:false,</span><br><span class="line">              configurable:true,</span><br><span class="line">              get:function() &#123;</span><br><span class="line">                return self.data[key]</span><br><span class="line">              &#125;,</span><br><span class="line">              set:function(newVal)&#123;</span><br><span class="line">                self[data].key &#x3D; newVal;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       &#x2F;&#x2F;Observer 作用就是遍历所有的data 为其中所有的属性（可能有递归）添加观察者(getter) ,数据有变化应该通知观察者(setter) dep就是一个观察者列表，有添加(需要观察的属性)，有通知功能(通知wather)调用自身的update方法</span><br><span class="line">       function Observe(data) &#123;</span><br><span class="line">          this.data &#x3D; data;</span><br><span class="line">          this.walk(data)</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       Observe.prototype &#x3D; &#123;</span><br><span class="line">          walk:function(data) &#123;</span><br><span class="line">            var self &#x3D; this;</span><br><span class="line">            Object.keys(data).forEach(function(key) &#123;</span><br><span class="line">                self.defineReactive(data,key,data[key])</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;,</span><br><span class="line">          defineReactive:function(data,key,val)&#123;</span><br><span class="line">             var dep &#x3D; new Dep()</span><br><span class="line">             &#x2F;&#x2F;如果data中的值还是对象，递归</span><br><span class="line">             var childObj &#x3D; observe(val);</span><br><span class="line">             Object.defineProperty(data,key,&#123;</span><br><span class="line">                   enumerable:true,</span><br><span class="line">                   configurable:true,</span><br><span class="line">                   get:function getter() &#123;</span><br><span class="line">                       if(Dep.target) &#123;  &#x2F;&#x2F;Dep.target就是watcher</span><br><span class="line">                          dep.addSub(Dep.target)</span><br><span class="line">                       &#125;</span><br><span class="line">                       return val</span><br><span class="line">                   &#125;,</span><br><span class="line">                   set:function setter(newVal) &#123;</span><br><span class="line">                      val &#x3D;&#x3D;&#x3D; newVal ? return : val &#x3D; newVal;</span><br><span class="line">                      dep.notify()</span><br><span class="line">                   &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       function Dep() &#123;</span><br><span class="line">         this.subs &#x3D; []</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       Dep.prototype &#x3D; &#123;</span><br><span class="line">          addSub:function(sub) &#123;</span><br><span class="line">              this.subs.push(sub)</span><br><span class="line">          &#125;,</span><br><span class="line">          notify:function() &#123;</span><br><span class="line">              this.subs.forEach(function(sub) &#123;</span><br><span class="line">                  sub.update();</span><br><span class="line">              &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       Dep.target &#x3D; null;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       function observe(val) &#123;</span><br><span class="line">          if(!val || typeof val !&#x3D;&#x3D; Object) &#123;</span><br><span class="line">            return </span><br><span class="line">          &#125;</span><br><span class="line">          return new Observe(value)</span><br><span class="line">       &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
-<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
-
-<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
-<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
-
       
     </div>
 
@@ -451,6 +454,90 @@
 
 
 
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/02/css-box-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/02/css-box-model/" class="post-title-link" itemprop="url">css盒模型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-02 14:13:23" itemprop="dateCreated datePublished" datetime="2018-03-02T14:13:23+08:00">2018-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="标准模型-和-IE模型区别"><a href="#标准模型-和-IE模型区别" class="headerlink" title="标准模型 和 IE模型区别"></a><strong>标准模型 和 IE模型区别</strong></h3><p>1.标准模型不包含border padding , IE模型相反<br>2.用box-sizeing:border-box/content-box设置   默认是IE模型  content-box</p>
+<h3 id="js如何设置"><a href="#js如何设置" class="headerlink" title="js如何设置"></a><strong>js如何设置</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.style.width&#x2F;height 取得内联样式</span><br><span class="line">window.getComputedStyle(dom).width&#x2F;height &#x2F;&#x2F;兼容GOOGLE，MOZ的写法</span><br><span class="line">dom.currentStyle.width&#x2F;height &#x2F;&#x2F;只有IE支持</span><br><span class="line">dom.getBoundingClientRect().width&#x2F;height &#x2F;&#x2F;根据屏幕左上角取得的  返回4个值</span><br><span class="line">                                         &#x2F;&#x2F; top left width height</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a><strong>BFC</strong></h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a></p>
+<p>概念：块级格式化上下文<br>用途：解决边距重叠问题（分别创建不同的BFC）<br>原理：bfc是一个独立的容器，外边的元素不会影响里边的，里边的也不会影响外边的<br>创建：overflow:hidden 或者 position不为static或者relative<br>清除浮动也可以用  设置父元素 overflow:auto/hidden 或者 float:left 让子元素高度也可以参与计算</p>
 
       
     </div>
@@ -988,88 +1075,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/03/cssStyle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/03/cssStyle/" class="post-title-link" itemprop="url">边角梯形，内部斜线</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-01-03 14:13:23" itemprop="dateCreated datePublished" datetime="2018-01-03T14:13:23+08:00">2018-01-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="/uploads/c1.png" alt="显示效果"></p>
-<h3 id="css"><a href="#css" class="headerlink" title="css"></a><strong>css</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">body&#123;background-color: blue&#125;</span><br><span class="line">    .box&#123;</span><br><span class="line">        width: 500px;</span><br><span class="line">        height: 500px;</span><br><span class="line">        position: relative;</span><br><span class="line">        border:1px solid #ccc;</span><br><span class="line">         background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.02) 75%, transparent 75%, transparent);</span><br><span class="line">        background-size: 20px 20px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box::before &#123;</span><br><span class="line">      content: &#39;&#39;;</span><br><span class="line">      display: block;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: 0;</span><br><span class="line">      top: 0;</span><br><span class="line">      z-index: -1;</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: #05305C;</span><br><span class="line">      background: linear-gradient(135deg, transparent 15px, #173B6B 0, #173B6B 16px, transparent 15px, #05305C 0) top left, linear-gradient(-135deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) top right, linear-gradient(-45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom right, linear-gradient(45deg, transparent 15px, #173B6B 0, #173B6B 16px, #05305C 0) bottom left;</span><br><span class="line">      background-size: 51% 51%;</span><br><span class="line">      background-repeat: no-repeat;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
@@ -1105,7 +1110,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

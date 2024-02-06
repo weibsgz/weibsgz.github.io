@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,89 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2015/09/27/2016-03-17-keybord/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/09/27/2016-03-17-keybord/" class="post-title-link" itemprop="url">解决移动端输入时候键盘遮挡问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-09-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-09-27T01:08:00+08:00">2015-09-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">移动端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>安卓手机和苹果手机body或者是外层div高度值不一样。安卓手机body或者是外层高度的高度要重新赋值，安卓手机高度要通过获取window的高度 然后赋值给body或者最外层div 代码如下<br>还要把body 设为relative</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;input,textarea&quot;).focus(function()&#123;</span><br><span class="line">			var win_h &#x3D; $(window).height();  &#x2F;&#x2F;关键代码</span><br><span class="line">			$(&quot;body&quot;).height(win_h);  &#x2F;&#x2F;关键代码</span><br><span class="line"></span><br><span class="line">			var head_h  &#x3D; $(&quot;#header&quot;).height();</span><br><span class="line">			console.log(head_h)</span><br><span class="line">			var num &#x3D; $(this).offset().top-head_h;</span><br><span class="line">			$(&quot;html,body&quot;).animate(&#123;scrollTop:num&#125;,800);</span><br><span class="line">			$(&quot;html,body&quot;).css(&quot;height&quot;,&quot;800px&quot;)</span><br><span class="line">		&#125;).blur(function()&#123;</span><br><span class="line">			$(&quot;html,body&quot;).css(&quot;height&quot;,&quot;auto&quot;)</span><br><span class="line">		&#125;)</span><br><span class="line">		&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(&#x2F;Android [4-6]&#x2F;.test(navigator.appVersion)) &#123;</span><br><span class="line">   window.addEventListener(&quot;resize&quot;, function() &#123;</span><br><span class="line">     if(document.activeElement.tagName&#x3D;&#x3D;&quot;INPUT&quot; || document.activeElement.tagName&#x3D;&#x3D;&quot;TEXTAREA&quot;) &#123;</span><br><span class="line">       window.setTimeout(function() &#123;</span><br><span class="line">         document.activeElement.scrollIntoViewIfNeeded();</span><br><span class="line">       &#125;,0);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -758,7 +841,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
