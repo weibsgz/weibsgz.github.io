@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="大文件上传 第一种：不考虑使用多线程。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960const inputFile &#x3D; document.querySelector(&#39;input[type&#x3D;&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大文件分片上传">
+<meta property="og:url" content="http://example.com/2024/03/11/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="大文件上传 第一种：不考虑使用多线程。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960const inputFile &#x3D; document.querySelector(&#39;input[type&#x3D;&amp;qu">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-11T06:13:23.000Z">
+<meta property="article:modified_time" content="2024-03-11T07:58:48.878Z">
+<meta property="article:author" content="魏彬">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/03/11/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>大文件分片上传 | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">魏彬的仓库</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%9A%E4%B8%8D%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">大文件上传 第一种：不考虑使用多线程。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E7%AC%AC%E4%BA%8C%E7%A7%8D%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88worker%EF%BC%89%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">大文件上传 第二种：使用多线程（worker）。</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魏彬"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+  <p class="site-author-name" itemprop="name">魏彬</p>
+  <div class="site-description" itemprop="description">很乱</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/11/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大文件分片上传
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-11 14:13:23 / Modified: 15:58:48" itemprop="dateCreated datePublished" datetime="2024-03-11T14:13:23+08:00">2024-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="大文件上传-第一种：不考虑使用多线程。"><a href="#大文件上传-第一种：不考虑使用多线程。" class="headerlink" title="大文件上传 第一种：不考虑使用多线程。"></a>大文件上传 第一种：不考虑使用多线程。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">const inputFile &#x3D; document.querySelector(&#39;input[type&#x3D;&quot;file&quot;]&#39;);</span><br><span class="line"></span><br><span class="line">inputFile.onchange &#x3D; async function(e) &#123;</span><br><span class="line">  const file &#x3D; e.target.files[0];</span><br><span class="line">  console.log(&#39;开始切片。。。&#39;)</span><br><span class="line">  const chunks &#x3D; await cutFile(file)</span><br><span class="line">  console.log(&#39;结束切片&#39;,chunks)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;定义每份切片的大小</span><br><span class="line">const CHUNK_SIZE &#x3D; 1024 * 1024 * 5 &#x2F;&#x2F;5MB</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> &#x2F;**</span><br><span class="line"> * 方式1： 不考虑多线程方案</span><br><span class="line">*&#x2F;</span><br><span class="line">async function cutFile(file) &#123;</span><br><span class="line">  &#x2F;&#x2F;一共分多少片。向上取整</span><br><span class="line">  const chunkCount &#x3D; Math.ceil(file.size &#x2F; CHUNK_SIZE)</span><br><span class="line">  const result &#x3D; []</span><br><span class="line">  console.log(&#39;切片数量&#39;,chunkCount)</span><br><span class="line"></span><br><span class="line">  for(let i&#x3D;0; i&lt;chunkCount; i++) &#123;        </span><br><span class="line">    const chunks &#x3D;await createChunk(file,i,CHUNK_SIZE)</span><br><span class="line">    result.push(chunks)</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(&#39;result&#39;,result)</span><br><span class="line">  return result</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line"> * &#x2F;&#x2F;接受3个参数 整个file对象 ，第几个分片，每个分片的大小</span><br><span class="line"> * 返回每个的分片结果</span><br><span class="line"> * *&#x2F;</span><br><span class="line">function createChunk(file, index, chunkSize) &#123;</span><br><span class="line">  return new Promise((resolve)&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F;本次开始和结束切片从XX MB - XX MB</span><br><span class="line">    const start &#x3D; index * chunkSize        </span><br><span class="line">    const end &#x3D; start + chunkSize</span><br><span class="line"></span><br><span class="line">    const fileReader &#x3D; new FileReader()</span><br><span class="line">    &#x2F;&#x2F;本次切片的BLOB</span><br><span class="line">    const blob  &#x3D; file.slice(start,end)</span><br><span class="line">    fileReader.onload &#x3D; function(e) &#123;</span><br><span class="line">       resolve(&#123;</span><br><span class="line">         start,</span><br><span class="line">         end,</span><br><span class="line">         index,</span><br><span class="line">         blob</span><br><span class="line">       &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fileReader.readAsArrayBuffer(blob)</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="大文件上传-第二种：使用多线程（worker）。"><a href="#大文件上传-第二种：使用多线程（worker）。" class="headerlink" title="大文件上传 第二种：使用多线程（worker）。"></a>大文件上传 第二种：使用多线程（worker）。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">const inputFile &#x3D; document.querySelector(&#39;input[type&#x3D;&quot;file&quot;]&#39;);</span><br><span class="line"></span><br><span class="line"> inputFile.onchange &#x3D; async function(e) &#123;</span><br><span class="line">   const file &#x3D; e.target.files[0];</span><br><span class="line">   console.log(&#39;开始切片。。。&#39;)</span><br><span class="line">   const chunks &#x3D; await cutFile(file)</span><br><span class="line">   console.log(&#39;结束切片&#39;,chunks)</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"> &#x2F;&#x2F;定义每份切片的大小</span><br><span class="line"> const CHUNK_SIZE &#x3D; 1024 * 1024 * 5 &#x2F;&#x2F;5MB</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> &#x2F;**</span><br><span class="line">  * 方式2：多线程方案</span><br><span class="line">  * 让分片任务去其他线程运算。减少浏览器卡顿时间。</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;看你目前电脑CPU有多少核。</span><br><span class="line">  &#x2F;&#x2F;</span><br><span class="line">  const THREAD_COUNT &#x3D; navigator.hardwareConcurrency || 4  &#x2F;&#x2F;默认4核（最低的电脑配置）</span><br><span class="line">  </span><br><span class="line">  async function cutFile(file) &#123; </span><br><span class="line">     return new Promise((reslove,reject)&#x3D;&gt;&#123;</span><br><span class="line"></span><br><span class="line">         &#x2F;&#x2F;一共分多少片。向上取整</span><br><span class="line">       const chunkCount &#x3D; Math.ceil(file.size &#x2F; CHUNK_SIZE)</span><br><span class="line">       &#x2F;&#x2F;每个线程需要分到多少个分片</span><br><span class="line">       const threadChunkCount &#x3D; Math.ceil(chunkCount &#x2F; THREAD_COUNT)</span><br><span class="line"></span><br><span class="line">       console.log(&#39;你的电脑是&#39; + THREAD_COUNT + &#39;核&#39;) &#x2F;&#x2F;8 </span><br><span class="line">       console.log(&#39;此文件一共有&#39; + chunkCount +&#39;个分片&#39;) &#x2F;&#x2F;22</span><br><span class="line">       console.log(&#39;CPU每核需要处理&#39; + threadChunkCount + &#39;个分片&#39;) &#x2F;&#x2F;3</span><br><span class="line"></span><br><span class="line">       &#x2F;&#x2F;假射你的电脑是8核的（THREAD_COUNT）。这个8核要处理20个分片（chunkCount）</span><br><span class="line">       &#x2F;&#x2F;那么我们就要让每个核处理 threadChunkCount 个分片 Math.ceil(20 &#x2F; 8) &#x3D; 3</span><br><span class="line">       &#x2F;&#x2F; 那么到了最后一个分片 如果超出了分片总数，就取分片总数（chunkCount）</span><br><span class="line"></span><br><span class="line">       const result &#x3D; []</span><br><span class="line">       let finishCount &#x3D; 0;</span><br><span class="line"></span><br><span class="line">       for(let i&#x3D;0 ; i&lt;THREAD_COUNT; i++ ) &#123;</span><br><span class="line">         &#x2F;&#x2F;创建一个线程并分配任务</span><br><span class="line">         const worker &#x3D; new Worker(&#39;.&#x2F;workers.js&#39;,&#123;</span><br><span class="line">           type:&quot;module&quot;       &#x2F;&#x2F;设置MODULE 可以让worker.js中import 其他函数,我这里都写到一个文件了，没这么用</span><br><span class="line">         &#125;)</span><br><span class="line"></span><br><span class="line">         const start &#x3D; i * threadChunkCount</span><br><span class="line">         let end  &#x3D; (i+1) * threadChunkCount</span><br><span class="line">         if(end &gt; chunkCount) end &#x3D; chunkCount;</span><br><span class="line"></span><br><span class="line">         worker.postMessage(&#123;</span><br><span class="line">           file,</span><br><span class="line">           CHUNK_SIZE,</span><br><span class="line">           startChunkIndex: start,</span><br><span class="line">           endChunkIndex: end</span><br><span class="line">         &#125;)</span><br><span class="line"></span><br><span class="line">         worker.onmessage &#x3D; (e)&#x3D;&gt;&#123;</span><br><span class="line">           &#x2F;&#x2F;因为多线程同时进行任务。所以如果要保证返回的顺序需要指定下标</span><br><span class="line">             for (let i &#x3D; start; i&lt;end; i++) &#123;</span><br><span class="line">               result[i] &#x3D; e.data[i-start]</span><br><span class="line">             &#125;</span><br><span class="line">         </span><br><span class="line">             worker.terminate()</span><br><span class="line">             finishCount ++;</span><br><span class="line"></span><br><span class="line">           </span><br><span class="line">             &#x2F;&#x2F; 如果你8个线程都完事了 结束</span><br><span class="line">             if(finishCount &#x3D;&#x3D; THREAD_COUNT) &#123;</span><br><span class="line">               </span><br><span class="line">               reslove(result)</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>worker.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; import &#123;createChunk&#125; from &#39;.&#x2F;newcar.js&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function createChunk(file, index, chunkSize) &#123;</span><br><span class="line">    return new Promise((resolve)&#x3D;&gt;&#123;</span><br><span class="line">      &#x2F;&#x2F;本次开始和结束切片从XX MB - XX MB</span><br><span class="line">      const start &#x3D; index * chunkSize        </span><br><span class="line">      const end &#x3D; start + chunkSize</span><br><span class="line"></span><br><span class="line">      const fileReader &#x3D; new FileReader()</span><br><span class="line">      &#x2F;&#x2F;本次切片的BLOB</span><br><span class="line">      const blob  &#x3D; file.slice(start,end)</span><br><span class="line">      fileReader.onload &#x3D; function(e) &#123;</span><br><span class="line">         resolve(&#123;</span><br><span class="line">           start,</span><br><span class="line">           end,</span><br><span class="line">           index,</span><br><span class="line">           blob</span><br><span class="line">         &#125;)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      fileReader.readAsArrayBuffer(blob)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  onmessage &#x3D; async (e) &#x3D;&gt; &#123;</span><br><span class="line">    const &#123; </span><br><span class="line">        file,</span><br><span class="line">        CHUNK_SIZE,</span><br><span class="line">        startChunkIndex,</span><br><span class="line">        endChunkIndex</span><br><span class="line">    &#125; &#x3D; e.data</span><br><span class="line"></span><br><span class="line">    console.log(&#123; </span><br><span class="line">        file,</span><br><span class="line">        CHUNK_SIZE,</span><br><span class="line">        startChunkIndex,</span><br><span class="line">        endChunkIndex</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    const proms &#x3D; []</span><br><span class="line"></span><br><span class="line">    for(let i&#x3D;startChunkIndex; i &lt; endChunkIndex; i++) &#123;</span><br><span class="line">      proms.push(createChunk(file,i,CHUNK_SIZE))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    const chunks &#x3D; await Promise.all(proms)</span><br><span class="line"></span><br><span class="line">    postMessage(chunks)</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/02/06/vue3%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E7%9A%84%E5%B0%81%E8%A3%85/" rel="prev" title="vue3 右键菜单的封装">
+                  <i class="fa fa-chevron-left"></i> vue3 右键菜单的封装
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏彬</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/11/23/2015-06-17-gulp2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/11/23/2015-06-17-gulp2/" class="post-title-link" itemprop="url">browser-sync配合gulp使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-11-23 01:08:00" itemprop="dateCreated datePublished" datetime="2016-11-23T01:08:00+08:00">2016-11-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用browser-sync 来用作服务器，实现实时刷新</p>
+<p>package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;% highlight bash %&#125;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;weibin&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;gulp&quot;: &quot;^3.9.1&quot;,</span><br><span class="line">    &quot;browser-sync&quot;: &quot;^2.17.3&quot;,</span><br><span class="line">    &quot;gulp-connect&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">    &quot;gulp-file-include&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;gulp-imagemin&quot;: &quot;^3.0.3&quot;,</span><br><span class="line">    &quot;gulp-less&quot;: &quot;^3.1.0&quot;,</span><br><span class="line">    &quot;gulp-notify&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;gulp-plumber&quot;: &quot;^1.1.0&quot;,</span><br><span class="line">    &quot;gulp-watch&quot;: &quot;^4.3.10&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;); &#x2F;&#x2F;本地安装gulp所用到的地方</span><br><span class="line">var fileinclude  &#x3D; require(&#39;gulp-file-include&#39;);  &#x2F;&#x2F;包含HTML</span><br><span class="line">var connect &#x3D; require(&#39;gulp-connect&#39;); &#x2F;&#x2F;本地服务</span><br><span class="line">var imagemin &#x3D; require(&#39;gulp-imagemin&#39;); &#x2F;&#x2F;图片压缩</span><br><span class="line">var watch &#x3D; require(&#39;gulp-watch&#39;); &#x2F;&#x2F;监听</span><br><span class="line">var less &#x3D; require(&#39;gulp-less&#39;);</span><br><span class="line">var notify &#x3D; require(&#39;gulp-notify&#39;);  &#x2F;&#x2F;处理LESS错误</span><br><span class="line">var plumber &#x3D; require(&#39;gulp-plumber&#39;); &#x2F;&#x2F;处理LESS错误</span><br><span class="line">var browserSync &#x3D; require(&#39;browser-sync&#39;);</span><br><span class="line">var reload &#x3D; browserSync.reload;</span><br><span class="line"></span><br><span class="line">&#x2F;*&#x2F;&#x2F;本地服务</span><br><span class="line"> gulp.task(&#39;webserver&#39;, function() &#123;</span><br><span class="line"> connect.server(&#123;</span><br><span class="line"> port: 8080,      &#x2F;&#x2F;修改端口</span><br><span class="line"> livereload: true   &#x2F;&#x2F;添加实时刷新，需要watch相应的css.js,html文件</span><br><span class="line"> &#125;);</span><br><span class="line"> &#125;);*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;include html并刷新服务器</span><br><span class="line">gulp.task(&#39;fileinclude&#39;, function(done) &#123;</span><br><span class="line">    gulp.src([&#39;src&#x2F;html&#x2F;*.html&#39;])</span><br><span class="line">        .pipe(fileinclude(&#123;</span><br><span class="line">            prefix: &#39;@@&#39;,</span><br><span class="line">            basepath: &#39;@file&#39;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;html&#39;))</span><br><span class="line"></span><br><span class="line">        .on(&#39;end&#39;, done)</span><br><span class="line">        .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;压缩图片</span><br><span class="line">gulp.task(&#39;imagemin&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;images&#x2F;*&#39;)</span><br><span class="line">        .pipe(imagemin())</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;images&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打包CSS进入到dist目录</span><br><span class="line">gulp.task(&#39;csstodist&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;css&#x2F;*.css&#39;)</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;css&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打包JS到dist目录</span><br><span class="line">gulp.task(&#39;jstodist&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;js&#x2F;*&#39;)</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;js&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&#39;testLess&#39;, function () &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;css&#x2F;*.less&#39;)</span><br><span class="line">        .pipe(plumber(&#123;errorHandler: notify.onError(&#39;Error: &lt;%&#x3D; error.message %&gt;&#39;)&#125;))</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;css&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 监视文件改动并重新载入</span><br><span class="line">gulp.task(&#39;serve&#39;, function() &#123;</span><br><span class="line">    browserSync(&#123;</span><br><span class="line">        port: 8080,</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: &#39;dist&#x2F;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;监听所有HTML JS CSS改动</span><br><span class="line">gulp.task(&#39;watch&#39;, function () &#123;</span><br><span class="line">   &#x2F;&#x2F; gulp.watch([&#39;src&#x2F;css&#x2F;*&#39;,&#39;src&#x2F;css&#x2F;*.less&#39;,&#39;src&#x2F;html&#x2F;*.html&#39;,&#39;src&#x2F;js&#x2F;*&#39;,&#39;src&#x2F;images&#x2F;*&#39;], [&#39;testLess&#39;,&#39;jstodist&#39;,&#39;csstodist&#39;,&#39;fileinclude&#39;,&#39;imagemin&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;**&#x2F;*.css&#39;], [&#39;csstodist&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;css&#x2F;*.less&#39;], [&#39;testLess&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;html&#x2F;**&#x2F;*.html&#39;], [&#39;fileinclude&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;js&#x2F;*&#39;], [&#39;jstodist&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;images&#x2F;*&#39;], [&#39;imagemin&#39;]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(&#39;default&#39;,[&#39;testLess&#39;,&#39;fileinclude&#39;,&#39;serve&#39;,&#39;imagemin&#39;,&#39;csstodist&#39;,&#39;jstodist&#39;,&#39;watch&#39;]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行gulp完毕后 打开 localhost:8080/html</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -963,86 +1049,6 @@
 <p>之后找到你想搭建服务器的路径，然后再当前路径下输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anywhere 8860</span><br></pre></td></tr></table></figure>
 <p>然后浏览器就自动打开本地访问网址，一个简单的node服务器就这样被我们搭建好啦！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2015/12/27/2015-12-27-css-sprite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/12/27/2015-12-27-css-sprite/" class="post-title-link" itemprop="url">css sprite工具</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2015-12-27 01:08:00" itemprop="dateCreated datePublished" datetime="2015-12-27T01:08:00+08:00">2015-12-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>此软件简单易用，同事提供，感谢  <a target="_blank" rel="noopener" href="https://github.com/weibsgz/LessOrMore/blob/gh-pages/libs/CssSprite.exe">css sprite</a></p>
 
       
     </div>

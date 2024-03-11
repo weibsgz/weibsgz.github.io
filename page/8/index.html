@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,88 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/13/2017-02-13-es6-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
+      <meta itemprop="name" content="魏彬">
+      <meta itemprop="description" content="很乱">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/02/13/2017-02-13-es6-start/" class="post-title-link" itemprop="url">es6-gulp环境配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-02-13 01:08:00" itemprop="dateCreated datePublished" datetime="2017-02-13T01:08:00+08:00">2017-02-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-建立package-json-安装gulp-和es6-babel"><a href="#1-建立package-json-安装gulp-和es6-babel" class="headerlink" title="1,建立package.json 安装gulp 和es6-babel"></a>1,建立package.json 安装gulp 和es6-babel</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">npm install --save-dev gulp</span><br><span class="line">npm install --save-dev gulp-babel</span><br><span class="line">npm install --save-dev babel-preset-es2015</span><br><span class="line">&#x2F;&#x2F;命令行中建立文本文件 .babelrc</span><br><span class="line">$ echo &#39;&#123; &quot;presets&quot;: [&quot;latest&quot;] &#125;&#39; &gt; .babelrc</span><br><span class="line">gulp</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="2-gulpfile-js"><a href="#2-gulpfile-js" class="headerlink" title="2,gulpfile.js"></a>2,gulpfile.js</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&quot;gulp&quot;);</span><br><span class="line">var babel &#x3D; require(&quot;gulp-babel&quot;);</span><br><span class="line"></span><br><span class="line">gulp.task(&quot;default&quot;, function () &#123;</span><br><span class="line">  return gulp.src(&quot;src&#x2F;**&#x2F;*.js&quot;)&#x2F;&#x2F; ES6 源码存放的路径</span><br><span class="line">    .pipe(babel()) </span><br><span class="line">    .pipe(gulp.dest(&quot;dist&quot;)); &#x2F;&#x2F;转换成 ES5 存放的路径</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -938,92 +1020,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    import star from &#39;components&#x2F;star&#x2F;star&#39;</span><br><span class="line">    export default&#123;</span><br><span class="line">      props:&#123;</span><br><span class="line">        &#x2F;&#x2F;props接受父组件传递来的props,父组件中定义了&lt;v-head :seller&gt;</span><br><span class="line">        seller:&#123;</span><br><span class="line">          type:Object</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">     </span><br><span class="line">      components: &#123;</span><br><span class="line">          star</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="app-vue-子组件"><a href="#app-vue-子组件" class="headerlink" title="app.vue(子组件)"></a>app.vue(子组件)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">    &lt;template&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;star&quot; :class&#x3D;&quot;starType&quot;&gt;</span><br><span class="line">        &lt;!-- 循环星星，星星的每个CLASS不同，itemClass是单独的样式：on half off, star-item是一样的样式 track-by&#x3D;&quot;$index不加会有警告 --&gt;</span><br><span class="line">       &lt;span v-for&#x3D;&quot;itemClass in itemClasses&quot; :class&#x3D;&quot;itemClass&quot; class&#x3D;&quot;star-item&quot; track-by&#x3D;&quot;$index&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">const LENGTH &#x3D; 5;</span><br><span class="line">const CLS_ON &#x3D; &#39;on&#39;;</span><br><span class="line">const CLS_HALF &#x3D; &#39;half&#39;;</span><br><span class="line">const CLS_OFF &#x3D; &#39;off&#39;;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        size:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;,</span><br><span class="line">        score:&#123;</span><br><span class="line">            type:Number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        starType()&#123;</span><br><span class="line">            return &#39;star-&#39;+this.size</span><br><span class="line">        &#125;,</span><br><span class="line">        itemClasses()&#123;            </span><br><span class="line">            var result &#x3D; [];</span><br><span class="line">            &#x2F;&#x2F;四舍五入 小数位数大于0.5的 取完后会有小数保留，反之只保留整数</span><br><span class="line">            let score &#x3D; Math.floor(this.score*2)&#x2F;2;</span><br><span class="line">           </span><br><span class="line">            &#x2F;&#x2F;是否有小数,如果scrore是小数 % 1后就不是0</span><br><span class="line">            var hasDecimal &#x3D; score % 1 !&#x3D;&#x3D; 0 ;</span><br><span class="line">            console.log(hasDecimal)</span><br><span class="line">            &#x2F;&#x2F;整数有多少分，也就是有几个全星星</span><br><span class="line">            let integer &#x3D; Math.floor(score);</span><br><span class="line">            console.info(integer)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;先把整的星星放进去</span><br><span class="line">            for(let i&#x3D;0; i&lt;integer; i++)</span><br><span class="line">            &#123;</span><br><span class="line">               </span><br><span class="line">                result.push(CLS_ON);</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(result)</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F;如果有小数，就放进去一个半星，半星最多有一个</span><br><span class="line">            if(hasDecimal)&#123;</span><br><span class="line">                result.push(CLS_HALF)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;如果不足5颗星，补足黑色星星</span><br><span class="line">            while(result.length&lt;LENGTH)</span><br><span class="line">            &#123;</span><br><span class="line">                result.push(CLS_OFF);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.star&#123;font-size: 0&#125;</span><br><span class="line">.star .star-item&#123;display: inline-block; background-repeat: no-repeat;&#125;</span><br><span class="line">.star .star-item:last-child&#123;margin-right: 0&#125;</span><br><span class="line">.star-48 .star-item&#123; width: 20px; height: 20px; margin-right: 22px; background-size: 20px 20px;&#125;</span><br><span class="line">.star-48 .star-item.on&#123;background-image:url(&quot;star48_on@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.half&#123;background-image:url(&quot;star48_half@3x.png&quot;);&#125;</span><br><span class="line">.star-48 .star-item.off&#123;background-image:url(&quot;star48_off@3x.png&quot;);&#125;</span><br><span class="line">.star-36 .star-item&#123;&#125;</span><br><span class="line">.star-24 .star-item&#123;&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/11/23/2015-06-17-gulp2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=558582640,2047403197&fm=27&gp=0.jpg">
-      <meta itemprop="name" content="魏彬">
-      <meta itemprop="description" content="很乱">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/11/23/2015-06-17-gulp2/" class="post-title-link" itemprop="url">browser-sync配合gulp使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-11-23 01:08:00" itemprop="dateCreated datePublished" datetime="2016-11-23T01:08:00+08:00">2016-11-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:09:50" itemprop="dateModified" datetime="2020-12-25T17:09:50+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>使用browser-sync 来用作服务器，实现实时刷新</p>
-<p>package.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;% highlight bash %&#125;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;weibin&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;gulp&quot;: &quot;^3.9.1&quot;,</span><br><span class="line">    &quot;browser-sync&quot;: &quot;^2.17.3&quot;,</span><br><span class="line">    &quot;gulp-connect&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">    &quot;gulp-file-include&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;gulp-imagemin&quot;: &quot;^3.0.3&quot;,</span><br><span class="line">    &quot;gulp-less&quot;: &quot;^3.1.0&quot;,</span><br><span class="line">    &quot;gulp-notify&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;gulp-plumber&quot;: &quot;^1.1.0&quot;,</span><br><span class="line">    &quot;gulp-watch&quot;: &quot;^4.3.10&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;); &#x2F;&#x2F;本地安装gulp所用到的地方</span><br><span class="line">var fileinclude  &#x3D; require(&#39;gulp-file-include&#39;);  &#x2F;&#x2F;包含HTML</span><br><span class="line">var connect &#x3D; require(&#39;gulp-connect&#39;); &#x2F;&#x2F;本地服务</span><br><span class="line">var imagemin &#x3D; require(&#39;gulp-imagemin&#39;); &#x2F;&#x2F;图片压缩</span><br><span class="line">var watch &#x3D; require(&#39;gulp-watch&#39;); &#x2F;&#x2F;监听</span><br><span class="line">var less &#x3D; require(&#39;gulp-less&#39;);</span><br><span class="line">var notify &#x3D; require(&#39;gulp-notify&#39;);  &#x2F;&#x2F;处理LESS错误</span><br><span class="line">var plumber &#x3D; require(&#39;gulp-plumber&#39;); &#x2F;&#x2F;处理LESS错误</span><br><span class="line">var browserSync &#x3D; require(&#39;browser-sync&#39;);</span><br><span class="line">var reload &#x3D; browserSync.reload;</span><br><span class="line"></span><br><span class="line">&#x2F;*&#x2F;&#x2F;本地服务</span><br><span class="line"> gulp.task(&#39;webserver&#39;, function() &#123;</span><br><span class="line"> connect.server(&#123;</span><br><span class="line"> port: 8080,      &#x2F;&#x2F;修改端口</span><br><span class="line"> livereload: true   &#x2F;&#x2F;添加实时刷新，需要watch相应的css.js,html文件</span><br><span class="line"> &#125;);</span><br><span class="line"> &#125;);*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;include html并刷新服务器</span><br><span class="line">gulp.task(&#39;fileinclude&#39;, function(done) &#123;</span><br><span class="line">    gulp.src([&#39;src&#x2F;html&#x2F;*.html&#39;])</span><br><span class="line">        .pipe(fileinclude(&#123;</span><br><span class="line">            prefix: &#39;@@&#39;,</span><br><span class="line">            basepath: &#39;@file&#39;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;html&#39;))</span><br><span class="line"></span><br><span class="line">        .on(&#39;end&#39;, done)</span><br><span class="line">        .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;压缩图片</span><br><span class="line">gulp.task(&#39;imagemin&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;images&#x2F;*&#39;)</span><br><span class="line">        .pipe(imagemin())</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;images&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打包CSS进入到dist目录</span><br><span class="line">gulp.task(&#39;csstodist&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;css&#x2F;*.css&#39;)</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;css&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打包JS到dist目录</span><br><span class="line">gulp.task(&#39;jstodist&#39;, function() &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;js&#x2F;*&#39;)</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;js&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&#39;testLess&#39;, function () &#123;</span><br><span class="line">    gulp.src(&#39;src&#x2F;css&#x2F;*.less&#39;)</span><br><span class="line">        .pipe(plumber(&#123;errorHandler: notify.onError(&#39;Error: &lt;%&#x3D; error.message %&gt;&#39;)&#125;))</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(gulp.dest(&#39;dist&#x2F;css&#39;)).pipe(reload(&#123; stream: true &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 监视文件改动并重新载入</span><br><span class="line">gulp.task(&#39;serve&#39;, function() &#123;</span><br><span class="line">    browserSync(&#123;</span><br><span class="line">        port: 8080,</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: &#39;dist&#x2F;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;监听所有HTML JS CSS改动</span><br><span class="line">gulp.task(&#39;watch&#39;, function () &#123;</span><br><span class="line">   &#x2F;&#x2F; gulp.watch([&#39;src&#x2F;css&#x2F;*&#39;,&#39;src&#x2F;css&#x2F;*.less&#39;,&#39;src&#x2F;html&#x2F;*.html&#39;,&#39;src&#x2F;js&#x2F;*&#39;,&#39;src&#x2F;images&#x2F;*&#39;], [&#39;testLess&#39;,&#39;jstodist&#39;,&#39;csstodist&#39;,&#39;fileinclude&#39;,&#39;imagemin&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;**&#x2F;*.css&#39;], [&#39;csstodist&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;css&#x2F;*.less&#39;], [&#39;testLess&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;html&#x2F;**&#x2F;*.html&#39;], [&#39;fileinclude&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;js&#x2F;*&#39;], [&#39;jstodist&#39;]);</span><br><span class="line">    gulp.watch([&#39;src&#x2F;images&#x2F;*&#39;], [&#39;imagemin&#39;]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(&#39;default&#39;,[&#39;testLess&#39;,&#39;fileinclude&#39;,&#39;serve&#39;,&#39;imagemin&#39;,&#39;csstodist&#39;,&#39;jstodist&#39;,&#39;watch&#39;]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>运行gulp完毕后 打开 localhost:8080/html</p>
 
       
     </div>
